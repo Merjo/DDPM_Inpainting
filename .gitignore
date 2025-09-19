@@ -1,0 +1,6 @@
+*.pt
+*.png
+*.csv
+data/
+cache/
+output/

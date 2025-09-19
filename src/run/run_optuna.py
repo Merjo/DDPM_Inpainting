@@ -1,6 +1,6 @@
 import torch
 import time
-import datetime
+from datetime import datetime
 import optuna
 import pandas as pd
 from collections import defaultdict
@@ -9,6 +9,7 @@ from src.data.loader import get_loader
 from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
+from src.config import cfg
 
 def objective(trial, loader, max_epochs=20, patience=3):
     trial.set_user_attr("duration", float('inf'))
@@ -53,7 +54,7 @@ def objective(trial, loader, max_epochs=20, patience=3):
         label_dim=0,
         dropout=dropout,
         encoder_type=downsample_type,
-    ).to(device)
+    ).to(cfg.device)
     
     # --- Diffusion hyperparameters ---
     timesteps = trial.suggest_categorical("timesteps", [250, 500, 1000])
@@ -69,7 +70,7 @@ def objective(trial, loader, max_epochs=20, patience=3):
         beta_end=0.02,
         beta_schedule=beta_schedule,
         loss_type=loss_type,
-        device=device,
+        device=cfg.device,
     )
     
     # --- Training hyperparameters ---
@@ -95,7 +96,7 @@ def objective(trial, loader, max_epochs=20, patience=3):
 
     # --- Training ---
     best_rmse, epoch_losses = diffusion.train(
-        loader, optimizer, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience
+        loader, optimizer, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every
     )
 
     # --- Save checkpoint for this trial ---
@@ -110,7 +111,7 @@ def objective(trial, loader, max_epochs=20, patience=3):
     return best_rmse
 
 def run_optuna(n_trials=25, max_epochs=15, patience=2):
-    loader = get_loader
+    loader = get_loader()
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda trial: objective(trial, loader=loader, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
 
@@ -167,8 +168,6 @@ if __name__=='__main__':
     max_epochs = 15
     patience = 2
     n_trials = 60
-
-    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     params_file, model_file = run_optuna(n_trials=n_trials, max_epochs=max_epochs, patience=patience)
 
