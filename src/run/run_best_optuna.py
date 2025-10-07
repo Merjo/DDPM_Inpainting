@@ -1,7 +1,8 @@
 from src.run.run_best import run_best
 from src.run.run_optuna import run_optuna
 from src.data.loader import get_loader
-from src.visualization.save_plot import plot_random
+from src.save.save_plot import plot_random
+from src.save.save_model import save_model
 import os
 import glob
 import pandas as pd
@@ -9,6 +10,7 @@ import numpy as np
 import torch
 from PIL import Image
 from matplotlib import pyplot as plt
+from src.data.precipitation_dataset import PrecipitationPatchDataset
 
 
 @torch.no_grad()
@@ -75,14 +77,18 @@ def run_best_optuna(n_trials=30,
                                           epochs=max_epochs,
                                           patience=max_patience)
 
+    best_params = params = pd.read_csv(param_filename).iloc[0].to_dict()
+
+    save_model(best_params=best_params, model=unet, best_value=best_loss)
+
     return diffusion, unet, best_loss
 
 if __name__=='__main__':
-    n_trials = 30
-    max_optuna_epochs = 10
+    n_trials = 5
+    max_optuna_epochs = 5
     max_optuna_patience = 2
-    max_epochs = 50
-    max_patience = 3
+    max_epochs = 10
+    max_patience = 10
 
     diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
                                                  max_optuna_epochs=max_optuna_epochs,

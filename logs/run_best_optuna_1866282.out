@@ -1,0 +1,343 @@
+
+[Cache] Loaded dataset from cache/precip_dataset_8784.pkl
+
+Best params: {'model_channels': 64, 'num_blocks': 2, 'dropout': 0.24533573086065602, 'downsample_type': 'standard', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0005525659953081826}
+Best value: 0.016573251293832972
+Best params saved to: best_params_0.0166_0920_06.csv
+Best model saved to: best_model_0.0166_0920_06.pt
+
+
+
+
+
+=== Parameter-wise Summary ===
+
+Parameter: model_channels
+  64: avg RMSE=0.0349, avg time=infs over 480 trials
+  128: avg RMSE=0.1594, avg time=infs over 108 trials
+  32: avg RMSE=0.1400, avg time=infs over 132 trials
+
+Parameter: num_blocks
+  1: avg RMSE=0.0463, avg time=infs over 120 trials
+  2: avg RMSE=0.0373, avg time=infs over 480 trials
+  3: avg RMSE=0.2417, avg time=infs over 120 trials
+
+Parameter: dropout
+  0.18475404519333546: avg RMSE=0.0325, avg time=1580.7s over 12 trials
+  0.17884085819819062: avg RMSE=0.0413, avg time=7590.0s over 12 trials
+  0.00444990469805584: avg RMSE=0.0730, avg time=1972.2s over 12 trials
+  0.25163107576950094: avg RMSE=0.0332, avg time=971.2s over 12 trials
+  0.2390716178155717: avg RMSE=0.0176, avg time=1274.5s over 12 trials
+  0.12056632925428135: avg RMSE=0.0883, avg time=infs over 12 trials
+  0.07033069563850801: avg RMSE=0.1117, avg time=infs over 12 trials
+  0.2901315597809422: avg RMSE=0.0882, avg time=infs over 12 trials
+  0.23503929596133033: avg RMSE=0.1356, avg time=infs over 12 trials
+  0.2222096786013568: avg RMSE=0.0319, avg time=3122.1s over 12 trials
+  0.13192985188380263: avg RMSE=0.6042, avg time=infs over 12 trials
+  0.23044161997223933: avg RMSE=1.0398, avg time=infs over 12 trials
+  0.28090149321306584: avg RMSE=0.0270, avg time=1305.9s over 12 trials
+  0.2977589773922809: avg RMSE=0.4133, avg time=infs over 12 trials
+  0.2699356581046718: avg RMSE=0.0288, avg time=1009.5s over 12 trials
+  0.19442591641754514: avg RMSE=0.0722, avg time=infs over 12 trials
+  0.26311407142012483: avg RMSE=0.0192, avg time=941.8s over 12 trials
+  0.1584817911079131: avg RMSE=0.0190, avg time=941.9s over 12 trials
+  0.0847792520876293: avg RMSE=0.0707, avg time=infs over 12 trials
+  0.15763299258531946: avg RMSE=0.0246, avg time=985.7s over 12 trials
+  0.0954889281269595: avg RMSE=0.0240, avg time=1365.7s over 12 trials
+  0.20750658914197725: avg RMSE=0.0189, avg time=941.6s over 12 trials
+  0.203430303737178: avg RMSE=0.0188, avg time=941.7s over 12 trials
+  0.20032131733734732: avg RMSE=0.0186, avg time=941.6s over 12 trials
+  0.20971858911878616: avg RMSE=0.0171, avg time=1882.7s over 12 trials
+  0.24533573086065602: avg RMSE=0.0166, avg time=1882.4s over 12 trials
+  0.2532989752079669: avg RMSE=0.0175, avg time=1392.7s over 12 trials
+  0.2611047694435142: avg RMSE=0.0177, avg time=1830.5s over 12 trials
+  0.17551453401287018: avg RMSE=0.0338, avg time=infs over 12 trials
+  0.21470979388569514: avg RMSE=0.0530, avg time=infs over 12 trials
+  0.24982165312141744: avg RMSE=0.0409, avg time=infs over 12 trials
+  0.2391451877707122: avg RMSE=0.0433, avg time=infs over 12 trials
+  0.27378269820989526: avg RMSE=0.0171, avg time=2014.5s over 12 trials
+  0.2815414648358527: avg RMSE=0.0172, avg time=2014.8s over 12 trials
+  0.27924020795166277: avg RMSE=0.0438, avg time=infs over 12 trials
+  0.2999124814753367: avg RMSE=0.0170, avg time=1687.4s over 12 trials
+  0.29966687594642955: avg RMSE=0.0192, avg time=infs over 12 trials
+  0.2708100340549064: avg RMSE=0.0433, avg time=infs over 12 trials
+  0.17217770958368378: avg RMSE=0.0426, avg time=infs over 12 trials
+  0.03936345722422166: avg RMSE=0.0537, avg time=infs over 12 trials
+  0.2476527867063435: avg RMSE=0.0559, avg time=infs over 12 trials
+  0.2801841229081851: avg RMSE=0.0172, avg time=1683.7s over 12 trials
+  0.2887171728782568: avg RMSE=0.0169, avg time=1686.8s over 12 trials
+  0.2927926965303505: avg RMSE=0.0187, avg time=842.9s over 12 trials
+  0.22202329248650132: avg RMSE=0.0170, avg time=1684.2s over 12 trials
+  0.23365937641334555: avg RMSE=0.0566, avg time=infs over 12 trials
+  0.26338562060044196: avg RMSE=0.0187, avg time=842.6s over 12 trials
+  0.2200007606194443: avg RMSE=0.0423, avg time=infs over 12 trials
+  0.28723227469273893: avg RMSE=0.0378, avg time=infs over 12 trials
+  0.27125916877533435: avg RMSE=0.0558, avg time=infs over 12 trials
+  0.13228390194447393: avg RMSE=0.0496, avg time=infs over 12 trials
+  0.2416090220848589: avg RMSE=0.0217, avg time=infs over 12 trials
+  0.18872511123585478: avg RMSE=0.0187, avg time=1874.9s over 12 trials
+  0.22863283289568703: avg RMSE=0.0342, avg time=infs over 12 trials
+  0.2536915879736086: avg RMSE=0.1188, avg time=infs over 12 trials
+  0.29255273141165333: avg RMSE=0.0529, avg time=infs over 12 trials
+  0.21790296340506551: avg RMSE=0.0191, avg time=infs over 12 trials
+  0.261616418458583: avg RMSE=0.0172, avg time=1883.0s over 12 trials
+  0.2737158785583926: avg RMSE=0.0465, avg time=infs over 12 trials
+  0.22771800102568535: avg RMSE=0.1076, avg time=infs over 12 trials
+
+Parameter: downsample_type
+  residual: avg RMSE=0.0566, avg time=infs over 120 trials
+  standard: avg RMSE=0.0761, avg time=infs over 600 trials
+
+Parameter: channel_mult
+  124: avg RMSE=0.0519, avg time=infs over 96 trials
+  1124: avg RMSE=0.0386, avg time=infs over 252 trials
+  1224: avg RMSE=0.1113, avg time=infs over 300 trials
+  1248: avg RMSE=0.0599, avg time=infs over 72 trials
+
+Parameter: attn_config
+  none: avg RMSE=0.1057, avg time=infs over 132 trials
+  last_two: avg RMSE=0.0375, avg time=infs over 348 trials
+  last: avg RMSE=0.1060, avg time=infs over 240 trials
+
+Parameter: timesteps
+  500: avg RMSE=0.0484, avg time=infs over 96 trials
+  1000: avg RMSE=0.0575, avg time=infs over 516 trials
+  250: avg RMSE=0.1677, avg time=infs over 108 trials
+
+Parameter: beta_schedule
+  cosine: avg RMSE=0.0410, avg time=infs over 84 trials
+  exponential: avg RMSE=0.0782, avg time=infs over 108 trials
+  linear: avg RMSE=0.0723, avg time=infs over 456 trials
+  quadratic: avg RMSE=0.1053, avg time=infs over 72 trials
+
+Parameter: loss
+  l1: avg RMSE=0.0465, avg time=infs over 516 trials
+  mse: avg RMSE=0.1940, avg time=infs over 108 trials
+  huber: avg RMSE=0.0781, avg time=infs over 96 trials
+
+Parameter: optimizer
+  Adam: avg RMSE=0.0483, avg time=infs over 144 trials
+  AdamW: avg RMSE=0.0790, avg time=infs over 576 trials
+
+Parameter: scheduler
+  ExponentialLR: avg RMSE=0.0502, avg time=infs over 120 trials
+  WarmupCosine: avg RMSE=0.0773, avg time=infs over 600 trials
+
+Parameter: lr
+  6.686756217930708e-05: avg RMSE=0.0325, avg time=1580.7s over 12 trials
+  0.000460309890522064: avg RMSE=0.0413, avg time=7590.0s over 12 trials
+  0.0009722164172517492: avg RMSE=0.0730, avg time=1972.2s over 12 trials
+  0.0001754863408832002: avg RMSE=0.0332, avg time=971.2s over 12 trials
+  0.00024988333984943403: avg RMSE=0.0176, avg time=1274.5s over 12 trials
+  0.0021747637760418915: avg RMSE=0.0883, avg time=infs over 12 trials
+  8.73127897359373e-05: avg RMSE=0.1117, avg time=infs over 12 trials
+  0.00036593074439363456: avg RMSE=0.0882, avg time=infs over 12 trials
+  0.00013087748366346694: avg RMSE=0.1356, avg time=infs over 12 trials
+  0.0009994190294173894: avg RMSE=0.0319, avg time=3122.1s over 12 trials
+  1.4940547435641795e-05: avg RMSE=0.6042, avg time=infs over 12 trials
+  0.004536764373449185: avg RMSE=1.0398, avg time=infs over 12 trials
+  0.0009777080466362074: avg RMSE=0.0270, avg time=1305.9s over 12 trials
+  2.849919062008899e-05: avg RMSE=0.4133, avg time=infs over 12 trials
+  0.0007537632889281504: avg RMSE=0.0288, avg time=1009.5s over 12 trials
+  0.00030406187307976777: avg RMSE=0.0722, avg time=infs over 12 trials
+  0.0022631562484415188: avg RMSE=0.0192, avg time=941.8s over 12 trials
+  0.004297651296781375: avg RMSE=0.0190, avg time=941.9s over 12 trials
+  3.392948728959789e-05: avg RMSE=0.0707, avg time=infs over 12 trials
+  0.00472428929167892: avg RMSE=0.0246, avg time=985.7s over 12 trials
+  0.0019212057912947964: avg RMSE=0.0240, avg time=1365.7s over 12 trials
+  0.002398176215112495: avg RMSE=0.0189, avg time=941.6s over 12 trials
+  0.0029217321305166095: avg RMSE=0.0188, avg time=941.7s over 12 trials
+  0.0016724294426065714: avg RMSE=0.0186, avg time=941.6s over 12 trials
+  0.0005829290468170934: avg RMSE=0.0171, avg time=1882.7s over 12 trials
+  0.0005525659953081826: avg RMSE=0.0166, avg time=1882.4s over 12 trials
+  0.0005296593927294004: avg RMSE=0.0175, avg time=1392.7s over 12 trials
+  0.00020561574967109427: avg RMSE=0.0177, avg time=1830.5s over 12 trials
+  0.0005016295076399527: avg RMSE=0.0338, avg time=infs over 12 trials
+  0.00012923343356234952: avg RMSE=0.0530, avg time=infs over 12 trials
+  0.0004948720526228949: avg RMSE=0.0409, avg time=infs over 12 trials
+  0.00024918327096909616: avg RMSE=0.0433, avg time=infs over 12 trials
+  0.0005482266807381381: avg RMSE=0.0171, avg time=2014.5s over 12 trials
+  0.0006917197079595234: avg RMSE=0.0172, avg time=2014.8s over 12 trials
+  0.00032510804804711604: avg RMSE=0.0438, avg time=infs over 12 trials
+  0.001297684278525228: avg RMSE=0.0170, avg time=1687.4s over 12 trials
+  0.0012967464265012654: avg RMSE=0.0192, avg time=infs over 12 trials
+  0.0006820125866824211: avg RMSE=0.0433, avg time=infs over 12 trials
+  0.0003716837940333775: avg RMSE=0.0426, avg time=infs over 12 trials
+  0.0012683736822509425: avg RMSE=0.0537, avg time=infs over 12 trials
+  0.00015707291149740033: avg RMSE=0.0559, avg time=infs over 12 trials
+  0.0006068999447472861: avg RMSE=0.0172, avg time=1683.7s over 12 trials
+  0.0012841747382686744: avg RMSE=0.0169, avg time=1686.8s over 12 trials
+  0.0013341277558739362: avg RMSE=0.0187, avg time=842.9s over 12 trials
+  0.0007433632290007053: avg RMSE=0.0170, avg time=1684.2s over 12 trials
+  0.000881555185442703: avg RMSE=0.0566, avg time=infs over 12 trials
+  0.003306564922380368: avg RMSE=0.0187, avg time=842.6s over 12 trials
+  0.0010800429065271953: avg RMSE=0.0423, avg time=infs over 12 trials
+  0.0016862122793816227: avg RMSE=0.0378, avg time=infs over 12 trials
+  0.0003941312444420236: avg RMSE=0.0558, avg time=infs over 12 trials
+  0.0008877223091830498: avg RMSE=0.0496, avg time=infs over 12 trials
+  0.0007432224930619652: avg RMSE=0.0217, avg time=infs over 12 trials
+  0.001436335518562217: avg RMSE=0.0187, avg time=1874.9s over 12 trials
+  0.0004458789175765714: avg RMSE=0.0342, avg time=infs over 12 trials
+  0.0010624010611964213: avg RMSE=0.1188, avg time=infs over 12 trials
+  0.0002893093821627169: avg RMSE=0.0529, avg time=infs over 12 trials
+  0.0005963367479489233: avg RMSE=0.0191, avg time=infs over 12 trials
+  0.0008365394794223046: avg RMSE=0.0172, avg time=1883.0s over 12 trials
+  0.0026105842093544188: avg RMSE=0.0465, avg time=infs over 12 trials
+  5.9580061834788824e-05: avg RMSE=0.1076, avg time=infs over 12 trials
+
+[Cache] Loaded dataset from cache/precip_dataset_8784.pkl
+
+Epoch 1/200 - avg_loss: 0.041790, avg_rmse: 0.017342
+Epoch 2/200 - avg_loss: 0.042692, avg_rmse: 0.017340
+Epoch 3/200 - avg_loss: 0.043399, avg_rmse: 0.017657
+Epoch 4/200 - avg_loss: 0.042855, avg_rmse: 0.017473
+Epoch 5/200 - avg_loss: 0.042215, avg_rmse: 0.017079
+<built-in function getcwd>
+[Plot] Saved output/plots/plot39.png
+Epoch 6/200 - avg_loss: 0.041809, avg_rmse: 0.017091
+Epoch 7/200 - avg_loss: 0.040866, avg_rmse: 0.016571
+Epoch 8/200 - avg_loss: 0.041207, avg_rmse: 0.016903
+Epoch 9/200 - avg_loss: 0.040654, avg_rmse: 0.016659
+Epoch 10/200 - avg_loss: 0.040534, avg_rmse: 0.016696
+<built-in function getcwd>
+[Plot] Saved output/plots/plot40.png
+Epoch 11/200 - avg_loss: 0.040266, avg_rmse: 0.016791
+Epoch 12/200 - avg_loss: 0.040183, avg_rmse: 0.016811
+Epoch 13/200 - avg_loss: 0.039675, avg_rmse: 0.016546
+Epoch 14/200 - avg_loss: 0.039691, avg_rmse: 0.016638
+Epoch 15/200 - avg_loss: 0.039561, avg_rmse: 0.016466
+<built-in function getcwd>
+[Plot] Saved output/plots/plot41.png
+Epoch 16/200 - avg_loss: 0.039187, avg_rmse: 0.016325
+Epoch 17/200 - avg_loss: 0.039096, avg_rmse: 0.016277
+Epoch 18/200 - avg_loss: 0.038900, avg_rmse: 0.016234
+Epoch 19/200 - avg_loss: 0.039097, avg_rmse: 0.016456
+Epoch 20/200 - avg_loss: 0.038767, avg_rmse: 0.016210
+<built-in function getcwd>
+[Plot] Saved output/plots/plot42.png
+Epoch 21/200 - avg_loss: 0.038470, avg_rmse: 0.015868
+Epoch 22/200 - avg_loss: 0.039029, avg_rmse: 0.016564
+Epoch 23/200 - avg_loss: 0.038577, avg_rmse: 0.016101
+Epoch 24/200 - avg_loss: 0.038664, avg_rmse: 0.016111
+Epoch 25/200 - avg_loss: 0.038344, avg_rmse: 0.016056
+<built-in function getcwd>
+[Plot] Saved output/plots/plot43.png
+Epoch 26/200 - avg_loss: 0.038657, avg_rmse: 0.016346
+Epoch 27/200 - avg_loss: 0.038299, avg_rmse: 0.015954
+Epoch 28/200 - avg_loss: 0.038086, avg_rmse: 0.015755
+Epoch 29/200 - avg_loss: 0.038186, avg_rmse: 0.015941
+Epoch 30/200 - avg_loss: 0.038113, avg_rmse: 0.015948
+<built-in function getcwd>
+[Plot] Saved output/plots/plot44.png
+Epoch 31/200 - avg_loss: 0.038428, avg_rmse: 0.016134
+Epoch 32/200 - avg_loss: 0.038149, avg_rmse: 0.015964
+Epoch 33/200 - avg_loss: 0.038386, avg_rmse: 0.016258
+Epoch 34/200 - avg_loss: 0.038073, avg_rmse: 0.015969
+Epoch 35/200 - avg_loss: 0.037976, avg_rmse: 0.015906
+<built-in function getcwd>
+[Plot] Saved output/plots/plot45.png
+Epoch 36/200 - avg_loss: 0.037794, avg_rmse: 0.015788
+Epoch 37/200 - avg_loss: 0.037939, avg_rmse: 0.015911
+Epoch 38/200 - avg_loss: 0.037872, avg_rmse: 0.015897
+Epoch 39/200 - avg_loss: 0.037849, avg_rmse: 0.015783
+Epoch 40/200 - avg_loss: 0.037525, avg_rmse: 0.015510
+<built-in function getcwd>
+[Plot] Saved output/plots/plot46.png
+Epoch 41/200 - avg_loss: 0.037955, avg_rmse: 0.015972
+Epoch 42/200 - avg_loss: 0.037881, avg_rmse: 0.015887
+Epoch 43/200 - avg_loss: 0.037713, avg_rmse: 0.015610
+Epoch 44/200 - avg_loss: 0.037786, avg_rmse: 0.015777
+Epoch 45/200 - avg_loss: 0.038200, avg_rmse: 0.016158
+<built-in function getcwd>
+[Plot] Saved output/plots/plot47.png
+Epoch 46/200 - avg_loss: 0.037306, avg_rmse: 0.015386
+Epoch 47/200 - avg_loss: 0.037593, avg_rmse: 0.015548
+Epoch 48/200 - avg_loss: 0.037624, avg_rmse: 0.015704
+Epoch 49/200 - avg_loss: 0.037793, avg_rmse: 0.015895
+Epoch 50/200 - avg_loss: 0.037278, avg_rmse: 0.015376
+<built-in function getcwd>
+[Plot] Saved output/plots/plot48.png
+Epoch 51/200 - avg_loss: 0.037538, avg_rmse: 0.015746
+Epoch 52/200 - avg_loss: 0.037191, avg_rmse: 0.015359
+Epoch 53/200 - avg_loss: 0.037298, avg_rmse: 0.015436
+Epoch 54/200 - avg_loss: 0.037533, avg_rmse: 0.015783
+Epoch 55/200 - avg_loss: 0.037317, avg_rmse: 0.015593
+<built-in function getcwd>
+[Plot] Saved output/plots/plot49.png
+Epoch 56/200 - avg_loss: 0.037325, avg_rmse: 0.015484
+Epoch 57/200 - avg_loss: 0.037594, avg_rmse: 0.015782
+Epoch 58/200 - avg_loss: 0.037165, avg_rmse: 0.015440
+Epoch 59/200 - avg_loss: 0.037248, avg_rmse: 0.015572
+Epoch 60/200 - avg_loss: 0.037403, avg_rmse: 0.015640
+<built-in function getcwd>
+[Plot] Saved output/plots/plot50.png
+Epoch 61/200 - avg_loss: 0.036996, avg_rmse: 0.015236
+Epoch 62/200 - avg_loss: 0.037251, avg_rmse: 0.015561
+Epoch 63/200 - avg_loss: 0.036947, avg_rmse: 0.015170
+Epoch 64/200 - avg_loss: 0.037224, avg_rmse: 0.015516
+Epoch 65/200 - avg_loss: 0.037078, avg_rmse: 0.015417
+<built-in function getcwd>
+[Plot] Saved output/plots/plot51.png
+Epoch 66/200 - avg_loss: 0.037334, avg_rmse: 0.015721
+Epoch 67/200 - avg_loss: 0.037085, avg_rmse: 0.015397
+Epoch 68/200 - avg_loss: 0.036800, avg_rmse: 0.015212
+Epoch 69/200 - avg_loss: 0.036914, avg_rmse: 0.015372
+Epoch 70/200 - avg_loss: 0.036820, avg_rmse: 0.015321
+<built-in function getcwd>
+[Plot] Saved output/plots/plot52.png
+Epoch 71/200 - avg_loss: 0.037042, avg_rmse: 0.015537
+Epoch 72/200 - avg_loss: 0.036814, avg_rmse: 0.015330
+Epoch 73/200 - avg_loss: 0.036919, avg_rmse: 0.015401
+Epoch 74/200 - avg_loss: 0.037014, avg_rmse: 0.015493
+Epoch 75/200 - avg_loss: 0.037245, avg_rmse: 0.015532
+<built-in function getcwd>
+[Plot] Saved output/plots/plot53.png
+Epoch 76/200 - avg_loss: 0.036990, avg_rmse: 0.015428
+Epoch 77/200 - avg_loss: 0.036664, avg_rmse: 0.015161
+Epoch 78/200 - avg_loss: 0.036722, avg_rmse: 0.015180
+Epoch 79/200 - avg_loss: 0.036794, avg_rmse: 0.015299
+Epoch 80/200 - avg_loss: 0.036638, avg_rmse: 0.015303
+<built-in function getcwd>
+[Plot] Saved output/plots/plot54.png
+Epoch 81/200 - avg_loss: 0.036828, avg_rmse: 0.015360
+Epoch 82/200 - avg_loss: 0.036794, avg_rmse: 0.015392
+Epoch 83/200 - avg_loss: 0.036885, avg_rmse: 0.015440
+Epoch 84/200 - avg_loss: 0.036718, avg_rmse: 0.015347
+Epoch 85/200 - avg_loss: 0.036793, avg_rmse: 0.015432
+<built-in function getcwd>
+[Plot] Saved output/plots/plot55.png
+Epoch 86/200 - avg_loss: 0.036847, avg_rmse: 0.015471
+Epoch 87/200 - avg_loss: 0.036710, avg_rmse: 0.015263
+Epoch 88/200 - avg_loss: 0.036765, avg_rmse: 0.015437
+Epoch 89/200 - avg_loss: 0.036593, avg_rmse: 0.015345
+Epoch 90/200 - avg_loss: 0.036693, avg_rmse: 0.015419
+<built-in function getcwd>
+[Plot] Saved output/plots/plot56.png
+Epoch 91/200 - avg_loss: 0.036484, avg_rmse: 0.015091
+Epoch 92/200 - avg_loss: 0.036410, avg_rmse: 0.015071
+Epoch 93/200 - avg_loss: 0.036643, avg_rmse: 0.015269
+Epoch 94/200 - avg_loss: 0.036458, avg_rmse: 0.015216
+Epoch 95/200 - avg_loss: 0.036418, avg_rmse: 0.015168
+<built-in function getcwd>
+[Plot] Saved output/plots/plot57.png
+Epoch 96/200 - avg_loss: 0.036333, avg_rmse: 0.015066
+Epoch 97/200 - avg_loss: 0.036461, avg_rmse: 0.015233
+Epoch 98/200 - avg_loss: 0.036065, avg_rmse: 0.014786
+Epoch 99/200 - avg_loss: 0.036564, avg_rmse: 0.015264
+Epoch 100/200 - avg_loss: 0.036663, avg_rmse: 0.015353
+<built-in function getcwd>
+[Plot] Saved output/plots/plot58.png
+Epoch 101/200 - avg_loss: 0.036330, avg_rmse: 0.015125
+Epoch 102/200 - avg_loss: 0.036238, avg_rmse: 0.015020
+Epoch 103/200 - avg_loss: 0.036066, avg_rmse: 0.014814
+Epoch 104/200 - avg_loss: 0.036276, avg_rmse: 0.015105
+Epoch 105/200 - avg_loss: 0.036198, avg_rmse: 0.015091
+<built-in function getcwd>
+[Plot] Saved output/plots/plot59.png
+Epoch 106/200 - avg_loss: 0.036417, avg_rmse: 0.015308
+Epoch 107/200 - avg_loss: 0.036386, avg_rmse: 0.015190
+Epoch 108/200 - avg_loss: 0.036482, avg_rmse: 0.015257
+Early stopping at epoch 108
+
+[Cache] Loaded dataset from cache/precip_dataset_8784.pkl
+

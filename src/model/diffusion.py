@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from matplotlib import pyplot as plt
 import optuna
-from src.visualization.save_plot import plot_random
+from src.save.save_plot import plot_random
 
 class Diffusion:
     def __init__(

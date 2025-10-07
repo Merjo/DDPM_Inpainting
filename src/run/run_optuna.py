@@ -10,6 +10,7 @@ from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.config import cfg
+from src.save.save_model import save_model
 
 def objective(trial, loader, max_epochs=20, patience=3):
     trial.set_user_attr("duration", float('inf'))
@@ -119,27 +120,9 @@ def run_optuna(n_trials=25, max_epochs=15, patience=2):
     best_trial = study.best_trial
     best_params = best_trial.params
     best_value = best_trial.value
-    
-    print("Best params:", best_params)
-    print("Best value:", best_value)
+    best_model = torch.load(best_trial.user_attrs["checkpoint"])
 
-    timestamp = datetime.now().strftime("%m%d_%H")
-
-    params_filename = f"best_params_{best_value:.4f}_{timestamp}.csv"
-    model_filename = f"best_model_{best_value:.4f}_{timestamp}.pt"
-
-    # Save params
-    df = pd.DataFrame([best_params])
-    df["loss_value"] = best_value
-    df.to_csv(params_filename, index=False)
-
-    # Save model
-    torch.save(torch.load(best_trial.user_attrs["checkpoint"]), model_filename)
-
-    print("Best params saved to:", params_filename)
-    print("Best model saved to:", model_filename)
-    
-    print('\n\n\n')
+    params_filename, model_filename = save_model(best_params, best_model, best_value)
     
     # --- Parameter-wise ranking summary ---
     summary = defaultdict(lambda: defaultdict(list))

@@ -8,6 +8,7 @@ from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 from src.data.loader import get_loader
+from src.save.save_model import save_model
 
 def train_best_model(param_file, model_file, loader, epochs=10, patience=3, device="cuda"):
     """Reload best UNet+Diffusion and continue training with new epochs."""
@@ -83,6 +84,9 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
     # --- Continue training ---
     best_loss = diffusion.train(loader, optimizer, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
 
+    params_filename, model_filename = save_model(params, unet, best_loss)
+
+
     return diffusion, unet, best_loss
 
 
@@ -133,7 +137,7 @@ def find_best_saved_model(directory="."):
 
 def run_best(param_file=None, 
              model_file=None,
-             epochs=30,
+             epochs=1,
              patience=3,
              device=cfg.device):
     loader = get_loader()
