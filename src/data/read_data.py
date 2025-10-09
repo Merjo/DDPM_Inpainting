@@ -65,7 +65,7 @@ def read_one_year(reload=False, time_slices=cfg.default, scaler=None,
 
 
 def read_data(reload=False, scaler=None, patch_size=cfg.patch_size, min_coverage=cfg.min_coverage,
-                   cache_folder="cache", years=range(2001, 2021), reload_years=False):
+                   cache_folder="cache", years=range(2001, 2018), reload_years=False):
     time_slices=cfg.time_slices
     cache_path = f'{cache_folder}/precip_dataset_{years[0]}-{years[-1]}_{patch_size}_{time_slices}_{int(min_coverage * 100)}%.pkl'
     cache_available = os.path.exists(cache_path)
@@ -95,7 +95,6 @@ def read_data(reload=False, scaler=None, patch_size=cfg.patch_size, min_coverage
 if __name__=='__main__': 
     import src.data.read_data as this_module
     sys.modules["src.data.read_data"] = this_module
-    #ds = read_data(reload=True, scaler=cfg.scaler()) 
-    ds = read_data(reload=False, scaler=cfg.scaler(), patch_size=cfg.patch_size, min_coverage=cfg.min_coverage)
+    ds = read_data(reload=True, reload_years=False, scaler=cfg.scaler(), patch_size=cfg.patch_size, min_coverage=cfg.min_coverage)
     print(f'\nDataset shape: {ds.data.shape}\n')
     plot_random(ds)

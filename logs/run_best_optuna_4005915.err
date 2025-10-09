@@ -1,0 +1,109 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-10-08 10:29:54,322] A new study created in RDB with name: rain_diffusion
+[I 2025-10-08 11:33:24,522] Trial 0 finished with value: 0.02509893806806455 and parameters: {'model_channels': 64, 'num_blocks': 2, 'dropout': 0.1933679996396742, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last_two', 'timesteps': 250, 'beta_schedule': 'cosine', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0007702311124183709}. Best is trial 0 with value: 0.02509893806806455.
+[W 2025-10-08 11:33:32,011] Trial 1 failed with parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.1669652581901934, 'downsample_type': 'standard', 'channel_mult': '1248', 'attn_config': 'none', 'timesteps': 500, 'beta_schedule': 'cosine', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0026598848641999373} because of the following error: OutOfMemoryError('Caught OutOfMemoryError in replica 0 on device 0.\nOriginal Traceback (most recent call last):\n  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 96, in _worker\n    output = module(*input, **kwargs)\n  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl\n    return forward_call(*args, **kwargs)\n  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/song/song_unet.py", line 207, in forward\n    x = block(x, emb)\n  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl\n    return forward_call(*args, **kwargs)\n  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/song/song_helper_classes.py", line 298, in forward\n    x = silu(self.norm1(x.add_(params)))\n  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/functional.py", line 2380, in silu\n    return torch._C._nn.silu(input)\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.20 GiB of which 575.38 MiB is free. Including non-PyTorch memory, this process has 78.63 GiB memory in use. Of the allocated memory 77.50 GiB is allocated by PyTorch, and 35.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n').
+Traceback (most recent call last):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 127, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 99, in objective
+    best_rmse, epoch_losses = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 126, in train
+    loss = self.p_losses(imgs, t)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 80, in p_losses
+    pred = self.model(xt, t)  # UNet predicts the noise
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 193, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 212, in parallel_apply
+    return parallel_apply(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 126, in parallel_apply
+    output.reraise()
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/_utils.py", line 715, in reraise
+    raise exception
+torch.OutOfMemoryError: Caught OutOfMemoryError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 96, in _worker
+    output = module(*input, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/song/song_unet.py", line 207, in forward
+    x = block(x, emb)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/song/song_helper_classes.py", line 298, in forward
+    x = silu(self.norm1(x.add_(params)))
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.20 GiB of which 575.38 MiB is free. Including non-PyTorch memory, this process has 78.63 GiB memory in use. Of the allocated memory 77.50 GiB is allocated by PyTorch, and 35.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[W 2025-10-08 11:33:32,018] Trial 1 failed with value None.
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 93, in <module>
+    diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 72, in run_best_optuna
+    param_filename, model_filename = run_optuna(n_trials=n_trials, 
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 127, in run_optuna
+    study.optimize(lambda trial: objective(trial, loader=loader, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/study.py", line 490, in optimize
+    _optimize(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 63, in _optimize
+    _optimize_sequential(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 258, in _run_trial
+    raise func_err
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 127, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 99, in objective
+    best_rmse, epoch_losses = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 126, in train
+    loss = self.p_losses(imgs, t)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 80, in p_losses
+    pred = self.model(xt, t)  # UNet predicts the noise
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 193, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 212, in parallel_apply
+    return parallel_apply(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 126, in parallel_apply
+    output.reraise()
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/_utils.py", line 715, in reraise
+    raise exception
+torch.OutOfMemoryError: Caught OutOfMemoryError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 96, in _worker
+    output = module(*input, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/song/song_unet.py", line 207, in forward
+    x = block(x, emb)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/song/song_helper_classes.py", line 298, in forward
+    x = silu(self.norm1(x.add_(params)))
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.20 GiB of which 575.38 MiB is free. Including non-PyTorch memory, this process has 78.63 GiB memory in use. Of the allocated memory 77.50 GiB is allocated by PyTorch, and 35.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+

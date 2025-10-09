@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from matplotlib import pyplot as plt
 import optuna
 from src.save.save_plot import plot_random
+from src.config import cfg
 
 class Diffusion:
     def __init__(
@@ -16,8 +17,11 @@ class Diffusion:
         beta_end=0.02,
         beta_schedule="linear",
         loss_type="mse",
-        device="cuda" if torch.cuda.is_available() else "cpu",
+        device=cfg.device,
     ):
+        if cfg.cuda and torch.cuda.device_count()>1:
+            print(f"Using {torch.cuda.device_count()} GPUs via DataParallel")
+            model = torch.nn.DataParallel(model)
         self.model = model.to(device)
         self.device = device
         self.img_size = img_size
@@ -199,3 +203,30 @@ class Diffusion:
                 x = x + torch.sqrt(beta_t) * z
 
         return x.clamp(0, 1)
+    
+    @torch.no_grad()
+    def inpaint(self, x_known, mask, n_steps=None):
+        self.model.eval()
+        T = n_steps or self.T
+        x = torch.randn_like(x_known)
+
+        for t in reversed(range(T)):
+            t_batch = torch.full((x.size(0),), t, device=self.device, dtype=torch.long)
+            pred_noise = self.model(x, t_batch)
+
+            alpha_t = self.alpha[t]
+            alpha_hat_t = self.alpha_hat[t]
+
+            # DDPM reverse step
+            x = (1 / torch.sqrt(alpha_t)) * (x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
+
+            if t > 0:
+                z = torch.randn_like(x)
+                beta_t = self.beta[t]
+                x = x + torch.sqrt(beta_t) * z
+
+            # 🔑 Inpainting step: enforce known pixels
+            x = mask * x_known + (1 - mask) * x
+
+        return x.clamp(0, 1)
+

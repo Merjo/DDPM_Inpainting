@@ -82,7 +82,7 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
         scheduler = WarmupCosineScheduler(optimizer, warmup_steps=3, total_steps=epochs)
 
     # --- Continue training ---
-    best_loss = diffusion.train(loader, optimizer, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
+    best_loss, epoch_losses = diffusion.train(loader, optimizer, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
 
     params_filename, model_filename = save_model(params, unet, best_loss)
 
@@ -90,7 +90,7 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
     return diffusion, unet, best_loss
 
 
-def find_best_saved_model(directory="."):
+def find_best_saved_model():
     """
     Finds the best saved model by scanning all best_params_*.csv files in `directory`
     and returning the param + model filenames with the lowest loss_value.
@@ -100,7 +100,7 @@ def find_best_saved_model(directory="."):
         best_model_file (str): Path to the best model checkpoint
         best_loss (float): Lowest loss value found
     """
-    param_files = glob.glob(os.path.join(directory, "best_params_*.csv"))
+    param_files = glob.glob(os.path.join("output/params", "best_params_*.csv"))
     if not param_files:
         raise FileNotFoundError("No best_params_*.csv files found.")
 
@@ -121,7 +121,7 @@ def find_best_saved_model(directory="."):
 
             # model filename should match the timestamp in params filename
             base = os.path.basename(pf).replace("best_params_", "").replace(".csv", "")
-            candidate_model = os.path.join(directory, f"best_model_{base}.pt")
+            candidate_model = os.path.join("output/models", f"best_model_{base}.pt")
 
             if os.path.exists(candidate_model):
                 best_model_file = candidate_model
@@ -154,6 +154,6 @@ def run_best(param_file=None,
 
 
 if __name__=='__main__':
-    epochs = 30
+    epochs = 1
     patience = 3
     run_best(epochs=epochs, patience=patience)

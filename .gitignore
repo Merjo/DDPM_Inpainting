@@ -1,6 +1,8 @@
 *.pt
 *.png
 *.csv
+*.pyc
+*.pkl
 data/
 cache/
 output/

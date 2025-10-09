@@ -1,0 +1,13 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-10-08 16:45:51,995] A new study created in RDB with name: rain_diffusion_1759934751
+[I 2025-10-08 19:53:49,798] Trial 0 finished with value: 0.04817603378235261 and parameters: {'model_channels': 128, 'num_blocks': 3, 'dropout': 0.03610318728639593, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'none', 'timesteps': 500, 'beta_schedule': 'exponential', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 5.299361330754155e-05}. Best is trial 0 with value: 0.04817603378235261.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-9818096, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=10105207, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 00:15:55,911] Trial 1 finished with value: 0.04882765517992295 and parameters: {'model_channels': 128, 'num_blocks': 3, 'dropout': 0.27036080837044113, 'downsample_type': 'residual', 'channel_mult': '1248', 'attn_config': 'last_two', 'timesteps': 500, 'beta_schedule': 'exponential', 'loss': 'huber', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 7.05610984259019e-05}. Best is trial 0 with value: 0.04817603378235261.
+[I 2025-10-09 01:02:19,766] Trial 2 finished with value: 0.07563938214751534 and parameters: {'model_channels': 128, 'num_blocks': 1, 'dropout': 0.05536966738119307, 'downsample_type': 'standard', 'channel_mult': '1248', 'attn_config': 'none', 'timesteps': 250, 'beta_schedule': 'exponential', 'loss': 'l1', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.0024407157788259265}. Best is trial 0 with value: 0.04817603378235261.
+[I 2025-10-09 02:21:45,039] Trial 3 finished with value: 0.05031824569923101 and parameters: {'model_channels': 64, 'num_blocks': 1, 'dropout': 0.1817467557101298, 'downsample_type': 'standard', 'channel_mult': '124', 'attn_config': 'none', 'timesteps': 500, 'beta_schedule': 'exponential', 'loss': 'mse', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 1.0624357481333449e-05}. Best is trial 0 with value: 0.04817603378235261.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=10937551, which is more than MessageTimeout (10s). The result won't be delivered

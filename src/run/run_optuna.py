@@ -4,6 +4,7 @@ from datetime import datetime
 import optuna
 import pandas as pd
 from collections import defaultdict
+import os
 
 from src.data.loader import get_loader
 from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
@@ -12,12 +13,12 @@ from src.model.diffusion import Diffusion
 from src.config import cfg
 from src.save.save_model import save_model
 
-def objective(trial, loader, max_epochs=20, patience=3):
+def objective(trial, loader, run_dir, max_epochs=20, patience=3):
     trial.set_user_attr("duration", float('inf'))
     start_time = time.time()
     
     # --- UNET hyperparameters ---
-    model_channels = trial.suggest_categorical("model_channels", [32, 64, 128])
+    model_channels = trial.suggest_categorical("model_channels", [64, 128, 256])
     num_blocks = trial.suggest_int("num_blocks", 1, 3)
     dropout = trial.suggest_float("dropout", 0.0, 0.3)
 
@@ -101,7 +102,7 @@ def objective(trial, loader, max_epochs=20, patience=3):
     )
 
     # --- Save checkpoint for this trial ---
-    ckpt_name = f"unet_trial_{trial.number}.pt"
+    ckpt_name = f"{run_dir}/unet_trial_{trial.number}.pt"
     torch.save(unet.state_dict(), ckpt_name)
     trial.set_user_attr("checkpoint", ckpt_name)
     
@@ -109,12 +110,33 @@ def objective(trial, loader, max_epochs=20, patience=3):
     duration = time.time() - start_time
     trial.set_user_attr("duration", duration)
 
+    if cfg.cuda:
+        torch.cuda.empty_cache()
+        torch.cuda.ipc_collect()
+
     return best_rmse
 
-def run_optuna(n_trials=25, max_epochs=15, patience=2):
+def run_optuna(n_trials=25, max_epochs=15, patience=2, resume=False):
     loader = get_loader()
-    study = optuna.create_study(direction="minimize")
-    study.optimize(lambda trial: objective(trial, loader=loader, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+    #study = optuna.create_study(direction="minimize")
+    study = optuna.create_study(
+        direction='minimize',
+        study_name = "rain_diffusion" if resume else f"rain_diffusion_{int(time.time())}",
+        storage="sqlite:///optuna_rain.db",
+        load_if_exists=resume,
+    )
+
+    base_dir = "output/trials"
+    existing_runs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d)) and d.startswith("optuna_run_")]
+    run_numbers = [int(d.split("_")[-1]) for d in existing_runs if d.split("_")[-1].isdigit()]
+    next_run_number = max(run_numbers, default=0) + 1
+
+    # Create new folder for this Optuna run
+    run_dir = os.path.join(base_dir, f"optuna_run_{next_run_number}")
+    os.makedirs(run_dir, exist_ok=True)
+
+
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
 
     # --- Best trial ---
     best_trial = study.best_trial

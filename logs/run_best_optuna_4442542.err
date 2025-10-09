@@ -1,0 +1,21 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-10-08 15:28:02,809] A new study created in RDB with name: rain_diffusion_1759930082
+[I 2025-10-08 15:43:53,221] Trial 0 finished with value: 0.03358179354630841 and parameters: {'model_channels': 128, 'num_blocks': 1, 'dropout': 0.22065666402694142, 'downsample_type': 'residual', 'channel_mult': '1248', 'attn_config': 'none', 'timesteps': 1000, 'beta_schedule': 'cosine', 'loss': 'l1', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 0.00019787293038874134}. Best is trial 0 with value: 0.03358179354630841.
+/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py:145: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  best_model = torch.load(best_trial.user_attrs["checkpoint"])
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 93, in <module>
+    diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 75, in run_best_optuna
+    diffusion, unet, best_loss = run_best(param_file=param_filename,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best.py", line 146, in run_best
+    diffusion, unet, best_loss = train_best_model(param_file=param_file,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best.py", line 87, in train_best_model
+    params_filename, model_filename = save_model(params, unet, best_loss)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/save/save_model.py", line 15, in save_model
+    params_filename = os.path.join(params_dir, f"best_params_{best_value:.4f}_{timestamp}.csv")
+TypeError: unsupported format string passed to tuple.__format__

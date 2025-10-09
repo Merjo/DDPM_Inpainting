@@ -1,0 +1,6 @@
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2017_256_8760_10%.pkl
+
+Using 2 GPUs via DataParallel
+Best params: {'model_channels': 64, 'num_blocks': 2, 'dropout': 0.10531345376017721, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last_two', 'timesteps': 500, 'beta_schedule': 'linear', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 2.0328553332971737e-05}
+Best value: 0.12167929858272448

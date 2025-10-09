@@ -1,6 +1,7 @@
 import torch
 import pandas as pd
-import datetime
+from datetime import datetime
+import os
 
 def save_model(best_params, best_model, best_value):
     print("Best params:", best_params)
@@ -8,8 +9,12 @@ def save_model(best_params, best_model, best_value):
 
     timestamp = datetime.now().strftime("%m%d_%H")
 
-    params_filename = f"best_params_{best_value:.4f}_{timestamp}.csv"
-    model_filename = f"best_model_{best_value:.4f}_{timestamp}.pt"
+    params_dir = "output/params"
+    model_dir = "output/models"
+
+    params_filename = os.path.join(params_dir, f"best_params_{best_value:.4f}_{timestamp}.csv")
+    model_filename = os.path.join(model_dir, f"best_model_{best_value:.4f}_{timestamp}.pt")
+
 
     # Save params
     df = pd.DataFrame([best_params])

@@ -84,11 +84,11 @@ def run_best_optuna(n_trials=30,
     return diffusion, unet, best_loss
 
 if __name__=='__main__':
-    n_trials = 5
-    max_optuna_epochs = 5
+    n_trials = 50
+    max_optuna_epochs = 10
     max_optuna_patience = 2
-    max_epochs = 10
-    max_patience = 10
+    max_epochs = 150
+    max_patience = 4
 
     diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
                                                  max_optuna_epochs=max_optuna_epochs,

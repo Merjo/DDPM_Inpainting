@@ -4,7 +4,7 @@ from src.config import cfg
 
 def get_loader():
     ds = read_data(reload=False, scaler=cfg.scaler()) 
-    loader = DataLoader(ds, batch_size=32, shuffle=True, num_workers=0, pin_memory=True)
+    loader = DataLoader(ds, batch_size=cfg.batch_size, shuffle=True, num_workers=0, pin_memory=True)
     return loader
 
 
