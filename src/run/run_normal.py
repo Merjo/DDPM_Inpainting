@@ -2,20 +2,34 @@ import torch
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.data.loader import get_loader
+from src.config import cfg
+from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 
-def run_model_normal():
+def run_model_normal(epochs, patience):
     loader = get_loader()
+
+    channel_mult = [1, 2, 4, 8]
+
+    attn_options = {
+        "none": [],
+        "last": [-1],
+        "last_two": [-2, -1],
+    }
+    attn_stages = attn_options['last']
+    resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
+    attn_resolutions = [resolutions[i] for i in attn_stages]
+
 
     # Instantiate UNet
     unet = SongUNet(
-        img_resolution=128,
+        img_resolution=cfg.patch_size,
         in_channels=1,
         out_channels=1,
-        model_channels=128,
-        channel_mult=[1, 2, 2, 4],
-        num_blocks=3,
-        attn_resolutions=[16],
-        dropout=0.0916512675648172,
+        model_channels=256,
+        channel_mult=channel_mult,
+        num_blocks=2,
+        attn_resolutions=attn_resolutions,
+        dropout=0.175,
         encoder_type='residual',
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -24,21 +38,23 @@ def run_model_normal():
     # Diffusion model
     diffusion = Diffusion(unet, img_size=128, channels=1, timesteps=1000, beta_schedule='linear', loss_type='mse',)
     # Optimizer
-    optimizer = torch.optim.AdamW(unet.parameters(), lr=3.693821697838651e-05)
-    scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.99)
+    optimizer = torch.optim.AdamW(unet.parameters(), lr=2e-4)
+    scheduler = WarmupCosineScheduler(optimizer, warmup_steps=3, total_steps=epochs)
 
     # Train
     best_rmse, epoch_losses = diffusion.train(
         loader, 
         optimizer, 
-        epochs=150,
-        patience=3, 
+        epochs=epochs,
+        patience=patience, 
         scheduler=scheduler, 
         trial=None, 
         log_every_epoch=True,
-        sample_every=1
+        sample_every=1,
+        sample_info='Normal run, 256 channels'
         )
     print(best_rmse)
 
 if __name__=='__main__':
-    run_model_normal()
+    run_model_normal(epochs=1,
+                     patience=4)

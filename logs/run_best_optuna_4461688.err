@@ -11,3 +11,188 @@ slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=10105207, which is 
 [I 2025-10-09 01:02:19,766] Trial 2 finished with value: 0.07563938214751534 and parameters: {'model_channels': 128, 'num_blocks': 1, 'dropout': 0.05536966738119307, 'downsample_type': 'standard', 'channel_mult': '1248', 'attn_config': 'none', 'timesteps': 250, 'beta_schedule': 'exponential', 'loss': 'l1', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.0024407157788259265}. Best is trial 0 with value: 0.04817603378235261.
 [I 2025-10-09 02:21:45,039] Trial 3 finished with value: 0.05031824569923101 and parameters: {'model_channels': 64, 'num_blocks': 1, 'dropout': 0.1817467557101298, 'downsample_type': 'standard', 'channel_mult': '124', 'attn_config': 'none', 'timesteps': 500, 'beta_schedule': 'exponential', 'loss': 'mse', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 1.0624357481333449e-05}. Best is trial 0 with value: 0.04817603378235261.
 slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=10937551, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 10:25:29,465] Trial 4 finished with value: 0.061952023901276465 and parameters: {'model_channels': 256, 'num_blocks': 3, 'dropout': 0.13265442921898646, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'none', 'timesteps': 250, 'beta_schedule': 'exponential', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0003039072047092761}. Best is trial 0 with value: 0.04817603378235261.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=11737610, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Connection reset by peer
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=12007071, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 14:39:16,904] Trial 5 finished with value: 0.017750078481086624 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.017105870498949037, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00034181982291816486}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=12169353, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-12282072, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-12393423, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-12492569, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 18:14:31,827] Trial 6 finished with value: 0.04852894137192103 and parameters: {'model_channels': 128, 'num_blocks': 3, 'dropout': 0.08371425804778473, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 500, 'beta_schedule': 'exponential', 'loss': 'mse', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 3.589028779491149e-05}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-12574699, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 18:39:25,393] Trial 7 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-12633164, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 19:00:40,214] Trial 8 pruned. 
+[I 2025-10-09 20:45:09,427] Trial 9 finished with value: 0.0197340081350389 and parameters: {'model_channels': 64, 'num_blocks': 2, 'dropout': 0.11546200662731894, 'downsample_type': 'standard', 'channel_mult': '1124', 'attn_config': 'last', 'timesteps': 500, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 5.582213657374248e-05}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-12982715, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 21:48:05,084] Trial 10 finished with value: 0.01826320568370252 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.24557712387593195, 'downsample_type': 'standard', 'channel_mult': '1124', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0009409795564083897}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13041460, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 22:51:00,853] Trial 11 finished with value: 0.018432786187024274 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.26395758063186125, 'downsample_type': 'standard', 'channel_mult': '1124', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0011188557337521955}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13166324, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13223740, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-09 23:53:55,908] Trial 12 finished with value: 0.0317090166854673 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.20514219213011828, 'downsample_type': 'standard', 'channel_mult': '1124', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'cosine', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00072642722955238}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13360762, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-10 00:23:23,302] Trial 13 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13648689, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13766859, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-10 03:33:23,472] Trial 14 finished with value: 0.01879622383584965 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.23315352910302045, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0005364056564791141}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13777639, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-10 04:30:12,849] Trial 15 finished with value: 0.02008961870445131 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.001241896355114798, 'downsample_type': 'standard', 'channel_mult': '1124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0016888788442601496}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-13988193, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14137323, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14326661, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14513946, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14537913, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14599430, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14719352, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-14917331, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-15164092, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-10 14:55:38,614] Trial 16 finished with value: 0.026391161699512337 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.1535071206394072, 'downsample_type': 'residual', 'channel_mult': '1248', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'cosine', 'loss': 'l1', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00012941520400811226}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-15602251, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-15658519, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-10 19:25:57,883] Trial 17 finished with value: 0.02279261972572662 and parameters: {'model_channels': 256, 'num_blocks': 1, 'dropout': 0.07990942729760817, 'downsample_type': 'standard', 'channel_mult': '1224', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'quadratic', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00034169209774123535}. Best is trial 5 with value: 0.017750078481086624.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-15947305, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-15960625, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16188570, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16211923, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-10 23:53:51,426] Trial 18 finished with value: 0.017572231156642058 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.16705070276570103, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last_two', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0005881413016982928}. Best is trial 18 with value: 0.017572231156642058.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16543768, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16637325, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16660234, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16810336, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-16844009, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17028290, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17120622, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17166270, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17178049, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17188129, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-11 07:28:13,562] Trial 19 finished with value: 0.013357496789434452 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.16193626212824253, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00013388681048907052}. Best is trial 19 with value: 0.013357496789434452.
+[I 2025-10-11 07:39:03,847] Trial 20 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17420277, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17475378, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17485589, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17508822, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17575353, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17646506, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-11 09:55:13,438] Trial 21 finished with value: 0.01847078083321084 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.1128709484044096, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.000516389497116576}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17715648, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17840725, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-17886655, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18158241, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18396426, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18478075, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Zero Bytes were transmitted or received
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+[I 2025-10-11 17:28:51,175] Trial 22 finished with value: 0.013515515683356289 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.1365995609567538, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00013680268777888478}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18664304, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18864133, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18899772, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18913103, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18923837, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-18994315, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-19077058, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+[I 2025-10-11 22:00:52,413] Trial 23 finished with value: 0.013704686491571234 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.14090241215286947, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.00012381016822449837}. Best is trial 19 with value: 0.013357496789434452.
+[I 2025-10-11 22:46:13,361] Trial 24 pruned. 
+[I 2025-10-11 23:31:35,238] Trial 25 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-19694814, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-19798600, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+[I 2025-10-12 04:04:59,666] Trial 26 finished with value: 0.013854622626893062 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.14511779695637703, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 9.265402244552375e-05}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20045134, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20119592, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20264682, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20301306, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20389683, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20403058, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20618770, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-20968410, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-12 11:39:07,540] Trial 27 finished with value: 0.013732583458318992 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.21038762090777857, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.00017688279404234485}. Best is trial 19 with value: 0.013357496789434452.
+[I 2025-10-12 11:49:57,034] Trial 28 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-21077549, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-21088259, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-12 12:24:02,086] Trial 29 pruned. 
+[I 2025-10-12 12:48:47,722] Trial 30 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-21220602, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-21553963, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-21741653, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-12 18:06:07,820] Trial 31 finished with value: 0.013818472699827196 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.20729718165644587, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.00020036577710939426}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22201500, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22355387, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22399274, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22421112, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22432657, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-12 23:23:25,786] Trial 32 finished with value: 0.013919555545587924 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.2194566921042495, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.0001859701275361859}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22522158, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22666022, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-22975271, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-13 03:55:21,867] Trial 33 finished with value: 0.01403526087318349 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.14815574847659907, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 9.918533485840888e-05}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-23471918, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-23616002, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-13 08:24:36,924] Trial 34 finished with value: 0.01376548998450744 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.17482260663876453, 'downsample_type': 'residual', 'channel_mult': '1248', 'attn_config': 'none', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 0.0001659531871432465}. Best is trial 19 with value: 0.013357496789434452.
+[I 2025-10-13 08:48:34,729] Trial 35 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-23752584, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-13 09:27:31,239] Trial 36 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-23929541, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24019553, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24200293, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24367470, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24467633, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24547597, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24559437, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24570476, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24616080, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-13 16:38:12,863] Trial 37 finished with value: 0.013615352924070845 and parameters: {'model_channels': 256, 'num_blocks': 3, 'dropout': 0.1866843017747969, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.00015053941434115388}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+[I 2025-10-13 16:57:36,889] Trial 38 pruned. 
+[I 2025-10-13 17:10:03,344] Trial 39 pruned. 
+[I 2025-10-13 17:53:10,630] Trial 40 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-24996433, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-25007402, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-25018769, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-13 23:34:49,924] Trial 41 finished with value: 0.013497271466586308 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.23067623560222417, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.00016247320148743896}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-25936080, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-26012550, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-26212148, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 05:16:40,657] Trial 42 finished with value: 0.013604193303532498 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.23525505589273976, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.0001490306154925668}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-26465066, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-26564253, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-26641453, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 09:49:17,977] Trial 43 finished with value: 0.013362352630226098 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.23998524301512864, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.00015147088758229896}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-26966508, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27000069, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27081794, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd

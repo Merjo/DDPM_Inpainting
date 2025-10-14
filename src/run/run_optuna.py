@@ -98,7 +98,7 @@ def objective(trial, loader, run_dir, max_epochs=20, patience=3):
 
     # --- Training ---
     best_rmse, epoch_losses = diffusion.train(
-        loader, optimizer, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every
+        loader, optimizer, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every, sample_info=f'Trial {trial.number}'
     )
 
     # --- Save checkpoint for this trial ---

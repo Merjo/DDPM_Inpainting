@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from matplotlib import pyplot as plt
 import optuna
-from src.save.save_plot import plot_random
+from src.save.save_plot import plot_random, plot_histogram
 from src.config import cfg
 
 class Diffusion:
@@ -92,7 +92,8 @@ class Diffusion:
         trial=None,
         patience=None,
         log_every_epoch=False,
-        sample_every=None
+        sample_every=None,
+        sample_info=None,
     ):
         """
         Train the model with optional logging per epoch.
@@ -120,7 +121,9 @@ class Diffusion:
             total_loss = 0.0
             total_rmse = 0.0
             count = 0
+            n_batches = len(dataloader)
             for imgs in dataloader:
+                progress_pct = 100 * count / n_batches
                 imgs = imgs.to(self.device)
                 t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
                 loss = self.p_losses(imgs, t)
@@ -172,18 +175,40 @@ class Diffusion:
             
             if sample_every is not None and (epoch + 1) % sample_every == 0:
                 samples = self.sample()  # shape: (n, c, h, w)
-                self.plot_samples(samples, epoch + 1)  
+                self.plot_samples(samples, epoch + 1, sample_info)  
+                self.plot_histogram(sample_info)
 
         return best_rmse, epoch_losses
     
-    def plot_samples(self, samples, epoch):
+    @torch.no_grad()
+    def plot_samples(self, samples, epoch, sample_info=None):
         samples = samples.detach().cpu()
         n = samples.size(0)
-        plot_random(samples, n=n, title = f"Samples at epoch {epoch}")
+        title = f'Samples at epoch {epoch}'
+        if sample_info is None:
+            title = sample_info + '\n' + title
+        plot_random(samples, n=n, title = title)
+
+    @torch.no_grad()
+    def plot_histogram(self, epoch, sample_info=None, n_real=512, n_generated=512):
+        # --- Get real samples ---
+        real_batch = next(iter(self.dataloader))
+        real = real_batch[:n_real].to(self.device)
+        real = real.detach().cpu().numpy().flatten()
+
+        # --- Get generated samples ---
+        generated = self.sample(n_samples=n_generated)
+        generated = generated.detach().cpu().numpy().flatten()
+
+        title = f'Histogram at epoch {epoch}'
+        if sample_info is None:
+            title = sample_info + '\n' + title
+
+        plot_histogram(real, generated, title)
 
 
     @torch.no_grad()
-    def sample(self, n_samples=8):
+    def sample(self, n_samples=16):
         self.model.eval()
         x = torch.randn(n_samples, self.channels, self.img_size, self.img_size, device=self.device)
 

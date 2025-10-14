@@ -33,7 +33,7 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
         "last_two": [-2, -1],
     }
     attn_stages = attn_options[params["attn_config"]]
-    resolutions = [128 // (2**i) for i in range(len(channel_mult))]
+    resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
     # --- Rebuild UNet ---
