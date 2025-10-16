@@ -8,14 +8,15 @@ from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 def run_model_normal(epochs, patience):
     loader = get_loader()
 
-    channel_mult = [1, 2, 4, 8]
+    n_channels = 128
+    channel_mult = [1, 2, 4]
 
     attn_options = {
         "none": [],
         "last": [-1],
         "last_two": [-2, -1],
     }
-    attn_stages = attn_options['last']
+    attn_stages = attn_options['none']
     resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
@@ -25,7 +26,7 @@ def run_model_normal(epochs, patience):
         img_resolution=cfg.patch_size,
         in_channels=1,
         out_channels=1,
-        model_channels=256,
+        model_channels=n_channels,
         channel_mult=channel_mult,
         num_blocks=2,
         attn_resolutions=attn_resolutions,
@@ -51,10 +52,10 @@ def run_model_normal(epochs, patience):
         trial=None, 
         log_every_epoch=True,
         sample_every=1,
-        sample_info='Normal run, 256 channels'
+        sample_info=f'Normal run, {n_channels} channels'
         )
     print(best_rmse)
 
 if __name__=='__main__':
-    run_model_normal(epochs=1,
+    run_model_normal(epochs=200,
                      patience=4)

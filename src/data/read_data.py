@@ -14,7 +14,7 @@ from src.data.precipitation_dataset import PrecipitationPatchDataset
 
 
 def read_one_year(reload=False, time_slices=cfg.default, scaler=None,
-              patch_size=128, min_coverage=0.0,
+              patch_size=cfg.patch_size, min_coverage=0.0,
               cache_folder="cache", year=2020):
     """
     Load a PrecipitationPatchDataset from cache, or rebuild and cache it.
@@ -65,7 +65,7 @@ def read_one_year(reload=False, time_slices=cfg.default, scaler=None,
 
 
 def read_data(reload=False, scaler=None, patch_size=cfg.patch_size, min_coverage=cfg.min_coverage,
-                   cache_folder="cache", years=range(2001, 2018), reload_years=False):
+                   cache_folder="cache", years=range(2001, 2002), reload_years=False):
     time_slices=cfg.time_slices
     cache_path = f'{cache_folder}/precip_dataset_{years[0]}-{years[-1]}_{patch_size}_{time_slices}_{int(min_coverage * 100)}%.pkl'
     cache_available = os.path.exists(cache_path)
@@ -81,10 +81,16 @@ def read_data(reload=False, scaler=None, patch_size=cfg.patch_size, min_coverage
         ds_all = PrecipitationPatchDataset.concat(*datasets)
         print(f"\n[Info] Combined dataset from years {years.start}-{years.stop - 1}, total patches = {len(ds_all)}\n")
 
+        import io
+        buffer = io.BytesIO()
+        joblib.dump(ds_all, buffer, compress=0)
+        size_mb = buffer.tell() / 1e6
+        print(f"[Info] Estimated joblib dump size: {size_mb:.2f} MB")
+
         with open(cache_path, "wb") as f:
             joblib.dump(ds_all, f)
 
-            print(f"\n[Cache] Saved dataset to {cache_path}\n")
+        print(f"\n[Cache] Saved dataset to {cache_path}\n")
 
     else:
         with open(cache_path, "rb") as f:
@@ -93,8 +99,6 @@ def read_data(reload=False, scaler=None, patch_size=cfg.patch_size, min_coverage
     return ds_all
         
 if __name__=='__main__': 
-    import src.data.read_data as this_module
-    sys.modules["src.data.read_data"] = this_module
     ds = read_data(reload=True, reload_years=False, scaler=cfg.scaler(), patch_size=cfg.patch_size, min_coverage=cfg.min_coverage)
     print(f'\nDataset shape: {ds.data.shape}\n')
     plot_random(ds)

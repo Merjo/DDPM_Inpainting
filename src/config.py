@@ -11,7 +11,7 @@ class Config:
         self.sample_every = 5
         self.batch_size = 8
         self.optuna_sample_every = 10
-        self.patch_size = 256  # Patch size for dataset
+        self.patch_size = 128  # Patch size for dataset
         self.min_coverage = 0.1  # Minimum coverage for patches (0.0 to 1.0)
 
 cfg = Config()

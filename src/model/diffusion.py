@@ -122,8 +122,12 @@ class Diffusion:
             total_rmse = 0.0
             count = 0
             n_batches = len(dataloader)
+            divfive = 0
             for imgs in dataloader:
                 progress_pct = 100 * count / n_batches
+                if progress_pct>divfive:
+                    print(f'Progress: {progress_pct} %')
+                    divfive +=5
                 imgs = imgs.to(self.device)
                 t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
                 loss = self.p_losses(imgs, t)
@@ -213,6 +217,7 @@ class Diffusion:
         x = torch.randn(n_samples, self.channels, self.img_size, self.img_size, device=self.device)
 
         for t in reversed(range(self.T)):
+            print(f'Sampling, at {t}/{self.T}')
             t_batch = torch.full((n_samples,), t, device=self.device, dtype=torch.long)
             pred_noise = self.model(x, t_batch)
 
@@ -250,7 +255,7 @@ class Diffusion:
                 beta_t = self.beta[t]
                 x = x + torch.sqrt(beta_t) * z
 
-            # 🔑 Inpainting step: enforce known pixels
+            # Inpainting step: enforce known pixels
             x = mask * x_known + (1 - mask) * x
 
         return x.clamp(0, 1)

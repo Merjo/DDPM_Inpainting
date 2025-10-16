@@ -72,14 +72,12 @@ def run_best_optuna(n_trials=30,
     param_filename, model_filename = run_optuna(n_trials=n_trials, 
                                                  max_epochs=max_optuna_epochs, 
                                                  patience=max_optuna_patience)
+    
+    # run best automatically saves best model
     diffusion, unet, best_loss = run_best(param_file=param_filename,
                                           model_file=model_filename,
                                           epochs=max_epochs,
                                           patience=max_patience)
-
-    best_params = params = pd.read_csv(param_filename).iloc[0].to_dict()
-
-    save_model(best_params=best_params, model=unet, best_value=best_loss)
 
     return diffusion, unet, best_loss
 

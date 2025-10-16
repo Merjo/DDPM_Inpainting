@@ -3,26 +3,26 @@ import pandas as pd
 from datetime import datetime
 import os
 
-def save_model(best_params, best_model, best_value):
-    print("Best params:", best_params)
-    print("Best value:", best_value)
+def save_model(params, model, value):
+    print("Best params:", params)
+    print("Best value:", value)
 
     timestamp = datetime.now().strftime("%m%d_%H")
 
     params_dir = "output/params"
     model_dir = "output/models"
 
-    params_filename = os.path.join(params_dir, f"best_params_{best_value:.4f}_{timestamp}.csv")
-    model_filename = os.path.join(model_dir, f"best_model_{best_value:.4f}_{timestamp}.pt")
+    params_filename = os.path.join(params_dir, f"best_params_{value:.4f}_{timestamp}.csv")
+    model_filename = os.path.join(model_dir, f"best_model_{value:.4f}_{timestamp}.pt")
 
 
     # Save params
-    df = pd.DataFrame([best_params])
-    df["loss_value"] = best_value
+    df = pd.DataFrame([params])
+    df["loss_value"] = value
     df.to_csv(params_filename, index=False)
 
     # Save model
-    torch.save(best_model, model_filename)
+    torch.save(model, model_filename)
 
     print("Best params saved to:", params_filename)
     print("Best model saved to:", model_filename)

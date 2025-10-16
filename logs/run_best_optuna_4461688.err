@@ -196,3 +196,117 @@ slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/rec
 slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
 slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
 slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=10011366, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=25661800, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27240085, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-29551254, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-19352548, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=10010671, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-21256993, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=17180144, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+[I 2025-10-14 13:48:57,310] Trial 44 finished with value: 0.013829298229830929 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.26412472109846746, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.00022908646399196636}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27494190, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27526182, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 14:23:02,953] Trial 45 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27537504, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27554871, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 14:39:09,470] Trial 46 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27588436, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27667349, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27700855, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27711239, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27733494, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27745182, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27755816, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27766264, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=17717611, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-30129602, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27822736, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27833528, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27845176, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 16:52:17,191] Trial 47 finished with value: 0.014595974960750449 and parameters: {'model_channels': 256, 'num_blocks': 2, 'dropout': 0.2761024745050802, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'none', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'huber', 'optimizer': 'AdamW', 'scheduler': 'ExponentialLR', 'lr': 0.0002639551366766013}. Best is trial 19 with value: 0.013357496789434452.
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27867656, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 17:03:11,230] Trial 48 pruned. 
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27877852, which is more than MessageTimeout (10s). The result won't be delivered
+[I 2025-10-14 17:37:14,139] Trial 49 pruned. 
+/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py:145: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  best_model = torch.load(best_trial.user_attrs["checkpoint"])
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-27957120, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28024126, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28035540, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Zero Bytes were transmitted or received
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28046587, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28057965, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28090755, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c246: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28112837, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28124501, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28135067, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28203094, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28226400, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28237769, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28339183, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28360652, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28394505, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28405002, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-28417261, which is more than MessageTimeout (10s). The result won't be delivered
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 93, in <module>
+    diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 82, in run_best_optuna
+    save_model(best_params=best_params, model=unet, best_value=best_loss)
+TypeError: save_model() got an unexpected keyword argument 'model'
