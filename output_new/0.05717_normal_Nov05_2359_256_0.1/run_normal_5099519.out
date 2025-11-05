@@ -1,0 +1,27 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2002_256_8760_10%.pkl
+
+Output path set to: output_new/normal_Nov05_2359_256_0.1
+[Prepare Run] No model file provided, initialized new, random model.
+[Nov05_2359] Starting epoch 1/2...
+Epoch 1/2 - train_loss: 0.104471 - val_loss: 0.060756
+[Nov06_0001] Starting epoch 2/2...
+Epoch 2/2 - train_loss: 0.066847 - val_loss: 0.057168
+[Nov06_0004] Sampling 1-16 / 128
+[Nov06_0005] Sampling 17-32 / 128
+[Nov06_0007] Sampling 33-48 / 128
+[Nov06_0009] Sampling 49-64 / 128
+[Nov06_0011] Sampling 65-80 / 128
+[Nov06_0012] Sampling 81-96 / 128
+[Nov06_0014] Sampling 97-112 / 128
+[Nov06_0016] Sampling 113-128 / 128
+[Plot] Saved output_new/normal_Nov05_2359_256_0.1/samples/plot1.png
+[Plot] Saved histogram comparison to output_new/normal_Nov05_2359_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/normal_Nov05_2359_256_0.1/histograms/hist_log_1.png
+0.05716778056555858
+Run directory renamed: output_new/0.05717_normal_Nov05_2359_256_0.1
+Run complete. Results stored in output_new/0.05717_normal_Nov05_2359_256_0.1

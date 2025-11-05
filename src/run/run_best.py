@@ -1,3 +1,5 @@
+import os
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 import glob
 import os
 import pandas as pd
@@ -7,11 +9,13 @@ from src.config import cfg
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
-from src.data.loader import get_loader
 from src.save.save_model import save_model
 
-def train_best_model(param_file, model_file, loader, epochs=10, patience=3, device="cuda"):
+from src.utils.output_manager import OutputManager
+
+def load_model(param_file, model_file, epochs=10):
     """Reload best UNet+Diffusion and continue training with new epochs."""
+    device = cfg.device
 
     # --- Load params ---
     params = pd.read_csv(param_file).iloc[0].to_dict()
@@ -25,8 +29,6 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
     }
     channel_mult = channel_mult_options[params["channel_mult"]]
 
-    channel_mult = channel_mult_options[params["channel_mult"]]
-
     attn_options = {
         "none": [],
         "last": [-1],
@@ -38,7 +40,7 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
 
     # --- Rebuild UNet ---
     unet = SongUNet(
-        img_resolution=128,
+        img_resolution=cfg.patch_size,
         in_channels=1,
         out_channels=1,
         model_channels=int(params["model_channels"]),
@@ -57,7 +59,7 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
     # --- Rebuild Diffusion ---
     diffusion = Diffusion(
         model=unet,
-        img_size=128,
+        img_size=cfg.patch_size,
         channels=1,
         timesteps=int(params["timesteps"]),
         beta_start=1e-4,
@@ -81,58 +83,64 @@ def train_best_model(param_file, model_file, loader, epochs=10, patience=3, devi
     else:
         scheduler = WarmupCosineScheduler(optimizer, warmup_steps=3, total_steps=epochs)
 
-    # --- Continue training ---
-    best_loss, epoch_losses = diffusion.train(loader, optimizer, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
 
-    params_filename, model_filename = save_model(params, unet, best_loss)
-
-
-    return diffusion, unet, best_loss
-
+    return diffusion, unet, params, optimizer, scheduler
 
 def find_best_saved_model():
-    """
-    Finds the best saved model by scanning all best_params_*.csv files in `directory`
-    and returning the param + model filenames with the lowest loss_value.
-    
-    Returns:
-        best_params_file (str): Path to the best params CSV
-        best_model_file (str): Path to the best model checkpoint
-        best_loss (float): Lowest loss value found
-    """
-    param_files = glob.glob(os.path.join("output/params", "best_params_*.csv"))
-    if not param_files:
-        raise FileNotFoundError("No best_params_*.csv files found.")
+    base_dir = cfg.output_base_dir
+    run_folders = [f for f in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, f))]
 
     best_loss = float("inf")
-    best_params_file, best_model_file = None, None
+    best_path = None
 
-    for pf in param_files:
+    for folder in run_folders:
         try:
-            df = pd.read_csv(pf)
-            loss_value = float(df["loss_value"].iloc[0])
-        except Exception as e:
-            print(f"Skipping {pf}, error reading: {e}")
+            # Extract prefix as float (folder name starts with mse)
+            prefix = folder.split("_")[0]
+            loss_value = float(prefix)
+        except ValueError:
+            # Skip folders that don’t start with a float
             continue
 
+        # If this folder’s loss is better than current best
         if loss_value < best_loss:
             best_loss = loss_value
-            best_params_file = pf
+            best_path = os.path.join(base_dir, folder)
 
-            # model filename should match the timestamp in params filename
-            base = os.path.basename(pf).replace("best_params_", "").replace(".csv", "")
-            candidate_model = os.path.join("output/models", f"best_model_{base}.pt")
+    if best_path is None:
+        raise RuntimeError("No valid run folders found.")
+    
+    print(f"Best model found in: {best_path} (loss={best_loss:.6f})")
 
-            if os.path.exists(candidate_model):
-                best_model_file = candidate_model
-            else:
-                print(f"Warning: matching model file not found for {pf}")
+    # Construct param and model filenames
 
-    if best_params_file is None:
-        raise RuntimeError("No valid best_params_*.csv files found.")
+    param_files = glob.glob(os.path.join(best_path, "*.csv"))
+    if not param_files:
+        raise FileNotFoundError(f"*.csv file found in {best_path}.")
+    if len(param_files) > 1:
+        raise Warning(f"Multiple *.csv files found in {best_path}.\n"
+                      f"Using the first one found: {param_files[0]}")
+    param_file = param_files[0]  # Assume only one such file
+    print(f"Using params file: {param_file}")
 
-    print(f"Best model: {best_model_file} (loss={best_loss:.6f})")
-    return best_params_file, best_model_file, best_loss
+    model_files = glob.glob(os.path.join(best_path, "*.pt"))
+
+    if not model_files:
+        raise FileNotFoundError(f"*.pt file found in {best_path}.")
+    if len(model_files) > 1:
+        raise Warning(f"Multiple *.pt files found in {best_path}.\n"
+                      f"Using the first one found: {model_files[0]}")
+    model_file = model_files[0]  # Assume only one such file
+    print(f"Using model file: {model_file}")
+    
+    return param_file, model_file, best_loss
+
+def load_best_model(epochs):
+    param_file, model_file, best_loss = find_best_saved_model()
+    diffusion, unet, params, optimizer, scheduler = load_model(param_file=param_file,
+                                                                          model_file=model_file,
+                                                                          epochs=epochs)
+    return diffusion, unet, params, optimizer, scheduler
 
 
 def run_best(param_file=None, 
@@ -140,20 +148,26 @@ def run_best(param_file=None,
              epochs=1,
              patience=3,
              device=cfg.device):
-    loader = get_loader()
+    loader = cfg.loader
     if param_file is None or model_file is None:
         param_file, model_file, best_loss = find_best_saved_model()
-    diffusion, unet, best_loss = train_best_model(param_file=param_file,
-                                                  model_file=model_file,
-                                                  loader=loader,
-                                                  epochs=epochs,
-                                                  patience=patience,
-                                                  device=device)
+    diffusion, unet, params, optimizer, scheduler = load_model(param_file=param_file,
+                                                                          model_file=model_file,
+                                                                          epochs=epochs)
+                            
+    # --- Continue training ---
+    best_loss = diffusion.train(optimizer, train_loader=cfg.train_loader, val_loader=cfg.val_loader, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
 
-    return diffusion, unet, best_loss
+    return diffusion, unet, best_loss, params  # TODO: need unet/diffusion?
 
 
 if __name__=='__main__':
-    epochs = 1
-    patience = 3
-    run_best(epochs=epochs, patience=patience)
+    epochs = cfg.epochs
+    patience = cfg.patience
+
+    output = OutputManager(run_type="best")
+
+    diffusion, unet, best_loss, params = run_best(epochs=epochs, patience=patience)
+
+
+    output.finalize(best_loss, unet, epochs=epochs, params=params)

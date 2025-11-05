@@ -1,0 +1,1363 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 3
+CUDA device name: NVIDIA H100 80GB HBM3
+Output path set to: output_new/best_Nov05_0115_256_0.1
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2002_256_8760_10%.pkl
+
+Best model found in: output_new/0.01330_Optuna_Okt28_0408_256_0.1 (loss=0.013300)
+Using params file: output_new/0.01330_Optuna_Okt28_0408_256_0.1/best_params_0.0133_1028_04.csv
+Using model file: output_new/0.01330_Optuna_Okt28_0408_256_0.1/best_model_0.0133_1028_04.pt
+[Nov05_0115] Starting epoch 1/150...
+Epoch 1/150 - avg_loss: 0.061168
+[Nov05_0117] Sampling 1-8 / 8
+After sampling: -2.5805766582489014 13.49758243560791 -1.3507304191589355 1.2358695268630981
+Sample stats: -2.5805766582489014 13.49758243560791 -1.3507304191589355 1.2358695268630981
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0118] Starting epoch 2/150...
+Epoch 2/150 - avg_loss: 0.057793
+[Nov05_0120] Sampling 1-8 / 8
+After sampling: -1.0280424356460571 4.056027889251709 -0.13196349143981934 0.8187465667724609
+Sample stats: -1.0280424356460571 4.056027889251709 -0.13196349143981934 0.8187465667724609
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot2.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0121] Starting epoch 3/150...
+Epoch 3/150 - avg_loss: 0.055346
+[Nov05_0123] Sampling 1-8 / 8
+After sampling: -0.9315236806869507 5.748873233795166 0.14306092262268066 1.107490062713623
+Sample stats: -0.9315236806869507 5.748873233795166 0.14306092262268066 1.107490062713623
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot3.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0124] Starting epoch 4/150...
+Epoch 4/150 - avg_loss: 0.055460
+[Nov05_0126] Sampling 1-8 / 8
+After sampling: -0.9755904674530029 8.838372230529785 0.7015374898910522 1.6466373205184937
+Sample stats: -0.9755904674530029 8.838372230529785 0.7015374898910522 1.6466373205184937
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot4.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0127] Starting epoch 5/150...
+Epoch 5/150 - avg_loss: 0.056419
+[Nov05_0129] Sampling 1-8 / 8
+After sampling: -5.246648788452148 1.100446343421936 -3.636298656463623 1.0412873029708862
+Sample stats: -5.246648788452148 1.100446343421936 -3.636298656463623 1.0412873029708862
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot5.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0129] Starting epoch 6/150...
+Epoch 6/150 - avg_loss: 0.054134
+[Nov05_0131] Sampling 1-8 / 8
+After sampling: -2.369318962097168 6.068759918212891 -0.17194433510303497 1.2638815641403198
+Sample stats: -2.369318962097168 6.068759918212891 -0.17194433510303497 1.2638815641403198
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot6.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0132] Starting epoch 7/150...
+Epoch 7/150 - avg_loss: 0.053091
+[Nov05_0134] Sampling 1-8 / 8
+After sampling: -1.2002215385437012 4.414263725280762 0.5088255405426025 1.280928134918213
+Sample stats: -1.2002215385437012 4.414263725280762 0.5088255405426025 1.280928134918213
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot7.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0135] Starting epoch 8/150...
+Epoch 8/150 - avg_loss: 0.053484
+[Nov05_0137] Sampling 1-8 / 8
+After sampling: -1.5640456676483154 4.47254753112793 -0.5641971230506897 0.9149532318115234
+Sample stats: -1.5640456676483154 4.47254753112793 -0.5641971230506897 0.9149532318115234
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot8.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0138] Starting epoch 9/150...
+Epoch 9/150 - avg_loss: 0.053040
+[Nov05_0140] Sampling 1-8 / 8
+After sampling: -0.877823531627655 5.6281867027282715 -0.15629224479198456 0.9601066708564758
+Sample stats: -0.877823531627655 5.6281867027282715 -0.15629224479198456 0.9601066708564758
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot9.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0141] Starting epoch 10/150...
+Epoch 10/150 - avg_loss: 0.052672
+[Nov05_0143] Sampling 1-8 / 8
+After sampling: -2.4719696044921875 4.636923313140869 -1.3486766815185547 0.8180536031723022
+Sample stats: -2.4719696044921875 4.636923313140869 -1.3486766815185547 0.8180536031723022
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot10.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0144] Starting epoch 11/150...
+Epoch 11/150 - avg_loss: 0.051554
+[Nov05_0146] Sampling 1-8 / 8
+After sampling: -1.8974229097366333 3.656405210494995 -0.2727673649787903 1.1687685251235962
+Sample stats: -1.8974229097366333 3.656405210494995 -0.2727673649787903 1.1687685251235962
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot11.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0147] Starting epoch 12/150...
+Epoch 12/150 - avg_loss: 0.051516
+[Nov05_0149] Sampling 1-8 / 8
+After sampling: -1.839430809020996 5.7337493896484375 -0.18031147122383118 1.2956275939941406
+Sample stats: -1.839430809020996 5.7337493896484375 -0.18031147122383118 1.2956275939941406
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot12.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0150] Starting epoch 13/150...
+Epoch 13/150 - avg_loss: 0.051724
+[Nov05_0152] Sampling 1-8 / 8
+After sampling: -0.8197005391120911 7.24696683883667 1.4695979356765747 1.839705228805542
+Sample stats: -0.8197005391120911 7.24696683883667 1.4695979356765747 1.839705228805542
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot13.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0152] Starting epoch 14/150...
+Epoch 14/150 - avg_loss: 0.052948
+[Nov05_0154] Sampling 1-8 / 8
+After sampling: -2.9604146480560303 5.235470771789551 -1.0744739770889282 1.0371469259262085
+Sample stats: -2.9604146480560303 5.235470771789551 -1.0744739770889282 1.0371469259262085
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot14.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0155] Starting epoch 15/150...
+Epoch 15/150 - avg_loss: 0.050849
+[Nov05_0157] Sampling 1-8 / 8
+After sampling: -1.409975290298462 5.299036502838135 -0.018633680418133736 1.2799283266067505
+Sample stats: -1.409975290298462 5.299036502838135 -0.018633680418133736 1.2799283266067505
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot15.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0158] Starting epoch 16/150...
+Epoch 16/150 - avg_loss: 0.052382
+[Nov05_0200] Sampling 1-8 / 8
+After sampling: -2.6987264156341553 3.284369707107544 -1.3276708126068115 0.5022532939910889
+Sample stats: -2.6987264156341553 3.284369707107544 -1.3276708126068115 0.5022532939910889
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot16.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0201] Starting epoch 17/150...
+Epoch 17/150 - avg_loss: 0.052835
+[Nov05_0203] Sampling 1-8 / 8
+After sampling: -4.880716800689697 3.8105580806732178 -2.219727039337158 1.1879554986953735
+Sample stats: -4.880716800689697 3.8105580806732178 -2.219727039337158 1.1879554986953735
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot17.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0204] Starting epoch 18/150...
+Epoch 18/150 - avg_loss: 0.053106
+[Nov05_0206] Sampling 1-8 / 8
+After sampling: -1.80589759349823 4.6957902908325195 -0.3324587047100067 0.8857319355010986
+Sample stats: -1.80589759349823 4.6957902908325195 -0.3324587047100067 0.8857319355010986
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot18.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0207] Starting epoch 19/150...
+Epoch 19/150 - avg_loss: 0.051326
+[Nov05_0209] Sampling 1-8 / 8
+After sampling: -0.6399648189544678 5.2384934425354 -0.17921529710292816 0.8082265853881836
+Sample stats: -0.6399648189544678 5.2384934425354 -0.17921529710292816 0.8082265853881836
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot19.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0210] Starting epoch 20/150...
+Epoch 20/150 - avg_loss: 0.051628
+[Nov05_0212] Sampling 1-8 / 8
+After sampling: -2.3804526329040527 4.612563133239746 -1.3169490098953247 0.9812489748001099
+Sample stats: -2.3804526329040527 4.612563133239746 -1.3169490098953247 0.9812489748001099
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot20.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0212] Starting epoch 21/150...
+Epoch 21/150 - avg_loss: 0.051820
+[Nov05_0215] Sampling 1-8 / 8
+After sampling: -0.7708811163902283 6.646667957305908 1.684856653213501 1.6707937717437744
+Sample stats: -0.7708811163902283 6.646667957305908 1.684856653213501 1.6707937717437744
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot21.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0215] Starting epoch 22/150...
+Epoch 22/150 - avg_loss: 0.051716
+[Nov05_0217] Sampling 1-8 / 8
+After sampling: -0.7620220184326172 5.763059616088867 0.5810562968254089 1.4274919033050537
+Sample stats: -0.7620220184326172 5.763059616088867 0.5810562968254089 1.4274919033050537
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot22.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0218] Starting epoch 23/150...
+Epoch 23/150 - avg_loss: 0.052004
+[Nov05_0220] Sampling 1-8 / 8
+After sampling: -1.3130073547363281 5.4747514724731445 -0.262360543012619 1.076963186264038
+Sample stats: -1.3130073547363281 5.4747514724731445 -0.262360543012619 1.076963186264038
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot23.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0221] Starting epoch 24/150...
+Epoch 24/150 - avg_loss: 0.050832
+[Nov05_0223] Sampling 1-8 / 8
+After sampling: -0.7301781177520752 5.030292987823486 0.009719746187329292 1.1224690675735474
+Sample stats: -0.7301781177520752 5.030292987823486 0.009719746187329292 1.1224690675735474
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot24.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0224] Starting epoch 25/150...
+Epoch 25/150 - avg_loss: 0.053099
+[Nov05_0226] Sampling 1-8 / 8
+After sampling: -4.56602144241333 3.3045589923858643 -2.8983466625213623 0.9602607488632202
+Sample stats: -4.56602144241333 3.3045589923858643 -2.8983466625213623 0.9602607488632202
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot25.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0227] Starting epoch 26/150...
+Epoch 26/150 - avg_loss: 0.051864
+[Nov05_0229] Sampling 1-8 / 8
+After sampling: -1.136672019958496 4.082282066345215 -0.414792537689209 0.852707028388977
+Sample stats: -1.136672019958496 4.082282066345215 -0.414792537689209 0.852707028388977
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot26.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0230] Starting epoch 27/150...
+Epoch 27/150 - avg_loss: 0.050895
+[Nov05_0232] Sampling 1-8 / 8
+After sampling: -0.6814984083175659 7.34968376159668 0.6223902702331543 1.5387135744094849
+Sample stats: -0.6814984083175659 7.34968376159668 0.6223902702331543 1.5387135744094849
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot27.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0233] Starting epoch 28/150...
+Epoch 28/150 - avg_loss: 0.051587
+[Nov05_0235] Sampling 1-8 / 8
+After sampling: -2.648873805999756 5.279252529144287 -1.1015020608901978 0.923432469367981
+Sample stats: -2.648873805999756 5.279252529144287 -1.1015020608901978 0.923432469367981
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot28.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0235] Starting epoch 29/150...
+Epoch 29/150 - avg_loss: 0.051049
+[Nov05_0238] Sampling 1-8 / 8
+After sampling: -0.9998568296432495 5.14962911605835 -0.05352982506155968 1.2433334589004517
+Sample stats: -0.9998568296432495 5.14962911605835 -0.05352982506155968 1.2433334589004517
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot29.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0238] Starting epoch 30/150...
+Epoch 30/150 - avg_loss: 0.050119
+[Nov05_0240] Sampling 1-8 / 8
+After sampling: -2.902890682220459 -1.0271811485290527 -1.8552258014678955 0.49221768975257874
+Sample stats: -2.902890682220459 -1.0271811485290527 -1.8552258014678955 0.49221768975257874
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot30.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0241] Starting epoch 31/150...
+Epoch 31/150 - avg_loss: 0.051550
+[Nov05_0243] Sampling 1-8 / 8
+After sampling: -0.717825174331665 5.393707752227783 0.048446886241436005 1.245165467262268
+Sample stats: -0.717825174331665 5.393707752227783 0.048446886241436005 1.245165467262268
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot31.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0244] Starting epoch 32/150...
+Epoch 32/150 - avg_loss: 0.050967
+[Nov05_0246] Sampling 1-8 / 8
+After sampling: -4.232010841369629 -0.6829605102539062 -3.184652805328369 0.5734338164329529
+Sample stats: -4.232010841369629 -0.6829605102539062 -3.184652805328369 0.5734338164329529
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot32.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0247] Starting epoch 33/150...
+Epoch 33/150 - avg_loss: 0.050157
+[Nov05_0249] Sampling 1-8 / 8
+After sampling: -0.686953067779541 5.065248012542725 0.724698543548584 1.4102309942245483
+Sample stats: -0.686953067779541 5.065248012542725 0.724698543548584 1.4102309942245483
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot33.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0250] Starting epoch 34/150...
+Epoch 34/150 - avg_loss: 0.050889
+[Nov05_0252] Sampling 1-8 / 8
+After sampling: -1.8026896715164185 5.950045108795166 -0.9001901745796204 0.7792905569076538
+Sample stats: -1.8026896715164185 5.950045108795166 -0.9001901745796204 0.7792905569076538
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot34.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0253] Starting epoch 35/150...
+Epoch 35/150 - avg_loss: 0.049592
+[Nov05_0255] Sampling 1-8 / 8
+After sampling: -1.353310465812683 3.792095422744751 -0.7504163384437561 0.6725221276283264
+Sample stats: -1.353310465812683 3.792095422744751 -0.7504163384437561 0.6725221276283264
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot35.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0256] Starting epoch 36/150...
+Epoch 36/150 - avg_loss: 0.050415
+[Nov05_0258] Sampling 1-8 / 8
+After sampling: -0.5980932712554932 5.252646446228027 0.4583618938922882 1.5136253833770752
+Sample stats: -0.5980932712554932 5.252646446228027 0.4583618938922882 1.5136253833770752
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot36.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0258] Starting epoch 37/150...
+Epoch 37/150 - avg_loss: 0.050628
+[Nov05_0301] Sampling 1-8 / 8
+After sampling: -0.7179359793663025 6.186697483062744 0.6826410293579102 1.650550127029419
+Sample stats: -0.7179359793663025 6.186697483062744 0.6826410293579102 1.650550127029419
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot37.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0301] Starting epoch 38/150...
+Epoch 38/150 - avg_loss: 0.050095
+[Nov05_0303] Sampling 1-8 / 8
+After sampling: -1.9293467998504639 -0.20520944893360138 -1.275353193283081 0.34720471501350403
+Sample stats: -1.9293467998504639 -0.20520944893360138 -1.275353193283081 0.34720471501350403
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot38.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0304] Starting epoch 39/150...
+Epoch 39/150 - avg_loss: 0.049596
+[Nov05_0306] Sampling 1-8 / 8
+After sampling: -0.8314069509506226 5.704179763793945 0.010960298590362072 1.0504754781723022
+Sample stats: -0.8314069509506226 5.704179763793945 0.010960298590362072 1.0504754781723022
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot39.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0307] Starting epoch 40/150...
+Epoch 40/150 - avg_loss: 0.051234
+[Nov05_0309] Sampling 1-8 / 8
+After sampling: -0.6505768895149231 4.915593147277832 0.2797585725784302 1.2130115032196045
+Sample stats: -0.6505768895149231 4.915593147277832 0.2797585725784302 1.2130115032196045
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot40.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0310] Starting epoch 41/150...
+Epoch 41/150 - avg_loss: 0.049978
+[Nov05_0312] Sampling 1-8 / 8
+After sampling: -1.8886967897415161 3.3763859272003174 -1.1693962812423706 0.3814031481742859
+Sample stats: -1.8886967897415161 3.3763859272003174 -1.1693962812423706 0.3814031481742859
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot41.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0313] Starting epoch 42/150...
+Epoch 42/150 - avg_loss: 0.049976
+[Nov05_0315] Sampling 1-8 / 8
+After sampling: -1.386448621749878 2.9953420162200928 -0.7974936366081238 0.4633733332157135
+Sample stats: -1.386448621749878 2.9953420162200928 -0.7974936366081238 0.4633733332157135
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot42.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0316] Starting epoch 43/150...
+Epoch 43/150 - avg_loss: 0.049108
+[Nov05_0318] Sampling 1-8 / 8
+After sampling: -0.7778005003929138 4.484943389892578 -0.2810651957988739 0.8783659338951111
+Sample stats: -0.7778005003929138 4.484943389892578 -0.2810651957988739 0.8783659338951111
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot43.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0319] Starting epoch 44/150...
+Epoch 44/150 - avg_loss: 0.049104
+[Nov05_0321] Sampling 1-8 / 8
+After sampling: -0.7347334623336792 5.0673346519470215 0.39823105931282043 1.2994859218597412
+Sample stats: -0.7347334623336792 5.0673346519470215 0.39823105931282043 1.2994859218597412
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot44.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0321] Starting epoch 45/150...
+Epoch 45/150 - avg_loss: 0.048555
+[Nov05_0324] Sampling 1-8 / 8
+After sampling: -1.2071608304977417 4.388843536376953 -0.47345781326293945 0.7249208688735962
+Sample stats: -1.2071608304977417 4.388843536376953 -0.47345781326293945 0.7249208688735962
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot45.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0324] Starting epoch 46/150...
+Epoch 46/150 - avg_loss: 0.048882
+[Nov05_0326] Sampling 1-8 / 8
+After sampling: -1.1439977884292603 6.030212879180908 -0.6381658315658569 0.6732111573219299
+Sample stats: -1.1439977884292603 6.030212879180908 -0.6381658315658569 0.6732111573219299
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot46.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0327] Starting epoch 47/150...
+Epoch 47/150 - avg_loss: 0.049537
+[Nov05_0329] Sampling 1-8 / 8
+After sampling: -2.699657440185547 2.3680033683776855 -1.5909569263458252 0.54164057970047
+Sample stats: -2.699657440185547 2.3680033683776855 -1.5909569263458252 0.54164057970047
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot47.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0330] Starting epoch 48/150...
+Epoch 48/150 - avg_loss: 0.049889
+[Nov05_0332] Sampling 1-8 / 8
+After sampling: -0.8035104870796204 4.377648830413818 -0.03680289909243584 1.1938809156417847
+Sample stats: -0.8035104870796204 4.377648830413818 -0.03680289909243584 1.1938809156417847
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot48.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0333] Starting epoch 49/150...
+Epoch 49/150 - avg_loss: 0.049805
+[Nov05_0335] Sampling 1-8 / 8
+After sampling: -0.8833284974098206 3.8195667266845703 -0.6155118942260742 0.2808312475681305
+Sample stats: -0.8833284974098206 3.8195667266845703 -0.6155118942260742 0.2808312475681305
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot49.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0336] Starting epoch 50/150...
+Epoch 50/150 - avg_loss: 0.049269
+[Nov05_0338] Sampling 1-8 / 8
+After sampling: -1.3577096462249756 4.475532054901123 -0.6821314096450806 0.6994636654853821
+Sample stats: -1.3577096462249756 4.475532054901123 -0.6821314096450806 0.6994636654853821
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot50.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0339] Starting epoch 51/150...
+Epoch 51/150 - avg_loss: 0.048672
+[Nov05_0341] Sampling 1-8 / 8
+After sampling: -1.128432273864746 2.907167434692383 -0.7391053438186646 0.16427376866340637
+Sample stats: -1.128432273864746 2.907167434692383 -0.7391053438186646 0.16427376866340637
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot51.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0341] Starting epoch 52/150...
+Epoch 52/150 - avg_loss: 0.047793
+[Nov05_0343] Sampling 1-8 / 8
+After sampling: -0.6454373002052307 5.211787700653076 -0.11082229018211365 1.0596837997436523
+Sample stats: -0.6454373002052307 5.211787700653076 -0.11082229018211365 1.0596837997436523
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot52.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0344] Starting epoch 53/150...
+Epoch 53/150 - avg_loss: 0.050772
+[Nov05_0346] Sampling 1-8 / 8
+After sampling: -0.6908049583435059 4.9059038162231445 -0.2782551348209381 0.8654333353042603
+Sample stats: -0.6908049583435059 4.9059038162231445 -0.2782551348209381 0.8654333353042603
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot53.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0347] Starting epoch 54/150...
+Epoch 54/150 - avg_loss: 0.048713
+[Nov05_0349] Sampling 1-8 / 8
+After sampling: -0.6510443091392517 5.175066947937012 0.3380240499973297 1.244552493095398
+Sample stats: -0.6510443091392517 5.175066947937012 0.3380240499973297 1.244552493095398
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot54.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0350] Starting epoch 55/150...
+Epoch 55/150 - avg_loss: 0.048602
+[Nov05_0352] Sampling 1-8 / 8
+After sampling: -0.6397020220756531 5.309095859527588 0.12195666879415512 1.1665393114089966
+Sample stats: -0.6397020220756531 5.309095859527588 0.12195666879415512 1.1665393114089966
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot55.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0353] Starting epoch 56/150...
+Epoch 56/150 - avg_loss: 0.049232
+[Nov05_0355] Sampling 1-8 / 8
+After sampling: -0.672668993473053 4.4280500411987305 -0.3030617833137512 0.758488655090332
+Sample stats: -0.672668993473053 4.4280500411987305 -0.3030617833137512 0.758488655090332
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot56.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0356] Starting epoch 57/150...
+Epoch 57/150 - avg_loss: 0.049191
+[Nov05_0358] Sampling 1-8 / 8
+After sampling: -1.6333144903182983 3.5325686931610107 -0.8345405459403992 0.42494168877601624
+Sample stats: -1.6333144903182983 3.5325686931610107 -0.8345405459403992 0.42494168877601624
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot57.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0359] Starting epoch 58/150...
+Epoch 58/150 - avg_loss: 0.049591
+[Nov05_0401] Sampling 1-8 / 8
+After sampling: -0.8018671870231628 3.618567705154419 -0.6366976499557495 0.33134758472442627
+Sample stats: -0.8018671870231628 3.618567705154419 -0.6366976499557495 0.33134758472442627
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot58.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0401] Starting epoch 59/150...
+Epoch 59/150 - avg_loss: 0.049179
+[Nov05_0403] Sampling 1-8 / 8
+After sampling: -0.715222179889679 4.466912746429443 -0.2795890271663666 0.8980295062065125
+Sample stats: -0.715222179889679 4.466912746429443 -0.2795890271663666 0.8980295062065125
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot59.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0404] Starting epoch 60/150...
+Epoch 60/150 - avg_loss: 0.049536
+[Nov05_0406] Sampling 1-8 / 8
+After sampling: -0.7889920473098755 4.020620822906494 -0.24814219772815704 0.8438369631767273
+Sample stats: -0.7889920473098755 4.020620822906494 -0.24814219772815704 0.8438369631767273
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot60.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0407] Starting epoch 61/150...
+Epoch 61/150 - avg_loss: 0.048644
+[Nov05_0409] Sampling 1-8 / 8
+After sampling: -0.8168286681175232 4.475478172302246 -0.5081626772880554 0.5538647174835205
+Sample stats: -0.8168286681175232 4.475478172302246 -0.5081626772880554 0.5538647174835205
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot61.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0410] Starting epoch 62/150...
+Epoch 62/150 - avg_loss: 0.048032
+[Nov05_0412] Sampling 1-8 / 8
+After sampling: -0.7963472008705139 5.426286697387695 -0.6064960360527039 0.3580901324748993
+Sample stats: -0.7963472008705139 5.426286697387695 -0.6064960360527039 0.3580901324748993
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot62.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0413] Starting epoch 63/150...
+Epoch 63/150 - avg_loss: 0.048453
+[Nov05_0415] Sampling 1-8 / 8
+After sampling: -0.8221582770347595 4.504724502563477 -0.6036589741706848 0.4017787575721741
+Sample stats: -0.8221582770347595 4.504724502563477 -0.6036589741706848 0.4017787575721741
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot63.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0416] Starting epoch 64/150...
+Epoch 64/150 - avg_loss: 0.048930
+[Nov05_0418] Sampling 1-8 / 8
+After sampling: -0.8047563433647156 4.436949729919434 -0.4258545935153961 0.7301732301712036
+Sample stats: -0.8047563433647156 4.436949729919434 -0.4258545935153961 0.7301732301712036
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot64.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0418] Starting epoch 65/150...
+Epoch 65/150 - avg_loss: 0.048681
+[Nov05_0420] Sampling 1-8 / 8
+After sampling: -0.682720959186554 4.751033306121826 -0.3169928193092346 0.7661148905754089
+Sample stats: -0.682720959186554 4.751033306121826 -0.3169928193092346 0.7661148905754089
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot65.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0421] Starting epoch 66/150...
+Epoch 66/150 - avg_loss: 0.048670
+[Nov05_0423] Sampling 1-8 / 8
+After sampling: -0.7035386562347412 4.63929557800293 -0.13301067054271698 0.9897393584251404
+Sample stats: -0.7035386562347412 4.63929557800293 -0.13301067054271698 0.9897393584251404
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot66.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0424] Starting epoch 67/150...
+Epoch 67/150 - avg_loss: 0.049883
+[Nov05_0426] Sampling 1-8 / 8
+After sampling: -0.7229974865913391 3.9194509983062744 -0.3300032913684845 0.8409903645515442
+Sample stats: -0.7229974865913391 3.9194509983062744 -0.3300032913684845 0.8409903645515442
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot67.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0427] Starting epoch 68/150...
+Epoch 68/150 - avg_loss: 0.048675
+[Nov05_0429] Sampling 1-8 / 8
+After sampling: -0.6631725430488586 4.663896083831787 0.6026469469070435 1.4018199443817139
+Sample stats: -0.6631725430488586 4.663896083831787 0.6026469469070435 1.4018199443817139
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot68.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0430] Starting epoch 69/150...
+Epoch 69/150 - avg_loss: 0.048500
+[Nov05_0432] Sampling 1-8 / 8
+After sampling: -0.7966830134391785 4.043074607849121 -0.538495659828186 0.5244375467300415
+Sample stats: -0.7966830134391785 4.043074607849121 -0.538495659828186 0.5244375467300415
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot69.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0433] Starting epoch 70/150...
+Epoch 70/150 - avg_loss: 0.047257
+[Nov05_0435] Sampling 1-8 / 8
+After sampling: -0.6904500126838684 4.415048599243164 -0.17250338196754456 1.1054106950759888
+Sample stats: -0.6904500126838684 4.415048599243164 -0.17250338196754456 1.1054106950759888
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot70.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0435] Starting epoch 71/150...
+Epoch 71/150 - avg_loss: 0.049988
+[Nov05_0438] Sampling 1-8 / 8
+After sampling: -0.7003666758537292 4.957305431365967 -0.20353636145591736 1.0623031854629517
+Sample stats: -0.7003666758537292 4.957305431365967 -0.20353636145591736 1.0623031854629517
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot71.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0438] Starting epoch 72/150...
+Epoch 72/150 - avg_loss: 0.047815
+[Nov05_0440] Sampling 1-8 / 8
+After sampling: -0.8983317017555237 2.6064701080322266 -0.6803627014160156 0.12575122714042664
+Sample stats: -0.8983317017555237 2.6064701080322266 -0.6803627014160156 0.12575122714042664
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot72.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0441] Starting epoch 73/150...
+Epoch 73/150 - avg_loss: 0.047776
+[Nov05_0443] Sampling 1-8 / 8
+After sampling: -0.8718769550323486 2.830545663833618 -0.6585695743560791 0.2492714822292328
+Sample stats: -0.8718769550323486 2.830545663833618 -0.6585695743560791 0.2492714822292328
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot73.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0444] Starting epoch 74/150...
+Epoch 74/150 - avg_loss: 0.047534
+[Nov05_0446] Sampling 1-8 / 8
+After sampling: -0.6980182528495789 4.362136363983154 -0.4555225968360901 0.6274207830429077
+Sample stats: -0.6980182528495789 4.362136363983154 -0.4555225968360901 0.6274207830429077
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot74.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0447] Starting epoch 75/150...
+Epoch 75/150 - avg_loss: 0.048023
+[Nov05_0449] Sampling 1-8 / 8
+After sampling: -0.8417671322822571 4.453380584716797 -0.22432032227516174 1.0732165575027466
+Sample stats: -0.8417671322822571 4.453380584716797 -0.22432032227516174 1.0732165575027466
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot75.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0450] Starting epoch 76/150...
+Epoch 76/150 - avg_loss: 0.049007
+[Nov05_0452] Sampling 1-8 / 8
+After sampling: -0.8301616311073303 3.8295085430145264 -0.5009888410568237 0.5276222229003906
+Sample stats: -0.8301616311073303 3.8295085430145264 -0.5009888410568237 0.5276222229003906
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot76.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0453] Starting epoch 77/150...
+Epoch 77/150 - avg_loss: 0.049588
+[Nov05_0455] Sampling 1-8 / 8
+After sampling: -0.6280825138092041 5.79652214050293 0.3575298488140106 1.4352270364761353
+Sample stats: -0.6280825138092041 5.79652214050293 0.3575298488140106 1.4352270364761353
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot77.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0455] Starting epoch 78/150...
+Epoch 78/150 - avg_loss: 0.049163
+[Nov05_0457] Sampling 1-8 / 8
+After sampling: -0.6748663187026978 4.157858371734619 -0.21745961904525757 0.9663248062133789
+Sample stats: -0.6748663187026978 4.157858371734619 -0.21745961904525757 0.9663248062133789
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot78.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0458] Starting epoch 79/150...
+Epoch 79/150 - avg_loss: 0.048349
+[Nov05_0500] Sampling 1-8 / 8
+After sampling: -0.6665658354759216 5.063297271728516 -0.406464159488678 0.6289125680923462
+Sample stats: -0.6665658354759216 5.063297271728516 -0.406464159488678 0.6289125680923462
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot79.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0501] Starting epoch 80/150...
+Epoch 80/150 - avg_loss: 0.049381
+[Nov05_0503] Sampling 1-8 / 8
+After sampling: -0.6529804468154907 3.760209321975708 -0.5151181221008301 0.3983377516269684
+Sample stats: -0.6529804468154907 3.760209321975708 -0.5151181221008301 0.3983377516269684
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot80.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0504] Starting epoch 81/150...
+Epoch 81/150 - avg_loss: 0.048287
+[Nov05_0506] Sampling 1-8 / 8
+After sampling: -0.7008217573165894 4.803295135498047 -0.3612991273403168 0.7885420322418213
+Sample stats: -0.7008217573165894 4.803295135498047 -0.3612991273403168 0.7885420322418213
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot81.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0507] Starting epoch 82/150...
+Epoch 82/150 - avg_loss: 0.049130
+[Nov05_0509] Sampling 1-8 / 8
+After sampling: -0.9854956865310669 3.7308106422424316 -0.6970093846321106 0.26915761828422546
+Sample stats: -0.9854956865310669 3.7308106422424316 -0.6970093846321106 0.26915761828422546
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot82.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0510] Starting epoch 83/150...
+Epoch 83/150 - avg_loss: 0.047825
+[Nov05_0512] Sampling 1-8 / 8
+After sampling: -0.6433354616165161 5.2215447425842285 -0.23185350000858307 0.9538782835006714
+Sample stats: -0.6433354616165161 5.2215447425842285 -0.23185350000858307 0.9538782835006714
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot83.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0512] Starting epoch 84/150...
+Epoch 84/150 - avg_loss: 0.048713
+[Nov05_0515] Sampling 1-8 / 8
+After sampling: -0.6836857199668884 5.738578796386719 -0.5476178526878357 0.4195151627063751
+Sample stats: -0.6836857199668884 5.738578796386719 -0.5476178526878357 0.4195151627063751
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot84.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0515] Starting epoch 85/150...
+Epoch 85/150 - avg_loss: 0.048219
+[Nov05_0517] Sampling 1-8 / 8
+After sampling: -0.6131826043128967 5.076019287109375 -0.3082064092159271 0.8075352907180786
+Sample stats: -0.6131826043128967 5.076019287109375 -0.3082064092159271 0.8075352907180786
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot85.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0518] Starting epoch 86/150...
+Epoch 86/150 - avg_loss: 0.047699
+[Nov05_0520] Sampling 1-8 / 8
+After sampling: -0.6982097625732422 3.267462730407715 -0.47873497009277344 0.552150547504425
+Sample stats: -0.6982097625732422 3.267462730407715 -0.47873497009277344 0.552150547504425
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot86.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0521] Starting epoch 87/150...
+Epoch 87/150 - avg_loss: 0.048101
+[Nov05_0523] Sampling 1-8 / 8
+After sampling: -0.6502158641815186 4.180043697357178 -0.055841006338596344 1.0450243949890137
+Sample stats: -0.6502158641815186 4.180043697357178 -0.055841006338596344 1.0450243949890137
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot87.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0524] Starting epoch 88/150...
+Epoch 88/150 - avg_loss: 0.047528
+[Nov05_0526] Sampling 1-8 / 8
+After sampling: -0.7590020895004272 2.002526044845581 -0.6309943795204163 0.1732204556465149
+Sample stats: -0.7590020895004272 2.002526044845581 -0.6309943795204163 0.1732204556465149
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot88.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0527] Starting epoch 89/150...
+Epoch 89/150 - avg_loss: 0.047695
+[Nov05_0529] Sampling 1-8 / 8
+After sampling: -0.6433990001678467 4.350015640258789 -0.18615442514419556 0.9298926591873169
+Sample stats: -0.6433990001678467 4.350015640258789 -0.18615442514419556 0.9298926591873169
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot89.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0530] Starting epoch 90/150...
+Epoch 90/150 - avg_loss: 0.048789
+[Nov05_0532] Sampling 1-8 / 8
+After sampling: -0.73667311668396 5.266872406005859 -0.5565128922462463 0.4306224286556244
+Sample stats: -0.73667311668396 5.266872406005859 -0.5565128922462463 0.4306224286556244
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot90.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0532] Starting epoch 91/150...
+Epoch 91/150 - avg_loss: 0.047841
+[Nov05_0534] Sampling 1-8 / 8
+After sampling: -0.6676514148712158 4.763428688049316 -0.20014137029647827 1.047850251197815
+Sample stats: -0.6676514148712158 4.763428688049316 -0.20014137029647827 1.047850251197815
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot91.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0535] Starting epoch 92/150...
+Epoch 92/150 - avg_loss: 0.048645
+[Nov05_0537] Sampling 1-8 / 8
+After sampling: -0.6664800047874451 3.425584554672241 -0.5142250061035156 0.3954128623008728
+Sample stats: -0.6664800047874451 3.425584554672241 -0.5142250061035156 0.3954128623008728
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot92.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0538] Starting epoch 93/150...
+Epoch 93/150 - avg_loss: 0.048818
+[Nov05_0540] Sampling 1-8 / 8
+After sampling: -0.814014732837677 3.9236912727355957 -0.33901476860046387 0.8197770714759827
+Sample stats: -0.814014732837677 3.9236912727355957 -0.33901476860046387 0.8197770714759827
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot93.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0541] Starting epoch 94/150...
+Epoch 94/150 - avg_loss: 0.047896
+[Nov05_0543] Sampling 1-8 / 8
+After sampling: -0.7153875231742859 4.1413893699646 -0.09678632766008377 0.966854453086853
+Sample stats: -0.7153875231742859 4.1413893699646 -0.09678632766008377 0.966854453086853
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot94.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0544] Starting epoch 95/150...
+Epoch 95/150 - avg_loss: 0.048069
+[Nov05_0546] Sampling 1-8 / 8
+After sampling: -0.6352789998054504 3.460392713546753 -0.4695286452770233 0.5034767389297485
+Sample stats: -0.6352789998054504 3.460392713546753 -0.4695286452770233 0.5034767389297485
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot95.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0547] Starting epoch 96/150...
+Epoch 96/150 - avg_loss: 0.048469
+[Nov05_0549] Sampling 1-8 / 8
+After sampling: -0.6372010111808777 5.199174880981445 -0.47698724269866943 0.5402313470840454
+Sample stats: -0.6372010111808777 5.199174880981445 -0.47698724269866943 0.5402313470840454
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot96.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0549] Starting epoch 97/150...
+Epoch 97/150 - avg_loss: 0.048488
+[Nov05_0552] Sampling 1-8 / 8
+After sampling: -0.6682497262954712 4.756307125091553 -0.03272310644388199 1.2680352926254272
+Sample stats: -0.6682497262954712 4.756307125091553 -0.03272310644388199 1.2680352926254272
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot97.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0552] Starting epoch 98/150...
+Epoch 98/150 - avg_loss: 0.048947
+[Nov05_0554] Sampling 1-8 / 8
+After sampling: -0.6418761610984802 4.136748313903809 -0.2875481843948364 0.7931201457977295
+Sample stats: -0.6418761610984802 4.136748313903809 -0.2875481843948364 0.7931201457977295
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot98.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0555] Starting epoch 99/150...
+Epoch 99/150 - avg_loss: 0.048059
+[Nov05_0557] Sampling 1-8 / 8
+After sampling: -0.6764814257621765 4.635910987854004 -0.4149748682975769 0.6932027339935303
+Sample stats: -0.6764814257621765 4.635910987854004 -0.4149748682975769 0.6932027339935303
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot99.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0558] Starting epoch 100/150...
+Epoch 100/150 - avg_loss: 0.047094
+[Nov05_0600] Sampling 1-8 / 8
+After sampling: -0.6607457995414734 3.405850648880005 -0.48014405369758606 0.5168506503105164
+Sample stats: -0.6607457995414734 3.405850648880005 -0.48014405369758606 0.5168506503105164
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot100.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0601] Starting epoch 101/150...
+Epoch 101/150 - avg_loss: 0.047578
+[Nov05_0603] Sampling 1-8 / 8
+After sampling: -0.6856046319007874 3.7336416244506836 -0.5342034101486206 0.371138334274292
+Sample stats: -0.6856046319007874 3.7336416244506836 -0.5342034101486206 0.371138334274292
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot101.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0604] Starting epoch 102/150...
+Epoch 102/150 - avg_loss: 0.049816
+[Nov05_0606] Sampling 1-8 / 8
+After sampling: -0.6327195763587952 3.923295021057129 -0.4608290195465088 0.5422350168228149
+Sample stats: -0.6327195763587952 3.923295021057129 -0.4608290195465088 0.5422350168228149
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot102.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0606] Starting epoch 103/150...
+Epoch 103/150 - avg_loss: 0.047265
+[Nov05_0609] Sampling 1-8 / 8
+After sampling: -0.6468232870101929 3.351130247116089 -0.46617475152015686 0.46847832202911377
+Sample stats: -0.6468232870101929 3.351130247116089 -0.46617475152015686 0.46847832202911377
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot103.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0609] Starting epoch 104/150...
+Epoch 104/150 - avg_loss: 0.048644
+[Nov05_0611] Sampling 1-8 / 8
+After sampling: -0.6501221060752869 5.9078803062438965 -0.29276472330093384 0.9403996467590332
+Sample stats: -0.6501221060752869 5.9078803062438965 -0.29276472330093384 0.9403996467590332
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot104.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0612] Starting epoch 105/150...
+Epoch 105/150 - avg_loss: 0.047879
+[Nov05_0614] Sampling 1-8 / 8
+After sampling: -0.7159854769706726 4.553706169128418 -0.49430251121520996 0.5769665241241455
+Sample stats: -0.7159854769706726 4.553706169128418 -0.49430251121520996 0.5769665241241455
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot105.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0615] Starting epoch 106/150...
+Epoch 106/150 - avg_loss: 0.047523
+[Nov05_0617] Sampling 1-8 / 8
+After sampling: -0.6814114451408386 4.511269569396973 -0.4165273904800415 0.6726593375205994
+Sample stats: -0.6814114451408386 4.511269569396973 -0.4165273904800415 0.6726593375205994
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot106.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0618] Starting epoch 107/150...
+Epoch 107/150 - avg_loss: 0.047553
+[Nov05_0620] Sampling 1-8 / 8
+After sampling: -0.6338427066802979 5.7988505363464355 -0.35464367270469666 0.7377364635467529
+Sample stats: -0.6338427066802979 5.7988505363464355 -0.35464367270469666 0.7377364635467529
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot107.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0621] Starting epoch 108/150...
+Epoch 108/150 - avg_loss: 0.048333
+[Nov05_0623] Sampling 1-8 / 8
+After sampling: -0.7265153527259827 4.278971195220947 -0.506833553314209 0.4394920766353607
+Sample stats: -0.7265153527259827 4.278971195220947 -0.506833553314209 0.4394920766353607
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot108.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0624] Starting epoch 109/150...
+Epoch 109/150 - avg_loss: 0.047200
+[Nov05_0626] Sampling 1-8 / 8
+After sampling: -0.6514983773231506 3.826406717300415 -0.4217771589756012 0.5406957268714905
+Sample stats: -0.6514983773231506 3.826406717300415 -0.4217771589756012 0.5406957268714905
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot109.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0626] Starting epoch 110/150...
+Epoch 110/150 - avg_loss: 0.048215
+[Nov05_0628] Sampling 1-8 / 8
+After sampling: -0.6631745100021362 4.731321334838867 -0.3997966945171356 0.7079582214355469
+Sample stats: -0.6631745100021362 4.731321334838867 -0.3997966945171356 0.7079582214355469
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot110.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0629] Starting epoch 111/150...
+Epoch 111/150 - avg_loss: 0.048769
+[Nov05_0631] Sampling 1-8 / 8
+After sampling: -0.6647562980651855 3.0282251834869385 -0.5322474241256714 0.35270628333091736
+Sample stats: -0.6647562980651855 3.0282251834869385 -0.5322474241256714 0.35270628333091736
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot111.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0632] Starting epoch 112/150...
+Epoch 112/150 - avg_loss: 0.048321
+[Nov05_0634] Sampling 1-8 / 8
+After sampling: -0.61802738904953 4.088040351867676 -0.10438356548547745 1.0271036624908447
+Sample stats: -0.61802738904953 4.088040351867676 -0.10438356548547745 1.0271036624908447
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot112.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0635] Starting epoch 113/150...
+Epoch 113/150 - avg_loss: 0.048955
+[Nov05_0637] Sampling 1-8 / 8
+After sampling: -0.631436824798584 4.595431327819824 -0.05553576350212097 1.115958571434021
+Sample stats: -0.631436824798584 4.595431327819824 -0.05553576350212097 1.115958571434021
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot113.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0638] Starting epoch 114/150...
+Epoch 114/150 - avg_loss: 0.047492
+[Nov05_0640] Sampling 1-8 / 8
+After sampling: -0.7667524218559265 3.1354854106903076 -0.5845062136650085 0.3361981213092804
+Sample stats: -0.7667524218559265 3.1354854106903076 -0.5845062136650085 0.3361981213092804
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot114.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0641] Starting epoch 115/150...
+Epoch 115/150 - avg_loss: 0.045519
+[Nov05_0643] Sampling 1-8 / 8
+After sampling: -0.6621403694152832 5.848421096801758 -0.41135960817337036 0.7489750981330872
+Sample stats: -0.6621403694152832 5.848421096801758 -0.41135960817337036 0.7489750981330872
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot115.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0643] Starting epoch 116/150...
+Epoch 116/150 - avg_loss: 0.047677
+[Nov05_0646] Sampling 1-8 / 8
+After sampling: -0.652276337146759 4.785233974456787 0.1342298537492752 1.3068883419036865
+Sample stats: -0.652276337146759 4.785233974456787 0.1342298537492752 1.3068883419036865
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot116.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0646] Starting epoch 117/150...
+Epoch 117/150 - avg_loss: 0.047564
+[Nov05_0648] Sampling 1-8 / 8
+After sampling: -0.6593835949897766 2.9981558322906494 -0.5536614060401917 0.24088998138904572
+Sample stats: -0.6593835949897766 2.9981558322906494 -0.5536614060401917 0.24088998138904572
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot117.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0649] Starting epoch 118/150...
+Epoch 118/150 - avg_loss: 0.048629
+[Nov05_0651] Sampling 1-8 / 8
+After sampling: -0.739807665348053 4.0229997634887695 -0.42322540283203125 0.6860725283622742
+Sample stats: -0.739807665348053 4.0229997634887695 -0.42322540283203125 0.6860725283622742
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot118.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0652] Starting epoch 119/150...
+Epoch 119/150 - avg_loss: 0.047327
+[Nov05_0654] Sampling 1-8 / 8
+After sampling: -0.6636868715286255 4.756269931793213 -0.4456077516078949 0.5892730355262756
+Sample stats: -0.6636868715286255 4.756269931793213 -0.4456077516078949 0.5892730355262756
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot119.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0655] Starting epoch 120/150...
+Epoch 120/150 - avg_loss: 0.047465
+[Nov05_0657] Sampling 1-8 / 8
+After sampling: -0.6769985556602478 4.452887058258057 -0.5666657090187073 0.316609650850296
+Sample stats: -0.6769985556602478 4.452887058258057 -0.5666657090187073 0.316609650850296
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot120.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0658] Starting epoch 121/150...
+Epoch 121/150 - avg_loss: 0.047091
+[Nov05_0700] Sampling 1-8 / 8
+After sampling: -0.6546764969825745 4.4860076904296875 -0.48744916915893555 0.4968748390674591
+Sample stats: -0.6546764969825745 4.4860076904296875 -0.48744916915893555 0.4968748390674591
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot121.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0701] Starting epoch 122/150...
+Epoch 122/150 - avg_loss: 0.047119
+[Nov05_0703] Sampling 1-8 / 8
+After sampling: -0.649010956287384 4.429919719696045 -0.01195688545703888 1.129120111465454
+Sample stats: -0.649010956287384 4.429919719696045 -0.01195688545703888 1.129120111465454
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot122.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0703] Starting epoch 123/150...
+Epoch 123/150 - avg_loss: 0.047151
+[Nov05_0705] Sampling 1-8 / 8
+After sampling: -0.6366902589797974 5.712025165557861 -0.4010050296783447 0.6641749143600464
+Sample stats: -0.6366902589797974 5.712025165557861 -0.4010050296783447 0.6641749143600464
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot123.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0706] Starting epoch 124/150...
+Epoch 124/150 - avg_loss: 0.048705
+[Nov05_0708] Sampling 1-8 / 8
+After sampling: -0.6366297006607056 3.91304874420166 -0.5014611482620239 0.39662837982177734
+Sample stats: -0.6366297006607056 3.91304874420166 -0.5014611482620239 0.39662837982177734
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot124.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0709] Starting epoch 125/150...
+Epoch 125/150 - avg_loss: 0.048013
+[Nov05_0711] Sampling 1-8 / 8
+After sampling: -0.6529548764228821 4.750874042510986 -0.2784693241119385 0.9230261445045471
+Sample stats: -0.6529548764228821 4.750874042510986 -0.2784693241119385 0.9230261445045471
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot125.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0712] Starting epoch 126/150...
+Epoch 126/150 - avg_loss: 0.048038
+[Nov05_0714] Sampling 1-8 / 8
+After sampling: -0.634789228439331 3.99011492729187 -0.42051559686660767 0.6247954368591309
+Sample stats: -0.634789228439331 3.99011492729187 -0.42051559686660767 0.6247954368591309
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot126.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0715] Starting epoch 127/150...
+Epoch 127/150 - avg_loss: 0.046757
+[Nov05_0717] Sampling 1-8 / 8
+After sampling: -0.632785975933075 3.8867874145507812 -0.36801597476005554 0.6739388704299927
+Sample stats: -0.632785975933075 3.8867874145507812 -0.36801597476005554 0.6739388704299927
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot127.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0718] Starting epoch 128/150...
+Epoch 128/150 - avg_loss: 0.046523
+[Nov05_0720] Sampling 1-8 / 8
+After sampling: -0.646493136882782 3.3296496868133545 -0.38799890875816345 0.6416630148887634
+Sample stats: -0.646493136882782 3.3296496868133545 -0.38799890875816345 0.6416630148887634
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot128.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0720] Starting epoch 129/150...
+Epoch 129/150 - avg_loss: 0.047993
+[Nov05_0722] Sampling 1-8 / 8
+After sampling: -0.6347678899765015 4.148880481719971 -0.37578582763671875 0.682398796081543
+Sample stats: -0.6347678899765015 4.148880481719971 -0.37578582763671875 0.682398796081543
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot129.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0723] Starting epoch 130/150...
+Epoch 130/150 - avg_loss: 0.047097
+[Nov05_0725] Sampling 1-8 / 8
+After sampling: -0.6624104380607605 2.7993175983428955 -0.5550113916397095 0.2598825693130493
+Sample stats: -0.6624104380607605 2.7993175983428955 -0.5550113916397095 0.2598825693130493
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot130.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0726] Starting epoch 131/150...
+Epoch 131/150 - avg_loss: 0.046860
+[Nov05_0728] Sampling 1-8 / 8
+After sampling: -0.6560056209564209 5.346353530883789 -0.29698148369789124 0.9085136651992798
+Sample stats: -0.6560056209564209 5.346353530883789 -0.29698148369789124 0.9085136651992798
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot131.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0729] Starting epoch 132/150...
+Epoch 132/150 - avg_loss: 0.047136
+[Nov05_0731] Sampling 1-8 / 8
+After sampling: -0.6521192193031311 3.3003644943237305 -0.5076018571853638 0.41872474551200867
+Sample stats: -0.6521192193031311 3.3003644943237305 -0.5076018571853638 0.41872474551200867
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot132.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0732] Starting epoch 133/150...
+Epoch 133/150 - avg_loss: 0.047724
+[Nov05_0734] Sampling 1-8 / 8
+After sampling: -0.6775146722793579 5.502408981323242 0.18076013028621674 1.1836578845977783
+Sample stats: -0.6775146722793579 5.502408981323242 0.18076013028621674 1.1836578845977783
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot133.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0735] Starting epoch 134/150...
+Epoch 134/150 - avg_loss: 0.047028
+[Nov05_0737] Sampling 1-8 / 8
+After sampling: -0.6791086792945862 3.5838232040405273 -0.3745468258857727 0.7142493724822998
+Sample stats: -0.6791086792945862 3.5838232040405273 -0.3745468258857727 0.7142493724822998
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot134.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0737] Starting epoch 135/150...
+Epoch 135/150 - avg_loss: 0.047556
+[Nov05_0740] Sampling 1-8 / 8
+After sampling: -0.7239323854446411 3.363189220428467 -0.5619202852249146 0.3782403767108917
+Sample stats: -0.7239323854446411 3.363189220428467 -0.5619202852249146 0.3782403767108917
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot135.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0740] Starting epoch 136/150...
+Epoch 136/150 - avg_loss: 0.047418
+[Nov05_0742] Sampling 1-8 / 8
+After sampling: -0.6414278745651245 4.6388750076293945 -0.3423001170158386 0.7705736756324768
+Sample stats: -0.6414278745651245 4.6388750076293945 -0.3423001170158386 0.7705736756324768
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot136.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0743] Starting epoch 137/150...
+Epoch 137/150 - avg_loss: 0.047695
+[Nov05_0745] Sampling 1-8 / 8
+After sampling: -0.6401135921478271 3.930840492248535 -0.5239907503128052 0.3873530626296997
+Sample stats: -0.6401135921478271 3.930840492248535 -0.5239907503128052 0.3873530626296997
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot137.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0746] Starting epoch 138/150...
+Epoch 138/150 - avg_loss: 0.046595
+[Nov05_0748] Sampling 1-8 / 8
+After sampling: -0.6679118275642395 4.418097019195557 -0.505416989326477 0.49694523215293884
+Sample stats: -0.6679118275642395 4.418097019195557 -0.505416989326477 0.49694523215293884
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot138.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0749] Starting epoch 139/150...
+Epoch 139/150 - avg_loss: 0.047280
+[Nov05_0751] Sampling 1-8 / 8
+After sampling: -0.6919896602630615 3.640869140625 -0.5700635313987732 0.2991427183151245
+Sample stats: -0.6919896602630615 3.640869140625 -0.5700635313987732 0.2991427183151245
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot139.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0752] Starting epoch 140/150...
+Epoch 140/150 - avg_loss: 0.048473
+[Nov05_0754] Sampling 1-8 / 8
+After sampling: -0.6423389315605164 4.196402549743652 -0.25641846656799316 0.8383116722106934
+Sample stats: -0.6423389315605164 4.196402549743652 -0.25641846656799316 0.8383116722106934
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot140.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0755] Starting epoch 141/150...
+Epoch 141/150 - avg_loss: 0.047882
+[Nov05_0757] Sampling 1-8 / 8
+After sampling: -0.6690441370010376 3.627074718475342 -0.5885493755340576 0.2461390495300293
+Sample stats: -0.6690441370010376 3.627074718475342 -0.5885493755340576 0.2461390495300293
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot141.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0757] Starting epoch 142/150...
+Epoch 142/150 - avg_loss: 0.047821
+[Nov05_0759] Sampling 1-8 / 8
+After sampling: -0.6521376371383667 3.475905179977417 -0.5332670211791992 0.3688007593154907
+Sample stats: -0.6521376371383667 3.475905179977417 -0.5332670211791992 0.3688007593154907
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot142.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0800] Starting epoch 143/150...
+Epoch 143/150 - avg_loss: 0.046218
+[Nov05_0802] Sampling 1-8 / 8
+After sampling: -0.638192355632782 3.6352086067199707 -0.40879392623901367 0.6520973443984985
+Sample stats: -0.638192355632782 3.6352086067199707 -0.40879392623901367 0.6520973443984985
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot143.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0803] Starting epoch 144/150...
+Epoch 144/150 - avg_loss: 0.046256
+[Nov05_0805] Sampling 1-8 / 8
+After sampling: -0.634375274181366 3.121673345565796 -0.5474163889884949 0.25024232268333435
+Sample stats: -0.634375274181366 3.121673345565796 -0.5474163889884949 0.25024232268333435
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot144.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0806] Starting epoch 145/150...
+Epoch 145/150 - avg_loss: 0.046611
+[Nov05_0808] Sampling 1-8 / 8
+After sampling: -0.6898805499076843 5.028308391571045 -0.4895271360874176 0.6085280776023865
+Sample stats: -0.6898805499076843 5.028308391571045 -0.4895271360874176 0.6085280776023865
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot145.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0809] Starting epoch 146/150...
+Epoch 146/150 - avg_loss: 0.046963
+[Nov05_0811] Sampling 1-8 / 8
+After sampling: -0.661705493927002 3.7952921390533447 -0.5304428339004517 0.3923891484737396
+Sample stats: -0.661705493927002 3.7952921390533447 -0.5304428339004517 0.3923891484737396
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot146.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0812] Starting epoch 147/150...
+Epoch 147/150 - avg_loss: 0.046435
+[Nov05_0814] Sampling 1-8 / 8
+After sampling: -0.6485639214515686 4.11061954498291 -0.3834249675273895 0.7113028168678284
+Sample stats: -0.6485639214515686 4.11061954498291 -0.3834249675273895 0.7113028168678284
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot147.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0814] Starting epoch 148/150...
+Epoch 148/150 - avg_loss: 0.047272
+[Nov05_0817] Sampling 1-8 / 8
+After sampling: -0.6432505249977112 5.898950576782227 -0.533429741859436 0.3206833600997925
+Sample stats: -0.6432505249977112 5.898950576782227 -0.533429741859436 0.3206833600997925
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot148.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0817] Starting epoch 149/150...
+Epoch 149/150 - avg_loss: 0.047810
+[Nov05_0819] Sampling 1-8 / 8
+After sampling: -0.6543660759925842 4.377147674560547 -0.4695100784301758 0.5955528020858765
+Sample stats: -0.6543660759925842 4.377147674560547 -0.4695100784301758 0.5955528020858765
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot149.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+[Nov05_0820] Starting epoch 150/150...
+Epoch 150/150 - avg_loss: 0.047621
+[Nov05_0822] Sampling 1-8 / 8
+After sampling: -0.6721042394638062 4.039362907409668 -0.3835916817188263 0.7491874694824219
+Sample stats: -0.6721042394638062 4.039362907409668 -0.3835916817188263 0.7491874694824219
+<class 'torch.Tensor'> torch.Size([8, 1, 256, 256])
+[Plot] Saved output_new/best_Nov05_0115_256_0.1/samples/plot150.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/best_Nov05_0115_256_0.1/histograms/hist_log_1.png
+Run directory renamed: output_new/0.04552_best_Nov05_0115_256_0.1
+Run complete. Results stored in output_new/0.04552_best_Nov05_0115_256_0.1

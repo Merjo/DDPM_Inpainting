@@ -1,0 +1,91 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+Output path set to: output_new/normal_Oct29_0938_256_0.1
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2002_256_8760_10%.pkl
+
+[Oct29_0938]Starting epoch 1/200...
+Epoch 1/200 - avg_loss: 0.068620, avg_rmse: 0.066251
+[Oct29_0944]Starting epoch 2/200...
+Epoch 2/200 - avg_loss: 0.047248, avg_rmse: 0.046490
+[Oct29_0950]Starting epoch 3/200...
+Epoch 3/200 - avg_loss: 0.045246, avg_rmse: 0.044455
+[Oct29_0956]Starting epoch 4/200...
+Epoch 4/200 - avg_loss: 0.043184, avg_rmse: 0.042742
+[Oct29_1002]Starting epoch 5/200...
+Epoch 5/200 - avg_loss: 0.044015, avg_rmse: 0.043467
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/normal_Oct29_0938_256_0.1/samples/plot1.png
+[Oct29_1010]Starting epoch 6/200...
+Epoch 6/200 - avg_loss: 0.043494, avg_rmse: 0.043102
+[Oct29_1016]Starting epoch 7/200...
+Epoch 7/200 - avg_loss: 0.045164, avg_rmse: 0.044788
+[Oct29_1022]Starting epoch 8/200...
+Epoch 8/200 - avg_loss: 0.042913, avg_rmse: 0.042513
+[Oct29_1028]Starting epoch 9/200...
+Epoch 9/200 - avg_loss: 0.058666, avg_rmse: 0.058126
+[Oct29_1034]Starting epoch 10/200...
+Epoch 10/200 - avg_loss: 0.045855, avg_rmse: 0.045477
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/normal_Oct29_0938_256_0.1/samples/plot2.png
+[Oct29_1043]Starting epoch 11/200...
+Epoch 11/200 - avg_loss: 0.043225, avg_rmse: 0.043002
+[Oct29_1048]Starting epoch 12/200...
+Epoch 12/200 - avg_loss: 0.044004, avg_rmse: 0.043654
+[Oct29_1054]Starting epoch 13/200...
+Epoch 13/200 - avg_loss: 0.042791, avg_rmse: 0.042580
+[Oct29_1100]Starting epoch 14/200...
+Epoch 14/200 - avg_loss: 0.043172, avg_rmse: 0.042962
+[Oct29_1106]Starting epoch 15/200...
+Epoch 15/200 - avg_loss: 0.040695, avg_rmse: 0.040468
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/normal_Oct29_0938_256_0.1/samples/plot3.png
+[Oct29_1115]Starting epoch 16/200...
+Epoch 16/200 - avg_loss: 0.041071, avg_rmse: 0.040868
+[Oct29_1120]Starting epoch 17/200...
+Epoch 17/200 - avg_loss: 0.043463, avg_rmse: 0.043125
+[Oct29_1126]Starting epoch 18/200...
+Epoch 18/200 - avg_loss: 0.038834, avg_rmse: 0.038690
+[Oct29_1132]Starting epoch 19/200...
+Epoch 19/200 - avg_loss: 0.040392, avg_rmse: 0.040208
+[Oct29_1138]Starting epoch 20/200...
+Epoch 20/200 - avg_loss: 0.041844, avg_rmse: 0.041670
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/normal_Oct29_0938_256_0.1/samples/plot4.png
+[Oct29_1146]Starting epoch 21/200...
+Epoch 21/200 - avg_loss: 0.040396, avg_rmse: 0.040247
+[Oct29_1152]Starting epoch 22/200...
+Epoch 22/200 - avg_loss: 0.039079, avg_rmse: 0.038897
+[Oct29_1158]Starting epoch 23/200...
+Epoch 23/200 - avg_loss: 0.040859, avg_rmse: 0.040664
+[Oct29_1204]Starting epoch 24/200...
+Epoch 24/200 - avg_loss: 0.039232, avg_rmse: 0.039060
+[Oct29_1210]Starting epoch 25/200...
+Epoch 25/200 - avg_loss: 0.040360, avg_rmse: 0.040102
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/normal_Oct29_0938_256_0.1/samples/plot5.png
+[Oct29_1218]Starting epoch 26/200...
+Epoch 26/200 - avg_loss: 0.040421, avg_rmse: 0.040190
+Early stopping at epoch 26
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/normal_Oct29_0938_256_0.1/samples/plot6.png

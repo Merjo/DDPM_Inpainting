@@ -1,0 +1,66 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-11-05 01:11:10,397] A new study created in RDB with name: rain_diffusion_1762301469
+/home/merlinho/testspace/DDPM_Inpainting/src/save/save_plot.py:281: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+[I 2025-11-05 01:56:29,209] Trial 0 finished with value: 0.09899412089378026 and parameters: {'model_channels': 128, 'dropout': 0.12763776188131887, 'beta_schedule': 'exponential', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 5.5547586598076904e-05}. Best is trial 0 with value: 0.09899412089378026.
+[I 2025-11-05 02:58:02,671] Trial 1 finished with value: 0.05203154016931591 and parameters: {'model_channels': 256, 'dropout': 0.22161482680861186, 'beta_schedule': 'linear', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 1.2563115935474083e-05}. Best is trial 1 with value: 0.05203154016931591.
+[I 2025-11-05 03:43:36,213] Trial 2 finished with value: 0.049538634445891384 and parameters: {'model_channels': 128, 'dropout': 0.22737977360150574, 'beta_schedule': 'linear', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.00017898129466371347}. Best is trial 2 with value: 0.049538634445891384.
+[I 2025-11-05 04:28:14,168] Trial 3 finished with value: 0.05250399571547047 and parameters: {'model_channels': 128, 'dropout': 0.2906020343173173, 'beta_schedule': 'linear', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 0.0002751517067122379}. Best is trial 2 with value: 0.049538634445891384.
+[I 2025-11-05 05:29:30,028] Trial 4 finished with value: 0.050790478506987626 and parameters: {'model_channels': 256, 'dropout': 0.21849329091105552, 'beta_schedule': 'linear', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.0003108168876505867}. Best is trial 2 with value: 0.049538634445891384.
+[I 2025-11-05 05:33:28,141] Trial 5 pruned. 
+[I 2025-11-05 05:37:24,798] Trial 6 pruned. 
+[I 2025-11-05 05:41:20,586] Trial 7 pruned. 
+[I 2025-11-05 06:03:46,975] Trial 8 pruned. 
+[I 2025-11-05 06:11:37,725] Trial 9 pruned. 
+[I 2025-11-05 06:14:27,088] Trial 10 pruned. 
+[I 2025-11-05 06:17:18,265] Trial 11 pruned. 
+[I 2025-11-05 06:25:09,122] Trial 12 pruned. 
+[I 2025-11-05 06:28:12,299] Trial 13 pruned. 
+[I 2025-11-05 06:36:00,399] Trial 14 pruned. 
+[I 2025-11-05 06:41:47,243] Trial 15 pruned. 
+[I 2025-11-05 06:53:28,798] Trial 16 pruned. 
+[I 2025-11-05 06:56:13,580] Trial 17 pruned. 
+[I 2025-11-05 07:00:11,136] Trial 18 pruned. 
+[I 2025-11-05 07:05:53,798] Trial 19 pruned. 
+[I 2025-11-05 07:11:39,335] Trial 20 pruned. 
+[I 2025-11-05 07:15:37,443] Trial 21 pruned. 
+[I 2025-11-05 08:04:02,660] Trial 22 pruned. 
+[I 2025-11-05 08:07:59,469] Trial 23 pruned. 
+[I 2025-11-05 08:39:05,691] Trial 24 pruned. 
+[I 2025-11-05 08:43:01,645] Trial 25 pruned. 
+[I 2025-11-05 08:46:58,643] Trial 26 pruned. 
+[I 2025-11-05 08:50:53,715] Trial 27 pruned. 
+[I 2025-11-05 09:26:42,807] Trial 28 pruned. 
+[I 2025-11-05 09:29:42,697] Trial 29 pruned. 
+[I 2025-11-05 09:37:31,726] Trial 30 pruned. 
+[I 2025-11-05 10:09:49,263] Trial 31 pruned. 
+[I 2025-11-05 10:42:46,980] Trial 32 pruned. 
+[I 2025-11-05 10:45:41,855] Trial 33 pruned. 
+[I 2025-11-05 10:48:33,780] Trial 34 pruned. 
+[I 2025-11-05 10:51:29,422] Trial 35 pruned. 
+[I 2025-11-05 11:39:34,291] Trial 36 pruned. 
+[I 2025-11-05 11:42:35,618] Trial 37 pruned. 
+[I 2025-11-05 11:50:23,657] Trial 38 pruned. 
+[I 2025-11-05 11:53:20,143] Trial 39 pruned. 
+[I 2025-11-05 12:01:09,589] Trial 40 pruned. 
+[I 2025-11-05 12:04:08,000] Trial 41 pruned. 
+[I 2025-11-05 12:07:09,745] Trial 42 pruned. 
+[I 2025-11-05 12:10:13,423] Trial 43 pruned. 
+[I 2025-11-05 12:13:08,568] Trial 44 pruned. 
+[I 2025-11-05 12:15:53,387] Trial 45 pruned. 
+[I 2025-11-05 12:27:35,203] Trial 46 pruned. 
+[I 2025-11-05 12:30:21,035] Trial 47 pruned. 
+[I 2025-11-05 13:12:08,322] Trial 48 pruned. 
+[I 2025-11-05 13:16:06,350] Trial 49 pruned. 
+/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py:202: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  best_params = best_trial.params
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 94, in <module>
+    max_optuna_epochs=max_optuna_epochs,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 74, in run_optuna_best
+    max_epochs=max_optuna_epochs, 
+ValueError: too many values to unpack (expected 2)

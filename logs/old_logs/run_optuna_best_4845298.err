@@ -1,0 +1,17 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 1, in <module>
+    from src.run.run_best import run_best
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best.py", line 8, in <module>
+    from src.model.diffusion import Diffusion
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 10, in <module>
+    class Diffusion:
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 22, in Diffusion
+    plot_dir=f'{cfg.current_output}/samples',
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 40, in current_output
+    raise ValueError("Output path is not set. Please set it using update_output_path().")
+ValueError: Output path is not set. Please set it using update_output_path().

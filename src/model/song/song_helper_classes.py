@@ -21,7 +21,9 @@ class PositionalEmbedding(torch.nn.Module):
         )
         freqs = freqs / (self.num_channels // 2 - (1 if self.endpoint else 0))
         freqs = (1 / self.max_positions) ** freqs
-        t_freq = torch.einsum("i,j->ij", t, freqs.to(t.dtype))
+        # Ensure timestep tensor is float to avoid accidental integer casts
+        t = t.to(freqs.dtype)
+        t_freq = torch.einsum("i,j->ij", t, freqs)
         t_emb = torch.cat([t_freq.cos(), t_freq.sin()], dim=1)
         return t_emb
 
@@ -34,7 +36,9 @@ class FourierEmbedding(torch.nn.Module):
         self.register_buffer("freqs", torch.randn(num_channels // 2) * scale)
 
     def forward(self, t: Tensor):
-        t_freq = torch.einsum("i,j->ij", t, (2 * np.pi * self.freqs).to(t.dtype))
+        # Ensure timestep tensor is float to avoid accidental integer casts
+        t = t.to(self.freqs.dtype)
+        t_freq = torch.einsum("i,j->ij", t, (2 * np.pi * self.freqs).to(self.freqs.dtype))
         t_emb = torch.cat([t_freq.cos(), t_freq.sin()], dim=1)
         return t_emb
 

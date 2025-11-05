@@ -1,0 +1,46 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-10-28 16:04:38,664] A new study created in RDB with name: rain_diffusion_1761663877
+[W 2025-10-28 16:04:39,318] Trial 0 failed with parameters: {'model_channels': 64, 'num_blocks': 2, 'dropout': 0.20528870245580313, 'downsample_type': 'standard', 'channel_mult': '1224', 'attn_config': 'last', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'mse'} because of the following error: ValueError('Output path is not set. Please set it using update_output_path().').
+Traceback (most recent call last):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 135, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 67, in objective
+    diffusion = Diffusion(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 26, in __init__
+    plot_dir = f'{cfg.current_output}/samples'
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 40, in current_output
+    raise ValueError("Output path is not set. Please set it using update_output_path().")
+ValueError: Output path is not set. Please set it using update_output_path().
+[W 2025-10-28 16:04:39,320] Trial 0 failed with value None.
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 94, in <module>
+    diffusion, unet, best_loss, params = run_best_optuna(n_trials=n_trials,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 74, in run_best_optuna
+    param_filename, model_filename = run_optuna(n_trials=n_trials, 
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 135, in run_optuna
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/study.py", line 490, in optimize
+    _optimize(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 63, in _optimize
+    _optimize_sequential(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 258, in _run_trial
+    raise func_err
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 135, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 67, in objective
+    diffusion = Diffusion(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 26, in __init__
+    plot_dir = f'{cfg.current_output}/samples'
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 40, in current_output
+    raise ValueError("Output path is not set. Please set it using update_output_path().")
+ValueError: Output path is not set. Please set it using update_output_path().

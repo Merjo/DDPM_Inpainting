@@ -1,3 +1,5 @@
+import os
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 import torch
 import time
 from datetime import datetime
@@ -6,47 +8,118 @@ import pandas as pd
 from collections import defaultdict
 import os
 
-from src.data.loader import get_loader
 from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.config import cfg
-from src.save.save_model import save_model
 
-def objective(trial, loader, run_dir, max_epochs=20, patience=3):
-    trial.set_user_attr("duration", float('inf'))
-    start_time = time.time()
-    
+from src.utils.output_manager import OutputManager
+
+def get_unet_parameters(trial):
     # --- UNET hyperparameters ---
-    model_channels = trial.suggest_categorical("model_channels", [64, 128, 256])
-    num_blocks = trial.suggest_int("num_blocks", 1, 3)
-    dropout = trial.suggest_float("dropout", 0.0, 0.3)
+    if 'model_channels' in cfg.optuna_search_space.keys():
+        model_channels = trial.suggest_categorical("model_channels", cfg.optuna_search_space['model_channels'])
+    else:
+        model_channels = cfg.model_channels
 
-    downsample_type = trial.suggest_categorical("downsample_type", ["residual", "standard"])
-    
-    channel_mult_options = {
-        "124": [1, 2, 4],
-        "1224": [1, 2, 2, 4],
-        "1248": [1, 2, 4, 8],
-        "1124": [1, 1, 2, 4],
-    }
-    channel_mult_key = trial.suggest_categorical("channel_mult", list(channel_mult_options.keys()))
-    channel_mult = channel_mult_options[channel_mult_key]
+    if 'num_blocks' in cfg.optuna_search_space.keys():
+        num_blocks_range = cfg.optuna_search_space['num_blocks']
+        num_blocks = trial.suggest_int("num_blocks", num_blocks_range[0], num_blocks_range[1])
+    else:
+        num_blocks = cfg.num_blocks
+
+    if 'dropout' in cfg.optuna_search_space.keys():
+        dropout_range = cfg.optuna_search_space['dropout']
+        dropout = trial.suggest_float("dropout", dropout_range[0], dropout_range[1])
+    else:
+        dropout = cfg.dropout
+
+    if 'downsample_type' in cfg.optuna_search_space.keys():
+        downsample_type = trial.suggest_categorical("downsample_type", cfg.optuna_search_space['downsample_type'])
+    else:
+        downsample_type = cfg.downsample_type
+
+    if 'channel_mult' in cfg.optuna_search_space.keys():
+        channel_mult = trial.suggest_categorical("channel_mult", cfg.optuna_search_space['channel_mult'])
+    else:
+        channel_mult = cfg.channel_mult
+
+    channel_mult = [int(ch) for ch in channel_mult]
+
 
     attn_options = {
-        "none": [],
-        "last": [-1],        
-        "last_two": [-2, -1],
-    }
-    attn_key = trial.suggest_categorical("attn_config", list(attn_options.keys()))
+            "none": [],
+            "last": [-1],        
+            #"last_two": [-2, -1], #  TODO: Decide whether to keep last two, can be very intense with 256 patch size
+        }
+    if 'attn_config' in cfg.optuna_search_space.keys():
+
+        attn_key = trial.suggest_categorical("attn_config", list(attn_options.keys()))
+    else:
+        attn_key = cfg.attn_config
+
     attn_stages = attn_options[attn_key]
-    
-    resolutions = [128 // (2**i) for i in range(len(channel_mult))]
+    resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
+    return model_channels, num_blocks, dropout, downsample_type, channel_mult, attn_resolutions
+
+
+def get_diffusion_parameters(trial):
+    # --- Diffusion hyperparameters ---
+    if 'timesteps' in cfg.optuna_search_space.keys():
+        timesteps = trial.suggest_categorical("timesteps", cfg.optuna_search_space['timesteps'])
+    else:
+        timesteps = cfg.timesteps
+
+    if 'beta_schedule' in cfg.optuna_search_space.keys():
+        beta_schedule = trial.suggest_categorical("beta_schedule", cfg.optuna_search_space['beta_schedule'])
+    else:
+        beta_schedule = cfg.beta_schedule
+    if 'loss' in cfg.optuna_search_space.keys():
+        loss_type = trial.suggest_categorical("loss", cfg.optuna_search_space['loss'])
+    else:
+        loss_type = cfg.loss
+
+    return timesteps, beta_schedule, loss_type
+
+def get_training_parameters(trial):
+    # --- Training hyperparameters ---
+    if 'optimizer' in cfg.optuna_search_space.keys():
+        optimizer_type = trial.suggest_categorical("optimizer", cfg.optuna_search_space['optimizer'])
+    else:
+        optimizer_type = cfg.optimizer
+    if 'scheduler' in cfg.optuna_search_space.keys():
+        scheduler_type = trial.suggest_categorical("scheduler", cfg.optuna_search_space['scheduler'])
+    else:
+        scheduler_type = cfg.scheduler
+    
+    if 'lr' in cfg.optuna_search_space:
+        if scheduler_type == "WarmupCosine":
+            lr_range = cfg.optuna_search_space['lr_wc']
+        elif scheduler_type == "ExponentialLR":
+            lr_range = cfg.optuna_search_space['lr_xr']
+        else:
+            lr_range = cfg.optuna_search_space['lr']
+        lr = trial.suggest_float("lr", lr_range[0], lr_range[1], log=True)
+    else:
+        lr = cfg.lr
+    return optimizer_type, scheduler_type, lr
+
+
+def objective(trial, loader, run_dir, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience):
+    device_id = trial.number % torch.cuda.device_count()
+    torch.cuda.set_device(device_id)
+
+    trial.set_user_attr("duration", float('inf'))  # TODO fix
+    start_time = time.time()
+
     # --- Build UNet ---
+
+    model_channels, num_blocks, dropout, downsample_type, channel_mult, attn_resolutions = get_unet_parameters(trial)
+
     unet = SongUNet(
-        img_resolution=128,
+        img_resolution=cfg.patch_size,
         in_channels=1,
         out_channels=1,
         model_channels=model_channels,
@@ -57,48 +130,43 @@ def objective(trial, loader, run_dir, max_epochs=20, patience=3):
         dropout=dropout,
         encoder_type=downsample_type,
     ).to(cfg.device)
+
+    # --- Build Diffusion ---
     
-    # --- Diffusion hyperparameters ---
-    timesteps = trial.suggest_categorical("timesteps", [250, 500, 1000])
-    beta_schedule = trial.suggest_categorical("beta_schedule", ["linear", "quadratic", "exponential", "cosine"])
-    loss_type = trial.suggest_categorical("loss", ["mse", "l1", "huber"])
+    timesteps, beta_schedule, loss_type = get_diffusion_parameters(trial)
 
     diffusion = Diffusion(
         model=unet,
-        img_size=128,
+        img_size=cfg.patch_size,
         channels=1,
         timesteps=timesteps,
-        beta_start=1e-4,
-        beta_end=0.02,
+        beta_start=cfg.beta_start,
+        beta_end=cfg.beta_end,
         beta_schedule=beta_schedule,
         loss_type=loss_type,
-        device=cfg.device,
+        device=cfg.device
     )
     
     # --- Training hyperparameters ---
-    optimizer_type = trial.suggest_categorical("optimizer", ["Adam", "AdamW"])
+    optimizer_type, scheduler_type, lr = get_training_parameters(trial)
+
     if optimizer_type == "Adam":
         OptimizerClass = torch.optim.Adam
-    else:
+    elif optimizer_type == "AdamW":
         OptimizerClass = torch.optim.AdamW
-
-    # Learning rate search space depends on scheduler
-    scheduler_type = trial.suggest_categorical("scheduler", ["ExponentialLR", "WarmupCosine"])
-    if scheduler_type == "WarmupCosine":
-        lr = trial.suggest_float("lr", 1e-5, 5e-3, log=True)
     else:
-        lr = trial.suggest_float("lr", 1e-5, 5e-4, log=True)
+        raise ValueError(f"Unsupported optimizer type: {optimizer_type}")
 
     optimizer = OptimizerClass(unet.parameters(), lr=lr)
 
     if scheduler_type == "ExponentialLR":
-        scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.99)
+        scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=cfg.xlr_scheduler_gamma)
     else:
-        scheduler = WarmupCosineScheduler(optimizer, warmup_steps=3, total_steps=max_epochs)
+        scheduler = WarmupCosineScheduler(optimizer, warmup_steps=cfg.wcs_scheduler_steps, total_steps=max_epochs)
 
     # --- Training ---
-    best_rmse, epoch_losses = diffusion.train(
-        loader, optimizer, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every, sample_info=f'Trial {trial.number}'
+    best_loss = diffusion.train(
+        optimizer, train_loader=cfg.train_loader, val_loader=cfg.val_loader, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every, sample_info=f'Trial {trial.number}'
     )
 
     # --- Save checkpoint for this trial ---
@@ -114,11 +182,12 @@ def objective(trial, loader, run_dir, max_epochs=20, patience=3):
         torch.cuda.empty_cache()
         torch.cuda.ipc_collect()
 
-    return best_rmse
+    return best_loss
 
-def run_optuna(n_trials=25, max_epochs=15, patience=2, resume=False):
-    loader = get_loader()
-    #study = optuna.create_study(direction="minimize")
+def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience, resume=False, run_dir=None):
+    if run_dir is None:
+        run_dir = f'{cfg.current_output}/trials'
+    loader = cfg.loader
     study = optuna.create_study(
         direction='minimize',
         study_name = "rain_diffusion" if resume else f"rain_diffusion_{int(time.time())}",
@@ -126,17 +195,7 @@ def run_optuna(n_trials=25, max_epochs=15, patience=2, resume=False):
         load_if_exists=resume,
     )
 
-    base_dir = "output/trials"
-    existing_runs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d)) and d.startswith("optuna_run_")]
-    run_numbers = [int(d.split("_")[-1]) for d in existing_runs if d.split("_")[-1].isdigit()]
-    next_run_number = max(run_numbers, default=0) + 1
-
-    # Create new folder for this Optuna run
-    run_dir = os.path.join(base_dir, f"optuna_run_{next_run_number}")
-    os.makedirs(run_dir, exist_ok=True)
-
-
-    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=torch.cuda.device_count())
 
     # --- Best trial ---
     best_trial = study.best_trial
@@ -144,7 +203,6 @@ def run_optuna(n_trials=25, max_epochs=15, patience=2, resume=False):
     best_value = best_trial.value
     best_model = torch.load(best_trial.user_attrs["checkpoint"])
 
-    params_filename, model_filename = save_model(best_params, best_model, best_value)
     
     # --- Parameter-wise ranking summary ---
     summary = defaultdict(lambda: defaultdict(list))
@@ -153,9 +211,8 @@ def run_optuna(n_trials=25, max_epochs=15, patience=2, resume=False):
         if trial.value is None:
             continue
         for param, val in trial.params.items():
-            for param, val in trial.params.items():
-                duration = trial.user_attrs.get("duration", float("inf"))
-                summary[param][val].append((trial.value, duration))
+            duration = trial.user_attrs.get("duration", float("inf"))
+            summary[param][val].append((trial.value, duration))
 
     print("\n=== Parameter-wise Summary ===")
     for param, choices in summary.items():
@@ -166,15 +223,12 @@ def run_optuna(n_trials=25, max_epochs=15, patience=2, resume=False):
             print(f"  {val}: avg RMSE={avg_value:.4f}, avg time={avg_time:.1f}s over {len(results)} trials")
 
 
-    return params_filename, model_filename
+    return best_model, best_value, best_params
 
 
 if __name__=='__main__':
-    max_epochs = 15
-    patience = 2
-    n_trials = 60
+    output = OutputManager(run_type="optuna")
 
-    params_file, model_file = run_optuna(n_trials=n_trials, max_epochs=max_epochs, patience=patience)
+    unet, best_loss, params = run_optuna()
 
-    print(params_file)
-    print(model_file)
+    output.finalize(best_loss, unet, epochs=cfg.optuna_epochs, params=params)

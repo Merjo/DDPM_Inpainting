@@ -1,0 +1,32 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+Output path set to: output_new/optuna_best_Nov03_1552_256_0.1
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2002_256_8760_10%.pkl
+
+[Nov03_1553] Starting epoch 1/15...
+Epoch 1/15 - avg_loss: 0.122535
+[Nov03_1557] Starting epoch 2/15...
+Epoch 2/15 - avg_loss: 0.771510
+[Nov03_1600] Starting epoch 3/15...
+Epoch 3/15 - avg_loss: 0.791359
+[Nov03_1604] Starting epoch 4/15...
+Epoch 4/15 - avg_loss: 0.790570
+[Nov03_1608] Starting epoch 5/15...
+Epoch 5/15 - avg_loss: 0.790515
+[Nov03_1612] Starting epoch 6/15...
+Epoch 6/15 - avg_loss: 0.790412
+[Nov03_1616] Starting epoch 7/15...
+Epoch 7/15 - avg_loss: 0.793154
+[Nov03_1620] Starting epoch 8/15...
+Epoch 8/15 - avg_loss: 0.795113
+Early stopping at epoch 8
+[Nov03_1624] Sampling 1-16 / 64
+[Nov03_1626] Sampling 17-32 / 64
+[Nov03_1629] Sampling 33-48 / 64
+[Nov03_1631] Sampling 49-64 / 64
+Sample stats: nan nan nan nan
+<class 'torch.Tensor'> torch.Size([32, 1, 256, 256])
+[Plot] Saved output_new/optuna_best_Nov03_1552_256_0.1/samples/plot1.png

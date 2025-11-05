@@ -1,0 +1,50 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-10-20 13:07:23,034] A new study created in RDB with name: rain_diffusion_1760958441
+[W 2025-10-20 15:02:19,451] Trial 0 failed with parameters: {'model_channels': 64, 'num_blocks': 2, 'dropout': 0.17212797361076754, 'downsample_type': 'residual', 'channel_mult': '1224', 'attn_config': 'none', 'timesteps': 500, 'beta_schedule': 'cosine', 'loss': 'mse', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 2.02593241665012e-05} because of the following error: AttributeError("'str' object has no attribute 'size'").
+Traceback (most recent call last):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 139, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 100, in objective
+    best_rmse, epoch_losses = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 184, in train
+    self.plot_histogram(samples, dataloader, epoch, sample_info)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 204, in plot_histogram
+    n_samples = samples.size(0)
+AttributeError: 'str' object has no attribute 'size'
+[W 2025-10-20 15:02:19,460] Trial 0 failed with value None.
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 91, in <module>
+    diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_best_optuna.py", line 72, in run_best_optuna
+    param_filename, model_filename = run_optuna(n_trials=n_trials, 
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 139, in run_optuna
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/study.py", line 490, in optimize
+    _optimize(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 63, in _optimize
+    _optimize_sequential(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 258, in _run_trial
+    raise func_err
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 139, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 100, in objective
+    best_rmse, epoch_losses = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 184, in train
+    self.plot_histogram(samples, dataloader, epoch, sample_info)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 204, in plot_histogram
+    n_samples = samples.size(0)
+AttributeError: 'str' object has no attribute 'size'

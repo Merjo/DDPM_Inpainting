@@ -1,0 +1,64 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2001_128_8760_10%.pkl
+
+Sampling, 5.0%
+Sampling, 10.0%
+Sampling, 15.0%
+Sampling, 20.0%
+Sampling, 25.0%
+Sampling, 30.0%
+Sampling, 35.0%
+Sampling, 40.0%
+Sampling, 45.0%
+Sampling, 50.0%
+[Plot] Saved output/plots/plot97.png
+[Plot] Saved histogram comparison to output/plots/hist8.png
+[Plot] Saved histogram comparison to output/plots/hist9.png
+Sampling, 5.0%
+Sampling, 10.0%
+Sampling, 15.0%
+Sampling, 20.0%
+Sampling, 25.0%
+Sampling, 30.0%
+Sampling, 35.0%
+Sampling, 40.0%
+Sampling, 45.0%
+Sampling, 50.0%
+[Plot] Saved output/plots/plot98.png
+[Plot] Saved histogram comparison to output/plots/hist10.png
+[Plot] Saved histogram comparison to output/plots/hist11.png
+Sampling, 5.0%
+Sampling, 10.0%
+Sampling, 15.0%
+Sampling, 20.0%
+Sampling, 25.0%
+[Plot] Saved output/plots/plot99.png
+[Plot] Saved histogram comparison to output/plots/hist12.png
+[Plot] Saved histogram comparison to output/plots/hist13.png
+Sampling, 5.0%
+Sampling, 10.0%
+Sampling, 15.0%
+Sampling, 20.0%
+Sampling, 25.0%
+Sampling, 30.0%
+Sampling, 35.0%
+Sampling, 40.0%
+Sampling, 45.0%
+Sampling, 50.0%
+Sampling, 55.0%
+Sampling, 60.0%
+Sampling, 65.0%
+Sampling, 70.0%
+Sampling, 75.0%
+Sampling, 80.0%
+Sampling, 85.0%
+Sampling, 90.0%
+Sampling, 95.0%
+Sampling, 100.0%
+[Plot] Saved output/plots/plot100.png
+[Plot] Saved histogram comparison to output/plots/hist14.png
+[Plot] Saved histogram comparison to output/plots/hist15.png

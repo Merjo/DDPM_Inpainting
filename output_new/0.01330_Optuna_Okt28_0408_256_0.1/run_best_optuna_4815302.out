@@ -1,0 +1,273 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2001_256_8760_10%.pkl
+
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/new_run/sample/plot1.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist1.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist2.png
+Sampling, 25.0%
+[Plot] Saved output_new/new_run/sample/plot2.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist3.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist4.png
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/new_run/sample/plot3.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist5.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist6.png
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/new_run/sample/plot4.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist7.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist8.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot5.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist9.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist10.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot6.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist11.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist12.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot7.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist13.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist14.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot8.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist15.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist16.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot9.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist17.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist18.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot10.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist19.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist20.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot11.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist21.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist22.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot12.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist23.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist24.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot13.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist25.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist26.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot14.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist27.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist28.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot15.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist29.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist30.png
+Sampling, 25.0%
+Sampling, 50.0%
+[Plot] Saved output_new/new_run/sample/plot16.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist31.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist32.png
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/new_run/sample/plot17.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist33.png
+[Plot] Saved histogram comparison to output_new/new_run/histograms/hist34.png
+Best params: {'model_channels': 128, 'num_blocks': 2, 'dropout': 0.06863037218446748, 'downsample_type': 'residual', 'channel_mult': '124', 'attn_config': 'none', 'timesteps': 1000, 'beta_schedule': 'linear', 'loss': 'l1', 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 0.0001535124882349191}
+Best value: 0.013303605898702517
+Best params saved to: output_new/new_run/best_params_0.0133_1028_04.csv
+Best model saved to: output_new/new_run/best_model_0.0133_1028_04.pt
+
+
+
+
+
+=== Parameter-wise Summary ===
+
+Parameter: model_channels
+  256: avg RMSE=0.0434, avg time=infs over 384 trials
+  128: avg RMSE=0.1075, avg time=infs over 144 trials
+  64: avg RMSE=0.0913, avg time=infs over 72 trials
+
+Parameter: num_blocks
+  2: avg RMSE=0.0675, avg time=infs over 372 trials
+  1: avg RMSE=0.0814, avg time=infs over 96 trials
+  3: avg RMSE=0.0440, avg time=infs over 132 trials
+
+Parameter: dropout
+  0.11035084470740479: avg RMSE=0.0228, avg time=2128.7s over 12 trials
+  0.12412249179914786: avg RMSE=0.0251, avg time=881.2s over 12 trials
+  0.0031038210295324053: avg RMSE=0.0342, avg time=1309.2s over 12 trials
+  0.27510541244051284: avg RMSE=0.0422, avg time=829.7s over 12 trials
+  0.08083819129906769: avg RMSE=0.0411, avg time=1253.6s over 12 trials
+  0.02284747072253941: avg RMSE=0.0224, avg time=712.2s over 12 trials
+  0.0382385238404282: avg RMSE=0.0732, avg time=infs over 12 trials
+  0.10716788123692753: avg RMSE=0.0414, avg time=infs over 12 trials
+  0.26654205223242255: avg RMSE=0.0256, avg time=872.5s over 12 trials
+  0.16421988770501678: avg RMSE=0.0471, avg time=infs over 12 trials
+  0.1886852461156633: avg RMSE=0.2623, avg time=infs over 12 trials
+  0.05265595127246129: avg RMSE=0.0222, avg time=2121.8s over 12 trials
+  0.05459915678525068: avg RMSE=0.0219, avg time=2224.2s over 12 trials
+  0.05989518244176899: avg RMSE=0.0190, avg time=1764.6s over 12 trials
+  0.06835228232913523: avg RMSE=0.0197, avg time=1109.6s over 12 trials
+  0.21477582073909235: avg RMSE=0.0195, avg time=2146.1s over 12 trials
+  0.22022031566190653: avg RMSE=0.0190, avg time=2145.8s over 12 trials
+  0.2272735374143947: avg RMSE=0.0195, avg time=2148.6s over 12 trials
+  0.1541014412061285: avg RMSE=0.0194, avg time=2481.5s over 12 trials
+  0.24216379287888945: avg RMSE=0.0194, avg time=1139.1s over 12 trials
+  0.29865718896859467: avg RMSE=0.0193, avg time=2144.1s over 12 trials
+  0.20013316640138173: avg RMSE=0.0190, avg time=2148.6s over 12 trials
+  0.18910126429394802: avg RMSE=0.0194, avg time=2152.1s over 12 trials
+  0.19187567424319557: avg RMSE=0.0256, avg time=infs over 12 trials
+  0.1353065453500296: avg RMSE=0.0189, avg time=1763.9s over 12 trials
+  0.12935411451725132: avg RMSE=0.1262, avg time=infs over 12 trials
+  0.09078637595546848: avg RMSE=0.0186, avg time=1761.3s over 12 trials
+  0.08681044175975186: avg RMSE=0.0190, avg time=924.6s over 12 trials
+  0.09760258902332934: avg RMSE=0.0243, avg time=infs over 12 trials
+  0.12077659054534201: avg RMSE=0.3777, avg time=infs over 12 trials
+  0.14818176836562755: avg RMSE=0.1657, avg time=infs over 12 trials
+  0.08684167271894272: avg RMSE=0.0202, avg time=1589.2s over 12 trials
+  0.06640676192484236: avg RMSE=0.0192, avg time=1594.3s over 12 trials
+  0.13393830396498732: avg RMSE=0.0191, avg time=1319.7s over 12 trials
+  0.006000235329365403: avg RMSE=0.0907, avg time=infs over 12 trials
+  0.09871160556986346: avg RMSE=0.0799, avg time=infs over 12 trials
+  0.08030130577664962: avg RMSE=0.3062, avg time=infs over 12 trials
+  0.03578315069881606: avg RMSE=0.0535, avg time=infs over 12 trials
+  0.11884128552327114: avg RMSE=0.0944, avg time=infs over 12 trials
+  0.1699477580464193: avg RMSE=0.4346, avg time=infs over 12 trials
+  0.02776808149943548: avg RMSE=0.0779, avg time=infs over 12 trials
+  0.1431361729465273: avg RMSE=0.0514, avg time=infs over 12 trials
+  0.10814122229577833: avg RMSE=0.0510, avg time=infs over 12 trials
+  0.050599253621901034: avg RMSE=0.0190, avg time=1168.7s over 12 trials
+  0.08564095178973309: avg RMSE=0.0579, avg time=infs over 12 trials
+  0.16941540244919934: avg RMSE=0.0636, avg time=infs over 12 trials
+  0.06863037218446748: avg RMSE=0.0133, avg time=1222.4s over 12 trials
+  0.06774485175311108: avg RMSE=0.0614, avg time=infs over 12 trials
+  0.01433311466294171: avg RMSE=0.0136, avg time=526.4s over 12 trials
+  0.013751242148480905: avg RMSE=0.0492, avg time=infs over 12 trials
+
+Parameter: downsample_type
+  standard: avg RMSE=0.0566, avg time=infs over 444 trials
+  residual: avg RMSE=0.0872, avg time=infs over 156 trials
+
+Parameter: channel_mult
+  1224: avg RMSE=0.1251, avg time=infs over 84 trials
+  1124: avg RMSE=0.0413, avg time=infs over 120 trials
+  1248: avg RMSE=0.0508, avg time=infs over 72 trials
+  124: avg RMSE=0.0605, avg time=infs over 324 trials
+
+Parameter: attn_config
+  none: avg RMSE=0.0653, avg time=infs over 420 trials
+  last: avg RMSE=0.0628, avg time=infs over 180 trials
+
+Parameter: timesteps
+  1000: avg RMSE=0.0338, avg time=infs over 144 trials
+  250: avg RMSE=0.0525, avg time=infs over 96 trials
+  500: avg RMSE=0.0800, avg time=infs over 360 trials
+
+Parameter: beta_schedule
+  quadratic: avg RMSE=0.0370, avg time=infs over 108 trials
+  cosine: avg RMSE=0.0763, avg time=infs over 72 trials
+  exponential: avg RMSE=0.0686, avg time=infs over 72 trials
+  linear: avg RMSE=0.0698, avg time=infs over 348 trials
+
+Parameter: loss
+  l1: avg RMSE=0.0341, avg time=infs over 276 trials
+  mse: avg RMSE=0.0770, avg time=infs over 132 trials
+  huber: avg RMSE=0.0997, avg time=infs over 192 trials
+
+Parameter: optimizer
+  AdamW: avg RMSE=0.0662, avg time=infs over 444 trials
+  Adam: avg RMSE=0.0599, avg time=infs over 156 trials
+
+Parameter: scheduler
+  WarmupCosine: avg RMSE=0.1357, avg time=infs over 132 trials
+  ExponentialLR: avg RMSE=0.0445, avg time=infs over 468 trials
+
+Parameter: lr
+  3.5136193561568124e-05: avg RMSE=0.0228, avg time=2128.7s over 12 trials
+  2.4420255283405248e-05: avg RMSE=0.0251, avg time=881.2s over 12 trials
+  3.135571356927153e-05: avg RMSE=0.0342, avg time=1309.2s over 12 trials
+  9.380400810987425e-05: avg RMSE=0.0422, avg time=829.7s over 12 trials
+  2.0188290404833445e-05: avg RMSE=0.0411, avg time=1253.6s over 12 trials
+  1.7517708761838826e-05: avg RMSE=0.0224, avg time=712.2s over 12 trials
+  0.0004512070390219426: avg RMSE=0.0732, avg time=infs over 12 trials
+  1.041977379189024e-05: avg RMSE=0.0414, avg time=infs over 12 trials
+  7.230754444018545e-05: avg RMSE=0.0256, avg time=872.5s over 12 trials
+  0.0002217802403933261: avg RMSE=0.0471, avg time=infs over 12 trials
+  1.0405480463050326e-05: avg RMSE=0.2623, avg time=infs over 12 trials
+  3.863319285735632e-05: avg RMSE=0.0222, avg time=2121.8s over 12 trials
+  4.8208208767361915e-05: avg RMSE=0.0219, avg time=2224.2s over 12 trials
+  4.714002005800465e-05: avg RMSE=0.0190, avg time=1764.6s over 12 trials
+  0.0001266593061916152: avg RMSE=0.0197, avg time=1109.6s over 12 trials
+  0.0001337616776939955: avg RMSE=0.0195, avg time=2146.1s over 12 trials
+  0.0001733388028785504: avg RMSE=0.0190, avg time=2145.8s over 12 trials
+  0.00023032448988066092: avg RMSE=0.0195, avg time=2148.6s over 12 trials
+  0.000216823476725978: avg RMSE=0.0194, avg time=2481.5s over 12 trials
+  0.00043133347694608007: avg RMSE=0.0194, avg time=1139.1s over 12 trials
+  5.67403218374444e-05: avg RMSE=0.0193, avg time=2144.1s over 12 trials
+  6.085778888794657e-05: avg RMSE=0.0190, avg time=2148.6s over 12 trials
+  9.375858214396519e-05: avg RMSE=0.0194, avg time=2152.1s over 12 trials
+  6.957125608713957e-05: avg RMSE=0.0256, avg time=infs over 12 trials
+  0.00011528253541556773: avg RMSE=0.0189, avg time=1763.9s over 12 trials
+  5.294610079613337e-05: avg RMSE=0.1262, avg time=infs over 12 trials
+  9.227458625265588e-05: avg RMSE=0.0186, avg time=1761.3s over 12 trials
+  9.34246215501653e-05: avg RMSE=0.0190, avg time=924.6s over 12 trials
+  0.00030254089974570764: avg RMSE=0.0243, avg time=infs over 12 trials
+  0.0011695097166056928: avg RMSE=0.3777, avg time=infs over 12 trials
+  3.8812598042795435e-05: avg RMSE=0.1657, avg time=infs over 12 trials
+  9.433062557030866e-05: avg RMSE=0.0202, avg time=1589.2s over 12 trials
+  0.00012577019306232902: avg RMSE=0.0192, avg time=1594.3s over 12 trials
+  8.380562884734386e-05: avg RMSE=0.0191, avg time=1319.7s over 12 trials
+  0.0035947313514075314: avg RMSE=0.0907, avg time=infs over 12 trials
+  3.0560673191934684e-05: avg RMSE=0.0799, avg time=infs over 12 trials
+  2.6510503226661214e-05: avg RMSE=0.3062, avg time=infs over 12 trials
+  0.0001153689337077961: avg RMSE=0.0535, avg time=infs over 12 trials
+  0.0001624184175246518: avg RMSE=0.0944, avg time=infs over 12 trials
+  1.8414703138262177e-05: avg RMSE=0.4346, avg time=infs over 12 trials
+  4.517760734604743e-05: avg RMSE=0.0779, avg time=infs over 12 trials
+  6.936852997428255e-05: avg RMSE=0.0514, avg time=infs over 12 trials
+  6.129329308773786e-05: avg RMSE=0.0510, avg time=infs over 12 trials
+  8.623206358739381e-05: avg RMSE=0.0190, avg time=1168.7s over 12 trials
+  0.00010611268349763901: avg RMSE=0.0579, avg time=infs over 12 trials
+  7.711658669463123e-05: avg RMSE=0.0636, avg time=infs over 12 trials
+  0.0001535124882349191: avg RMSE=0.0133, avg time=1222.4s over 12 trials
+  0.00033948523949922985: avg RMSE=0.0614, avg time=infs over 12 trials
+  0.00014863196547450355: avg RMSE=0.0136, avg time=526.4s over 12 trials
+  0.00017009628562811803: avg RMSE=0.0492, avg time=infs over 12 trials
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2001_256_8760_10%.pkl
+
+Epoch 1/150 - avg_loss: 0.041939, avg_rmse: 0.013456
+Epoch 2/150 - avg_loss: 0.041729, avg_rmse: 0.014207
+Epoch 3/150 - avg_loss: 0.041899, avg_rmse: 0.015123
+Epoch 4/150 - avg_loss: 0.041233, avg_rmse: 0.014065
+Epoch 5/150 - avg_loss: 0.040552, avg_rmse: 0.014023
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%

@@ -1,6 +1,5 @@
 from src.run.run_best import run_best
 from src.run.run_optuna import run_optuna
-from src.data.loader import get_loader
 from src.save.save_plot import plot_random
 from src.save.save_model import save_model
 import os
@@ -11,6 +10,8 @@ import torch
 from PIL import Image
 from matplotlib import pyplot as plt
 from src.data.precipitation_dataset import PrecipitationPatchDataset
+from src.utils.output_manager import OutputManager
+from src.config import cfg
 
 
 @torch.no_grad()
@@ -60,46 +61,49 @@ def plot_samples_grid(real_dir, gen_dir, n=8, save_path="comparison.png"):
             axes[1, i].set_title("Generated", fontsize=14)
 
     plt.tight_layout()
-    plt.savefig(save_path, dpi=300)
+    plt.savefig(save_path, dpi=cfg.dpi)
 
 
 
-def run_best_optuna(n_trials=30,
-                    max_optuna_epochs=20,
-                    max_optuna_patience=3,
-                    max_epochs=50,
-                    max_patience=3):
+def run_optuna_best(n_trials=cfg.optuna_n_trials,
+                    max_optuna_epochs=cfg.optuna_epochs,
+                    max_optuna_patience=cfg.optuna_patience,
+                    max_epochs=cfg.epochs,
+                    max_patience=cfg.patience):
     param_filename, model_filename = run_optuna(n_trials=n_trials, 
                                                  max_epochs=max_optuna_epochs, 
                                                  patience=max_optuna_patience)
-    
     # run best automatically saves best model
-    diffusion, unet, best_loss = run_best(param_file=param_filename,
+    diffusion, unet, best_loss, params = run_best(param_file=param_filename,
                                           model_file=model_filename,
                                           epochs=max_epochs,
                                           patience=max_patience)
 
-    return diffusion, unet, best_loss
+    return diffusion, unet, best_loss, params
 
 if __name__=='__main__':
-    n_trials = 50
-    max_optuna_epochs = 10
-    max_optuna_patience = 2
-    max_epochs = 150
-    max_patience = 4
+    n_trials = cfg.optuna_n_trials
+    max_optuna_epochs = cfg.optuna_epochs
+    max_optuna_patience = cfg.optuna_patience
+    max_epochs = cfg.epochs
+    max_patience = cfg.patience
 
-    diffusion, unet, best_loss = run_best_optuna(n_trials=n_trials,
+    output = OutputManager(run_type="optuna_best")
+
+    diffusion, unet, best_loss, params = run_optuna_best(n_trials=n_trials,
                                                  max_optuna_epochs=max_optuna_epochs,
                                                  max_optuna_patience=max_optuna_patience,
                                                  max_epochs=max_epochs,
                                                  max_patience=max_patience)
     
-    save_generated_samples(diffusion, outdir="samples", n=8, step_name="final")
+
+    output.finalize(best_loss, diffusion.model, epochs=max_epochs, params=params)
+
+    # Save generated samples # TODO Delete all this, move to save plots
+    save_generated_samples(diffusion, outdir="samples", n=8, step_name="final") 
 
     # Save real examples
-    loader = get_loader()
+    loader = cfg.loader
     save_real_examples(loader, outdir="samples", n=8)
     # Plot comparison
-    plot_samples_grid("samples", "samples", n=8, save_path="samples_comparison.png")    
-
-
+    plot_samples_grid("samples", "samples", n=8, save_path="samples_comparison.png")   

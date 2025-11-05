@@ -1,0 +1,24 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2001_256_8760_10%.pkl
+
+Using 4 GPUs via DataParallel
+Progress: 0.3194888178913738 %
+Progress: 5.111821086261981 %
+Progress: 10.223642172523961 %
+Progress: 15.015974440894569 %
+Progress: 20.12779552715655 %
+Progress: 25.23961661341853 %
+Progress: 30.031948881789138 %
+Progress: 35.14376996805112 %
+Progress: 40.2555910543131 %
+Progress: 45.04792332268371 %
+Progress: 50.159744408945684 %
+Progress: 55.27156549520767 %
+Progress: 60.063897763578275 %
+Progress: 65.17571884984025 %
+Progress: 70.28753993610223 %
+Progress: 75.07987220447285 %

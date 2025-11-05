@@ -1,0 +1,5 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+Output path set to: output_new/normal_Nov05_1552_256_0.1

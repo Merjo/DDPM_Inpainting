@@ -1,0 +1,20 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-11-04 23:33:19,522] A new study created in RDB with name: rain_diffusion_1762295598
+/home/merlinho/testspace/DDPM_Inpainting/src/save/save_plot.py:281: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+[I 2025-11-04 23:38:55,000] Trial 0 finished with value: 0.09725798927518345 and parameters: {'dropout': 0.1877339358825859, 'optimizer': 'Adam', 'scheduler': 'ExponentialLR', 'lr': 7.068193557774192e-05}. Best is trial 0 with value: 0.09725798927518345.
+[I 2025-11-04 23:44:24,818] Trial 1 finished with value: 0.08642654316063507 and parameters: {'dropout': 0.153631736272617, 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.0008198889117936674}. Best is trial 1 with value: 0.08642654316063507.
+/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py:202: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  best_model = torch.load(best_trial.user_attrs["checkpoint"])
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 94, in <module>
+    diffusion, unet, best_loss, params = run_optuna_best(n_trials=n_trials,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna_best.py", line 74, in run_optuna_best
+    param_filename, model_filename = run_optuna(n_trials=n_trials, 
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 224, in run_optuna
+    return diffusion, best_model, best_value, best_params
+NameError: name 'diffusion' is not defined. Did you mean: 'Diffusion'?

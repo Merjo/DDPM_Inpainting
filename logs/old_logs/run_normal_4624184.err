@@ -18,3 +18,6 @@ slurmstepd-csl14c252: error: _handle_stat_jobacct: Took usec=21861426, which is 
 slurmstepd-csl14c252: error: _handle_stat_jobacct: Took usec=21879097, which is more than MessageTimeout (10s). The result won't be delivered
 slurmstepd-csl14c252: error: _handle_stat_jobacct: Took usec=21905935, which is more than MessageTimeout (10s). The result won't be delivered
 slurmstepd-csl14c252: error: _handle_stat_jobacct: Took usec=21932806, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c252: error: _handle_stat_jobacct: Took usec=23277333, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c252: error: _handle_stat_jobacct: Took usec=23287223, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c252: error: *** JOB 4624184 ON csl14c252 CANCELLED AT 2025-10-17T11:46:21 ***

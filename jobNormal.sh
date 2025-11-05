@@ -2,7 +2,7 @@
 #SBATCH --job-name=normal_run
 #SBATCH --output=logs/run_normal_%j.out
 #SBATCH --error=logs/run_normal_%j.err
-#SBATCH --qos=gpumedium
+#SBATCH --qos=gpushort
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:3
 #SBATCH --ntasks=1

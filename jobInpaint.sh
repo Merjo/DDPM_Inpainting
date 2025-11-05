@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=run_inpaint
+#SBATCH --job-name=inpaint_run
 #SBATCH --output=logs/run_inpaint_%j.out
 #SBATCH --error=logs/run_inpaint_%j.err
 #SBATCH --qos=gpushort
@@ -15,9 +15,10 @@ module load anaconda/2025
 # Activate conda env
 source activate diffusion_rain
 
-
 # Ensure imports work (src/ will be discoverable)
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-python -u src/run/run_normal.py
+
+python -u src/run/run_inpainting.py
+

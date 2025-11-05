@@ -1,0 +1,191 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 3
+CUDA device name: NVIDIA H100 80GB HBM3
+Output path set to: output_new/best_Oct28_1639_256_0.1
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2002_256_8760_10%.pkl
+
+Best model found in: output_new/0.01330_Optuna_Okt28_0408_256_0.1 (loss=0.013300)
+Using params file: output_new/0.01330_Optuna_Okt28_0408_256_0.1/best_params_0.0133_1028_04.csv
+Using model file: output_new/0.01330_Optuna_Okt28_0408_256_0.1/best_model_0.0133_1028_04.pt
+Starting epoch 1/200...
+Epoch 1/200 - avg_loss: 0.062163, avg_rmse: 0.025998
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot1.png
+Starting epoch 2/200...
+Epoch 2/200 - avg_loss: 0.058207, avg_rmse: 0.024680
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot2.png
+Starting epoch 3/200...
+Epoch 3/200 - avg_loss: 0.057502, avg_rmse: 0.025098
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot3.png
+Starting epoch 4/200...
+Epoch 4/200 - avg_loss: 0.055284, avg_rmse: 0.023490
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot4.png
+Starting epoch 5/200...
+Epoch 5/200 - avg_loss: 0.053610, avg_rmse: 0.022196
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot5.png
+Starting epoch 6/200...
+Epoch 6/200 - avg_loss: 0.054776, avg_rmse: 0.023458
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot6.png
+Starting epoch 7/200...
+Epoch 7/200 - avg_loss: 0.053590, avg_rmse: 0.022625
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot7.png
+Starting epoch 8/200...
+Epoch 8/200 - avg_loss: 0.052194, avg_rmse: 0.021421
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot8.png
+Starting epoch 9/200...
+Epoch 9/200 - avg_loss: 0.052954, avg_rmse: 0.022336
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot9.png
+Starting epoch 10/200...
+Epoch 10/200 - avg_loss: 0.052604, avg_rmse: 0.022670
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot10.png
+Starting epoch 11/200...
+Epoch 11/200 - avg_loss: 0.054272, avg_rmse: 0.023660
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot11.png
+Starting epoch 12/200...
+Epoch 12/200 - avg_loss: 0.052073, avg_rmse: 0.021957
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot12.png
+Starting epoch 13/200...
+Epoch 13/200 - avg_loss: 0.051736, avg_rmse: 0.021379
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot13.png
+Starting epoch 14/200...
+Epoch 14/200 - avg_loss: 0.053335, avg_rmse: 0.023276
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot14.png
+Starting epoch 15/200...
+Epoch 15/200 - avg_loss: 0.051744, avg_rmse: 0.021296
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot15.png
+Starting epoch 16/200...
+Epoch 16/200 - avg_loss: 0.051944, avg_rmse: 0.021357
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot16.png
+Starting epoch 17/200...
+Epoch 17/200 - avg_loss: 0.051526, avg_rmse: 0.021561
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot17.png
+Starting epoch 18/200...
+Epoch 18/200 - avg_loss: 0.053059, avg_rmse: 0.022942
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot18.png
+Starting epoch 19/200...
+Epoch 19/200 - avg_loss: 0.051962, avg_rmse: 0.022056
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot19.png
+Starting epoch 20/200...
+Epoch 20/200 - avg_loss: 0.052439, avg_rmse: 0.022819
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot20.png
+Starting epoch 21/200...
+Epoch 21/200 - avg_loss: 0.051587, avg_rmse: 0.021978
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot21.png
+Starting epoch 22/200...
+Epoch 22/200 - avg_loss: 0.052100, avg_rmse: 0.022250
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot22.png
+Starting epoch 23/200...
+Epoch 23/200 - avg_loss: 0.052827, avg_rmse: 0.023274
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot23.png
+Starting epoch 24/200...
+Epoch 24/200 - avg_loss: 0.053012, avg_rmse: 0.023273
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot24.png
+Starting epoch 25/200...
+Epoch 25/200 - avg_loss: 0.052002, avg_rmse: 0.022626
+Early stopping at epoch 25
+Sampling, 25.0%
+Sampling, 50.0%
+Sampling, 75.0%
+Sampling, 100.0%
+[Plot] Saved output_new/best_Oct28_1639_256_0.1/samples/plot25.png
+[Plot] Saved histogram comparison to output_new/best_Oct28_1639_256_0.1/histograms/hist1.png
+[Plot] Saved histogram comparison to output_new/best_Oct28_1639_256_0.1/histograms/hist2.png
+Run directory renamed: output_new/0.0213_best_Oct28_1639_256_0.1
+Run complete. Results stored in output_new/0.0213_best_Oct28_1639_256_0.1

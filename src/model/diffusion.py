@@ -1,32 +1,40 @@
 import torch
+import gc
 import torch.nn as nn
 import torch.nn.functional as F
-from matplotlib import pyplot as plt
 import optuna
 from src.save.save_plot import plot_random, plot_histogram
 from src.config import cfg
+import datetime
 
 class Diffusion:
     def __init__(
         self,
         model: nn.Module,
-        img_size=128,
+        img_size=cfg.patch_size,
         channels=1,
-        timesteps=1000,
-        beta_start=1e-4,
-        beta_end=0.02,
-        beta_schedule="linear",
-        loss_type="mse",
+        timesteps=cfg.timesteps,
+        beta_start=cfg.beta_start,
+        beta_end=cfg.beta_end,
+        beta_schedule=cfg.beta_schedule,
+        loss_type=cfg.loss,
         device=cfg.device,
+        plot_dir=None,
+        hist_dir=None,
     ):
+        if plot_dir is None:
+            plot_dir = f'{cfg.current_output}/samples'
+        if hist_dir is None:
+            hist_dir = f'{cfg.current_output}/histograms'
         if cfg.cuda and torch.cuda.device_count()>1:
-            print(f"Using {torch.cuda.device_count()} GPUs via DataParallel")
             model = torch.nn.DataParallel(model)
         self.model = model.to(device)
         self.device = device
         self.img_size = img_size
         self.channels = channels
         self.T = timesteps
+        self.plot_dir = plot_dir
+        self.hist_dir = hist_dir
 
         # Beta schedule
         self.beta = self.make_beta_schedule(beta_start, beta_end, self.T, beta_schedule)
@@ -85,15 +93,17 @@ class Diffusion:
             
     def train(
         self,
-        dataloader,
         optimizer,
-        epochs=10,
+        train_loader=cfg.train_loader,
+        val_loader=cfg.val_loader,
+        epochs=cfg.epochs,
         scheduler=None,
         trial=None,
         patience=None,
-        log_every_epoch=False,
-        sample_every=None,
+        log_every_epoch=cfg.log_every_epoch,
+        sample_every=cfg.sample_every,
         sample_info=None,
+        min_patience_delta=cfg.min_patience_delta,
     ):
         """
         Train the model with optional logging per epoch.
@@ -109,25 +119,21 @@ class Diffusion:
 
         Returns:
             best_rmse: Lowest RMSE achieved.
-            epoch_losses: List of average losses per epoch.
         """
         self.model.train()
-        best_rmse = float("inf")
         best_loss = float("inf")
         bad_epochs = 0
-        epoch_losses = []
+        last_epoch = epochs
+
+        n_batches = len(train_loader)
+
 
         for epoch in range(epochs):
+            datestr = datetime.datetime.now().strftime("%b%d_%H%M")
+            print(f"[{datestr}] Starting epoch {epoch+1}/{epochs}...")
             total_loss = 0.0
-            total_rmse = 0.0
-            count = 0
-            n_batches = len(dataloader)
-            divfive = 0
-            for imgs in dataloader:
-                progress_pct = 100 * count / n_batches
-                if progress_pct>divfive:
-                    print(f'Progress: {progress_pct} %')
-                    divfive +=5
+
+            for imgs in train_loader:
                 imgs = imgs.to(self.device)
                 t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
                 loss = self.p_losses(imgs, t)
@@ -137,110 +143,150 @@ class Diffusion:
                 optimizer.step()
 
                 total_loss += loss.item()
-                count += 1
 
-                # Compute RMSE for trial reporting
-                with torch.no_grad():
-                    rmse = self.p_losses(imgs, t, loss_function=F.mse_loss)
-                    total_rmse += rmse.item()
 
-            avg_loss = total_loss / count
-            avg_rmse = total_rmse / count
-            epoch_losses.append(avg_loss)
-
-            # Logging
+            avg_loss = total_loss / n_batches
+                
+            val_loss = self.compute_val_loss(val_loader)
+            
             if log_every_epoch:
-                print(f"Epoch {epoch+1}/{epochs} - avg_loss: {avg_loss:.6f}, avg_rmse: {avg_rmse:.6f}")
+                print(f"Epoch {epoch+1}/{epochs} - train_loss: {avg_loss:.6f} - val_loss: {val_loss:.6f}")
 
-            # Track best RMSE
-            if avg_rmse < best_rmse:
-                best_rmse = avg_rmse
-                
-                
-            if avg_loss < best_loss:
-                bad_epochs = 0  # reset early stopping counter
-                best_loss = avg_loss
+            if val_loss < best_loss - min_patience_delta:
+                bad_epochs = 0
+                best_loss = val_loss
             else:
-                if patience is not None:
-                    bad_epochs += 1
-                    if bad_epochs >= patience:
-                        if log_every_epoch:
-                            print(f"Early stopping at epoch {epoch+1}")
-                        break
+                bad_epochs += 1
+                if patience is not None and bad_epochs >= patience:
+                    print(f"Early stopping at epoch {epoch+1}")
+                    last_epoch = epoch
+                    break
 
             # Report to Optuna
-            if trial is not None:
-                trial.report(avg_rmse, epoch)
+            if trial is not None and val_loader is not None:
+                trial.report(val_loss, epoch)
                 if trial.should_prune():
                     raise optuna.TrialPruned()
 
             if scheduler is not None:
                 scheduler.step()
             
-            if sample_every is not None and (epoch + 1) % sample_every == 0:
-                samples = self.sample()  # shape: (n, c, h, w)
-                self.plot_samples(samples, epoch + 1, sample_info)  
-                self.plot_histogram(sample_info)
+            if sample_every is not None and (epoch + 1) % sample_every == 0 and (epoch+1)!=epochs:
+                samples = self.sample(n_samples=cfg.n_hist_samples_regular)  # shape: (n, c, h, w)
+                self.plot_samples(samples[:cfg.n_samples_regular], epoch + 1, sample_info)  
+                if cfg.do_regular_hist:
+                    self.plot_histogram(loader=train_loader, epoch=epoch, sample_info=sample_info, samples=samples)
+        
+        samples = self.sample(n_samples=cfg.n_hist_samples)  # shape: (n, c, h, w)
+        self.plot_samples(samples[:cfg.n_samples], last_epoch, sample_info)  
+        self.plot_histogram(loader=train_loader, epoch=last_epoch, sample_info=sample_info, samples=samples)
 
-        return best_rmse, epoch_losses
+        return best_loss
+    
+    def compute_val_loss(self, val_loader):
+        self.model.eval()
+        total_val_loss = 0.0
+        with torch.no_grad():
+            for imgs in val_loader:
+                imgs = imgs.to(self.device)
+                t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
+                loss = self.p_losses(imgs, t)
+                total_val_loss += loss.item()
+        avg_val_loss = total_val_loss / len(val_loader)
+        self.model.train()
+        return avg_val_loss
+
     
     @torch.no_grad()
     def plot_samples(self, samples, epoch, sample_info=None):
         samples = samples.detach().cpu()
         n = samples.size(0)
         title = f'Samples at epoch {epoch}'
-        if sample_info is None:
+        if sample_info is not None:
             title = sample_info + '\n' + title
-        plot_random(samples, n=n, title = title)
+        plot_random(samples, n=n, title = title, out_dir=self.plot_dir)
 
     @torch.no_grad()
-    def plot_histogram(self, epoch, sample_info=None, n_real=512, n_generated=512):
-        # --- Get real samples ---
-        real_batch = next(iter(self.dataloader))
-        real = real_batch[:n_real].to(self.device)
-        real = real.detach().cpu().numpy().flatten()
-
+    def plot_histogram(self, loader, epoch, sample_info=None, samples=None, n_samples=128):
         # --- Get generated samples ---
-        generated = self.sample(n_samples=n_generated)
+        if samples is None:
+            generated = self.sample(n_samples=n_samples)
+        else:
+            generated = samples
+            n_samples = samples.size(0)
         generated = generated.detach().cpu().numpy().flatten()
 
+        # --- Get real samples ---
+        real_batch = next(iter(loader))
+        real = real_batch[:n_samples].to(self.device)
+        real = real.detach().cpu().numpy().flatten()
+
         title = f'Histogram at epoch {epoch}'
-        if sample_info is None:
+        if sample_info is not None:
             title = sample_info + '\n' + title
 
-        plot_histogram(real, generated, title)
+        plot_histogram(real, generated, title, out_dir=self.hist_dir)
 
 
     @torch.no_grad()
-    def sample(self, n_samples=16):
+    def sample(self, n_samples=16, chunk_size=16, verbose=True):
+        """
+        Sample n_samples images in memory-safe chunks.
+        Returns tensor on CPU.
+        """
         self.model.eval()
-        x = torch.randn(n_samples, self.channels, self.img_size, self.img_size, device=self.device)
+        device = self.device
+        all_samples = []
 
-        for t in reversed(range(self.T)):
-            print(f'Sampling, at {t}/{self.T}')
-            t_batch = torch.full((n_samples,), t, device=self.device, dtype=torch.long)
-            pred_noise = self.model(x, t_batch)
+        for start in range(0, n_samples, chunk_size):
+            cur = min(chunk_size, n_samples - start)
+            if verbose:
+                datestr = datetime.datetime.now().strftime("%b%d_%H%M")
+                print(f"[{datestr}] Sampling {start+1}-{start+cur} / {n_samples}")
 
-            alpha_t = self.alpha[t]
-            alpha_hat_t = self.alpha_hat[t]
+            # Initialize noise for this chunk
+            x = torch.randn(cur, self.channels, self.img_size, self.img_size, device=device)
 
-            # DDPM reverse update
-            x = (1 / torch.sqrt(alpha_t)) * (x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
+            for t in reversed(range(self.T)):
+                t_batch = torch.full((cur,), t, device=device, dtype=torch.long)
+                pred_noise = self.model(x, t_batch)
 
-            if t > 0:
-                z = torch.randn_like(x)
-                beta_t = self.beta[t]
-                x = x + torch.sqrt(beta_t) * z
+                alpha_t = self.alpha[t]
+                alpha_hat_t = self.alpha_hat[t]
 
-        return x.clamp(0, 1)
+                # Reverse diffusion step
+                x = (1 / torch.sqrt(alpha_t)) * (x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
+
+                if t > 0:
+                    z = torch.randn_like(x)
+                    beta_t = self.beta[t]
+                    x = x + torch.sqrt(beta_t) * z
+
+            # Move finished samples to CPU and clean up GPU memory
+            all_samples.append(x.detach().cpu())
+            del x, t_batch, pred_noise
+            gc.collect()
+            torch.cuda.empty_cache()
+
+        samples = torch.cat(all_samples, dim=0)
+
+        # Check for NaNs
+        if torch.isnan(samples).any():
+            raise ValueError("NaN detected in samples!")
+
+        return samples
+    
     
     @torch.no_grad()
-    def inpaint(self, x_known, mask, n_steps=None):
+    def inpaint(self, x_known, mask, n_steps=None, lam=cfg.dps_lam if cfg.do_use_dps else 1):
         self.model.eval()
         T = n_steps or self.T
         x = torch.randn_like(x_known)
 
         for t in reversed(range(T)):
+            if t % 50 == 0:
+                print(f'Inpainting, {(T-t)/10}%')
+
             t_batch = torch.full((x.size(0),), t, device=self.device, dtype=torch.long)
             pred_noise = self.model(x, t_batch)
 
@@ -256,7 +302,13 @@ class Diffusion:
                 x = x + torch.sqrt(beta_t) * z
 
             # Inpainting step: enforce known pixels
-            x = mask * x_known + (1 - mask) * x
+            # === Diffusion Posterior Sampling correction ===
+            # Encourage agreement with known data (soft guidance)
+            if t > T * cfg.dps_hard_overwrite:  # t large → early steps
+                x = x + lam * mask * (x_known - x)  # DPS
+            else:  # t small → late steps
+                x = mask * x_known + (1 - mask) * x  # hard overwrite
 
-        return x.clamp(0, 1)
+        return x#.clamp(0, 1)
+
 

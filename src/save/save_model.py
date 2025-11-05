@@ -3,14 +3,14 @@ import pandas as pd
 from datetime import datetime
 import os
 
-def save_model(params, model, value):
+def save_model(params, model, value, model_dir='output_new/new_run', params_dir='output_new/new_run'):
+    """
+    Save the model and its parameters.
+    """
     print("Best params:", params)
     print("Best value:", value)
 
     timestamp = datetime.now().strftime("%m%d_%H")
-
-    params_dir = "output/params"
-    model_dir = "output/models"
 
     params_filename = os.path.join(params_dir, f"best_params_{value:.4f}_{timestamp}.csv")
     model_filename = os.path.join(model_dir, f"best_model_{value:.4f}_{timestamp}.pt")

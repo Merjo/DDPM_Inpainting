@@ -1,0 +1,27 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+/home/merlinho/testspace/DDPM_Inpainting/src/save/save_plot.py:281: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_normal.py", line 78, in <module>
+    best_rmse, diffusion = run_model_normal(epochs=epochs,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_normal.py", line 44, in run_model_normal
+    best_rmse, epoch_losses = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 197, in train
+    self.plot_histogram(loader=dataloader, epoch=epoch, sample_info=sample_info, samples=samples)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 234, in plot_histogram
+    plot_histogram(real, generated, title, out_dir=self.hist_dir)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/save/save_plot.py", line 315, in plot_histogram
+    bins_edges = np.histogram_bin_edges(combined, bins=bins)  # e.g., bins=50
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/numpy/lib/histograms.py", line 669, in histogram_bin_edges
+    bin_edges, _ = _get_bin_edges(a, bins, range, weights)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/numpy/lib/histograms.py", line 426, in _get_bin_edges
+    first_edge, last_edge = _get_outer_edges(a, range)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/numpy/lib/histograms.py", line 323, in _get_outer_edges
+    raise ValueError(
+ValueError: autodetected range of [nan, nan] is not finite
