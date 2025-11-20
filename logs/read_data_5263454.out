@@ -1,0 +1,27 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+Loading year 2001
+
+[Cache] Loaded dataset from cache/precip_dataset_2001_256_8760_10%.pkl
+
+Loading year 2002
+
+[Cache] Loaded dataset from cache/precip_dataset_2002_256_8760_10%.pkl
+
+Loading year 2003
+
+[Cache] Loaded dataset from cache/precip_dataset_2003_256_8760_10%.pkl
+
+Loading year 2004
+[Dataset] total patches kept = 2112
+[LogScaler] Auto-selected c = 0.1000
+[LogScaler] mean=0.5470, std=0.9690
+Raw values stats:
+min: 0.0 max: 40.935463
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2004_256_8760_10%.pkl
+
+Loading year 2005

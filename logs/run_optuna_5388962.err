@@ -1,0 +1,59 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+[I 2025-11-12 12:53:21,360] A new study created in RDB with name: rain_diffusion_1762948400
+  0%|          | 0/4 [00:00<?, ?it/s]100%|██████████| 4/4 [00:00<00:00, 238.30it/s]
+  0%|          | 0/128 [00:00<?, ?it/s] 20%|██        | 26/128 [00:00<00:00, 254.34it/s] 41%|████      | 52/128 [00:00<00:00, 255.00it/s] 61%|██████    | 78/128 [00:00<00:00, 255.07it/s] 81%|████████▏ | 104/128 [00:00<00:00, 255.27it/s]100%|██████████| 128/128 [00:00<00:00, 255.16it/s]
+[I 2025-11-12 15:01:02,825] Trial 0 finished with value: 0.7907814377319442 and parameters: {'model_channels': 128, 'num_blocks': 3, 'dropout': 0.24521844376921825, 'downsample_type': 'standard', 'channel_mult': '1224', 'attn_config': 'last', 'beta_schedule': 'quadratic', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.004127657872337356}. Best is trial 0 with value: 0.7907814377319442.
+[W 2025-11-12 15:01:04,750] Trial 1 failed with parameters: {'model_channels': 128, 'num_blocks': 2, 'dropout': 0.29437438247481373, 'downsample_type': 'standard', 'channel_mult': '1248', 'attn_config': 'last', 'beta_schedule': 'quadratic', 'optimizer': 'AdamW', 'scheduler': 'WarmupCosine', 'lr': 0.000590370460464387} because of the following error: RuntimeError('module must have its parameters and buffers on device cuda:0 (device_ids[0]) but found one of them on device: cuda:1').
+Traceback (most recent call last):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 201, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=1)#torch.cuda.device_count())
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 171, in objective
+    best_loss = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 142, in train
+    loss = self.p_losses(imgs, t)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 89, in p_losses
+    pred = self.model(xt, t)  # UNet predicts the noise
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 177, in forward
+    raise RuntimeError(
+RuntimeError: module must have its parameters and buffers on device cuda:0 (device_ids[0]) but found one of them on device: cuda:1
+[W 2025-11-12 15:01:04,764] Trial 1 failed with value None.
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 235, in <module>
+    unet, best_loss, params = run_optuna()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 201, in run_optuna
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=1)#torch.cuda.device_count())
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/study.py", line 490, in optimize
+    _optimize(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 63, in _optimize
+    _optimize_sequential(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 258, in _run_trial
+    raise func_err
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/optuna/study/_optimize.py", line 201, in _run_trial
+    value_or_values = func(trial)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 201, in <lambda>
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=1)#torch.cuda.device_count())
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_optuna.py", line 171, in objective
+    best_loss = diffusion.train(
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 142, in train
+    loss = self.p_losses(imgs, t)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 89, in p_losses
+    pred = self.model(xt, t)  # UNet predicts the noise
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 177, in forward
+    raise RuntimeError(
+RuntimeError: module must have its parameters and buffers on device cuda:0 (device_ids[0]) but found one of them on device: cuda:1

@@ -4,24 +4,31 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from src.config import cfg
+from src.visualization.spectra import mean_rapsd_numpy  # or adjust the import to where your PSD code lives
 
 import matplotlib.colors as mcolors
 import torch
+from matplotlib.colors import LogNorm
 
 
 def scale_back_numpy(arr, scaler):
     t = torch.as_tensor(arr)            # numpy → tensor
     t_dec = scaler.decode(t)            # decode
+    t_dec = t_dec.clamp(min=0.0)          # clamp negatives to 0
     return t_dec.detach().cpu().numpy() 
 
 
-def plot_inpainting(original, masked, inpainted, title='Inpainting Results', out_dir=None):
+def plot_inpainting(original, masked, inpainted, pct, lam, title='Inpainting Results', out_dir=None):
     """Plot original, masked, and inpainted images side by side with masked areas in white.
        Uses separate color scales for input data and inpainted data."""
     # Scale back
     original = [scale_back_numpy(x, cfg.scaler) for x in original]
     masked = [scale_back_numpy(x, cfg.scaler) for x in masked]
     inpainted = [scale_back_numpy(x, cfg.scaler) for x in inpainted]
+
+    original = [np.clip(x, 0.1, None) for x in original]
+    masked = [np.clip(x, 0.1, None) for x in masked]
+    inpainted = [np.clip(x, 0.1, None) for x in inpainted]
     
     if out_dir is None:
         out_dir = f"{cfg.current_output}/inpainting_results"
@@ -60,165 +67,40 @@ def plot_inpainting(original, masked, inpainted, title='Inpainting Results', out
         axrow[1].axis('off')
 
         # Inpainted
-        inpaint_plot = np.ma.masked_invalid(np.squeeze(inpainted[i]))
+        #inpaint_plot = np.ma.masked_invalid(np.squeeze(inpainted[i]))
+
+        # Restore original pixels in inpainted output (so full image is shown)
+        inpaint_plot = np.squeeze(inpainted[i]).copy()
+        orig = np.squeeze(original[i])
+        mask = np.isnan(masked[i])  # True where mask was missing (white)
+        inpaint_plot[~mask] = orig[~mask]  # put original values back
+
+        
         #axrow[2].imshow(inpaint_plot, cmap=cmap, vmin=cfg.vmin, vmax=cfg.vmax)
         axrow[2].imshow(inpaint_plot, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
         axrow[2].set_title('Inpainted')
         axrow[2].axis('off')
 
-    # === Colorbars ===
-    # Left colorbar (for Original & Masked)
+
+    # === Colorbar on the right ===
     norm = mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)
-    cbar1 = fig.colorbar(
+    cbar_ax = fig.add_axes([0.92, 0.15, 0.02, 0.7])  # [left, bottom, width, height]
+    cbar = fig.colorbar(
         plt.cm.ScalarMappable(cmap=cmap, norm=norm),
-        ax=axes[:, :2].ravel().tolist(),
-        orientation='horizontal',
-        fraction=0.05,
-        pad=0.05
+        cax=cbar_ax
     )
-    cbar1.set_label("Precipitation")
+    cbar.set_label("Precipitation")
 
 
     # Title and layout
     plt.suptitle(title_full)
     plt.subplots_adjust(top=0.9, bottom=0.12, wspace=0.05)
-    filename = os.path.join(out_dir, f"inpainting_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
+    filename = os.path.join(out_dir, f"inpainting_{pct}_{lam}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
     plt.savefig(filename, dpi=200)
     plt.close(fig)
 
     print(f"[Plot] Saved inpainting results to {filename}")
 
-
-
-def plot_inpainting3(original, masked, inpainted, title='Inpainting Results', out_dir=None):
-    """Plot original, masked, and inpainted images side by side with masked areas in white."""
-    # Scale back
-    original = [scale_back_numpy(x, cfg.scaler) for x in original]
-    masked = [scale_back_numpy(x, cfg.scaler) for x in masked]
-    inpainted = [scale_back_numpy(x, cfg.scaler) for x in inpainted]
-
-    if out_dir is None:
-        out_dir = f"{cfg.current_output}/inpainting_results"
-    os.makedirs(out_dir, exist_ok=True)
-
-    date_str = datetime.now().strftime("%m-%d %H:%M")
-    title_full = f"{title}\n({date_str})"
-
-    n = len(original)
-    fig, axes = plt.subplots(n, 3, figsize=(10, 3*n))
-    
-    # Flatten axes if n=1
-    if n == 1:
-        axes = np.expand_dims(axes, 0)
-
-    # Convert masked pixels to NaN so they appear white
-    masked_imgs = []
-    for img, m in zip(masked, masked):
-        arr = np.squeeze(img)
-        arr = np.where(np.isnan(arr), np.nan, arr)  # ensure NaNs stay NaN
-        masked_imgs.append(arr)
-
-
-    # Colormap: turbo with white for masked
-    cmap = plt.get_cmap('turbo').copy()
-    cmap.set_bad('white')
-
-    for i in range(n):
-        axrow = axes[i]
-        # Original
-        orig = np.ma.masked_invalid(np.squeeze(original[i]))
-        #axrow[0].imshow(orig, cmap=cmap, vmin=cfg.vmin, vmax=cfg.vmax)
-        axrow[0].imshow(orig, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
-        axrow[0].set_title('Original')
-        axrow[0].axis('off')
-
-        # Masked
-        masked_plot = np.ma.masked_invalid(np.squeeze(masked[i]))
-        #axrow[1].imshow(masked_plot, cmap=cmap, vmin=cfg.vmin, vmax=cfg.vmax)
-        axrow[1].imshow(masked_plot, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
-        axrow[1].set_title('Masked')
-        axrow[1].axis('off')
-
-        # Inpainted
-        inpaint_plot = np.ma.masked_invalid(np.squeeze(inpainted[i]))
-        #axrow[2].imshow(inpaint_plot, cmap=cmap, vmin=cfg.vmin, vmax=cfg.vmax)
-        axrow[2].imshow(inpaint_plot, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
-        axrow[2].set_title('Inpainted')
-        axrow[2].axis('off')
-
-    # Shared colorbar below the plots
-    norm = mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)
-    cbar = fig.colorbar(
-        plt.cm.ScalarMappable(cmap=cmap, norm=norm),
-        ax=axes.ravel().tolist(),
-        orientation='horizontal',
-        fraction=0.05,
-        pad=0.05
-    )
-    cbar.set_label("Precipitation (normalized units)")
-
-    plt.suptitle(title_full)
-    #plt.tight_layout()
-    plt.subplots_adjust(top=0.88)  # leave space for suptitle
-    filename = os.path.join(out_dir, f"inpainting_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
-    plt.savefig(filename, dpi=200)
-    plt.close(fig)
-    print(f"[Plot] Saved inpainting results to {filename}")
-
-
-def plot_inpainting2(original, masked, inpainted, title='Inpainting Results', out_dir=None):
-    # Scale back
-    original = [scale_back_numpy(x, cfg.scaler) for x in original]
-    masked = [scale_back_numpy(x, cfg.scaler) for x in masked]
-    inpainted = [scale_back_numpy(x, cfg.scaler) for x in inpainted]
-
-
-    if out_dir is None:
-        out_dir = f"{cfg.current_output}/inpainting_results"
-    os.makedirs(out_dir, exist_ok=True)
-    date_str = datetime.now().strftime("%m-%d %H:%M")
-    title = f"{title}\n({date_str})"
-
-    n = len(original)
-    fig, axes = plt.subplots(n, 3, figsize=(10, 3*n))
-    
-    
-    # Custom colormap: blue to red, white for masked (NaN)
-    cmap = plt.get_cmap('RdBu_r').copy()
-    cmap.set_bad(color='white')
-
-    for i in range(n):
-        # Convert to masked arrays so NaNs appear white
-        orig = np.squeeze(original[i])
-        maskd = np.squeeze(masked[i])
-        inpaint = np.squeeze(inpainted[i])
-
-        # Mask NaNs for plotting (if you set them where mask==0)
-        orig = np.ma.masked_invalid(orig)
-        maskd = np.ma.masked_invalid(maskd)
-        inpaint = np.ma.masked_invalid(inpaint)
-
-        axrow = axes[i] if n > 1 else axes
-        ims = []
-        ims.append(axrow[0].imshow(orig, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)))
-        ims.append(axrow[1].imshow(maskd, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)))
-        ims.append(axrow[2].imshow(inpaint, cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)))
-
-        for ax, title_ in zip(axrow, ['Original', 'Masked', 'Inpainted']):
-            ax.set_title(title_)
-            ax.axis('off')
-
-    # Add a shared colorbar
-    cbar = fig.colorbar(ims[0], ax=axes.ravel().tolist(), shrink=0.6, orientation='horizontal', pad=0.05)
-    cbar.set_label("Precipitation (normalized units)")
-
-    plt.suptitle(title)
-    #plt.tight_layout()
-    plt.subplots_adjust(top=0.93)
-    filename = os.path.join(out_dir, f"inpainting_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
-    plt.savefig(filename, dpi=200)
-    plt.close(fig)
-    print(f"[Plot] Saved inpainting results to {filename}")
 
 
 def plot_random(dataset, n=6, title='Random Samples', out_dir=None):
@@ -284,6 +166,9 @@ def plot_random(dataset, n=6, title='Random Samples', out_dir=None):
 def plot_histogram(real, generated, title='Histogram', bins=100, out_dir=None):
     if out_dir is None:
         out_dir = f"{cfg.current_output}/histograms"
+    plot_rapsd_comparison(real, generated, title='RAPSD Comparison', out_dir=out_dir)
+    real = real.flatten()
+    generated = generated.flatten()
     plot_histogram_normal(real, generated, title=title, bins=bins, out_dir=out_dir)
     plot_histogram_log(real, generated, title=title, bins=bins, out_dir=out_dir)
 
@@ -399,3 +284,129 @@ def plot_histogram_log(real, generated, title='Histogram', bins=100, out_dir=Non
     plt.savefig(filename, dpi=150)
     plt.close()
     print(f"[Plot] Saved histogram comparison to {filename}")
+
+def plot_rapsd_comparison(real, generated, title='RAPSD Comparison', out_dir=None):
+    """
+    Plot the radially averaged power spectral density (RAPSD) for real vs generated samples.
+    """
+
+    # === Prepare data ===
+    real = [scale_back_numpy(x, cfg.scaler) for x in real]
+    generated = [scale_back_numpy(x, cfg.scaler) for x in generated]
+
+    # Stack into numpy arrays of shape [time, lat, lon]
+    real_arr = np.stack([r.squeeze() for r in real])
+    gen_arr = np.stack([g.squeeze() for g in generated])
+
+    # === Compute mean RAPSD ===
+    real_psd, freq = mean_rapsd_numpy(real_arr)
+    gen_psd, _ = mean_rapsd_numpy(gen_arr)
+
+    # === Plot ===
+    if out_dir is None:
+        out_dir = f"{cfg.current_output}/rapsd"
+
+    # Filename
+    existing = [f for f in os.listdir(out_dir) if f.startswith("rapsd_") and f.endswith(".png")]
+    numbers = [int(f.split("_")[-1].replace(".png", "")) for f in existing if f.split("_")[-1].replace(".png", "").isdigit()]
+    next_num = max(numbers, default=0) + 1
+    filename = os.path.join(out_dir, f"rapsd_{next_num}.png")
+
+    # Plot PSD
+    plt.figure(figsize=(7, 5))
+    plt.loglog(freq, real_psd, label='Real', linewidth=2)
+    plt.loglog(freq, gen_psd, label='Generated', linewidth=2)
+    plt.xlabel("Spatial frequency")
+    plt.ylabel("Power spectral density")
+    plt.title(f"{title}\n({datetime.now().strftime('%m-%d %H:%M')})")
+    plt.legend()
+    plt.grid(True, which="both", ls="--", alpha=0.4)
+
+    plt.savefig(filename, dpi=150)
+    plt.close()
+
+    print(f"[Plot] Saved RAPSD comparison to {filename}")
+
+
+def plot_inpainting_mse_curves(df, out_dir=None, title="MSE vs Coverage for Different λ"):
+    """
+    Plots MSE curves and a heatmap with coverage vs lambda.
+    df must contain columns ['coverage', 'lambda', 'mse'].
+    """
+
+    if out_dir is None:
+        out_dir = f"{cfg.current_output}/inpainting_results"
+    os.makedirs(out_dir, exist_ok=True)
+
+    # -------------------------
+    # 1. Line plot
+    # -------------------------
+    lambdas = sorted(df["lambda"].unique())
+    
+    plt.figure(figsize=(10, 6))
+    for lam in lambdas:
+        df_lam = df[df["lambda"] == lam].sort_values("coverage")
+        plt.plot(
+            df_lam["coverage"] * 100,
+            df_lam["mse"],
+            marker="o",
+            label=f"λ = {lam}"
+        )
+
+    plt.xlabel("Coverage (%)")
+    plt.ylabel("MSE (log scale)")
+    plt.title(title)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.yscale("log")
+
+    fname_curve = os.path.join(out_dir, "inpainting_mse_curve.png")
+    plt.savefig(fname_curve, dpi=200)
+    plt.close()
+    print(f"[Plot] Saved MSE curve plot to {fname_curve}")
+
+    # -------------------------
+    # 2. Heatmap
+    # -------------------------
+    # Get sorted unique values
+    coverage_vals = np.sort(df["coverage"].unique())
+    lambda_vals = np.sort(df["lambda"].unique())
+
+    # Create grid
+    heatmap_array = np.empty((len(coverage_vals), len(lambda_vals)))
+    heatmap_array[:] = np.nan  # fill missing cells with NaN
+
+    # Fill grid with MSE
+    for i, cov in enumerate(coverage_vals):
+        for j, lam in enumerate(lambda_vals):
+            match = df[(df["coverage"] == cov) & (df["lambda"] == lam)]
+            if not match.empty:
+                heatmap_array[i, j] = match["mse"].values[0]
+
+    plt.figure(figsize=(12, 6))
+    im = plt.imshow(
+        heatmap_array,
+        origin="lower",
+        aspect="auto",
+        interpolation="none",
+        norm=LogNorm(),  # logarithmic color scale
+        cmap="viridis"
+    )
+
+    # Set ticks
+    plt.xticks(ticks=np.arange(len(lambda_vals)), labels=lambda_vals)
+    plt.yticks(ticks=np.arange(len(coverage_vals)), labels=np.round(coverage_vals, 3))
+
+    plt.xlabel("λ")
+    plt.ylabel("Coverage")
+    plt.title("Heatmap of Inpainting MSE")
+    plt.colorbar(im, label="MSE (log scale)")
+
+    fname_heatmap = os.path.join(out_dir, "inpainting_mse_heatmap.png")
+    plt.savefig(fname_heatmap, dpi=200)
+    plt.close()
+    print(f"[Plot] Saved MSE heatmap to {fname_heatmap}")
+
+    return fname_curve, fname_heatmap
+
+

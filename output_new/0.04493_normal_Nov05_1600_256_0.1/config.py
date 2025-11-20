@@ -76,7 +76,7 @@ class Config:
         # Normal Parameters
 
         self.model_channels = 128
-        self.num_blocks = 3
+        self.num_blocks = 2
         self.dropout = 0.15
         self.downsample_type = 'standard'
         self.channel_mult = '1224'

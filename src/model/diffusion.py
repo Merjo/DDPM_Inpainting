@@ -6,6 +6,7 @@ import optuna
 from src.save.save_plot import plot_random, plot_histogram
 from src.config import cfg
 import datetime
+import copy
 
 class Diffusion:
     def __init__(
@@ -27,7 +28,8 @@ class Diffusion:
         if hist_dir is None:
             hist_dir = f'{cfg.current_output}/histograms'
         if cfg.cuda and torch.cuda.device_count()>1:
-            model = torch.nn.DataParallel(model)
+            #model = torch.nn.DataParallel(model)
+            model = model # TODO Decide
         self.model = model.to(device)
         self.device = device
         self.img_size = img_size
@@ -88,8 +90,6 @@ class Diffusion:
         pred = self.model(xt, t)  # UNet predicts the noise
         loss = loss_function(pred, noise)  # Compare predicted noise vs actual noise
         return loss
-
-
             
     def train(
         self,
@@ -122,11 +122,15 @@ class Diffusion:
         """
         self.model.train()
         best_loss = float("inf")
+        best_epoch = -1
         bad_epochs = 0
         last_epoch = epochs
 
         n_batches = len(train_loader)
 
+        best_model = copy.deepcopy(self.model)
+
+        do_save_model_regular = cfg.output_manager is not None and cfg.do_save_model_regular
 
         for epoch in range(epochs):
             datestr = datetime.datetime.now().strftime("%b%d_%H%M")
@@ -155,6 +159,8 @@ class Diffusion:
             if val_loss < best_loss - min_patience_delta:
                 bad_epochs = 0
                 best_loss = val_loss
+                best_model = copy.deepcopy(self.model)
+                best_epoch = epoch
             else:
                 bad_epochs += 1
                 if patience is not None and bad_epochs >= patience:
@@ -176,7 +182,13 @@ class Diffusion:
                 self.plot_samples(samples[:cfg.n_samples_regular], epoch + 1, sample_info)  
                 if cfg.do_regular_hist:
                     self.plot_histogram(loader=train_loader, epoch=epoch, sample_info=sample_info, samples=samples)
+                if do_save_model_regular:
+                    cfg.output_manager.save_model(self.model, val_loss)
         
+        self.model = best_model
+
+        sample_info = f'{sample_info}\nBest Epoch: {best_epoch+1}, Val Loss: {best_loss:.6f}'
+
         samples = self.sample(n_samples=cfg.n_hist_samples)  # shape: (n, c, h, w)
         self.plot_samples(samples[:cfg.n_samples], last_epoch, sample_info)  
         self.plot_histogram(loader=train_loader, epoch=last_epoch, sample_info=sample_info, samples=samples)
@@ -214,19 +226,19 @@ class Diffusion:
         else:
             generated = samples
             n_samples = samples.size(0)
-        generated = generated.detach().cpu().numpy().flatten()
+        generated = generated.detach().cpu().numpy()
 
         # --- Get real samples ---
         real_batch = next(iter(loader))
         real = real_batch[:n_samples].to(self.device)
-        real = real.detach().cpu().numpy().flatten()
+        real = real.detach().cpu().numpy()
 
         title = f'Histogram at epoch {epoch}'
         if sample_info is not None:
             title = sample_info + '\n' + title
 
         plot_histogram(real, generated, title, out_dir=self.hist_dir)
-
+    
 
     @torch.no_grad()
     def sample(self, n_samples=16, chunk_size=16, verbose=True):
@@ -255,12 +267,18 @@ class Diffusion:
                 alpha_hat_t = self.alpha_hat[t]
 
                 # Reverse diffusion step
-                x = (1 / torch.sqrt(alpha_t)) * (x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
+                x = (1 / torch.sqrt(alpha_t)) * (
+                    x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise
+                )
 
                 if t > 0:
                     z = torch.randn_like(x)
                     beta_t = self.beta[t]
                     x = x + torch.sqrt(beta_t) * z
+
+                if t > cfg.n_skip_clamp:  # Optional: skip last few timesteps
+                    clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
+                    x = x.clamp(clamp_range[0], clamp_range[1])
 
             # Move finished samples to CPU and clean up GPU memory
             all_samples.append(x.detach().cpu())
@@ -276,16 +294,80 @@ class Diffusion:
 
         return samples
     
-    
     @torch.no_grad()
-    def inpaint(self, x_known, mask, n_steps=None, lam=cfg.dps_lam if cfg.do_use_dps else 1):
+    def inpaint_dps(self, x_known, mask, n_steps=None, lam=cfg.dps_lam):
+        """
+        Perform inpainting using the DDPM model with DPS.
+        
+        Args:
+            x_known: tensor with known pixels
+            mask: binary mask, 1 where pixel is known, 0 otherwise
+            n_steps: number of diffusion steps
+            lam: DPS guidance strength (typically 0.01-0.1)
+        Returns:
+            x_inpainted: tensor with inpainted image
+        """
+        self.model.eval()
+        T = n_steps or self.T
+        device = x_known.device
+        x = torch.randn_like(x_known)  # start from noise
+
+        for t in reversed(range(T)):
+            if t % 50 == 0:
+                print(f'Inpainting, {(T - t) / 10}%')
+            t_batch = torch.full((x.size(0),), t, device=device, dtype=torch.long)
+
+            # 1. Predict noise with UNet
+            pred_noise = self.model(x, t_batch)
+
+            alpha_t = self.alpha[t]
+            alpha_hat_t = self.alpha_hat[t]
+            beta_t = self.beta[t]
+
+            # 2. DDPM mean
+            mu_theta = (1 / torch.sqrt(alpha_t)) * (
+                x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise
+            )
+
+            # 3. Predict x0 from x_t
+            x0_pred = (x - torch.sqrt(1 - alpha_hat_t) * pred_noise) / torch.sqrt(alpha_hat_t)
+
+            # 4. Compute DPS guidance (nudging predicted x0 toward known pixels)
+            guidance = lam * (1 - alpha_hat_t) * mask * (x_known - x0_pred)
+
+            # 5. Update mean with DPS
+            mu_dps = mu_theta + guidance
+
+            # 6. Add noise for t>0
+            if t > 0:
+                z = torch.randn_like(x)
+                x = mu_dps + torch.sqrt(beta_t) * z
+            else:
+                x = mu_dps
+
+            # 7. Optional clamping
+            if t > cfg.n_skip_clamp:
+                clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
+                x = x.clamp(clamp_range[0], clamp_range[1])
+
+        return x
+
+
+
+    @torch.no_grad()
+    def inpaint_old(self, x_known, mask, n_steps=None, lam=cfg.dps_lam, do_use_dps=cfg.do_use_dps):
+        """
+        Perform inpainting using the DDPM model.
+        """
         self.model.eval()
         T = n_steps or self.T
         x = torch.randn_like(x_known)
 
+        lam = lam if do_use_dps else 1
+
         for t in reversed(range(T)):
             if t % 50 == 0:
-                print(f'Inpainting, {(T-t)/10}%')
+                print(f'Inpainting, {(T - t) / 10}%')
 
             t_batch = torch.full((x.size(0),), t, device=self.device, dtype=torch.long)
             pred_noise = self.model(x, t_batch)
@@ -294,21 +376,27 @@ class Diffusion:
             alpha_hat_t = self.alpha_hat[t]
 
             # DDPM reverse step
-            x = (1 / torch.sqrt(alpha_t)) * (x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
+            x = (1 / torch.sqrt(alpha_t)) * (
+                x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise
+            )
 
             if t > 0:
                 z = torch.randn_like(x)
                 beta_t = self.beta[t]
                 x = x + torch.sqrt(beta_t) * z
 
+            if t > cfg.n_skip_clamp:  # Optional: skip last few timesteps
+                    clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
+                    x = x.clamp(clamp_range[0], clamp_range[1])
+
             # Inpainting step: enforce known pixels
-            # === Diffusion Posterior Sampling correction ===
-            # Encourage agreement with known data (soft guidance)
-            if t > T * cfg.dps_hard_overwrite:  # t large → early steps
-                x = x + lam * mask * (x_known - x)  # DPS
-            else:  # t small → late steps
-                x = mask * x_known + (1 - mask) * x  # hard overwrite
+            if t > T * cfg.dps_hard_overwrite:
+                # Early steps → soft guidance
+                x = x + lam * mask * (x_known - x)
+            else:
+                # Late steps → hard overwrite
+                x = mask * x_known + (1 - mask) * x
 
-        return x#.clamp(0, 1)
+        return x
 
-
+    

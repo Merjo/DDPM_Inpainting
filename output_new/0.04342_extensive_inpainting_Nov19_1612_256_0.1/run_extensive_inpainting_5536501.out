@@ -1,0 +1,673 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2010_256_8760_10%.pkl
+
+Output path set to: output_new/extensive_inpainting_Nov19_1612_256_0.1
+UNet constructor args:
+model_channels: 256
+num_blocks: 2
+channel_mult: [1, 2, 2, 4]
+attn_resolutions: [32]
+encoder_type: standard
+dropout: 0.15
+patch_size: 256
+Removing 'module.' prefix from state dict keys...
+
+Testing inpainting with 0.1% known data and lambda 0.001:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.157655
+Inpainting MAE (masked region): 0.624361
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.001_20251119_162005.png
+MSE Loss at 0.1% known data and lambda 0.001: 1.157655
+
+Testing inpainting with 0.1% known data and lambda 0.002:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.405194
+Inpainting MAE (masked region): 0.679680
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.002_20251119_162749.png
+MSE Loss at 0.1% known data and lambda 0.002: 1.405194
+
+Testing inpainting with 0.1% known data and lambda 0.005:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.291312
+Inpainting MAE (masked region): 0.678924
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.005_20251119_163533.png
+MSE Loss at 0.1% known data and lambda 0.005: 1.291312
+
+Testing inpainting with 0.1% known data and lambda 0.01:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.661940
+Inpainting MAE (masked region): 0.805693
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.01_20251119_164317.png
+MSE Loss at 0.1% known data and lambda 0.01: 1.661940
+
+Testing inpainting with 0.1% known data and lambda 0.02:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.266275
+Inpainting MAE (masked region): 0.681906
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.02_20251119_165101.png
+MSE Loss at 0.1% known data and lambda 0.02: 1.266275
+
+Testing inpainting with 0.1% known data and lambda 0.05:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.190210
+Inpainting MAE (masked region): 0.641045
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.05_20251119_165846.png
+MSE Loss at 0.1% known data and lambda 0.05: 1.190210
+
+Testing inpainting with 0.1% known data and lambda 0.1:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.374298
+Inpainting MAE (masked region): 0.706880
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.1_20251119_170630.png
+MSE Loss at 0.1% known data and lambda 0.1: 1.374298
+
+Testing inpainting with 0.1% known data and lambda 0.2:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.648832
+Inpainting MAE (masked region): 0.794441
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.2_20251119_171414.png
+MSE Loss at 0.1% known data and lambda 0.2: 1.648832
+
+Testing inpainting with 0.1% known data and lambda 0.5:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.234369
+Inpainting MAE (masked region): 0.623483
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_0.5_20251119_172158.png
+MSE Loss at 0.1% known data and lambda 0.5: 1.234369
+
+Testing inpainting with 0.1% known data and lambda 1:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.363316
+Inpainting MAE (masked region): 0.639895
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_1_20251119_172942.png
+MSE Loss at 0.1% known data and lambda 1: 1.363316
+
+Testing inpainting with 0.1% known data and lambda 2:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.538774
+Inpainting MAE (masked region): 0.740553
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_2_20251119_173726.png
+MSE Loss at 0.1% known data and lambda 2: 1.538774
+
+Testing inpainting with 0.1% known data and lambda 5:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.201296
+Inpainting MAE (masked region): 0.647179
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_5_20251119_174510.png
+MSE Loss at 0.1% known data and lambda 5: 1.201296
+
+Testing inpainting with 0.1% known data and lambda 10:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.208426
+Inpainting MAE (masked region): 0.653098
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_10_20251119_175253.png
+MSE Loss at 0.1% known data and lambda 10: 1.208426
+
+Testing inpainting with 0.1% known data and lambda 20:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.491000
+Inpainting MAE (masked region): 0.739193
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_20_20251119_180037.png
+MSE Loss at 0.1% known data and lambda 20: 1.491000
+
+Testing inpainting with 0.1% known data and lambda 50:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.376992
+Inpainting MAE (masked region): 0.729674
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_50_20251119_180821.png
+MSE Loss at 0.1% known data and lambda 50: 1.376992
+
+Testing inpainting with 0.1% known data and lambda 100:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.235882
+Inpainting MAE (masked region): 0.641718
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_100_20251119_181605.png
+MSE Loss at 0.1% known data and lambda 100: 1.235882
+
+Testing inpainting with 0.1% known data and lambda 200:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.443501
+Inpainting MAE (masked region): 0.741381
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_200_20251119_182349.png
+MSE Loss at 0.1% known data and lambda 200: 1.443501
+
+Testing inpainting with 0.1% known data and lambda 500:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.447608
+Inpainting MAE (masked region): 0.718745
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_500_20251119_183135.png
+MSE Loss at 0.1% known data and lambda 500: 1.447608
+
+Testing inpainting with 0.1% known data and lambda 1000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.697173
+Inpainting MAE (masked region): 0.825399
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_1000_20251119_183919.png
+MSE Loss at 0.1% known data and lambda 1000: 1.697173
+
+Testing inpainting with 0.1% known data and lambda 2000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.587164
+Inpainting MAE (masked region): 0.767145
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_2000_20251119_184703.png
+MSE Loss at 0.1% known data and lambda 2000: 1.587164
+
+Testing inpainting with 0.1% known data and lambda 5000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.372476
+Inpainting MAE (masked region): 0.669680
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_5000_20251119_185446.png
+MSE Loss at 0.1% known data and lambda 5000: 1.372476
+
+Testing inpainting with 0.1% known data and lambda 10000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.645850
+Inpainting MAE (masked region): 0.779571
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_10000_20251119_190231.png
+MSE Loss at 0.1% known data and lambda 10000: 1.645850
+
+Testing inpainting with 0.1% known data and lambda 20000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.272088
+Inpainting MAE (masked region): 0.660769
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_20000_20251119_191015.png
+MSE Loss at 0.1% known data and lambda 20000: 1.272088
+
+Testing inpainting with 0.1% known data and lambda 50000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.204483
+Inpainting MAE (masked region): 0.620610
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_50000_20251119_191759.png
+MSE Loss at 0.1% known data and lambda 50000: 1.204483
+
+Testing inpainting with 0.1% known data and lambda 100000:
+Inpainting, 5.0%
+Inpainting, 10.0%
+Inpainting, 15.0%
+Inpainting, 20.0%
+Inpainting, 25.0%
+Inpainting, 30.0%
+Inpainting, 35.0%
+Inpainting, 40.0%
+Inpainting, 45.0%
+Inpainting, 50.0%
+Inpainting, 55.0%
+Inpainting, 60.0%
+Inpainting, 65.0%
+Inpainting, 70.0%
+Inpainting, 75.0%
+Inpainting, 80.0%
+Inpainting, 85.0%
+Inpainting, 90.0%
+Inpainting, 95.0%
+Inpainting, 100.0%
+Inpainting MSE (masked region): 1.062380
+Inpainting MAE (masked region): 0.587104
+[Plot] Saved inpainting results to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_0.001_100000_20251119_192543.png
+MSE Loss at 0.1% known data and lambda 100000: 1.062380
+[Plot] Saved MSE curve plot to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_mse_curve.png
+[Plot] Saved MSE heatmap to output_new/extensive_inpainting_Nov19_1612_256_0.1/inpainting_results/inpainting_mse_heatmap.png
+
+Saved MSE matrix to inpainting_mse_results.csv
+Run directory renamed: output_new/0.04342_extensive_inpainting_Nov19_1612_256_0.1
+Run complete. Results stored in output_new/0.04342_extensive_inpainting_Nov19_1612_256_0.1

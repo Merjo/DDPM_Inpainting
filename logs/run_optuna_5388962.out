@@ -1,0 +1,40 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2010_256_8760_10%.pkl
+
+Output path set to: output_new/optuna_Nov12_1253_256_0.1
+[Nov12_1253] Starting epoch 1/15...
+Epoch 1/15 - train_loss: 0.450116 - val_loss: 0.790781
+[Nov12_1305] Starting epoch 2/15...
+Epoch 2/15 - train_loss: 0.796498 - val_loss: 0.797860
+[Nov12_1317] Starting epoch 3/15...
+Epoch 3/15 - train_loss: 0.797892 - val_loss: 0.797847
+[Nov12_1329] Starting epoch 4/15...
+Epoch 4/15 - train_loss: 0.797897 - val_loss: 0.797845
+[Nov12_1341] Starting epoch 5/15...
+Epoch 5/15 - train_loss: 0.797882 - val_loss: 0.797907
+[Nov12_1353] Starting epoch 6/15...
+Epoch 6/15 - train_loss: 0.797890 - val_loss: 0.797920
+[Nov12_1406] Starting epoch 7/15...
+Epoch 7/15 - train_loss: 0.797921 - val_loss: 0.797876
+[Nov12_1418] Starting epoch 8/15...
+Epoch 8/15 - train_loss: 0.797896 - val_loss: 0.797922
+[Nov12_1430] Starting epoch 9/15...
+Epoch 9/15 - train_loss: 0.797871 - val_loss: 0.797860
+Early stopping at epoch 9
+[Nov12_1443] Sampling 1-16 / 128
+[Nov12_1444] Sampling 17-32 / 128
+[Nov12_1445] Sampling 33-48 / 128
+[Nov12_1447] Sampling 49-64 / 128
+[Nov12_1448] Sampling 65-80 / 128
+[Nov12_1449] Sampling 81-96 / 128
+[Nov12_1451] Sampling 97-112 / 128
+[Nov12_1452] Sampling 113-128 / 128
+[Plot] Saved output_new/optuna_Nov12_1253_256_0.1/samples/plot1.png
+[Plot] Saved RAPSD comparison to output_new/optuna_Nov12_1253_256_0.1/histograms/rapsd_1.png
+[Plot] Saved histogram comparison to output_new/optuna_Nov12_1253_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/optuna_Nov12_1253_256_0.1/histograms/hist_log_1.png
+[Nov12_1501] Starting epoch 1/15...

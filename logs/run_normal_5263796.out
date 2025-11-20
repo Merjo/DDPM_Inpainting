@@ -1,0 +1,85 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+Loading year 2001
+
+[Cache] Loaded dataset from cache/precip_dataset_2001_256_8760_10%.pkl
+
+Loading year 2002
+
+[Cache] Loaded dataset from cache/precip_dataset_2002_256_8760_10%.pkl
+
+Loading year 2003
+
+[Cache] Loaded dataset from cache/precip_dataset_2003_256_8760_10%.pkl
+
+Loading year 2004
+
+[Cache] Loaded dataset from cache/precip_dataset_2004_256_8760_10%.pkl
+
+Loading year 2005
+[Dataset] total patches kept = 2413
+[LogScaler] Auto-selected c = 0.1000
+[LogScaler] mean=0.5179, std=0.9573
+Raw values stats:
+min: 0.0 max: 44.34344
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2005_256_8760_10%.pkl
+
+Loading year 2006
+[Dataset] total patches kept = 2423
+[LogScaler] mean=0.5155, std=0.9535
+Raw values stats:
+min: 0.0 max: 83.51408
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2006_256_8760_10%.pkl
+
+Loading year 2007
+[Dataset] total patches kept = 2561
+[LogScaler] mean=0.6265, std=1.0473
+Raw values stats:
+min: 0.0 max: 86.803856
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2007_256_8760_10%.pkl
+
+Loading year 2008
+[Dataset] total patches kept = 2176
+[LogScaler] mean=0.5581, std=0.9828
+Raw values stats:
+min: 0.0 max: 89.8941
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2008_256_8760_10%.pkl
+
+Loading year 2009
+[Dataset] total patches kept = 2341
+[LogScaler] mean=0.5686, std=0.9750
+Raw values stats:
+min: 0.0 max: 72.581764
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2009_256_8760_10%.pkl
+
+Loading year 2010
+[Dataset] total patches kept = 2475
+[LogScaler] mean=0.5417, std=0.9642
+Raw values stats:
+min: 0.0 max: 41.8185
+NaNs: 0 Infs: 0
+
+[Cache] Saved dataset to cache/precip_dataset_2010_256_8760_10%.pkl
+
+
+[Info] Combined dataset from years 2001-2010, total patches = 23115
+
+[Info] Estimated joblib dump size: 12118.92 MB
+
+[Cache] Saved dataset to cache/precip_dataset_2001-2010_256_8760_10%.pkl
+
+Output path set to: output_new/normal_Nov07_1900_256_0.1
+[Prepare Run] No model file provided, initialized new, random model.
+[Nov07_1900] Starting epoch 1/150...

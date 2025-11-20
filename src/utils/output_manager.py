@@ -17,8 +17,10 @@ class OutputManager:
         os.makedirs(self.run_dir, exist_ok=False)
         cfg.update_output_path(run_dir_name=self.run_dir_name)
 
+        cfg.set_output_manager(self)
+
         # Prepare subfolders
-        subfolders = ["samples", "histograms"]
+        subfolders = ["samples", "histograms", "models", "rapsd"]
         if run_type in ['optuna', 'optuna_best']:
             subfolders.append("trials")
 

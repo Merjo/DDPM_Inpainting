@@ -1,0 +1,17 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2010_256_8760_10%.pkl
+
+Output path set to: output_new/inpainting_Nov10_1546_256_0.1
+UNet constructor args:
+model_channels: 256
+num_blocks: 2
+channel_mult: [1, 2, 2, 4]
+attn_resolutions: [32]
+encoder_type: standard
+dropout: 0.15
+patch_size: 256
+Removing 'module.' prefix from state dict keys...

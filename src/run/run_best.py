@@ -13,12 +13,27 @@ from src.save.save_model import save_model
 
 from src.utils.output_manager import OutputManager
 
-def load_model(param_file, model_file, epochs=10):
+def load_model(param_file, model_file, epochs=cfg.epochs):
     """Reload best UNet+Diffusion and continue training with new epochs."""
     device = cfg.device
 
     # --- Load params ---
-    params = pd.read_csv(param_file).iloc[0].to_dict()
+    df = pd.read_csv(param_file)
+    if df.shape[1] == 2 and set(df.columns) == {"param", "value"}:
+        # key-value format
+        params = pd.Series(df.value.values, index=df.param).to_dict()
+    else:
+        # wide format
+        params = df.iloc[0].to_dict()
+
+    # Cast numeric values (optional but useful)
+    for k, v in params.items():
+        try:
+            params[k] = float(v)
+            if params[k].is_integer():
+                params[k] = int(params[k])
+        except (ValueError, AttributeError):
+            pass
 
     # Map back params that were categorical keys
     channel_mult_options = {
@@ -38,6 +53,16 @@ def load_model(param_file, model_file, epochs=10):
     resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
+
+    print("UNet constructor args:")
+    print("model_channels:", int(params["model_channels"]))
+    print("num_blocks:", int(params["num_blocks"]))
+    print("channel_mult:", channel_mult)
+    print("attn_resolutions:", attn_resolutions)
+    print("encoder_type:", params["downsample_type"])
+    print("dropout:", float(params["dropout"]))
+    print("patch_size:", cfg.patch_size)
+
     # --- Rebuild UNet ---
     unet = SongUNet(
         img_resolution=cfg.patch_size,
@@ -52,8 +77,22 @@ def load_model(param_file, model_file, epochs=10):
         encoder_type=params["downsample_type"],
     ).to(device)
 
+    checkpoint = torch.load(model_file, map_location=device, weights_only=False)
+
+    # If your checkpoint contains a 'state_dict', extract it:
+    if "state_dict" in checkpoint:
+        state_dict = checkpoint["state_dict"]
+    else:
+        state_dict = checkpoint
+
+    # Handle DataParallel prefix if present
+    if any(k.startswith("module.") for k in state_dict.keys()):
+        print("Removing 'module.' prefix from state dict keys...")
+        state_dict = {k.replace("module.", ""): v for k, v in state_dict.items()}
+
+
     # --- Load weights ---
-    unet.load_state_dict(torch.load(model_file, map_location=device, weights_only=True))
+    unet.load_state_dict(state_dict=state_dict)
 
 
     # --- Rebuild Diffusion ---
@@ -85,6 +124,7 @@ def load_model(param_file, model_file, epochs=10):
 
 
     return diffusion, unet, params, optimizer, scheduler
+
 
 def find_best_saved_model():
     base_dir = cfg.output_base_dir
@@ -148,7 +188,6 @@ def run_best(param_file=None,
              epochs=1,
              patience=3,
              device=cfg.device):
-    loader = cfg.loader
     if param_file is None or model_file is None:
         param_file, model_file, best_loss = find_best_saved_model()
     diffusion, unet, params, optimizer, scheduler = load_model(param_file=param_file,

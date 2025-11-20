@@ -108,8 +108,8 @@ def get_training_parameters(trial):
 
 
 def objective(trial, loader, run_dir, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience):
-    device_id = trial.number % torch.cuda.device_count()
-    torch.cuda.set_device(device_id)
+    #device_id = trial.number % torch.cuda.device_count()
+    #torch.cuda.set_device(device_id)
 
     trial.set_user_attr("duration", float('inf'))  # TODO fix
     start_time = time.time()
@@ -195,7 +195,7 @@ def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patie
         load_if_exists=resume,
     )
 
-    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=torch.cuda.device_count())
+    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=1)#torch.cuda.device_count())
 
     # --- Best trial ---
     best_trial = study.best_trial

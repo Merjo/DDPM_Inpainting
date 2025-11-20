@@ -1,0 +1,61 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 4
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2010_256_8760_10%.pkl
+
+Output path set to: output_new/optuna_Nov11_0720_256_0.1
+[Nov11_0720] Starting epoch 1/15...
+[Nov11_0720] Starting epoch 1/15...
+[Nov11_0720] Starting epoch 1/15...
+[Nov11_0720] Starting epoch 1/15...
+Epoch 1/15 - train_loss: 0.133981 - val_loss: 0.105580
+[Nov11_0731] Starting epoch 2/15...
+Epoch 2/15 - train_loss: 0.110428 - val_loss: 0.106666
+[Nov11_0743] Starting epoch 3/15...
+Epoch 3/15 - train_loss: 0.107318 - val_loss: 0.099608
+[Nov11_0755] Starting epoch 4/15...
+Epoch 4/15 - train_loss: 0.103550 - val_loss: 0.099436
+[Nov11_0806] Starting epoch 5/15...
+Epoch 5/15 - train_loss: 0.101632 - val_loss: 0.098957
+[Nov11_0818] Starting epoch 6/15...
+Epoch 6/15 - train_loss: 0.099780 - val_loss: 0.098002
+[Nov11_0830] Starting epoch 7/15...
+Epoch 7/15 - train_loss: 0.099316 - val_loss: 0.098360
+[Nov11_0842] Starting epoch 8/15...
+Epoch 8/15 - train_loss: 0.097679 - val_loss: 0.095149
+[Nov11_0853] Starting epoch 9/15...
+Epoch 9/15 - train_loss: 0.096874 - val_loss: 0.094298
+[Nov11_0905] Starting epoch 10/15...
+Epoch 10/15 - train_loss: 0.095529 - val_loss: 0.093915
+[Nov11_0917] Sampling 1-16 / 64
+[Nov11_0918] Sampling 17-32 / 64
+[Nov11_0919] Sampling 33-48 / 64
+[Nov11_0920] Sampling 49-64 / 64
+[Plot] Saved output_new/optuna_Nov11_0720_256_0.1/samples/plot1.png
+[Plot] Saved RAPSD comparison to output_new/optuna_Nov11_0720_256_0.1/histograms/rapsd_1.png
+[Plot] Saved histogram comparison to output_new/optuna_Nov11_0720_256_0.1/histograms/hist_normal_1.png
+[Plot] Saved histogram comparison to output_new/optuna_Nov11_0720_256_0.1/histograms/hist_log_1.png
+[Nov11_0925] Starting epoch 11/15...
+Epoch 11/15 - train_loss: 0.093692 - val_loss: 0.091500
+[Nov11_0937] Starting epoch 12/15...
+Epoch 12/15 - train_loss: 0.093712 - val_loss: 0.092131
+[Nov11_0949] Starting epoch 13/15...
+Epoch 13/15 - train_loss: 0.093705 - val_loss: 0.092641
+[Nov11_1001] Starting epoch 14/15...
+Epoch 14/15 - train_loss: 0.093942 - val_loss: 0.089994
+[Nov11_1013] Starting epoch 15/15...
+Epoch 15/15 - train_loss: 0.093315 - val_loss: 0.092195
+[Nov11_1025] Sampling 1-16 / 128
+[Nov11_1026] Sampling 17-32 / 128
+[Nov11_1027] Sampling 33-48 / 128
+[Nov11_1029] Sampling 49-64 / 128
+[Nov11_1030] Sampling 65-80 / 128
+[Nov11_1031] Sampling 81-96 / 128
+[Nov11_1032] Sampling 97-112 / 128
+[Nov11_1033] Sampling 113-128 / 128
+[Plot] Saved output_new/optuna_Nov11_0720_256_0.1/samples/plot2.png
+[Plot] Saved RAPSD comparison to output_new/optuna_Nov11_0720_256_0.1/histograms/rapsd_2.png
+[Plot] Saved histogram comparison to output_new/optuna_Nov11_0720_256_0.1/histograms/hist_normal_2.png
+[Plot] Saved histogram comparison to output_new/optuna_Nov11_0720_256_0.1/histograms/hist_log_2.png
