@@ -11,6 +11,11 @@ df2 = pd.read_csv(table2path)
 
 df = pd.concat([df1, df2], ignore_index=True)
 
+# Overwrites! TODO Decide
+
+new_path = "results.csv"
+df = pd.read_csv(new_path)
+
 # If the desired curve is: one MSE per lambda per coverage
 df = df.sort_values(["coverage", "lambda"])
 df = df.drop_duplicates(subset=["coverage", "lambda"], keep="first")

@@ -219,7 +219,7 @@ class Config:
                 # ignore NaNs
                 self.vmin_ref = min(t[torch.isfinite(t)].min().item() for t in self.data.data_raw) * 1.1  # TODO Decide 1.1
             else:
-                self.vmin_ref = self.data.data_raw.min().item() * 1.1
+                self.vmin_ref = torch.nanmin(torch.cat(self.data.data_raw)).item() * 1.1
         return self.vmin_ref
 
     @property
@@ -228,7 +228,7 @@ class Config:
             if self.do_patch_diffusion:
                 self.vmax_ref = max(t[torch.isfinite(t)].max().item() for t in self.data.data_raw)
             else:
-                self.vmax_ref = self.data.data_raw.max().item()
+                self.vmax_ref = torch.nanmax(torch.cat(self.data.data_raw)).item()
         return self.vmax_ref
 
     @property

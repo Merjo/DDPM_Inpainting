@@ -19,19 +19,26 @@ import torch.nn.functional as F
 from src.utils.output_manager import OutputManager
 
 
-def test_inpainting(diffusion, unet, loader, pct=cfg.inpainting_test_coverage, n=3, lam=cfg.dps_lam):
+def test_inpainting(diffusion, unet, loader, pct=cfg.inpainting_test_coverage, n=6, lam=cfg.dps_lam):
     x_known = loader.get_samples(n_samples=n)
     #mask = torch.rand_like(x_known) < pct
 
     mask = (torch.rand_like(x_known) < pct).float().to(cfg.device)  # TODO necessary?
 
-    x_inpainted = diffusion.inpaint_dps(x_known, mask)
+    x_inpainted = diffusion.inpaint_dps(x_known, mask, lam = lam)
 
     # Evaluate only in the missing areas (where mask == 0)
     missing = (1 - mask).bool()
 
-    mse_loss = F.mse_loss(x_inpainted[missing], x_known[missing])
-    mae_loss = F.l1_loss(x_inpainted[missing], x_known[missing])
+    mse_loss = F.mse_loss(
+        x_inpainted.cpu()[missing.cpu()],
+        x_known.cpu()[missing.cpu()]
+    )
+
+    mae_loss = F.l1_loss(
+        x_inpainted.cpu()[missing.cpu()],
+        x_known.cpu()[missing.cpu()]
+    )
 
     print(f"Inpainting MSE (masked region): {mse_loss.item():.6f}")
     print(f"Inpainting MAE (masked region): {mae_loss.item():.6f}")

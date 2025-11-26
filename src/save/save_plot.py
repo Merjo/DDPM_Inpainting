@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from src.config import cfg
-from src.visualization.spectra import mean_rapsd_numpy  # or adjust the import to where your PSD code lives
+from src.random.spectra import mean_rapsd_numpy  # or adjust the import to where your PSD code lives
 
 import matplotlib.colors as mcolors
 import torch
@@ -341,19 +341,22 @@ def plot_inpainting_mse_curves(df, out_dir=None, title="MSE vs Coverage for Diff
     # -------------------------
     # 1. Line plot
     # -------------------------
-    lambdas = sorted(df["lambda"].unique())
-    
+
+    coverages = sorted(df["coverage"].unique())
+
     plt.figure(figsize=(10, 6))
-    for lam in lambdas:
-        df_lam = df[df["lambda"] == lam].sort_values("coverage")
+    for cov in coverages:
+        df_cov = df[df["coverage"] == cov].sort_values("lambda")
         plt.plot(
-            df_lam["coverage"] * 100,
-            df_lam["mse"],
+            df_cov["lambda"],
+            df_cov["mse"],
             marker="o",
-            label=f"λ = {lam}"
+            label=f"Coverage = {cov*100:.3g}%"
         )
 
-    plt.xlabel("Coverage (%)")
+    plt.xscale("log")
+
+    plt.xlabel("LAMBDA (λ)")
     plt.ylabel("MSE (log scale)")
     plt.title(title)
     plt.legend()

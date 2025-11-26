@@ -1,0 +1,1603 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_extensive_inpainting.py", line 13, in <module>
+    from src.model.diffusion import Diffusion
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 11, in <module>
+    class Diffusion:
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/model/diffusion.py", line 97, in Diffusion
+    train_loader=cfg.train_loader,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 199, in train_loader
+    self.train_loader_ref = get_loader(self.train_data)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 186, in train_data
+    self.train_data_ref, self.val_data_ref = self.data.train_val_split(val_fraction=self.val_fraction, seed=42)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 157, in data
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 34, in read_one_year
+    ds = PrecipitationDataset(data_array,)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/precipitation_dataset.py", line 22, in __init__
+    scaler=cfg.scaler()
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 165, in scaler
+    self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 65, in read_data
+    ds_year = read_one_year(reload=reload_years, scaler=scaler, patch_size=patch_size,
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/data/read_data.py", line 27, in read_one_year
+    all_data = xr.open_mfdataset(path)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/api.py", line 1635, in open_mfdataset
+    datasets = [open_(p, **open_kwargs) for p in paths1d]
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/api.py", line 1635, in <listcomp>
+    datasets = [open_(p, **open_kwargs) for p in paths1d]
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/api.py", line 687, in open_dataset
+    backend_ds = backend.open_dataset(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 681, in open_dataset
+    ds = store_entrypoint.open_dataset(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/store.py", line 59, in open_dataset
+    ds = Dataset(vars, attrs=attrs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/dataset.py", line 389, in __init__
+    variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/structure/merge.py", line 1082, in merge_data_and_coords
+    return merge_core(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/structure/merge.py", line 707, in merge_core
+    collected = collect_variables_and_indexes(aligned, indexes=indexes)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/structure/merge.py", line 374, in collect_variables_and_indexes
+    idx, idx_vars = create_default_index_implicit(variable)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/indexes.py", line 1634, in create_default_index_implicit
+    index = PandasIndex.from_variables(dim_var, options={})
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/indexes.py", line 727, in from_variables
+    obj = cls(data, dim, coord_dtype=var.dtype)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/indexes.py", line 658, in __init__
+    index = safe_cast_to_index(array)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/indexes.py", line 538, in safe_cast_to_index
+    index = pd.Index(to_numpy(array), **kwargs)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/namedarray/pycompat.py", line 112, in to_numpy
+    data = data.get_duck_array()  # type: ignore[no-untyped-call]
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/coding/common.py", line 76, in get_duck_array
+    return self.func(self.array.get_duck_array())
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/indexing.py", line 654, in get_duck_array
+    array = self.array[self.key]
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 103, in __getitem__
+    return indexing.explicit_indexing_adapter(
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/core/indexing.py", line 1023, in explicit_indexing_adapter
+    result = raw_indexing_method(raw_key.tuple)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 115, in _getitem
+    original_array = self.get_array(needs_lock=False)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 94, in get_array
+    ds = self.datastore._acquire(needs_lock)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 455, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/site-packages/xarray/backends/file_manager.py", line 209, in _acquire_with_cache_info
+    with self._optional_lock(needs_lock):
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/contextlib.py", line 281, in helper
+    return _GeneratorContextManager(func, args, kwds)
+  File "/home/merlinho/.conda/envs/diffusion_rain/lib/python3.10/contextlib.py", line 106, in __init__
+    doc = getattr(func, "__doc__", None)
+RecursionError: maximum recursion depth exceeded while calling a Python object

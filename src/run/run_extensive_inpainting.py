@@ -21,8 +21,18 @@ from src.run.run_inpainting import test_inpainting
 
 
 def test_extensive_inpainting(diffusion, unet, loader, n=20):
-    coverage_levels = [0.001, 0.005, 0.01]  # [0.999, 0.99, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01, 0.001]
-    lam_levels = [0.001,0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1,2,5, 10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000]#[0.0, 0.01, 0.03, 0.05, 0.1, 0.3, 0.5, 1, 3, 5, 10]
+    coverage_levels = [0.001, 0.005, 0.01, 0.05, 0.999]  # [0.999, 0.99, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01, 0.001]
+    
+    ten_powers = range(-5,8)
+    multipliers = [1,2,5]
+    lam_levels = []
+    for ten_power in ten_powers:
+        for multiplier in multipliers:
+            factor = 10**ten_power
+            lam_levels.append(factor*multiplier)
+    print(f'Lam levels: {lam_levels}')
+    
+    #lam_levels = [0.001,0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1,2,5, 10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000]#[0.0, 0.01, 0.03, 0.05, 0.1, 0.3, 0.5, 1, 3, 5, 10]
 
     results = []   # list of dicts → will become DataFrame rows
 

@@ -42,12 +42,12 @@ class Config:
 
         # Importance Sampling parameters
 
-        self.do_importance_sampling = self.do_patch_diffusion
-        self.isp_patch_sizes = [64,896] #[64, 128, 256, 512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
-        self.isp_shares = [0.05,0.95] #[0.125, 0.125, 0.5, 0.125, 0.125]
-        self.isp_s = 0.05318386633090607
-        self.isp_m = 1.3
-        self.isp_q_min = 2e-4
+        self.do_importance_sampling = False
+        self.isp_patch_sizes = [256, 128, 64, 512, 1024]
+        self.isp_shares = [0.5, 0.125, 0.125, 0.125, 0.125]
+        self.isp_s = 1.0
+        self.isp_m = 10.0
+        self.isp_q_min = 0.1
 
         # Training parameters
         self.epochs = 200
@@ -91,14 +91,14 @@ class Config:
         self.vmin_ref = None
         self.vmax_ref = None
         
-        self.dpi = 600
+        self.dpi = 300
 
         # Inpainting / DPS Parameters
 
         self.inpainting_test_coverage = 0.001 # 0.03
 
         self.do_use_dps = True
-        self.dps_lam = 0.02
+        self.dps_lam = 0.1
         self.dps_hard_overwrite = 0.0  # TODO -> maybe just in the last step?
 
         # Normal Parameters
@@ -175,7 +175,7 @@ class Config:
     
     @property 
     def min_coverage(self):
-        if self.do_importance_sampling and self.do_patch_diffusion:
+        if self.do_importance_sampling:
             return 0.0
         else:   
             return self.min_coverage_ref
@@ -215,20 +215,13 @@ class Config:
     @property
     def vmin(self):
         if self.vmin_ref is None:
-            if self.do_patch_diffusion:
-                # ignore NaNs
-                self.vmin_ref = min(t[torch.isfinite(t)].min().item() for t in self.data.data_raw) * 1.1  # TODO Decide 1.1
-            else:
-                self.vmin_ref = self.data.data_raw.min().item() * 1.1
+            self.vmin_ref = self.data.data_raw.min().item() * 1.1  # assume 10 % higher is ok
         return self.vmin_ref
 
     @property
     def vmax(self):
         if self.vmax_ref is None:
-            if self.do_patch_diffusion:
-                self.vmax_ref = max(t[torch.isfinite(t)].max().item() for t in self.data.data_raw)
-            else:
-                self.vmax_ref = self.data.data_raw.max().item()
+            self.vmax_ref = self.data.data_raw.max().item()
         return self.vmax_ref
 
     @property

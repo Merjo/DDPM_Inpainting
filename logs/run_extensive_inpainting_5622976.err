@@ -1,0 +1,8 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+slurmstepd-csl14c247: error: *** JOB 5622976 ON csl14c247 CANCELLED AT 2025-11-26T00:12:15 ***
+slurmstepd-csl14c247: error: *** JOB 5622976 STEPD TERMINATED ON csl14c247 AT 2025-11-26T00:12:55 DUE TO JOB NOT ENDING WITH SIGNALS ***
+slurmstepd-csl14c247: error: Container 2277299 in cgroup plugin has 1 processes, giving up after 63 sec

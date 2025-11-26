@@ -74,7 +74,6 @@ class Diffusion:
 
 
     def q_sample(self, x0, t, noise=None):
-        """Forward diffusion q(x_t | x_0)"""
         if noise is None:
             noise = torch.randn_like(x0)
         sqrt_alpha_hat = torch.sqrt(self.alpha_hat[t])[:, None, None, None]
@@ -294,56 +293,114 @@ class Diffusion:
 
         return samples
     
+    def inpaint_dps(self, x_known, mask, n_steps=None, chunk_size=4, lam=cfg.dps_lam, verbose=True):
+        print(f'Starting inpainting with DPS, lambda={lam}')
+        self.model.eval()
+        T = n_steps or self.T
+        device = x_known.device
+
+        n_total = x_known.size(0)
+        all_outputs = []
+
+        for start in range(0, n_total, chunk_size):
+            cur = min(chunk_size, n_total - start)
+            if verbose:
+                datestr = datetime.datetime.now().strftime("%b%d_%H%M")
+                print(f"[{datestr}] Sampling {start+1}-{start+cur} / {n_total}")
+
+            end = min(start + chunk_size, n_total)
+            x_known_batch = x_known[start:end]
+            mask_batch = mask[start:end]
+
+            x = torch.randn_like(x_known_batch, requires_grad=True)  # start from noise
+            alpha = self.alpha
+            alpha_hat = self.alpha_hat
+            beta = self.beta
+            sqrt_alpha_hat = torch.sqrt(alpha_hat)
+            sqrt_one_minus_alpha_hat = torch.sqrt(1 - alpha_hat)
+            for t in reversed(range(T)):
+                if t % 50 == 0:
+                    print(f'Inpainting, {(T - t) / 10}%')
+
+                t_batch = torch.full((x.size(0),), t, device=device, dtype=torch.long)
+
+                # Z3 Predict Noise
+                pred_noise = self.model(x, t_batch)
+
+                # Z4 Compute x0_pred
+                # from paper: x0_pred = (1 / sqrt_alpha_hat[t]) * (x + (1 - alpha_hat[t]) * pred_noise)
+                x0_pred = (x - sqrt_one_minus_alpha_hat[t] * pred_noise) / sqrt_alpha_hat[t]
+
+                # Z5 Compute z
+                z = torch.randn_like(x)
+
+                """# Z6 Update x (& Calc Gradient for Z7)
+                term1 = ((sqrt_alpha[t]*(1 - alpha_hat[t-1])) / (1 - alpha_hat[t])) * x
+                term2 = ((sqrt_alpha_hat[t-1]*beta[t]) / (1-alpha_hat[t])) * x0_pred
+                term3 = sqrt_beta[t] * z
+
+                x_dash = term1 + term2 + term3"""
+
+                # Z6 Revision Update x
+
+                mu = (1 / torch.sqrt(alpha[t])) * (
+                    x - ((1 - alpha[t]) / sqrt_one_minus_alpha_hat[t]) * pred_noise
+                )
+
+                if t > 0:
+                    x_dash = mu + torch.sqrt(beta[t]) * z
+                else:
+                    x_dash = mu
+
+                # Z7 DPS Guidance
+                residual = mask_batch * (x_known_batch - x0_pred)
+                loss = (residual ** 2).sum()
+                grad = torch.autograd.grad(loss, x)[0]
+                guidance = lam * grad # * (1 - alpha_hat[t]) # Optional scaling TODO Decide
+                x = (x_dash - guidance).detach().requires_grad_(True)
+
+                # Optional clamping
+                if t > cfg.n_skip_clamp:
+                    clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
+                    x = x.clamp(clamp_range[0], clamp_range[1])
+
+            x = x.detach()
+            all_outputs.append(x.cpu())
+            del x, x_known_batch, mask_batch, pred_noise, grad
+            torch.cuda.empty_cache()
+
+        result = torch.cat(all_outputs, dim=0)
+
+        return result
+
+
     @torch.no_grad()
-    def inpaint_dps(self, x_known, mask, n_steps=None, lam=cfg.dps_lam):
-        """
-        Perform inpainting using the DDPM model with DPS.
-        
-        Args:
-            x_known: tensor with known pixels
-            mask: binary mask, 1 where pixel is known, 0 otherwise
-            n_steps: number of diffusion steps
-            lam: DPS guidance strength (typically 0.01-0.1)
-        Returns:
-            x_inpainted: tensor with inpainted image
-        """
+    def inpaint_dps_old(self, x_known, mask, n_steps=None, lam=cfg.dps_lam):
         self.model.eval()
         T = n_steps or self.T
         device = x_known.device
         x = torch.randn_like(x_known)  # start from noise
-
         for t in reversed(range(T)):
-            if t % 50 == 0:
-                print(f'Inpainting, {(T - t) / 10}%')
             t_batch = torch.full((x.size(0),), t, device=device, dtype=torch.long)
 
-            # 1. Predict noise with UNet
-            pred_noise = self.model(x, t_batch)
-
-            alpha_t = self.alpha[t]
+            alpha_t = self.alpha[t] 
             alpha_hat_t = self.alpha_hat[t]
             beta_t = self.beta[t]
+            # Z3 Predict Noise
+            pred_noise = self.model(x, t_batch)
 
             # 2. DDPM mean
             mu_theta = (1 / torch.sqrt(alpha_t)) * (
-                x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise
-            )
-
+                x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
             # 3. Predict x0 from x_t
             x0_pred = (x - torch.sqrt(1 - alpha_hat_t) * pred_noise) / torch.sqrt(alpha_hat_t)
-
             # 4. Compute DPS guidance (nudging predicted x0 toward known pixels)
             guidance = lam * (1 - alpha_hat_t) * mask * (x_known - x0_pred)
-
             # 5. Update mean with DPS
             mu_dps = mu_theta + guidance
 
             # 6. Add noise for t>0
-            if t > 0:
-                z = torch.randn_like(x)
-                x = mu_dps + torch.sqrt(beta_t) * z
-            else:
-                x = mu_dps
+            x = mu_dps if t == 0 else mu_dps + torch.sqrt(beta_t) * torch.randn_like(x)
 
             # 7. Optional clamping
             if t > cfg.n_skip_clamp:

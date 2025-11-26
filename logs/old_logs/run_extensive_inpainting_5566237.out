@@ -1,0 +1,20 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+
+[Cache] Loaded dataset from cache/precip_dataset_2001-2010_256_8760_10%.pkl
+
+Output path set to: output_new/extensive_inpainting_Nov21_2011_256_0.1
+UNet constructor args:
+model_channels: 256
+num_blocks: 2
+channel_mult: [1, 2, 2, 4]
+attn_resolutions: [32]
+encoder_type: standard
+dropout: 0.15
+patch_size: 256
+Removing 'module.' prefix from state dict keys...
+Lam levels: [-9, -18, -27, -12, -24, -36, -11, -22, -33, 10, 20, 30, 11, 22, 33, 8, 16, 24, 9, 18, 27, 14, 28, 42, 15, 30, 45, 12, 24, 36]
+
+Testing inpainting with 0.1% known data and lambda -9:

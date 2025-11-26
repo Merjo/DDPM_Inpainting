@@ -7,7 +7,7 @@
 #SBATCH --gres=gpu:2
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=64G
+#SBATCH --mem=128G
 
 # Load modules
 module load anaconda/2025
