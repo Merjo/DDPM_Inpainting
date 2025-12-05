@@ -1,4 +1,3 @@
-from src.data.log_standardizer import LogStandardizer
 import torch
 import os
 
@@ -12,20 +11,25 @@ class Config:
         self.log_every_epoch = True
         self.output_manager = None
         self.seed = 42
+        self.model_type = 'daily'  # choices: ['hourly', 'daily']
+
+        # Efficiency
+        self.do_mixed_precision = False  # TODO Not working yet
+        self.do_checkpointing = False  # TODO Not working yet
 
         # Data
 
+        self.cache_path = "../../../../p/tmp/merlinho/cache"
         self.data_ref = None
-        self.loader_ref = None
         self.scaler_ref = None
+        self.do_reload_scaler = False
         self.default = object()
-        self.scaler_class = LogStandardizer
 
         self.train_data_ref = None
         self.val_data_ref = None
-        self.train_loader_ref = None
-        self.val_loader_ref = None
-        self.val_fraction = 0.15
+        self.train_loaders_ref = None
+        self.val_loaders_ref = None
+        self.val_fraction = 0.15  # TODO Delete
 
         # Data parameters
 
@@ -33,20 +37,23 @@ class Config:
         self.min_coverage_ref = 0.1  # Minimum coverage for patches (0.0 to 1.0)
 
         self.start_year = 2001
-        self.end_year = 2010  # Inclusive
-        self.time_slices = 8760 # for one year #175320 or None for 20/all years # e.g., hourly data for one year 2020 (366 days)
+        self.end_year = 2017  # Inclusive
+        self.train_years = range(2001, 2012)
+        self.val_years = range(2012, 2018)
+        self.test_years = range(2018, 2019)
+        self.time_slices = None # 250  # TODO None
         self.reload = False
         self.drop_na = False
         self.augment = True
-        self.do_patch_diffusion = False
+        self.do_patch_diffusion = True
 
         # Importance Sampling parameters
 
         self.do_importance_sampling = self.do_patch_diffusion
-        self.isp_patch_sizes = [64,896] #[64, 128, 256, 512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
-        self.isp_shares = [0.05,0.95] #[0.125, 0.125, 0.5, 0.125, 0.125]
-        self.isp_s = 0.05318386633090607
-        self.isp_m = 1.3
+        self.isp_patch_sizes = [64, 128, 256, 448]#512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
+        self.isp_shares = [0.25,0.25,0.25,0.25]  #[0.2,0.2,0.2,0.2,0.2]
+        self.isp_s = 0.05
+        self.isp_m = 2
         self.isp_q_min = 2e-4
 
         # Training parameters
@@ -154,57 +161,63 @@ class Config:
     def data(self):
         if self.data_ref is None:
             from src.data.read_data import read_data
-            self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
-            self.scaler_ref = self.data_ref.scaler
+            self.data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
         return self.data_ref
-
-    @property
-    def scaler(self):
-        if self.scaler_ref is None:
-            from src.data.read_data import read_data
-            self.data_ref = read_data(reload=self.reload, scaler=self.scaler_class(), patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
-            self.scaler_ref = self.data_ref.scaler
-        return self.scaler_ref
-
-    @property
-    def loader(self):
-        if self.loader_ref is None:
-            from src.data.loader import get_loader
-            self.loader_ref = get_loader(self.data)
-        return self.loader_ref
     
-    @property 
-    def min_coverage(self):
-        if self.do_importance_sampling and self.do_patch_diffusion:
-            return 0.0
-        else:   
-            return self.min_coverage_ref
-
     @property
     def train_data(self):
         if self.train_data_ref is None:
-            self.train_data_ref, self.val_data_ref = self.data.train_val_split(val_fraction=self.val_fraction, seed=42)
+            from src.data.read_data import read_data
+            self.train_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.train_years, return_importance_prob=False)
         return self.train_data_ref
 
     @property
     def val_data(self):
         if self.val_data_ref is None:
-            self.train_data_ref, self.val_data_ref = self.data.train_val_split(val_fraction=self.val_fraction, seed=42)
+            from src.data.read_data import read_data
+            self.val_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.val_years, return_importance_prob=True)
         return self.val_data_ref
+    
+    @property
+    def test_data(self):
+        if self.test_data_ref is None:
+            from src.data.read_data import read_data
+            raise RuntimeError("Use test data only when absolutely sure!!")
+            self.test_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.test_years, return_importance_prob=True)
+        return self.test_data_ref
+
 
     @property
-    def train_loader(self):
-        if self.train_loader_ref is None:
-            from src.data.loader import get_loader
-            self.train_loader_ref = get_loader(self.train_data)
-        return self.train_loader_ref
+    def scaler(self):
+        if self.scaler_ref is None:
+            from src.data.log_standardizer import load_scaler
+            self.scaler_ref = load_scaler(reload=self.do_reload_scaler,
+                                          cache_path=self.cache_path,
+                                          years=self.years,
+                                          time_slices=self.time_slices)
+        return self.scaler_ref
+    
+    @property 
+    def min_coverage(self):
+        if self.do_importance_sampling or self.do_patch_diffusion:
+            print("[Config] Min coverage is not used with importance sampling or patch diffusion.")
+            return 0.0
+        else:   
+            return self.min_coverage_ref
 
     @property
-    def val_loader(self):
-        if self.val_loader_ref is None:
-            from src.data.loader import get_loader
-            self.val_loader_ref = get_loader(self.val_data)
-        return self.val_loader_ref
+    def train_loaders(self):
+        if self.train_loaders_ref is None:
+            from src.data.loader import get_loaders
+            self.train_loaders_ref = get_loaders(self.train_data)
+        return self.train_loaders_ref
+
+    @property
+    def val_loaders(self):
+        if self.val_loaders_ref is None:
+            from src.data.loader import get_loaders
+            self.val_loaders_ref = get_loaders(self.val_data)
+        return self.val_loaders_ref
 
     @property
     def current_output(self):
@@ -215,20 +228,13 @@ class Config:
     @property
     def vmin(self):
         if self.vmin_ref is None:
-            if self.do_patch_diffusion:
-                # ignore NaNs
-                self.vmin_ref = min(t[torch.isfinite(t)].min().item() for t in self.data.data_raw) * 1.1  # TODO Decide 1.1
-            else:
-                self.vmin_ref = self.data.data_raw.min().item() * 1.1
+            self.vmin_ref = min([d.data_raw[torch.isfinite(d.data_raw)].min() for d in self.data.datasets]).item() * 1.1  # TODO Decide 1.1
         return self.vmin_ref
 
     @property
     def vmax(self):
         if self.vmax_ref is None:
-            if self.do_patch_diffusion:
-                self.vmax_ref = max(t[torch.isfinite(t)].max().item() for t in self.data.data_raw)
-            else:
-                self.vmax_ref = self.data.data_raw.max().item()
+            self.vmax_ref = max([d.data_raw[torch.isfinite(d.data_raw)].max() for d in self.data.datasets]).item()
         return self.vmax_ref
 
     @property

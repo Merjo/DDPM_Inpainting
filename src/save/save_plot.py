@@ -103,14 +103,9 @@ def plot_inpainting(original, masked, inpainted, pct, lam, title='Inpainting Res
 
 
 
-def plot_random(dataset, n=6, title='Random Samples', out_dir=None):
-    """Save a random selection of dataset images into out_dir as plot#.png."""
-    # Scale back
-    dataset = [scale_back_numpy(x, cfg.scaler) for x in dataset]
- 
-    
+def get_new_filename(title, out_dir, folder):
     if out_dir is None:
-        out_dir = f"{cfg.current_output}/samples"
+        out_dir = f"{cfg.current_output}/{folder}"
     os.makedirs(out_dir, exist_ok=True)
     date_str = datetime.now().strftime("%m-%d %H:%M")
     title = f"{title}\n({date_str})"
@@ -126,11 +121,19 @@ def plot_random(dataset, n=6, title='Random Samples', out_dir=None):
     next_num = max(numbers, default=0) + 1
     filename = os.path.join(out_dir, f"plot{next_num}.png")
 
+    return filename
+
+
+def plot_random(dataset, n=6, title='Random Samples', out_dir=None, folder='samples'):
+    """Save a random selection of dataset images into out_dir as plot#.png."""
+    
+    filename = get_new_filename(title, out_dir=out_dir, folder=folder)
+
     # Pick random indices
     indices = random.sample(range(len(dataset)), n)
 
-    # Compute global min/max across all selected images
-    images = [dataset[idx].squeeze() for idx in indices]  # convert to numpy
+    # Select images
+    images = [scale_back_numpy(dataset[idx], cfg.scaler).squeeze() for idx in indices]
 
     # Create figure
     max_per_row = 8

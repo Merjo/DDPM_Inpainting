@@ -1,0 +1,25 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+slurmstepd-csl14c243: error: slurm_get_node_energy: Socket timed out on send/recv operation
+slurmstepd-csl14c243: error: _get_joules_task: can't get info from slurmd
+/var/spool/slurm/d/job5649713/slurm_script: line 23: 1286562 Killed                  python -u src/data/log_standardizer.py
+slurmstepd-csl14c243: error: Detected 1 oom_kill event in StepId=5649713.batch. Some of the step tasks have been OOM Killed.

@@ -1,0 +1,383 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+[Config] Min coverage is not used with importance sampling or patch diffusion.
+[Config] Min coverage is not used with importance sampling or patch diffusion.
+[Scaler] Loaded scaler from cache: ../../../../p/tmp/merlinho/cache/scaler_2001_2017.pkl
+[Config] Min coverage is not used with importance sampling or patch diffusion.
+Loading year 2001
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9686
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.71
+[PatchDiffusionDataset] Patch size 64: kept 71.31943010530662% (6908/9686) patches after IS, discarded 2778
+[Dataset] total patches kept after creation = 2922
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.64
+[PatchDiffusionDataset] Patch size 128: kept 64.47638603696099% (1884/2922) patches after IS, discarded 1038
+[Dataset] total patches kept after creation = 1127
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.43
+[PatchDiffusionDataset] Patch size 256: kept 42.59094942324756% (480/1127) patches after IS, discarded 647
+[Dataset] total patches kept after creation = 339
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.52
+[PatchDiffusionDataset] Patch size 448: kept 52.21238938053098% (177/339) patches after IS, discarded 162
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2001_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2002
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9862
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.69
+[PatchDiffusionDataset] Patch size 64: kept 68.22145609409857% (6728/9862) patches after IS, discarded 3134
+[Dataset] total patches kept after creation = 2649
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.58
+[PatchDiffusionDataset] Patch size 128: kept 58.24839562098906% (1543/2649) patches after IS, discarded 1106
+[Dataset] total patches kept after creation = 1116
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.42
+[PatchDiffusionDataset] Patch size 256: kept 41.935483870967744% (468/1116) patches after IS, discarded 648
+[Dataset] total patches kept after creation = 345
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.50
+[PatchDiffusionDataset] Patch size 448: kept 50.14492753623189% (173/345) patches after IS, discarded 172
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2002_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2003
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 7632
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.64
+[PatchDiffusionDataset] Patch size 64: kept 64.45230607966457% (4919/7632) patches after IS, discarded 2713
+[Dataset] total patches kept after creation = 2680
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.59
+[PatchDiffusionDataset] Patch size 128: kept 59.06716417910448% (1583/2680) patches after IS, discarded 1097
+[Dataset] total patches kept after creation = 1019
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.36
+[PatchDiffusionDataset] Patch size 256: kept 36.21197252208047% (369/1019) patches after IS, discarded 650
+[Dataset] total patches kept after creation = 312
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.38
+[PatchDiffusionDataset] Patch size 448: kept 36.53846153846153% (114/312) patches after IS, discarded 198
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2003_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2004
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9363
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.67
+[PatchDiffusionDataset] Patch size 64: kept 66.0792481042401% (6187/9363) patches after IS, discarded 3176
+[Dataset] total patches kept after creation = 2645
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.59
+[PatchDiffusionDataset] Patch size 128: kept 57.61814744801512% (1524/2645) patches after IS, discarded 1121
+[Dataset] total patches kept after creation = 1219
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.45
+[PatchDiffusionDataset] Patch size 256: kept 43.80639868744873% (534/1219) patches after IS, discarded 685
+[Dataset] total patches kept after creation = 346
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.48
+[PatchDiffusionDataset] Patch size 448: kept 48.84393063583815% (169/346) patches after IS, discarded 177
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2004_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2005
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9390
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.66
+[PatchDiffusionDataset] Patch size 64: kept 66.30457933972312% (6226/9390) patches after IS, discarded 3164
+[Dataset] total patches kept after creation = 2800
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.59
+[PatchDiffusionDataset] Patch size 128: kept 58.5% (1638/2800) patches after IS, discarded 1162
+[Dataset] total patches kept after creation = 1118
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.42
+[PatchDiffusionDataset] Patch size 256: kept 41.055456171735244% (459/1118) patches after IS, discarded 659
+[Dataset] total patches kept after creation = 336
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.45
+[PatchDiffusionDataset] Patch size 448: kept 46.726190476190474% (157/336) patches after IS, discarded 179
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2005_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2006
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9629
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.69
+[PatchDiffusionDataset] Patch size 64: kept 68.74026378647835% (6619/9629) patches after IS, discarded 3010
+[Dataset] total patches kept after creation = 2727
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.60
+[PatchDiffusionDataset] Patch size 128: kept 60.286028602860284% (1644/2727) patches after IS, discarded 1083
+[Dataset] total patches kept after creation = 1109
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.40
+[PatchDiffusionDataset] Patch size 256: kept 40.396753832281334% (448/1109) patches after IS, discarded 661
+[Dataset] total patches kept after creation = 338
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.48
+[PatchDiffusionDataset] Patch size 448: kept 48.22485207100592% (163/338) patches after IS, discarded 175
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2006_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2007
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9753
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.71
+[PatchDiffusionDataset] Patch size 64: kept 70.8499948733723% (6910/9753) patches after IS, discarded 2843
+[Dataset] total patches kept after creation = 2663
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.64
+[PatchDiffusionDataset] Patch size 128: kept 64.32594817874578% (1713/2663) patches after IS, discarded 950
+[Dataset] total patches kept after creation = 1109
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.42
+[PatchDiffusionDataset] Patch size 256: kept 44.454463480613164% (493/1109) patches after IS, discarded 616
+[Dataset] total patches kept after creation = 321
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.47
+[PatchDiffusionDataset] Patch size 448: kept 44.54828660436137% (143/321) patches after IS, discarded 178
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2007_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2008
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9019
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.68
+[PatchDiffusionDataset] Patch size 64: kept 67.89000997893336% (6123/9019) patches after IS, discarded 2896
+[Dataset] total patches kept after creation = 2869
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.62
+[PatchDiffusionDataset] Patch size 128: kept 60.82258626699198% (1745/2869) patches after IS, discarded 1124
+[Dataset] total patches kept after creation = 1137
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.42
+[PatchDiffusionDataset] Patch size 256: kept 42.040457343887425% (478/1137) patches after IS, discarded 659
+[Dataset] total patches kept after creation = 351
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.49
+[PatchDiffusionDataset] Patch size 448: kept 44.729344729344724% (157/351) patches after IS, discarded 194
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2008_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2009
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9528
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.69
+[PatchDiffusionDataset] Patch size 64: kept 68.99664147774979% (6574/9528) patches after IS, discarded 2954
+[Dataset] total patches kept after creation = 2825
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.63
+[PatchDiffusionDataset] Patch size 128: kept 62.93805309734514% (1778/2825) patches after IS, discarded 1047
+[Dataset] total patches kept after creation = 1099
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.41
+[PatchDiffusionDataset] Patch size 256: kept 42.038216560509554% (462/1099) patches after IS, discarded 637
+[Dataset] total patches kept after creation = 347
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.49
+[PatchDiffusionDataset] Patch size 448: kept 48.126801152737755% (167/347) patches after IS, discarded 180
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2009_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2010
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9843
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.69
+[PatchDiffusionDataset] Patch size 64: kept 69.59260388093061% (6850/9843) patches after IS, discarded 2993
+[Dataset] total patches kept after creation = 2930
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.62
+[PatchDiffusionDataset] Patch size 128: kept 61.70648464163823% (1808/2930) patches after IS, discarded 1122
+[Dataset] total patches kept after creation = 1153
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.43
+[PatchDiffusionDataset] Patch size 256: kept 41.45706851691241% (478/1153) patches after IS, discarded 675
+[Dataset] total patches kept after creation = 342
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.46
+[PatchDiffusionDataset] Patch size 448: kept 46.198830409356724% (158/342) patches after IS, discarded 184
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2010_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2011
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 7672
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.67
+[PatchDiffusionDataset] Patch size 64: kept 66.51459854014598% (5103/7672) patches after IS, discarded 2569
+[Dataset] total patches kept after creation = 2766
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.66
+[PatchDiffusionDataset] Patch size 128: kept 65.8351409978308% (1821/2766) patches after IS, discarded 945
+[Dataset] total patches kept after creation = 1034
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.39
+[PatchDiffusionDataset] Patch size 256: kept 39.458413926499034% (408/1034) patches after IS, discarded 626
+[Dataset] total patches kept after creation = 317
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.41
+[PatchDiffusionDataset] Patch size 448: kept 40.063091482649845% (127/317) patches after IS, discarded 190
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2011_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2012
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9975
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.69
+[PatchDiffusionDataset] Patch size 64: kept 69.06265664160401% (6889/9975) patches after IS, discarded 3086
+[Dataset] total patches kept after creation = 2777
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.58
+[PatchDiffusionDataset] Patch size 128: kept 58.912495498739645% (1636/2777) patches after IS, discarded 1141
+[Dataset] total patches kept after creation = 1136
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.43
+[PatchDiffusionDataset] Patch size 256: kept 42.517605633802816% (483/1136) patches after IS, discarded 653
+[Dataset] total patches kept after creation = 344
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.47
+[PatchDiffusionDataset] Patch size 448: kept 46.22093023255814% (159/344) patches after IS, discarded 185
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2012_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2013
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 8852
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.67
+[PatchDiffusionDataset] Patch size 64: kept 66.59511974694983% (5895/8852) patches after IS, discarded 2957
+[Dataset] total patches kept after creation = 2928
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.62
+[PatchDiffusionDataset] Patch size 128: kept 62.431693989071036% (1828/2928) patches after IS, discarded 1100
+[Dataset] total patches kept after creation = 1141
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.40
+[PatchDiffusionDataset] Patch size 256: kept 40.57843996494303% (463/1141) patches after IS, discarded 678
+[Dataset] total patches kept after creation = 351
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.44
+[PatchDiffusionDataset] Patch size 448: kept 42.45014245014245% (149/351) patches after IS, discarded 202
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2013_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2014
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 10538
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.70
+[PatchDiffusionDataset] Patch size 64: kept 69.93736951983298% (7370/10538) patches after IS, discarded 3168
+[Dataset] total patches kept after creation = 2935
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.58
+[PatchDiffusionDataset] Patch size 128: kept 57.03577512776832% (1674/2935) patches after IS, discarded 1261
+[Dataset] total patches kept after creation = 1213
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.39
+[PatchDiffusionDataset] Patch size 256: kept 39.3239901071723% (477/1213) patches after IS, discarded 736
+[Dataset] total patches kept after creation = 350
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.50
+[PatchDiffusionDataset] Patch size 448: kept 49.714285714285715% (174/350) patches after IS, discarded 176
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2014_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2015
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9229
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.68
+[PatchDiffusionDataset] Patch size 64: kept 68.30642539820133% (6304/9229) patches after IS, discarded 2925
+[Dataset] total patches kept after creation = 3009
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.62
+[PatchDiffusionDataset] Patch size 128: kept 61.5819209039548% (1853/3009) patches after IS, discarded 1156
+[Dataset] total patches kept after creation = 1167
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.41
+[PatchDiffusionDataset] Patch size 256: kept 41.131105398457585% (480/1167) patches after IS, discarded 687
+[Dataset] total patches kept after creation = 333
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.43
+[PatchDiffusionDataset] Patch size 448: kept 45.04504504504504% (150/333) patches after IS, discarded 183
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2015_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2016
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 9401
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.66
+[PatchDiffusionDataset] Patch size 64: kept 65.8440591426444% (6190/9401) patches after IS, discarded 3211
+[Dataset] total patches kept after creation = 2931
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.66
+[PatchDiffusionDataset] Patch size 128: kept 65.71136131013307% (1926/2931) patches after IS, discarded 1005
+[Dataset] total patches kept after creation = 1209
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.39
+[PatchDiffusionDataset] Patch size 256: kept 39.950372208436725% (483/1209) patches after IS, discarded 726
+[Dataset] total patches kept after creation = 342
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.50
+[PatchDiffusionDataset] Patch size 448: kept 48.53801169590643% (166/342) patches after IS, discarded 176
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2016_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+Loading year 2017
+[PatchDiffusionDataset] Timestep splits per patch size:
+  Patch size 64: 91 timesteps assigned
+  Patch size 128: 91 timesteps assigned
+  Patch size 256: 91 timesteps assigned
+  Patch size 448: 91 timesteps assigned
+[Dataset] total patches kept after creation = 10202
+[PatchDiffusionDataset] Patch size 64 Kept patches fraction (expected) = 0.70
+[PatchDiffusionDataset] Patch size 64: kept 69.91766320329347% (7133/10202) patches after IS, discarded 3069
+[Dataset] total patches kept after creation = 3022
+[PatchDiffusionDataset] Patch size 128 Kept patches fraction (expected) = 0.65
+[PatchDiffusionDataset] Patch size 128: kept 65.12243547319656% (1968/3022) patches after IS, discarded 1054
+[Dataset] total patches kept after creation = 1198
+[PatchDiffusionDataset] Patch size 256 Kept patches fraction (expected) = 0.43
+[PatchDiffusionDataset] Patch size 256: kept 42.82136894824708% (513/1198) patches after IS, discarded 685
+[Dataset] total patches kept after creation = 337
+[PatchDiffusionDataset] Patch size 448 Kept patches fraction (expected) = 0.53
+[PatchDiffusionDataset] Patch size 448: kept 49.554896142433236% (167/337) patches after IS, discarded 170
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2017_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+
+[Info] Combined dataset from years 2001-2017, total patches = 149140 ([108928, 29566, 7976, 2670])
+
+[Info] Estimated joblib dump size: 15913.39 MB
+
+[Cache] Saved dataset to ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2001-2017_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+
+Dataset shapes: [(108928, 1, 64, 64), (29566, 1, 128, 128), (7976, 1, 256, 256), (2670, 1, 448, 448)]
+
+Output path set to: output_new/random
+[Config] Min coverage is not used with importance sampling or patch diffusion.
+[Config] Min coverage is not used with importance sampling or patch diffusion.
+[Config] Min coverage is not used with importance sampling or patch diffusion.
+
+[Cache] Loaded dataset from ../../../../p/tmp/merlinho/cache/precip_patch_dataset_daily_2001-2017_64_128_256_448_25_25_25_25_isp_0.05_2_0.0002_ag_multi_patch.pkl
+
+[Plot] Saved output_new/random/samples/plot10.png

@@ -292,6 +292,43 @@ class UNetBlock(torch.nn.Module):
     def forward(self, x, emb):
         orig = x
 
+        # First conv
+        x = self.conv0(silu(self.norm0(x)))
+
+        # Affine transformation from embedding
+        params = self.affine(emb).unsqueeze(2).unsqueeze(3).to(x.dtype)
+        if self.adaptive_scale:
+            scale, shift = params.chunk(chunks=2, dim=1)
+            x = silu(shift + self.norm1(x) * (scale + 1))  # out-of-place
+        else:
+            x = silu(self.norm1(x + params))  # out-of-place
+
+        # Second conv + dropout
+        x = self.conv1(torch.nn.functional.dropout(x, p=self.dropout, training=self.training))
+
+        # Skip connection (out-of-place)
+        x = x + (self.skip(orig) if self.skip is not None else orig)
+        x = x * self.skip_scale
+
+        # Optional attention
+        if self.num_heads:
+            q, k, v = (
+                self.qkv(self.norm2(x))
+                .reshape(x.shape[0] * self.num_heads, x.shape[1] // self.num_heads, 3, -1)
+                .unbind(2)
+            )
+            w = AttentionOp.apply(q, k)
+            a = torch.einsum("nqk,nck->ncq", w, v)
+            x = x + self.proj(a.reshape(*x.shape))  # out-of-place
+            x = x * self.skip_scale
+
+        return x
+
+
+
+    def forward_old(self, x, emb):
+        orig = x
+
         x = self.conv0(silu(self.norm0(x)))
 
         params = self.affine(emb).unsqueeze(2).unsqueeze(3).to(x.dtype)

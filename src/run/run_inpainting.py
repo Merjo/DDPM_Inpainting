@@ -19,8 +19,8 @@ import torch.nn.functional as F
 from src.utils.output_manager import OutputManager
 
 
-def test_inpainting(diffusion, unet, loader, pct=cfg.inpainting_test_coverage, n=6, lam=cfg.dps_lam):
-    x_known = loader.get_samples(n_samples=n)
+def test_inpainting(diffusion, unet, loaders, pct=cfg.inpainting_test_coverage, n=6, lam=cfg.dps_lam):
+    x_known = loaders.get_samples(n_samples=n)
     #mask = torch.rand_like(x_known) < pct
 
     mask = (torch.rand_like(x_known) < pct).float().to(cfg.device)  # TODO necessary?
@@ -63,7 +63,7 @@ def run_inpainting(param_file=None,
     
     output = OutputManager(run_type="inpainting")
 
-    loader = cfg.loader
+    loaders = cfg.val_loaders
     if param_file is None or model_file is None:
         param_file, model_file, best_loss = find_best_saved_model()
     best_loss = float(param_file.split('/')[-1].split("_")[2])  # TODO make more stable in case of param file name changes
@@ -71,7 +71,7 @@ def run_inpainting(param_file=None,
     diffusion, unet, params, optimizer, scheduler = load_model(param_file=param_file,
                                                                model_file=model_file)
 
-    test_inpainting(diffusion, unet, loader)
+    test_inpainting(diffusion, unet, loaders)
 
     output.finalize(best_loss, unet, epochs=cfg.epochs, params=params)  # TODO epochs might be wrong here
 

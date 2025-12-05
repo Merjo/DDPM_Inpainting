@@ -20,8 +20,8 @@ from src.utils.output_manager import OutputManager
 from src.run.run_inpainting import test_inpainting
 
 
-def test_extensive_inpainting(diffusion, unet, loader, n=20):
-    coverage_levels = [0.001, 0.005, 0.01, 0.05, 0.999]  # [0.999, 0.99, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01, 0.001]
+def test_extensive_inpainting(diffusion, unet, loaders, n=20):
+    coverage_levels = [0.001, 0.005, 0.01, 0.999]  # [0.999, 0.99, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01, 0.001]
     
     ten_powers = range(-5,8)
     multipliers = [1,2,5]
@@ -30,16 +30,18 @@ def test_extensive_inpainting(diffusion, unet, loader, n=20):
         for multiplier in multipliers:
             factor = 10**ten_power
             lam_levels.append(factor*multiplier)
-    print(f'Lam levels: {lam_levels}')
     
     #lam_levels = [0.001,0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1,2,5, 10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000]#[0.0, 0.01, 0.03, 0.05, 0.1, 0.3, 0.5, 1, 3, 5, 10]
+
+    lam_levels = [0.01,0.04,0.07,0.1]
+    print(f'Lam levels: {lam_levels}')
 
     results = []   # list of dicts → will become DataFrame rows
 
     for pct in coverage_levels:
         for lam in lam_levels:
             print(f"\nTesting inpainting with {pct*100}% known data and lambda {lam}:")
-            mse_loss = test_inpainting(diffusion, unet, loader, pct=pct, n=n, lam=lam)
+            mse_loss = test_inpainting(diffusion, unet, loaders, pct=pct, n=n, lam=lam)
 
             results.append({
                 "coverage": pct,
@@ -69,7 +71,7 @@ def run_extensive_inpainting(param_file=None,
     
     output = OutputManager(run_type="extensive_inpainting")
 
-    loader = cfg.loader
+    loaders = cfg.val_loaders
     if param_file is None or model_file is None:
         param_file, model_file, best_loss = find_best_saved_model()
     best_loss = float(param_file.split('/')[-1].split("_")[2])  # TODO make more stable in case of param file name changes
@@ -77,7 +79,7 @@ def run_extensive_inpainting(param_file=None,
     diffusion, unet, params, optimizer, scheduler = load_model(param_file=param_file,
                                                                model_file=model_file)
 
-    test_extensive_inpainting(diffusion, unet, loader)
+    test_extensive_inpainting(diffusion, unet, loaders)
 
 
     output.finalize(best_loss, unet, epochs=cfg.epochs, params=params)  # TODO epochs might be wrong here

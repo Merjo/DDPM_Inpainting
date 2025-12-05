@@ -4,9 +4,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 import optuna
 from src.save.save_plot import plot_random, plot_histogram
+from torch.cuda.amp import autocast, GradScaler
 from src.config import cfg
 import datetime
 import copy
+import numpy as np
 
 class Diffusion:
     def __init__(
@@ -93,8 +95,8 @@ class Diffusion:
     def train(
         self,
         optimizer,
-        train_loader=cfg.train_loader,
-        val_loader=cfg.val_loader,
+        train_loaders=cfg.train_loaders,
+        val_loaders=cfg.val_loaders,
         epochs=cfg.epochs,
         scheduler=None,
         trial=None,
@@ -125,32 +127,62 @@ class Diffusion:
         bad_epochs = 0
         last_epoch = epochs
 
-        n_batches = len(train_loader)
-
         best_model = copy.deepcopy(self.model)
 
         do_save_model_regular = cfg.output_manager is not None and cfg.do_save_model_regular
 
+        if cfg.do_mixed_precision:
+            scaler = GradScaler(enabled=True)  
+
         for epoch in range(epochs):
             datestr = datetime.datetime.now().strftime("%b%d_%H%M")
             print(f"[{datestr}] Starting epoch {epoch+1}/{epochs}...")
-            total_loss = 0.0
+            losses = []
 
-            for imgs in train_loader:
-                imgs = imgs.to(self.device)
-                t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
-                loss = self.p_losses(imgs, t)
+            for train_loader in train_loaders:
+                print('[Diffusion Train] Iterating through loader for patch size', train_loader.patch_size)
+                for imgs in train_loader:
+                    imgs = imgs.to(self.device)
+                    t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
 
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
+                    """# --- Log memory before forward ---
+                    print("[Memory] Before forward - allocated: {:.2f} GB, reserved: {:.2f} GB".format(
+                        torch.cuda.memory_allocated() / 1e9,
+                        torch.cuda.memory_reserved() / 1e9
+                    ))"""
 
-                total_loss += loss.item()
 
+                    if cfg.do_mixed_precision:
+                        with autocast():                     # <── FP16 forward pass
+                            loss = self.p_losses(imgs, t)
+                        optimizer.zero_grad()
+                        scaler.scale(loss).backward()
+                        scaler.step(optimizer)
+                        scaler.update()
 
-            avg_loss = total_loss / n_batches
+                    else:
+                        loss = self.p_losses(imgs, t)
+                        optimizer.zero_grad()
+                        loss.backward()
+                        optimizer.step()
+
+                    """# --- Log memory after backward ---
+                    print("[Memory] After backward - allocated: {:.2f} GB, reserved: {:.2f} GB".format(
+                        torch.cuda.memory_allocated() / 1e9,
+                        torch.cuda.memory_reserved() / 1e9
+                    ))"""
+
+                    losses.append(loss.item())
+
+                    if True:
+                        del imgs, t, loss
+                        torch.cuda.empty_cache()
+
+            losses = np.array(losses)
+            total_loss = losses * train_loaders.loss_weights
+            avg_loss = sum(total_loss) / sum(train_loaders.loss_weights)
                 
-            val_loss = self.compute_val_loss(val_loader)
+            val_loss = self.compute_val_loss(val_loaders)
             
             if log_every_epoch:
                 print(f"Epoch {epoch+1}/{epochs} - train_loss: {avg_loss:.6f} - val_loss: {val_loss:.6f}")
@@ -168,7 +200,7 @@ class Diffusion:
                     break
 
             # Report to Optuna
-            if trial is not None and val_loader is not None:
+            if trial is not None and val_loaders is not None:
                 trial.report(val_loss, epoch)
                 if trial.should_prune():
                     raise optuna.TrialPruned()
@@ -194,16 +226,23 @@ class Diffusion:
 
         return best_loss
     
-    def compute_val_loss(self, val_loader):
+    def compute_val_loss(self, val_loaders):
         self.model.eval()
         total_val_loss = 0.0
+        total_weight = 0.0
         with torch.no_grad():
-            for imgs in val_loader:
-                imgs = imgs.to(self.device)
-                t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
-                loss = self.p_losses(imgs, t)
-                total_val_loss += loss.item()
-        avg_val_loss = total_val_loss / len(val_loader)
+            for val_loader in val_loaders:
+                for imgs, q_n in val_loader:
+                    imgs = imgs.to(self.device)
+                    q_n = q_n.to(self.device)
+                    t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
+                    loss = self.p_losses(imgs, t)
+                    
+                    # Importance-weighted loss
+                    weighted_loss = (loss / q_n).sum()
+                    total_val_loss += weighted_loss.item()
+                    total_weight += (1.0 / q_n).sum().item()
+        avg_val_loss = total_val_loss / total_weight
         self.model.train()
         return avg_val_loss
 
@@ -372,88 +411,3 @@ class Diffusion:
         result = torch.cat(all_outputs, dim=0)
 
         return result
-
-
-    @torch.no_grad()
-    def inpaint_dps_old(self, x_known, mask, n_steps=None, lam=cfg.dps_lam):
-        self.model.eval()
-        T = n_steps or self.T
-        device = x_known.device
-        x = torch.randn_like(x_known)  # start from noise
-        for t in reversed(range(T)):
-            t_batch = torch.full((x.size(0),), t, device=device, dtype=torch.long)
-
-            alpha_t = self.alpha[t] 
-            alpha_hat_t = self.alpha_hat[t]
-            beta_t = self.beta[t]
-            # Z3 Predict Noise
-            pred_noise = self.model(x, t_batch)
-
-            # 2. DDPM mean
-            mu_theta = (1 / torch.sqrt(alpha_t)) * (
-                x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise)
-            # 3. Predict x0 from x_t
-            x0_pred = (x - torch.sqrt(1 - alpha_hat_t) * pred_noise) / torch.sqrt(alpha_hat_t)
-            # 4. Compute DPS guidance (nudging predicted x0 toward known pixels)
-            guidance = lam * (1 - alpha_hat_t) * mask * (x_known - x0_pred)
-            # 5. Update mean with DPS
-            mu_dps = mu_theta + guidance
-
-            # 6. Add noise for t>0
-            x = mu_dps if t == 0 else mu_dps + torch.sqrt(beta_t) * torch.randn_like(x)
-
-            # 7. Optional clamping
-            if t > cfg.n_skip_clamp:
-                clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
-                x = x.clamp(clamp_range[0], clamp_range[1])
-
-        return x
-
-
-
-    @torch.no_grad()
-    def inpaint_old(self, x_known, mask, n_steps=None, lam=cfg.dps_lam, do_use_dps=cfg.do_use_dps):
-        """
-        Perform inpainting using the DDPM model.
-        """
-        self.model.eval()
-        T = n_steps or self.T
-        x = torch.randn_like(x_known)
-
-        lam = lam if do_use_dps else 1
-
-        for t in reversed(range(T)):
-            if t % 50 == 0:
-                print(f'Inpainting, {(T - t) / 10}%')
-
-            t_batch = torch.full((x.size(0),), t, device=self.device, dtype=torch.long)
-            pred_noise = self.model(x, t_batch)
-
-            alpha_t = self.alpha[t]
-            alpha_hat_t = self.alpha_hat[t]
-
-            # DDPM reverse step
-            x = (1 / torch.sqrt(alpha_t)) * (
-                x - ((1 - alpha_t) / torch.sqrt(1 - alpha_hat_t)) * pred_noise
-            )
-
-            if t > 0:
-                z = torch.randn_like(x)
-                beta_t = self.beta[t]
-                x = x + torch.sqrt(beta_t) * z
-
-            if t > cfg.n_skip_clamp:  # Optional: skip last few timesteps
-                    clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
-                    x = x.clamp(clamp_range[0], clamp_range[1])
-
-            # Inpainting step: enforce known pixels
-            if t > T * cfg.dps_hard_overwrite:
-                # Early steps → soft guidance
-                x = x + lam * mask * (x_known - x)
-            else:
-                # Late steps → hard overwrite
-                x = mask * x_known + (1 - mask) * x
-
-        return x
-
-    

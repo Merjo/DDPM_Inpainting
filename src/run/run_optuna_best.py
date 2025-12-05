@@ -9,7 +9,6 @@ import numpy as np
 import torch
 from PIL import Image
 from matplotlib import pyplot as plt
-from src.data.precipitation_dataset import PrecipitationPatchDataset
 from src.utils.output_manager import OutputManager
 from src.config import cfg
 
@@ -28,9 +27,9 @@ def save_generated_samples(diff, outdir="samples", n=8, step_name="final", label
         plt.imsave(f"{outdir}/gen_{step_name}_{i}.png", samples[i,0], cmap="viridis")
         
 @torch.no_grad()
-def save_real_examples(loader, outdir="samples", n=8):
+def save_real_examples(loaders, outdir="samples", n=8):
     os.makedirs(outdir, exist_ok=True)
-    batch = next(iter(loader))
+    batch = next(iter(loaders))
     x, _ = batch if isinstance(batch, (list, tuple)) else (batch, None)
 
     x = x[:n].detach().cpu().numpy()
@@ -103,7 +102,7 @@ if __name__=='__main__':
     save_generated_samples(diffusion, outdir="samples", n=8, step_name="final") 
 
     # Save real examples
-    loader = cfg.loader
-    save_real_examples(loader, outdir="samples", n=8)
+    loaders = cfg.val_loaders
+    save_real_examples(loaders, outdir="samples", n=8)
     # Plot comparison
     plot_samples_grid("samples", "samples", n=8, save_path="samples_comparison.png")   

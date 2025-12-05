@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH --job-name=read_data
-#SBATCH --output=logs/read_data_%j.out
-#SBATCH --error=logs/read_data_%j.err
-#SBATCH --qos=gpumedium
+#SBATCH --job-name=scaler
+#SBATCH --output=logs/scaler_%j.out
+#SBATCH --error=logs/scaler_%j.err
+#SBATCH --qos=gpushort
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:2
 #SBATCH --ntasks=1
@@ -20,4 +20,4 @@ source activate diffusion_rain
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-python -u src/data/read_data.py
+python -u src/data/log_standardizer.py

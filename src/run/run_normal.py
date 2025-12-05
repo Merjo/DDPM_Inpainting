@@ -22,7 +22,6 @@ def run_model_normal(epochs,
                      optimizer,
                      scheduler,
                      lr):
-    loader = cfg.loader
     # Prepare model, diffusion, optimizer, scheduler
     diffusion, optimizer, scheduler = prepare_run(epochs,
                                                   model_channels,
@@ -44,8 +43,8 @@ def run_model_normal(epochs,
     # Train
     best_rmse = diffusion.train(
         optimizer, 
-        train_loader=cfg.train_loader, 
-        val_loader=cfg.val_loader, 
+        train_loaders=cfg.train_loaders, 
+        val_loaders=cfg.val_loaders, 
         epochs=epochs,
         patience=patience, 
         scheduler=scheduler, 
@@ -58,7 +57,8 @@ def run_model_normal(epochs,
     return best_rmse, diffusion
 
 if __name__=='__main__':
-    epochs=cfg.epochs
+    print('\n\nONLY 2 EPOCHS!!!\n\n')
+    epochs=2#cfg.epochs
     patience=cfg.patience
 
     params = {

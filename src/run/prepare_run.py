@@ -2,6 +2,7 @@ from src.config import cfg
 from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
 from src.utils.output_manager import OutputManager
 from src.model.song.song_unet import SongUNet
+from src.model.unet import UNet
 from src.model.diffusion import Diffusion
 import torch
 
@@ -38,7 +39,7 @@ def prepare_run(epochs=cfg.epochs,
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
     # --- Rebuild UNet ---
-    unet = SongUNet(
+    unet = UNet(
         img_resolution=cfg.patch_size,
         in_channels=1,
         out_channels=1,

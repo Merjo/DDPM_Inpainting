@@ -1,0 +1,23 @@
+Torch version: 2.5.1
+CUDA available: True
+CUDA device count: 2
+CUDA device name: NVIDIA H100 80GB HBM3
+[Log Scaler] Reload!
+[Log Scaler] Reloading...
+[LogScaler] Loaded data
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] test candidate c {c}
+[LogScaler] Auto-selected c = 0.0001
+[LogScaler] mean=1.4722, std=3.1408
+Raw values stats:
+min: 0.0 max: 20.44799
+NaNs: 0 Infs: 0
+
+[Cache] Saved scaler to ../../../../p/tmp/merlinho//scaler_2001_2017.pkl
+

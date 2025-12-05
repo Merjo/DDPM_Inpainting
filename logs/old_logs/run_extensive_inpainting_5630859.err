@@ -1,0 +1,12 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+Traceback (most recent call last):
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/run/run_extensive_inpainting.py", line 11, in <module>
+    from src.config import cfg
+  File "/home/merlinho/testspace/DDPM_Inpainting/src/config.py", line 46
+    self.isp_patch_sizes = 
+                           ^
+SyntaxError: invalid syntax

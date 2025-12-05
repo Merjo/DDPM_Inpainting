@@ -195,7 +195,7 @@ def run_best(param_file=None,
                                                                           epochs=epochs)
                             
     # --- Continue training ---
-    best_loss = diffusion.train(optimizer, train_loader=cfg.train_loader, val_loader=cfg.val_loader, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
+    best_loss = diffusion.train(optimizer, train_loaders=cfg.train_loaders, val_loaders=cfg.val_loaders, epochs=epochs, scheduler=scheduler, patience=patience, log_every_epoch=True, sample_every=cfg.sample_every)
 
     return diffusion, unet, best_loss, params  # TODO: need unet/diffusion?
 

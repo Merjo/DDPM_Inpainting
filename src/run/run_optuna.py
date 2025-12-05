@@ -107,7 +107,7 @@ def get_training_parameters(trial):
     return optimizer_type, scheduler_type, lr
 
 
-def objective(trial, loader, run_dir, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience):
+def objective(trial, loaders, run_dir, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience):
     #device_id = trial.number % torch.cuda.device_count()
     #torch.cuda.set_device(device_id)
 
@@ -166,7 +166,7 @@ def objective(trial, loader, run_dir, max_epochs=cfg.optuna_epochs, patience=cfg
 
     # --- Training ---
     best_loss = diffusion.train(
-        optimizer, train_loader=cfg.train_loader, val_loader=cfg.val_loader, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every, sample_info=f'Trial {trial.number}'
+        optimizer, train_loaders=cfg.train_loaders, val_loaders=cfg.val_loaders, epochs=max_epochs, scheduler=scheduler, trial=trial, patience=patience, sample_every=cfg.optuna_sample_every, sample_info=f'Trial {trial.number}'
     )
 
     # --- Save checkpoint for this trial ---
@@ -187,7 +187,7 @@ def objective(trial, loader, run_dir, max_epochs=cfg.optuna_epochs, patience=cfg
 def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience, resume=False, run_dir=None):
     if run_dir is None:
         run_dir = f'{cfg.current_output}/trials'
-    loader = cfg.loader
+    loaders = cfg.val_loaders
     study = optuna.create_study(
         direction='minimize',
         study_name = "rain_diffusion" if resume else f"rain_diffusion_{int(time.time())}",
@@ -195,7 +195,7 @@ def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patie
         load_if_exists=resume,
     )
 
-    study.optimize(lambda trial: objective(trial, loader=loader, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=1)#torch.cuda.device_count())
+    study.optimize(lambda trial: objective(trial, loaders=loaders, run_dir=run_dir, max_epochs=max_epochs, patience=patience), n_trials=n_trials, n_jobs=1)#torch.cuda.device_count())
 
     # --- Best trial ---
     best_trial = study.best_trial

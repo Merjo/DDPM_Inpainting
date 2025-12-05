@@ -1,0 +1,47 @@
+#######################################################################################
+### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
+### Do not run 'conda init' if prompted.                                            ###
+### 'conda init' will modify your shell outside of the `module` environment         ###
+#######################################################################################
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4238482, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4317968, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4329589, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4373556, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4452099, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4623378, which is more than MessageTimeout (10s). The result won't be delivered
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4760333, which is more than MessageTimeout (10s). The result won't be delivered
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=-4872040, which is more than MessageTimeout (10s). The result won't be delivered
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]
+/home/merlinho/testspace/DDPM_Inpainting/src/data/single_patch_dataset.py:74: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/native/IndexingUtils.h:27.)
+  patches = patches[~mask_nan]

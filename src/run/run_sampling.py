@@ -20,7 +20,7 @@ def run_sampling(param_file,
                                                                model_file=model_file)
     samples = diffusion.sample(n_samples=cfg.n_hist_samples, chunk_size=8, verbose=True)
     diffusion.plot_samples(samples[:cfg.n_samples], epoch=1, sample_info="Run Sampling")
-    diffusion.plot_histogram(loader=cfg.loader, epoch=1, sample_info="Run Sampling", samples=samples)
+    diffusion.plot_histogram(loaders=cfg.val_loaders, epoch=1, sample_info="Run Sampling", samples=samples)
 
     output.finalize(best_loss, unet, epochs=cfg.epochs, params=params)
 

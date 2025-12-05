@@ -2,7 +2,7 @@
 #SBATCH --job-name=extensive_inpainting_run
 #SBATCH --output=logs/run_extensive_inpainting_%j.out
 #SBATCH --error=logs/run_extensive_inpainting_%j.err
-#SBATCH --qos=gpushort
+#SBATCH --qos=gpumedium
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:2
 #SBATCH --ntasks=1
