@@ -1,8 +1,0 @@
-#######################################################################################
-### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
-### Do not run 'conda init' if prompted.                                            ###
-### 'conda init' will modify your shell outside of the `module` environment         ###
-#######################################################################################
-slurmstepd-csl14c247: error: slurm_get_node_energy: Connection reset by peer
-slurmstepd-csl14c247: error: _get_joules_task: can't get info from slurmd
-slurmstepd-csl14c247: error: *** JOB 5659837 ON csl14c247 CANCELLED AT 2025-12-02T12:53:36 ***

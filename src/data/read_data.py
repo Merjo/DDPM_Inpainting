@@ -9,18 +9,24 @@ from src.save.save_plot import plot_random
 from src.data.multi_patch_dataset import MultiPatchDataset
 
 
-def read_raw_data(years):
+def read_raw_data(years, 
+                  aggregate_daily = cfg.model_type=='daily', 
+                  delete_coords=True,
+                  time_slices = cfg.time_slices):
     # if years is int -> make it a list
     if isinstance(years, int):
         years = [years]
     paths = [f"../../../../p/tmp/merlinho/diffusion_data/data/pr_RADKLIM-1km_v1.0_{year}0101_{year}1231.nc" for year in years]
     all_data = xr.open_mfdataset(paths, parallel=False, engine="netcdf4")
-    data_array = all_data["RR"].transpose("time", "x", "y").reset_coords(drop=True)
+    data_array = all_data['RR']
 
-    if cfg.model_type == 'daily':
+    if delete_coords:
+        data_array = data_array.transpose("time", "x", "y").reset_coords(drop=True)
+
+    if aggregate_daily:
         data_array = data_array.resample(time="1D").sum()
 
-    if cfg.time_slices is not None:
+    if time_slices is not None:
         data_array = data_array.isel(time=slice(0, cfg.time_slices)) 
 
     # check for negative values
@@ -48,7 +54,9 @@ def read_one_year(reload=False, scaler=None,
             cache_path = f"{cache_folder}/precip_patch_dataset_{cfg.model_type}_{year}_{ps_string}_{shares_string}" \
                         f"{f'_isp_{cfg.isp_s}_{cfg.isp_m}_{cfg.isp_q_min}' if cfg.do_importance_sampling else ''}" \
                         f"{'_dna' if cfg.drop_na else ''}" \
+                        f"{'_prop' if cfg.constrain_proportions else ''}" \
                         f"{'_qn' if return_importance_prob else ''}" \
+                        f"{'_lim1024' if cfg.do_limit_1024 else ''}" \
                         f"{'_ag' if cfg.augment else ''}_multi_patch{'' if cfg.time_slices is None else f'_{cfg.time_slices}'}.pkl"
 
     else:
@@ -99,7 +107,9 @@ def read_data(reload=False, scaler=None, patch_size=cfg.patch_size, min_coverage
         cache_path = f"{cache_folder}/precip_patch_dataset_{cfg.model_type}_{years[0]}-{years[-1]}_{ps_string}_{shares_string}" \
                         f"{f'_isp_{cfg.isp_s}_{cfg.isp_m}_{cfg.isp_q_min}' if cfg.do_importance_sampling else ''}" \
                         f"{'_dna' if cfg.drop_na else ''}" \
+                        f"{'_prop' if cfg.constrain_proportions else ''}" \
                         f"{'_qn' if return_importance_prob else ''}" \
+                        f"{'_lim1024' if cfg.do_limit_1024 else ''}" \
                         f"{'_ag' if cfg.augment else ''}_multi_patch{'' if cfg.time_slices is None else f'_{cfg.time_slices}'}.pkl"
 
     else:

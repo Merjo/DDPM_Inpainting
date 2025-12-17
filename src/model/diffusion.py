@@ -9,6 +9,7 @@ from src.config import cfg
 import datetime
 import copy
 import numpy as np
+import time
 
 class Diffusion:
     def __init__(
@@ -29,10 +30,14 @@ class Diffusion:
             plot_dir = f'{cfg.current_output}/samples'
         if hist_dir is None:
             hist_dir = f'{cfg.current_output}/histograms'
-        if cfg.cuda and torch.cuda.device_count()>1:
+        """if cfg.cuda and torch.cuda.device_count()>1:
             #model = torch.nn.DataParallel(model)
             model = model # TODO Decide
-        self.model = model.to(device)
+        self.model = model.to(device)"""
+        if cfg.cuda and torch.cuda.device_count() > 1:
+            #print(f"Using DataParallel on {torch.cuda.device_count()} GPUs")
+            model = nn.DataParallel(model)
+        self.model = model.to(cfg.device)
         self.device = device
         self.img_size = img_size
         self.channels = channels
@@ -82,8 +87,50 @@ class Diffusion:
         sqrt_one_minus_alpha_hat = torch.sqrt(1 - self.alpha_hat[t])[:, None, None, None]
         return sqrt_alpha_hat * x0 + sqrt_one_minus_alpha_hat * noise
     
+    def p_losses(self, x0, t, log_time=False):
+        noise = torch.randn_like(x0)
+        
+        """# Sample xt
+        if log_time:
+            t0 = time.time()"""
+        xt = self.q_sample(x0, t, noise)
+        """if log_time:
+            t_after_qsample = time.time()
+            print("q_sample:", t_after_qsample - t0)
+            print("xt device:", xt.device)"""
+            
+
+        # Replace NaNs in xt *before* sending to UNet
+        xt_clean = torch.nan_to_num(xt, nan=0.0)
+
+        """if log_time:
+            s0 = time.time()
+            print("nan_to_num:", s0 - t_after_qsample)
+            print("xt_clean device:", xt_clean.device)
+        """
+
+        pred = self.model(xt_clean, t)
+
+        """if log_time:
+            print("model pred device:", pred.device)
+            s = time.time()
+            print("model forward:", s - s0)"""
+
+        """# Compute masked loss
+        if log_time:
+            print("pred device:", pred.device)
+            s = time.time()"""
+        loss = self.masked_noise_loss(pred, noise, x0)
+        """if log_time:
+            print("masked_loss:", time.time() - s)
+
+            print("xt_clean shape:", xt_clean.shape)
+            print("t.shape:", t.shape)"""
+
+        return loss
+
     
-    def p_losses(self, x0, t, loss_function=None):
+    def p_losses_old(self, x0, t, loss_function=None):
         if loss_function is None:
             loss_function = self.criterion
         noise = torch.randn_like(x0)
@@ -134,37 +181,80 @@ class Diffusion:
         if cfg.do_mixed_precision:
             scaler = GradScaler(enabled=True)  
 
+        """print("nan_to_num device:", torch.nan_to_num(torch.randn(1, device="cuda")).device)
+
+        print("Model class:", type(self.model))
+        print("Model device:", next(self.model.parameters()).device)
+
+        train_loader = train_loaders[2]
+        imgs = next(iter(train_loader)).to(self.device)
+        t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
+
+        torch.cuda.synchronize()
+        t0 = time.time()
+        pred = self.model(imgs, t)
+        torch.cuda.synchronize()
+        t1 = time.time()
+        print("UNet forward pass time:", t1 - t0)"""
+
+
         for epoch in range(epochs):
             datestr = datetime.datetime.now().strftime("%b%d_%H%M")
             print(f"[{datestr}] Starting epoch {epoch+1}/{epochs}...")
             losses = []
 
             for train_loader in train_loaders:
-                print('[Diffusion Train] Iterating through loader for patch size', train_loader.patch_size)
+                t0=time.time()
+                """print('[Diffusion Train] Iterating through loader for patch size', train_loader.height)
+                print("Patch:", train_loader.height, "- batches:", len(train_loader))
+                t0 = time.time()"""
+                
+                """if train_loader.height != 256:
+                    print('\n\nSKIPPPING ALL NEEDS TO BE DELETED!!')
+                    continue # TODO DELETE"""
+
+                """t_before = time.time()
+                printed = False"""
                 for imgs in train_loader:
+                    """if not printed:
+                        t_batch_start = time.time()"""
                     imgs = imgs.to(self.device)
+                    """if not printed:
+                        t_to_device = time.time()
+                    if not printed:
+                        print("Model device:", next(self.model.parameters()).device)
+                        print("imgs device:", imgs.device)"""
+
                     t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
 
-                    """# --- Log memory before forward ---
-                    print("[Memory] Before forward - allocated: {:.2f} GB, reserved: {:.2f} GB".format(
-                        torch.cuda.memory_allocated() / 1e9,
-                        torch.cuda.memory_reserved() / 1e9
-                    ))"""
-
-
-                    if cfg.do_mixed_precision:
+                    """if cfg.do_mixed_precision:
                         with autocast():                     # <── FP16 forward pass
-                            loss = self.p_losses(imgs, t)
+                            loss = self.p_losses(imgs, t, log_time=not printed)
                         optimizer.zero_grad()
                         scaler.scale(loss).backward()
                         scaler.step(optimizer)
                         scaler.update()
 
-                    else:
-                        loss = self.p_losses(imgs, t)
-                        optimizer.zero_grad()
-                        loss.backward()
-                        optimizer.step()
+                    else:"""
+                    """if not printed:
+                            t_forward_start = time.time()"""
+                    loss = self.p_losses(imgs, t, log_time=False)
+                    """if not printed:
+                        t_forward_end = time.time()"""
+
+                    optimizer.zero_grad()
+                    loss.backward()
+                    optimizer.step()
+                    """if not printed:
+                            t_backward_end = time.time()"""
+                    """if not printed:
+                        print(
+                            f"Data load: {t_batch_start-t_before:.3f}s, "
+                            f"To device: {t_to_device - t_batch_start:.3f}s, "
+                            f"Forward: {t_forward_end-t_forward_start:.3f}s, "
+                            f"Backward: {t_backward_end-t_forward_end:.3f}s"
+                        )
+                        printed = True"""
 
                     """# --- Log memory after backward ---
                     print("[Memory] After backward - allocated: {:.2f} GB, reserved: {:.2f} GB".format(
@@ -174,9 +264,12 @@ class Diffusion:
 
                     losses.append(loss.item())
 
-                    if True:
+                    if False:  # TODO Decide
                         del imgs, t, loss
                         torch.cuda.empty_cache()
+                    
+
+                print(f"[Timing] Patch {train_loader.height} took {time.time() - t0:.2f} sec")
 
             losses = np.array(losses)
             total_loss = losses * train_loaders.loss_weights
@@ -212,19 +305,49 @@ class Diffusion:
                 samples = self.sample(n_samples=cfg.n_hist_samples_regular)  # shape: (n, c, h, w)
                 self.plot_samples(samples[:cfg.n_samples_regular], epoch + 1, sample_info)  
                 if cfg.do_regular_hist:
-                    self.plot_histogram(loader=train_loader, epoch=epoch, sample_info=sample_info, samples=samples)
+                    real_loader = [l for l in train_loaders if l.height == self.img_size][0]
+                    self.plot_histogram(loader=real_loader, epoch=epoch, sample_info=sample_info, samples=samples)
                 if do_save_model_regular:
                     cfg.output_manager.save_model(self.model, val_loss)
+            
+            if False:  # TODO Decide
+                del imgs, t, loss
+                torch.cuda.empty_cache()
         
         self.model = best_model
 
         sample_info = f'{sample_info}\nBest Epoch: {best_epoch+1}, Val Loss: {best_loss:.6f}'
 
         samples = self.sample(n_samples=cfg.n_hist_samples)  # shape: (n, c, h, w)
-        self.plot_samples(samples[:cfg.n_samples], last_epoch, sample_info)  
-        self.plot_histogram(loader=train_loader, epoch=last_epoch, sample_info=sample_info, samples=samples)
+        self.plot_samples(samples[:cfg.n_samples], last_epoch, sample_info) 
+
+        real_loader = [l for l in train_loaders if l.height == self.img_size][0]
+
+        self.plot_histogram(loader=real_loader, epoch=last_epoch, sample_info=sample_info, samples=samples)
 
         return best_loss
+    
+    def masked_noise_loss(self, pred, noise, x0):
+        """
+        pred  = model predicted noise
+        noise = actual noise used in q_sample
+        x0    = the clean input with possible NaNs
+
+        Computes MSE only where x0 is NOT NaN.
+        """
+
+        # Create mask: 1 where valid, 0 where NaN
+        mask = ~torch.isnan(x0)
+
+        # Replace NaNs in target noise so PyTorch doesn't break
+        noise_clean = torch.nan_to_num(noise, nan=0.0)
+        pred_clean  = torch.nan_to_num(pred,  nan=0.0)
+
+        # Compute masked MSE
+        masked_mse = ( (pred_clean - noise_clean)**2 * mask ).sum() / mask.sum()
+
+        return masked_mse
+
     
     def compute_val_loss(self, val_loaders):
         self.model.eval()
@@ -267,9 +390,7 @@ class Diffusion:
         generated = generated.detach().cpu().numpy()
 
         # --- Get real samples ---
-        real_batch = next(iter(loader))
-        real = real_batch[:n_samples].to(self.device)
-        real = real.detach().cpu().numpy()
+        real = loader.get_samples(n_samples).cpu().numpy()
 
         title = f'Histogram at epoch {epoch}'
         if sample_info is not None:
@@ -279,11 +400,14 @@ class Diffusion:
     
 
     @torch.no_grad()
-    def sample(self, n_samples=16, chunk_size=16, verbose=True):
+    def sample(self, n_samples=16, width=None, height=None, chunk_size=16, verbose=True):
         """
         Sample n_samples images in memory-safe chunks.
         Returns tensor on CPU.
         """
+        width = width or self.img_size
+        height = height or self.img_size
+
         self.model.eval()
         device = self.device
         all_samples = []
@@ -295,7 +419,7 @@ class Diffusion:
                 print(f"[{datestr}] Sampling {start+1}-{start+cur} / {n_samples}")
 
             # Initialize noise for this chunk
-            x = torch.randn(cur, self.channels, self.img_size, self.img_size, device=device)
+            x = torch.randn(cur, self.channels, width, height, device=device)
 
             for t in reversed(range(self.T)):
                 t_batch = torch.full((cur,), t, device=device, dtype=torch.long)

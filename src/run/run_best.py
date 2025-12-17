@@ -13,7 +13,7 @@ from src.save.save_model import save_model
 
 from src.utils.output_manager import OutputManager
 
-def load_model(param_file, model_file, epochs=cfg.epochs):
+def load_model(param_file, model_file, epochs=cfg.epochs, verbose=True):
     """Reload best UNet+Diffusion and continue training with new epochs."""
     device = cfg.device
 
@@ -52,16 +52,16 @@ def load_model(param_file, model_file, epochs=cfg.epochs):
     attn_stages = attn_options[params["attn_config"]]
     resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
-
-
-    print("UNet constructor args:")
-    print("model_channels:", int(params["model_channels"]))
-    print("num_blocks:", int(params["num_blocks"]))
-    print("channel_mult:", channel_mult)
-    print("attn_resolutions:", attn_resolutions)
-    print("encoder_type:", params["downsample_type"])
-    print("dropout:", float(params["dropout"]))
-    print("patch_size:", cfg.patch_size)
+    
+    if verbose:
+        print("UNet constructor args:")
+        print("model_channels:", int(params["model_channels"]))
+        print("num_blocks:", int(params["num_blocks"]))
+        print("channel_mult:", channel_mult)
+        print("attn_resolutions:", attn_resolutions)
+        print("encoder_type:", params["downsample_type"])
+        print("dropout:", float(params["dropout"]))
+        print("patch_size:", cfg.patch_size)
 
     # --- Rebuild UNet ---
     unet = SongUNet(

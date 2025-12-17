@@ -10,8 +10,11 @@ class MultiPatchLoaders():
         self.cum_lengths = []  # cumulative lengths to map global idx -> loader
         cum_len = 0
         for ds in data.datasets:
-            patch_size = ds.ps
-            batch_size = max(1, int(base_batch_size * (base_patch_size / patch_size)**2))
+            height = ds.height
+            width = ds.width
+            avg_patch_size = np.sqrt(height * width)
+            batch_size = max(1, int(base_batch_size * (base_patch_size / avg_patch_size)**2))
+            print(f'[MultiPatchLoader] Width {width} batch size {batch_size}')
             loader = SinglePatchLoader(ds, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=pin_memory)
             self.loaders.append(loader)
             cum_len += len(loader.dataset)
@@ -46,7 +49,8 @@ class MultiPatchLoaders():
 class SinglePatchLoader(DataLoader):
     def __init__(self, dataset, batch_size=8, shuffle=True, num_workers=0, pin_memory=True):
         super().__init__(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=pin_memory)
-        self.patch_size = dataset.ps
+        self.height = dataset.height
+        self.width = dataset.width
 
         # Compute loss weights based on dataset length and batch size
         full_batches = len(dataset) // batch_size
@@ -55,7 +59,10 @@ class SinglePatchLoader(DataLoader):
 
     def get_samples(self, n_samples):
         samples = []
-        for batch in self:
+        for batch in iter(self):
+            if isinstance(batch, (list, tuple)):
+                batch = batch[0]
+            
             samples.append(batch)
             if len(samples) * cfg.batch_size >= n_samples:
                 break

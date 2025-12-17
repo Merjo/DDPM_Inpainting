@@ -38,8 +38,10 @@ def prepare_run(epochs=cfg.epochs,
     resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
+    unet_class = UNet if cfg.do_checkpointing else SongUNet
+
     # --- Rebuild UNet ---
-    unet = UNet(
+    unet = unet_class(
         img_resolution=cfg.patch_size,
         in_channels=1,
         out_channels=1,

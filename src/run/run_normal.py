@@ -53,12 +53,11 @@ def run_model_normal(epochs,
         sample_every=cfg.sample_every,
         sample_info=f'Normal run, {model_channels} channels'
         )
-    print(best_rmse)
+    print(f'Best Loss: {best_rmse}')
     return best_rmse, diffusion
 
 if __name__=='__main__':
-    print('\n\nONLY 2 EPOCHS!!!\n\n')
-    epochs=2#cfg.epochs
+    epochs=cfg.epochs
     patience=cfg.patience
 
     params = {
@@ -76,7 +75,7 @@ if __name__=='__main__':
         'lr': cfg.lr
     }
 
-    output = OutputManager(run_type="normal")
+    output = OutputManager(run_type=f"normal_{cfg.model_type}")
     best_rmse, diffusion = run_model_normal(epochs=epochs,
                                             patience=patience,
                                             model_channels=params['model_channels'],

@@ -3,8 +3,4 @@
 ### Do not run 'conda init' if prompted.                                            ###
 ### 'conda init' will modify your shell outside of the `module` environment         ###
 #######################################################################################
-slurmstepd-csl14c247: error: slurm_get_node_energy: Socket timed out on send/recv operation
-slurmstepd-csl14c247: error: _get_joules_task: can't get info from slurmd
-slurmstepd-csl14c247: error: slurm_get_node_energy: Socket timed out on send/recv operation
-slurmstepd-csl14c247: error: _get_joules_task: can't get info from slurmd
-slurmstepd-csl14c247: error: *** JOB 5656949 ON csl14c247 CANCELLED AT 2025-12-01T19:59:38 ***
+slurmstepd-login01: error: *** JOB 5749341 ON login01 CANCELLED AT 2025-12-08T13:18:30 ***

@@ -11,7 +11,10 @@ class Config:
         self.log_every_epoch = True
         self.output_manager = None
         self.seed = 42
-        self.model_type = 'daily'  # choices: ['hourly', 'daily']
+        self.model_type = 'hourly'  # choices: ['hourly', 'daily']
+        self.test_mode = True
+        if self.test_mode:
+            print('\n\nTEST MODE!!!\n\n')
 
         # Efficiency
         self.do_mixed_precision = False  # TODO Not working yet
@@ -20,10 +23,16 @@ class Config:
         # Data
 
         self.cache_path = "../../../../p/tmp/merlinho/cache"
+        self.elevation_path = "../../../../p/tmp/merlinho/data/elevation"
+        self.hyras_path = "../../../../p/tmp/merlinho/data/hyras"
+        self.stations_daily_path = "../../../../p/tmp/merlinho/data/stations_daily"
+        self.stations_hourly_path = "../../../../p/tmp/merlinho/data/stations_hourly"
         self.data_ref = None
         self.scaler_ref = None
         self.do_reload_scaler = False
         self.default = object()
+        self.constrain_proportions = False
+        self.proportions = 1
 
         self.train_data_ref = None
         self.val_data_ref = None
@@ -41,29 +50,32 @@ class Config:
         self.train_years = range(2001, 2012)
         self.val_years = range(2012, 2018)
         self.test_years = range(2018, 2019)
-        self.time_slices = None # 250  # TODO None
+        self.time_slices = None if not self.test_mode else 50 
         self.reload = False
         self.drop_na = False
-        self.augment = True
+        self.augment = False
         self.do_patch_diffusion = True
+        self.do_limit_1024 = True
 
         # Importance Sampling parameters
 
         self.do_importance_sampling = self.do_patch_diffusion
-        self.isp_patch_sizes = [64, 128, 256, 448]#512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
-        self.isp_shares = [0.25,0.25,0.25,0.25]  #[0.2,0.2,0.2,0.2,0.2]
-        self.isp_s = 0.05
-        self.isp_m = 2
-        self.isp_q_min = 2e-4
+        self.isp_patch_sizes = [64, 128, 256, 512, 1024]#512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
+        self.isp_shares = [0.1,0.2,0.4,0.2,0.1] # [0.25,0.25,0.25,0.25]  #[0.2,0.2,0.2,0.2,0.2]
+        self.isp_s_daily = 1
+        self.isp_s_hourly = 0.05
+        self.isp_s = self.isp_s_hourly if self.model_type == 'hourly' else self.isp_s_daily
+        self.isp_m = 2.2
+        self.isp_q_min = 5e-3
 
         # Training parameters
-        self.epochs = 200
+        self.epochs = 200  if not self.test_mode else 1
         self.patience = 200
         self.optuna_epochs = 15#10
         self.optuna_patience = 8
         self.optuna_sample_every = 15
         self.optuna_n_trials = 70#50
-        self.batch_size = 4
+        self.batch_size = 32
 
         self.beta_start = 1e-4
         self.beta_end = 0.02
@@ -79,13 +91,13 @@ class Config:
         self.clamp_high_pct = 0.995
         self.n_skip_clamp = 3  # number of last timesteps to skip clamping
 
-        self.n_samples_regular = 16
-        self.n_hist_samples_regular = 64
+        self.n_samples_regular = 16 if not self.test_mode else 8
+        self.n_hist_samples_regular = 64 if not self.test_mode else 8
 
-        self.n_samples = 32
-        self.n_hist_samples = 128
+        self.n_samples = 32 if not self.test_mode else 8
+        self.n_hist_samples = 128 if not self.test_mode else 8
 
-        self.sample_every = 10
+        self.sample_every = 10 if not self.test_mode else 2
         self.optuna_sample_every = 10
 
         self.do_regular_hist = True
@@ -110,7 +122,7 @@ class Config:
 
         # Normal Parameters
 
-        self.model_channels = 256
+        self.model_channels = 128
         self.num_blocks = 2
         self.dropout = 0.15
         self.downsample_type = 'standard'
@@ -200,7 +212,7 @@ class Config:
     @property 
     def min_coverage(self):
         if self.do_importance_sampling or self.do_patch_diffusion:
-            print("[Config] Min coverage is not used with importance sampling or patch diffusion.")
+            #print("[Config] Min coverage is not used with importance sampling or patch diffusion.")
             return 0.0
         else:   
             return self.min_coverage_ref

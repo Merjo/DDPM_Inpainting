@@ -7,3 +7,5 @@ data/
 cache/
 output/
 output_new/
+*.out
+*.err

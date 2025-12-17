@@ -17,6 +17,11 @@ def scale_back_numpy(arr, scaler):
     t_dec = t_dec.clamp(min=0.0)          # clamp negatives to 0
     return t_dec.detach().cpu().numpy() 
 
+def remove_nans(arr_list):
+    arr = np.array(arr_list)
+    arr = arr[np.isfinite(arr)]
+    return arr
+
 
 def plot_inpainting(original, masked, inpainted, pct, lam, title='Inpainting Results', out_dir=None):
     """Plot original, masked, and inpainted images side by side with masked areas in white.
@@ -181,8 +186,12 @@ def plot_histogram_normal(real, generated, title='Histogram', bins=100, out_dir=
     Compare histogram of real vs generated samples.
     """
     # Scale back
-    real = [scale_back_numpy(x, cfg.scaler) for x in real]
-    generated = [scale_back_numpy(x, cfg.scaler) for x in generated]
+    #real = [scale_back_numpy(x, cfg.scaler) for x in real]
+    #generated = [scale_back_numpy(x, cfg.scaler) for x in generated]
+
+    real = remove_nans([scale_back_numpy(x, cfg.scaler) for x in real])
+    generated = remove_nans([scale_back_numpy(x, cfg.scaler) for x in generated])
+
 
     if out_dir is None:
         out_dir = f"{cfg.current_output}/histograms"
@@ -233,8 +242,12 @@ def plot_histogram_log(real, generated, title='Histogram', bins=100, out_dir=Non
     Compare histogram of real vs generated samples.
     """
     # Scale back
-    real = [scale_back_numpy(x, cfg.scaler) for x in real]
-    generated = [scale_back_numpy(x, cfg.scaler) for x in generated]
+    #real = [scale_back_numpy(x, cfg.scaler) for x in real]
+    #generated = [scale_back_numpy(x, cfg.scaler) for x in generated]
+
+    real = remove_nans([scale_back_numpy(x, cfg.scaler) for x in real])
+    generated = remove_nans([scale_back_numpy(x, cfg.scaler) for x in generated])
+
 
     os.makedirs(out_dir, exist_ok=True)
 
@@ -296,6 +309,23 @@ def plot_rapsd_comparison(real, generated, title='RAPSD Comparison', out_dir=Non
     # === Prepare data ===
     real = [scale_back_numpy(x, cfg.scaler) for x in real]
     generated = [scale_back_numpy(x, cfg.scaler) for x in generated]
+
+    # Check and crop spatial size if needed
+    real_shape = real[0].shape[-2:]   # (H, W) of first real image
+    gen_shape = generated[0].shape[-2:]
+
+    if gen_shape != real_shape:
+        print(f"[RAPSD] Warning: Generated images shape {gen_shape} "
+              f"does not match real images shape {real_shape}. Cropping generated images.")
+        gen_cropped = []
+        h, w = real_shape
+        for g in generated:
+            gh, gw = g.shape[-2:]
+            # center crop
+            start_h = (gh - h) // 2
+            start_w = (gw - w) // 2
+            gen_cropped.append(g[..., start_h:start_h+h, start_w:start_w+w])
+        generated = gen_cropped
 
     # Stack into numpy arrays of shape [time, lat, lon]
     real_arr = np.stack([r.squeeze() for r in real])
