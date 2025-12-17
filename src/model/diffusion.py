@@ -181,23 +181,6 @@ class Diffusion:
         if cfg.do_mixed_precision:
             scaler = GradScaler(enabled=True)  
 
-        """print("nan_to_num device:", torch.nan_to_num(torch.randn(1, device="cuda")).device)
-
-        print("Model class:", type(self.model))
-        print("Model device:", next(self.model.parameters()).device)
-
-        train_loader = train_loaders[2]
-        imgs = next(iter(train_loader)).to(self.device)
-        t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
-
-        torch.cuda.synchronize()
-        t0 = time.time()
-        pred = self.model(imgs, t)
-        torch.cuda.synchronize()
-        t1 = time.time()
-        print("UNet forward pass time:", t1 - t0)"""
-
-
         for epoch in range(epochs):
             datestr = datetime.datetime.now().strftime("%b%d_%H%M")
             print(f"[{datestr}] Starting epoch {epoch+1}/{epochs}...")
@@ -205,62 +188,16 @@ class Diffusion:
 
             for train_loader in train_loaders:
                 t0=time.time()
-                """print('[Diffusion Train] Iterating through loader for patch size', train_loader.height)
-                print("Patch:", train_loader.height, "- batches:", len(train_loader))
-                t0 = time.time()"""
-                
-                """if train_loader.height != 256:
-                    print('\n\nSKIPPPING ALL NEEDS TO BE DELETED!!')
-                    continue # TODO DELETE"""
-
-                """t_before = time.time()
-                printed = False"""
                 for imgs in train_loader:
-                    """if not printed:
-                        t_batch_start = time.time()"""
                     imgs = imgs.to(self.device)
-                    """if not printed:
-                        t_to_device = time.time()
-                    if not printed:
-                        print("Model device:", next(self.model.parameters()).device)
-                        print("imgs device:", imgs.device)"""
-
                     t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
 
-                    """if cfg.do_mixed_precision:
-                        with autocast():                     # <── FP16 forward pass
-                            loss = self.p_losses(imgs, t, log_time=not printed)
-                        optimizer.zero_grad()
-                        scaler.scale(loss).backward()
-                        scaler.step(optimizer)
-                        scaler.update()
-
-                    else:"""
-                    """if not printed:
-                            t_forward_start = time.time()"""
                     loss = self.p_losses(imgs, t, log_time=False)
-                    """if not printed:
-                        t_forward_end = time.time()"""
-
+                    
                     optimizer.zero_grad()
                     loss.backward()
                     optimizer.step()
-                    """if not printed:
-                            t_backward_end = time.time()"""
-                    """if not printed:
-                        print(
-                            f"Data load: {t_batch_start-t_before:.3f}s, "
-                            f"To device: {t_to_device - t_batch_start:.3f}s, "
-                            f"Forward: {t_forward_end-t_forward_start:.3f}s, "
-                            f"Backward: {t_backward_end-t_forward_end:.3f}s"
-                        )
-                        printed = True"""
-
-                    """# --- Log memory after backward ---
-                    print("[Memory] After backward - allocated: {:.2f} GB, reserved: {:.2f} GB".format(
-                        torch.cuda.memory_allocated() / 1e9,
-                        torch.cuda.memory_reserved() / 1e9
-                    ))"""
+                    
 
                     losses.append(loss.item())
 
