@@ -2,7 +2,7 @@
 #SBATCH --job-name=optuna_best_run
 #SBATCH --output=logs/run_optuna_best_%j.out
 #SBATCH --error=logs/run_optuna_best_%j.err
-#SBATCH --qos=gpumedium
+#SBATCH --qos=gpushort
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks=1

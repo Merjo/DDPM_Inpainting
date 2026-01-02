@@ -87,50 +87,22 @@ class Diffusion:
         sqrt_one_minus_alpha_hat = torch.sqrt(1 - self.alpha_hat[t])[:, None, None, None]
         return sqrt_alpha_hat * x0 + sqrt_one_minus_alpha_hat * noise
     
-    def p_losses(self, x0, t, log_time=False):
+    def p_losses_nans(self, x0, t, log_time=False):
         noise = torch.randn_like(x0)
         
-        """# Sample xt
-        if log_time:
-            t0 = time.time()"""
         xt = self.q_sample(x0, t, noise)
-        """if log_time:
-            t_after_qsample = time.time()
-            print("q_sample:", t_after_qsample - t0)
-            print("xt device:", xt.device)"""
-            
 
         # Replace NaNs in xt *before* sending to UNet
         xt_clean = torch.nan_to_num(xt, nan=0.0)
 
-        """if log_time:
-            s0 = time.time()
-            print("nan_to_num:", s0 - t_after_qsample)
-            print("xt_clean device:", xt_clean.device)
-        """
-
         pred = self.model(xt_clean, t)
 
-        """if log_time:
-            print("model pred device:", pred.device)
-            s = time.time()
-            print("model forward:", s - s0)"""
-
-        """# Compute masked loss
-        if log_time:
-            print("pred device:", pred.device)
-            s = time.time()"""
         loss = self.masked_noise_loss(pred, noise, x0)
-        """if log_time:
-            print("masked_loss:", time.time() - s)
-
-            print("xt_clean shape:", xt_clean.shape)
-            print("t.shape:", t.shape)"""
 
         return loss
 
     
-    def p_losses_old(self, x0, t, loss_function=None):
+    def p_losses(self, x0, t, log_time=None, loss_function=None):
         if loss_function is None:
             loss_function = self.criterion
         noise = torch.randn_like(x0)
@@ -197,7 +169,6 @@ class Diffusion:
                     optimizer.zero_grad()
                     loss.backward()
                     optimizer.step()
-                    
 
                     losses.append(loss.item())
 
@@ -206,13 +177,13 @@ class Diffusion:
                         torch.cuda.empty_cache()
                     
 
-                print(f"[Timing] Patch {train_loader.height} took {time.time() - t0:.2f} sec")
+                print(f"[Training] Patch {train_loader.height} took {time.time() - t0:.2f} sec")
 
             losses = np.array(losses)
             total_loss = losses * train_loaders.loss_weights
             avg_loss = sum(total_loss) / sum(train_loaders.loss_weights)
                 
-            val_loss = self.compute_val_loss(val_loaders)
+            val_loss = self.compute_val_loss_weighted(val_loaders) if cfg.do_importance_sampling else self.compute_val_loss(val_loaders)
             
             if log_every_epoch:
                 print(f"Epoch {epoch+1}/{epochs} - train_loss: {avg_loss:.6f} - val_loss: {val_loss:.6f}")
@@ -243,13 +214,15 @@ class Diffusion:
                 self.plot_samples(samples[:cfg.n_samples_regular], epoch + 1, sample_info)  
                 if cfg.do_regular_hist:
                     real_loader = [l for l in train_loaders if l.height == self.img_size][0]
-                    self.plot_histogram(loader=real_loader, epoch=epoch, sample_info=sample_info, samples=samples)
+                    self.plot_histogram(loader=real_loader, epoch=epoch + 1, sample_info=sample_info, samples=samples)
                 if do_save_model_regular:
                     cfg.output_manager.save_model(self.model, val_loss)
             
             if False:  # TODO Decide
                 del imgs, t, loss
                 torch.cuda.empty_cache()
+
+        last_epoch+=1
         
         self.model = best_model
 
@@ -286,7 +259,7 @@ class Diffusion:
         return masked_mse
 
     
-    def compute_val_loss(self, val_loaders):
+    def compute_val_loss_weighted(self, val_loaders):
         self.model.eval()
         total_val_loss = 0.0
         total_weight = 0.0
@@ -305,7 +278,23 @@ class Diffusion:
         avg_val_loss = total_val_loss / total_weight
         self.model.train()
         return avg_val_loss
-
+    
+    def compute_val_loss(self, val_loaders):
+        self.model.eval()
+        total_val_loss = 0.0
+        losses = []
+        with torch.no_grad():
+            for val_loader in val_loaders:
+                for imgs in val_loader:
+                    imgs = imgs.to(self.device)
+                    t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
+                    loss = self.p_losses(imgs, t)
+                    losses.append(loss.item())
+        losses = np.array(losses)
+        total_loss = losses * val_loaders.loss_weights
+        avg_val_loss = sum(total_loss) / sum(val_loaders.loss_weights)
+        self.model.train()
+        return avg_val_loss
     
     @torch.no_grad()
     def plot_samples(self, samples, epoch, sample_info=None):
@@ -393,7 +382,7 @@ class Diffusion:
 
         return samples
     
-    def inpaint_dps(self, x_known, mask, n_steps=None, chunk_size=4, lam=cfg.dps_lam, verbose=True):
+    def inpaint_dps(self, x_known, mask, n_steps=None, chunk_size=cfg.inpainting_chunk_size, lam=cfg.dps_lam, verbose=True):
         print(f'Starting inpainting with DPS, lambda={lam}')
         self.model.eval()
         T = n_steps or self.T
@@ -406,11 +395,11 @@ class Diffusion:
             cur = min(chunk_size, n_total - start)
             if verbose:
                 datestr = datetime.datetime.now().strftime("%b%d_%H%M")
-                print(f"[{datestr}] Sampling {start+1}-{start+cur} / {n_total}")
+                print(f"[{datestr}] Inpainting {start+1}-{start+cur} / {n_total}")
 
             end = min(start + chunk_size, n_total)
-            x_known_batch = x_known[start:end]
-            mask_batch = mask[start:end]
+            x_known_batch = x_known[start:end].to(cfg.device)
+            mask_batch = mask[start:end].to(cfg.device)
 
             x = torch.randn_like(x_known_batch, requires_grad=True)  # start from noise
             alpha = self.alpha

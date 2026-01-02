@@ -12,13 +12,18 @@ class Config:
         self.output_manager = None
         self.seed = 42
         self.model_type = 'hourly'  # choices: ['hourly', 'daily']
-        self.test_mode = True
+        self.filippou_mode = False
+        if self.filippou_mode:
+            print('\n\Filippou MODE!!!\n\n')
+        self.test_mode = False
         if self.test_mode:
             print('\n\nTEST MODE!!!\n\n')
-
+        self.optuna_mode = False
+        if self.optuna_mode:
+            print('\n\Optuna MODE!!!\n\n')
         # Efficiency
-        self.do_mixed_precision = False  # TODO Not working yet
-        self.do_checkpointing = False  # TODO Not working yet
+        self.do_mixed_precision = False  # TODO
+        self.do_checkpointing = False  # TODO
 
         # Data
 
@@ -27,6 +32,7 @@ class Config:
         self.hyras_path = "../../../../p/tmp/merlinho/data/hyras"
         self.stations_daily_path = "../../../../p/tmp/merlinho/data/stations_daily"
         self.stations_hourly_path = "../../../../p/tmp/merlinho/data/stations_hourly"
+        self.filippou_stations_path = "../../../../p/tmp/merlinho/data/filippou_stations"
         self.data_ref = None
         self.scaler_ref = None
         self.do_reload_scaler = False
@@ -36,46 +42,54 @@ class Config:
 
         self.train_data_ref = None
         self.val_data_ref = None
+        self.station_val_data_ref = None
         self.train_loaders_ref = None
         self.val_loaders_ref = None
-        self.val_fraction = 0.15  # TODO Delete
+        self.station_val_loaders_ref = None
+        self.val_fraction = 0.15  # TODO Obsolete
 
         # Data parameters
 
         self.patch_size = 256  # Patch size for dataset
+        self.stride = 64
+        self.stride_fraction = 1/2  # Not used anymore
         self.min_coverage_ref = 0.1  # Minimum coverage for patches (0.0 to 1.0)
 
         self.start_year = 2001
         self.end_year = 2017  # Inclusive
         self.train_years = range(2001, 2012)
         self.val_years = range(2012, 2018)
+        self.val_inpainting_years = range(2017,2018)
         self.test_years = range(2018, 2019)
-        self.time_slices = None if not self.test_mode else 50 
+        self.time_slices_ref = None
         self.reload = False
-        self.drop_na = False
+        self.drop_na = True
         self.augment = False
         self.do_patch_diffusion = True
         self.do_limit_1024 = True
 
         # Importance Sampling parameters
 
-        self.do_importance_sampling = self.do_patch_diffusion
-        self.isp_patch_sizes = [64, 128, 256, 512, 1024]#512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
-        self.isp_shares = [0.1,0.2,0.4,0.2,0.1] # [0.25,0.25,0.25,0.25]  #[0.2,0.2,0.2,0.2,0.2]
+        self.do_importance_sampling = True
+        self.isp_patch_sizes = [64, 128, 256]#[64, 128, 256, 512, 1024]#512, 896]  # TODO Decide 896 -> potentially range until 1152, with 52 padding each side?
+        self.isp_shares = [0.1,0.3,0.6]#[0.1,0.2,0.4,0.2,0.1] # [0.25,0.25,0.25,0.25]  #[0.2,0.2,0.2,0.2,0.2]
         self.isp_s_daily = 1
-        self.isp_s_hourly = 0.05
+        self.isp_s_hourly = 1 # if not self.optuna_mode else 1
         self.isp_s = self.isp_s_hourly if self.model_type == 'hourly' else self.isp_s_daily
-        self.isp_m = 2.2
+        self.isp_m_daily = 2.2
+        self.isp_m_hourly = 0.5
+        self.isp_m = self.isp_m_hourly if self.model_type == 'hourly' else self.isp_m_daily
         self.isp_q_min = 5e-3
 
         # Training parameters
-        self.epochs = 200  if not self.test_mode else 1
-        self.patience = 200
-        self.optuna_epochs = 15#10
-        self.optuna_patience = 8
-        self.optuna_sample_every = 15
-        self.optuna_n_trials = 70#50
-        self.batch_size = 32
+        self.epochs = 250  if not self.test_mode else 2
+        self.patience = 250
+        self.optuna_epochs = 20#10
+        self.optuna_patience = 10
+        self.optuna_sample_every = 10
+        self.optuna_n_trials = 100#50
+        
+        self.batch_size = 8
 
         self.beta_start = 1e-4
         self.beta_end = 0.02
@@ -86,19 +100,20 @@ class Config:
         # Output / Sampling parameters
 
         self.clamp_range = (-3.5, 5)
-        self.clamp_range_end_ref = (-0.598, 3.388) # None
+        #self.clamp_range_end_ref = (-0.598, 3.388) # None TODO Obsolete, Olde
+        self.clamp_range_end_ref = None
         self.do_adapt_clamp_range = True
         self.clamp_high_pct = 0.995
         self.n_skip_clamp = 3  # number of last timesteps to skip clamping
 
-        self.n_samples_regular = 16 if not self.test_mode else 8
-        self.n_hist_samples_regular = 64 if not self.test_mode else 8
+        self.n_samples_regular = 16 if not (self.test_mode  or self.optuna_mode) else 8
+        self.n_hist_samples_regular = 64 if not (self.test_mode  or self.optuna_mode) else 8
 
-        self.n_samples = 32 if not self.test_mode else 8
-        self.n_hist_samples = 128 if not self.test_mode else 8
+        self.n_samples = 32 if not (self.test_mode  or self.optuna_mode)  else 8
+        self.n_hist_samples = 128 if not (self.test_mode  or self.optuna_mode)  else 8
 
-        self.sample_every = 10 if not self.test_mode else 2
-        self.optuna_sample_every = 10
+        self.sample_every = 10 if not self.test_mode else 1
+        self.optuna_sample_every = self.optuna_epochs
 
         self.do_regular_hist = True
         self.do_save_model_regular = True
@@ -120,32 +135,34 @@ class Config:
         self.dps_lam = 0.02
         self.dps_hard_overwrite = 0.0  # TODO -> maybe just in the last step?
 
+        self.inpainting_chunk_size = 4
+
         # Normal Parameters
 
         self.model_channels = 128
-        self.num_blocks = 2
-        self.dropout = 0.15
-        self.downsample_type = 'standard'
-        self.channel_mult = '1224'
-        self.attn_config = 'last'
+        self.num_blocks = 2# 3 # 2
+        self.dropout = 0.1749451936163843 # 0.27035306635140666 # 0.1749451936163843
+        self.downsample_type = 'standard' # 'residual' #'standard'
+        self.channel_mult = '124' # '1124' # '124'
+        self.attn_config = 'none'
         self.timesteps = 1000
         self.beta_schedule = 'linear'
-        self.loss = 'l1'
-        self.optimizer = 'Adam'
-        self.scheduler = 'WarmupCosine'
-        self.lr = 0.00017898129466371347
+        self.loss = 'mse'
+        self.optimizer = 'Adam'# 'AdamW' #'Adam'
+        self.scheduler = 'ExponentialLR'
+        self.lr = 0.00011316023206950849 # 0.00018713908590325842 #0.00011316023206950849
 
         #{'model_channels': 128, 'dropout': 0.22737977360150574, 'beta_schedule': 'linear', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.00017898129466371347}. Best is trial 2 with value: 0.049538634445891384.
 
         # Optuna Search Spaces
 
         self.optuna_search_space = {
-            "model_channels": [128, 256],  # 64 ? 
+            #"model_channels": [128, 256],  # 64 ? 
             "num_blocks": (1, 3),  # use int range
             "dropout": (0.0, 0.3),  # float range
             "downsample_type": ['residual', 'standard'],
             "channel_mult": ['124', '1224', '1248', '1124'],
-            "attn_config": ['none', 'last'],#, 'last_two'],
+            # "attn_config": ['none', 'last'],#, 'last_two'],
             #"timesteps": [250, 500, 1000],
             "beta_schedule": ['linear', 'exponential', 'quadratic'],#, 'cosine'],
             #"loss": ['mse', 'l1', 'huber'],
@@ -170,9 +187,21 @@ class Config:
         print(f"Output path set to: {self.output_path}")
 
     @property
+    def time_slices(self):
+        if self.test_mode:
+            return 50
+        elif self.optuna_mode:
+            return 100
+        else:
+            return self.time_slices_ref
+
+    @property
     def data(self):
         if self.data_ref is None:
             from src.data.read_data import read_data
+
+            print(f'\n\n[Config] Use of cfg.data is deprecated!')
+
             self.data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
         return self.data_ref
     
@@ -187,15 +216,23 @@ class Config:
     def val_data(self):
         if self.val_data_ref is None:
             from src.data.read_data import read_data
-            self.val_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.val_years, return_importance_prob=True)
+            self.val_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.val_years, return_importance_prob=self.do_importance_sampling and True)
         return self.val_data_ref
+    
+    @property
+    def station_val_data(self):  # TODO: Obsolete?
+        if self.station_val_data_ref is None:
+            from src.data.read_inpainting_data import get_inpainting_data
+            print('\n\n[Validation Station Data@Config]USING 2017 as TEST; CHANGE FOR FINAL\n\n')
+            self.station_val_data_ref = get_inpainting_data(years=self.val_inpainting_years, reload=self.reload)
+        return self.station_val_data_ref
     
     @property
     def test_data(self):
         if self.test_data_ref is None:
             from src.data.read_data import read_data
             raise RuntimeError("Use test data only when absolutely sure!!")
-            self.test_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.test_years, return_importance_prob=True)
+            self.test_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.test_years, return_importance_prob=self.do_importance_sampling and True)
         return self.test_data_ref
 
 
@@ -205,8 +242,10 @@ class Config:
             from src.data.log_standardizer import load_scaler
             self.scaler_ref = load_scaler(reload=self.do_reload_scaler,
                                           cache_path=self.cache_path,
-                                          years=self.years,
-                                          time_slices=self.time_slices)
+                                          years=self.train_years,
+                                          time_slices=self.time_slices,
+                                          model_type=self.model_type,
+                                          clamp_high_pct=self.clamp_high_pct)
         return self.scaler_ref
     
     @property 
@@ -230,6 +269,7 @@ class Config:
             from src.data.loader import get_loaders
             self.val_loaders_ref = get_loaders(self.val_data)
         return self.val_loaders_ref
+        
 
     @property
     def current_output(self):
@@ -240,13 +280,13 @@ class Config:
     @property
     def vmin(self):
         if self.vmin_ref is None:
-            self.vmin_ref = min([d.data_raw[torch.isfinite(d.data_raw)].min() for d in self.data.datasets]).item() * 1.1  # TODO Decide 1.1
+            self.vmin_ref = min([d.data_raw[torch.isfinite(d.data_raw)].min() for d in self.train_data.datasets]).item() * 1.1  # TODO Decide 1.1
         return self.vmin_ref
 
     @property
     def vmax(self):
         if self.vmax_ref is None:
-            self.vmax_ref = max([d.data_raw[torch.isfinite(d.data_raw)].max() for d in self.data.datasets]).item()
+            self.vmax_ref = max([d.data_raw[torch.isfinite(d.data_raw)].max() for d in self.train_data.datasets]).item()
         return self.vmax_ref
 
     @property
@@ -255,6 +295,14 @@ class Config:
     
     @property
     def clamp_range_end(self):
+        if self.clamp_range_end_ref is None:
+            from src.data.read_data import read_raw_data
+            data = read_raw_data(years=cfg.val_years, aggregate_daily=self.model_type=="daily")
+            self.clamp_range_end_ref = self.scaler.compute_clamp_from_data(data, q_high=self.clamp_high_pct)
+        print(f'Using end clamp range: {self.clamp_range_end_ref}, beginning clamp range {self.clamp_range}')
+        return self.clamp_range_end_ref
+    @property
+    def clamp_range_end_old(self):
         """
         Automatically determine clamp range based on real (scaled) data.
 
@@ -268,7 +316,7 @@ class Config:
         if self.clamp_range_end_ref is None:
 
             # Ensure data and scaler are loaded
-            dataset = self.data
+            dataset = self.train_data
             if dataset.data_scaled is None:
                 raise ValueError("Dataset must be scaled before computing clamp range.")
 
@@ -292,7 +340,7 @@ class Config:
         else:
             return(self.clamp_range_end_ref)
     
-    def clamp_range_t(self, t, total_timesteps=None, factor=0.1):
+    def clamp_range_t(self, t, total_timesteps=None, factor=0.03):
         """
         Get the clamp range at timestep t during diffusion sampling/training.
 

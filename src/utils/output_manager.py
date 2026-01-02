@@ -20,7 +20,7 @@ class OutputManager:
         cfg.set_output_manager(self)
 
         # Prepare subfolders
-        subfolders = ["samples", "histograms", "models", "rapsd"]
+        subfolders = ["samples", "histograms", "models", "rapsd", "data"]
         if run_type in ['optuna', 'optuna_best']:
             subfolders.append("trials")
 
@@ -51,6 +51,10 @@ class OutputManager:
         import torch
         torch.save(model.state_dict(), path)
         return path
+    
+
+    def get_run_dir(self):
+        return self.run_dir
 
     def rename_folder(self, mse_val):
         mse_str = f"{mse_val:.4g}"
@@ -75,12 +79,16 @@ class OutputManager:
         else:
             print(f"SLURM error log not found: {slurm_err}")
 
-    def finalize(self, mse_val, model, params, epochs):
-        self.save_model(model, mse_val)
-        self.save_best_params(params, mse_val, epochs)
+    def finalize(self, mse_val, model=None, params=None, epochs=None):
+        if model is not None:
+            self.save_model(model, mse_val)
+        if params is not None:
+            self.save_best_params(params, mse_val, epochs)
         final_dir = self.rename_folder(mse_val)
         self.move_logs()
 
         print(f"Run complete. Results stored in {final_dir}")
 
         return final_dir
+
+    

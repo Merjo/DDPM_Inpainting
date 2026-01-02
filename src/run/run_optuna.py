@@ -184,7 +184,7 @@ def objective(trial, loaders, run_dir, max_epochs=cfg.optuna_epochs, patience=cf
 
     return best_loss
 
-def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience, resume=False, run_dir=None):
+def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patience=cfg.optuna_patience, resume=False, run_dir=None, return_unet=False):
     if run_dir is None:
         run_dir = f'{cfg.current_output}/trials'
     loaders = cfg.val_loaders
@@ -222,13 +222,39 @@ def run_optuna(n_trials=cfg.optuna_n_trials, max_epochs=cfg.optuna_epochs, patie
             avg_time = sum(t for _, t in results) / len(results)
             print(f"  {val}: avg RMSE={avg_value:.4f}, avg time={avg_time:.1f}s over {len(results)} trials")
 
+    if return_unet:
+        model_channels, num_blocks, dropout, downsample_type, channel_mult, attn_resolutions = \
+            get_unet_parameters(best_trial)
+
+        best_unet = SongUNet(
+            img_resolution=cfg.patch_size,
+            in_channels=1,
+            out_channels=1,
+            model_channels=model_channels,
+            channel_mult=channel_mult,
+            num_blocks=num_blocks,
+            attn_resolutions=attn_resolutions,
+            label_dim=0,
+            dropout=dropout,
+            encoder_type=downsample_type,
+        ).to(cfg.device)
+
+        # --- Load weights ---
+        state_dict = torch.load(
+            best_trial.user_attrs["checkpoint"],
+            weights_only=True
+        )
+        best_unet.load_state_dict(state_dict)
+        best_model = best_unet
 
     return best_model, best_value, best_params
 
 
 if __name__=='__main__':
+    if not cfg.optuna_mode:
+        raise Exception('Config should be in Optuna Mode')
     output = OutputManager(run_type="optuna")
 
-    unet, best_loss, params = run_optuna()
+    unet, best_loss, params = run_optuna(return_unet=True)
 
     output.finalize(best_loss, unet, epochs=cfg.optuna_epochs, params=params)

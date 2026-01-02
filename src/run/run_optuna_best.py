@@ -81,6 +81,9 @@ def run_optuna_best(n_trials=cfg.optuna_n_trials,
     return diffusion, unet, best_loss, params
 
 if __name__=='__main__':
+    if not cfg.optuna_mode:
+        raise Exception('Config should be in Optuna Mode')
+
     n_trials = cfg.optuna_n_trials
     max_optuna_epochs = cfg.optuna_epochs
     max_optuna_patience = cfg.optuna_patience

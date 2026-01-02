@@ -29,6 +29,9 @@ class LogStandardizerStreaming:
         self.std = None
         self.mean = None
 
+        self.clamp_low = None
+        self.clamp_high = None
+    
     def iterate_chunks(self, data):
         T = data.sizes["time"]
         for start in range(0, T, self.chunk_size):
@@ -38,6 +41,35 @@ class LogStandardizerStreaming:
                 device=self.device
             )
             yield chunk
+
+    def compute_clamp_from_data(self, data, q_low=0.001, q_high=0.999, sample_frac=0.03):
+        if self.clamp_low is not None and self.clamp_high is not None:
+            print(f'[Scaler] Using reference clamp values low: {self.clamp_low}, high: {self.clamp_high}')
+            return self.clamp_low, self.clamp_high
+
+        zs = []
+
+        for chunk in self.iterate_chunks(data):
+            chunk = chunk[torch.isfinite(chunk)]
+            if chunk.numel() == 0:
+                continue
+
+            y = torch.log(chunk / self.c + 1.0)
+            z = (y - self.mean) / (self.std + self.eps)
+
+            n_sample = max(1, int(z.numel() * sample_frac))
+            idx = torch.randperm(z.numel(), device=z.device)[:n_sample]
+            zs.append(z.flatten()[idx].cpu())
+
+        z_all = torch.cat(zs)
+        self.clamp_low = torch.quantile(z_all, q_low).item()
+        self.clamp_high = torch.quantile(z_all, q_high).item()
+
+        print(f"[Scaler] clamp range = ({self.clamp_low:.3f}, {self.clamp_high:.3f})")
+
+        return self.clamp_low, self.clamp_high
+
+
 
     @staticmethod
     def compute_score(y):
@@ -57,13 +89,15 @@ class LogStandardizerStreaming:
         skew_val = torch.mean(diff ** 3) / (std**3 + 1e-12)
         kurt_val = torch.mean(diff ** 4) / (var**2 + 1e-12)
 
-        score = torch.abs(skew_val) + torch.abs(kurt_val - 3.0)
+        var_penalty = torch.abs(torch.log(std + 1e-6))
+
+        score = torch.abs(skew_val) + torch.abs(kurt_val - 3.0) + 0.5 * var_penalty
         return score
 
     def select_c(self, data):
         print("[Scaler] Selecting best c (streaming on GPU)...")
         start_time = time.time()
-        candidate_c = [2 ** i for i in range(-10, 11, 2)]  # from 1/1024 to 1024
+        candidate_c = [2 ** i for i in range(-7,3)]  # from 1/1024 to 1024
 
         scores = {c: [] for c in candidate_c}
 
@@ -177,21 +211,23 @@ class LogStandardizerStreaming:
         return attrs_equal
 
 
-def create_scaler(years):
+def create_scaler(years, model_type, clamp_high_pct=None):
     print("[Scaler] Reading dataset (lazy xarray)")
     from src.data.read_data import read_raw_data
-    data = read_raw_data(years=years)
+    data = read_raw_data(years=years, aggregate_daily=model_type=="daily")
 
     scaler = LogStandardizerStreaming(c=None, chunk_size=24)
     scaler.fit(data)
+    if clamp_high_pct is not None:
+        scaler.compute_clamp_from_data(data, q_high=clamp_high_pct)
     return scaler
 
 
-def load_scaler(reload, cache_path, years, time_slices):
-    cache_path = f"{cache_path}/scaler_{years[0]}_{years[-1]}{'' if time_slices is None else f'_{time_slices}'}.pkl"
+def load_scaler(reload, cache_path, years, time_slices, model_type, clamp_high_pct = None):
+    cache_path = f"{cache_path}/scaler_{model_type}_{years[0]}_{years[-1]}{'' if time_slices is None else f'_{time_slices}'}.pkl"
 
     if reload or not os.path.exists(cache_path):
-        scaler = create_scaler(years)
+        scaler = create_scaler(years, model_type=model_type, clamp_high_pct=clamp_high_pct)
         os.makedirs(os.path.dirname(cache_path), exist_ok=True)
         joblib.dump(scaler, cache_path)
         print(f"[Scaler] Saved scaler to {cache_path}")
@@ -207,80 +243,3 @@ if __name__ == "__main__":
                 years=range(2001, 2018),
                 time_slices=None)
     
-
-import torch
-from torch.utils.data import Dataset
-import numpy as np
-
-import torch
-
-
-from scipy.stats import skew, kurtosis
-
-import numpy as np
-import torch
-from torch.utils.data import Dataset
-
-# --- Old LogStandardizer for reference --- #
-class LogStandardizer:
-    """
-    y = (log(x/c + 1) - mean) / std
-    Inverse: x = (exp(y * std + mean) - 1) * c
-
-    If c=None, automatically finds the optimal value to reduce skew/kurtosis.
-    """
-    def __init__(self, c=None, eps: float = 1e-6):
-        self.c = c
-        self.eps = eps
-        self.fitted = False
-
-    @torch.no_grad()
-    def fit(self, dataset: Dataset, num_samples: int = 1024, batch_size: int = 32):
-        # --- Sample patches ---
-        idxs = np.random.choice(len(dataset), size=min(num_samples, len(dataset)), replace=False)
-        vals = []
-        for i in range(0, len(idxs), batch_size):
-            batch_idxs = idxs[i:i+batch_size]
-            batch = [dataset[j].squeeze(0) for j in batch_idxs]
-            x = torch.stack(batch, dim=0)
-            vals.append(x)
-        big = torch.cat(vals, dim=0).numpy().flatten()
-
-        # --- Automatic c search if c is None ---
-        if self.c is None:
-            candidate_c = [0.1, 0.25, 0.5, 1.0, 2.0]
-            best_score = float('inf')
-            best_c = None
-
-            for c in candidate_c:
-                y = np.log(big / c + 1.0)
-                s = abs(skew(y)) + abs(kurtosis(y, fisher=False) - 3)
-                if s < best_score:
-                    best_score = s
-                    best_c = c
-
-            self.c = best_c
-            print(f"[LogScaler] Auto-selected c = {self.c:.4f}")
-
-        # --- Fit mean and std with chosen c ---
-        y = np.log(big / self.c + 1.0)
-        self.mean = y.mean()
-        self.std = y.std() + self.eps
-        self.fitted = True
-
-        print(f"[LogScaler] mean={self.mean:.4f}, std={self.std:.4f}")
-        
-        
-        print("Raw values stats:")
-        print("min:", np.nanmin(big), "max:", np.nanmax(big))
-        print("NaNs:", np.isnan(big).sum(), "Infs:", np.isinf(big).sum())
-
-
-    def encode(self, x: torch.Tensor) -> torch.Tensor:
-        assert self.fitted, "Call fit() first"
-        y = torch.log(x / self.c + 1.0)
-        return (y - self.mean) / self.std
-
-    def decode(self, y: torch.Tensor) -> torch.Tensor:
-        z = y * self.std + self.mean
-        return (torch.exp(z) - 1.0) * self.c

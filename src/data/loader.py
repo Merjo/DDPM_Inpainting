@@ -14,7 +14,7 @@ class MultiPatchLoaders():
             width = ds.width
             avg_patch_size = np.sqrt(height * width)
             batch_size = max(1, int(base_batch_size * (base_patch_size / avg_patch_size)**2))
-            print(f'[MultiPatchLoader] Width {width} batch size {batch_size}')
+            print(f'[MultiPatchLoader] Width {width} batch size {batch_size}, shape={ds.data.shape}')
             loader = SinglePatchLoader(ds, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=pin_memory)
             self.loaders.append(loader)
             cum_len += len(loader.dataset)

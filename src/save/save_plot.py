@@ -107,8 +107,104 @@ def plot_inpainting(original, masked, inpainted, pct, lam, title='Inpainting Res
     print(f"[Plot] Saved inpainting results to {filename}")
 
 
+def plot_station_inpainting(radar, station, inpainted, timestamps, lam, title='Inpainting Results', out_dir=None):
+    """Plot original, masked, and inpainted images side by side with masked areas in white.
+       Uses separate color scales for input data and inpainted data."""
+    # Scale back
+    radar = [scale_back_numpy(x, cfg.scaler) for x in radar]
+    station = [scale_back_numpy(x, cfg.scaler) for x in station]
+    inpainted = [scale_back_numpy(x, cfg.scaler) for x in inpainted]
 
-def get_new_filename(title, out_dir, folder):
+    radar = [np.clip(x, 0.1, None) for x in radar]
+    station = [np.clip(x, 0.1, None) for x in station]
+    inpainted = [np.clip(x, 0.1, None) for x in inpainted]
+    
+    if out_dir is None:
+        out_dir = f"{cfg.current_output}/inpainting_results"
+    os.makedirs(out_dir, exist_ok=True)
+
+    date_str = datetime.now().strftime("%m-%d %H:%M")
+    title_full = f"{title}\n({date_str})"
+
+    n = len(radar)
+    fig, axes = plt.subplots(n, 3, figsize=(11, 3*n))
+
+    # Handle n=1 case
+    if n == 1:
+        axes = np.expand_dims(axes, 0)
+
+    # Set colormap: turbo with white for masked
+    cmap = plt.get_cmap('turbo').copy()
+    cmap.set_bad('white')
+
+    # Plot
+    for i in range(n):
+        axrow = axes[i]
+
+        axrow[0].set_ylabel(
+            str(timestamps[i]),
+            rotation=0,
+            fontsize=9,
+            labelpad=40,
+            va="center"
+        )
+
+        # Radar
+        radar_plot = np.ma.masked_invalid(np.squeeze(radar[i]))
+        axrow[0].imshow(radar_plot.T, origin='lower', cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
+        axrow[0].set_title('Radar')
+        axrow[0].axis('off')
+
+        # Stations
+        station_plot = np.ma.masked_invalid(np.squeeze(station[i]))
+        axrow[1].imshow(station_plot.T, origin='lower', cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
+        axrow[1].set_title('Stations')
+        axrow[1].axis('off')
+
+        inpaint_plot = np.ma.masked_invalid(np.squeeze(inpainted[i]))
+        
+        axrow[2].imshow(inpaint_plot.T, origin='lower', cmap=cmap, norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
+        axrow[2].set_title('Inpainted')
+        axrow[2].axis('off')
+
+    """for i, idx in enumerate(indices):
+        #axes[i].imshow(images[i], cmap="turbo", vmin=cfg.vmin, vmax=cfg.vmax)
+        images[i][images[i] < 0.0001] = 0.0001  #  avoid 0, make sure they are seen in log scale
+        axes[i].imshow(
+            images[i].T,        
+            origin="lower", 
+            cmap="turbo",
+            norm=mcolors.LogNorm(vmin=0.0001, vmax=cfg.vmax)
+        )
+        axes[i].axis("off")"""
+
+    """fig.colorbar(
+        plt.cm.ScalarMappable(cmap="turbo", norm=mcolors.LogNorm(vmin=0.0001, vmax=cfg.vmax)),
+        ax=axes, orientation='vertical', fraction=0.02, pad=0.01
+    )"""
+
+    # === Colorbar on the right ===
+    norm = mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)
+    cbar_ax = fig.add_axes([0.92, 0.15, 0.02, 0.7])  # [left, bottom, width, height]
+    cbar = fig.colorbar(
+        plt.cm.ScalarMappable(cmap=cmap, norm=norm),
+        cax=cbar_ax
+    )
+    cbar.set_label("Precipitation")
+
+
+    # Title and layout
+    plt.suptitle(title_full)
+    plt.subplots_adjust(top=0.9, bottom=0.12, wspace=0.05)
+    filename = os.path.join(out_dir, f"station_inpainting_{lam}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
+    plt.savefig(filename, dpi=400)
+    plt.close(fig)
+
+    print(f"[Plot] Saved inpainting results to {filename}")
+
+
+
+def get_new_filename(title, out_dir, folder, no_log=False):
     if out_dir is None:
         out_dir = f"{cfg.current_output}/{folder}"
     os.makedirs(out_dir, exist_ok=True)
@@ -124,15 +220,19 @@ def get_new_filename(title, out_dir, folder):
         except ValueError:
             continue
     next_num = max(numbers, default=0) + 1
-    filename = os.path.join(out_dir, f"plot{next_num}.png")
+    filename = os.path.join(out_dir, f"plot{next_num}{f'_nolog' if no_log else ''}.png")
 
     return filename
 
-
 def plot_random(dataset, n=6, title='Random Samples', out_dir=None, folder='samples'):
+    plot_random_specific(dataset, n=n, title=title, out_dir=out_dir, folder=folder, do_log=True)
+    plot_random_specific(dataset, n=n, title=title, out_dir=out_dir, folder=folder, do_log=False)
+
+def plot_random_specific(dataset, n=6, title='Random Samples', out_dir=None, folder='samples', do_log=True):
     """Save a random selection of dataset images into out_dir as plot#.png."""
     
-    filename = get_new_filename(title, out_dir=out_dir, folder=folder)
+    filename = get_new_filename(title, out_dir=out_dir, folder=folder, no_log = not do_log)
+
 
     # Pick random indices
     indices = random.sample(range(len(dataset)), n)
@@ -154,12 +254,22 @@ def plot_random(dataset, n=6, title='Random Samples', out_dir=None, folder='samp
 
     for i, idx in enumerate(indices):
         #axes[i].imshow(images[i], cmap="turbo", vmin=cfg.vmin, vmax=cfg.vmax)
-        images[i][images[i] < 0.1] = 0.1  #  avoid 0, make sure they are seen in log cale
-        axes[i].imshow(images[i], cmap="turbo", norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax))
+        if do_log:
+            images[i][images[i] < 0.1] = 0.1  #  avoid 0, make sure they are seen in log scale
+            norm = mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)
+        else:
+            norm = mcolors.Normalize(vmin=0.0, vmax=cfg.vmax)
+        axes[i].imshow(
+            images[i].T,        
+            origin="lower", 
+            cmap="turbo",
+            norm=norm
+        )
         axes[i].axis("off")
+    norm_cb = mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax) if do_log else mcolors.Normalize(vmin=0.0, vmax=cfg.vmax)
 
     fig.colorbar(
-        plt.cm.ScalarMappable(cmap="turbo", norm=mcolors.LogNorm(vmin=0.1, vmax=cfg.vmax)),
+        plt.cm.ScalarMappable(cmap="turbo", norm=norm_cb),
         ax=axes, orientation='vertical', fraction=0.02, pad=0.01
     )
 

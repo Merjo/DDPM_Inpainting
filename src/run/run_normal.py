@@ -75,7 +75,14 @@ if __name__=='__main__':
         'lr': cfg.lr
     }
 
-    output = OutputManager(run_type=f"normal_{cfg.model_type}")
+    output = OutputManager(run_type=f"normal")
+
+    print(f'\nParams: \n')
+
+    for k,v in params.items():
+        print(f'{k}: \t{v}')
+    print('\n')
+
     best_rmse, diffusion = run_model_normal(epochs=epochs,
                                             patience=patience,
                                             model_channels=params['model_channels'],
