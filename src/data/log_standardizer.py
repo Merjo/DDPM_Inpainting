@@ -42,35 +42,6 @@ class LogStandardizerStreaming:
             )
             yield chunk
 
-    def compute_clamp_from_data(self, data, q_low=0.001, q_high=0.999, sample_frac=0.03):
-        if self.clamp_low is not None and self.clamp_high is not None:
-            print(f'[Scaler] Using reference clamp values low: {self.clamp_low}, high: {self.clamp_high}')
-            return self.clamp_low, self.clamp_high
-
-        zs = []
-
-        for chunk in self.iterate_chunks(data):
-            chunk = chunk[torch.isfinite(chunk)]
-            if chunk.numel() == 0:
-                continue
-
-            y = torch.log(chunk / self.c + 1.0)
-            z = (y - self.mean) / (self.std + self.eps)
-
-            n_sample = max(1, int(z.numel() * sample_frac))
-            idx = torch.randperm(z.numel(), device=z.device)[:n_sample]
-            zs.append(z.flatten()[idx].cpu())
-
-        z_all = torch.cat(zs)
-        self.clamp_low = torch.quantile(z_all, q_low).item()
-        self.clamp_high = torch.quantile(z_all, q_high).item()
-
-        print(f"[Scaler] clamp range = ({self.clamp_low:.3f}, {self.clamp_high:.3f})")
-
-        return self.clamp_low, self.clamp_high
-
-
-
     @staticmethod
     def compute_score(y):
         """
@@ -97,7 +68,7 @@ class LogStandardizerStreaming:
     def select_c(self, data):
         print("[Scaler] Selecting best c (streaming on GPU)...")
         start_time = time.time()
-        candidate_c = [2 ** i for i in range(-7,3)]  # from 1/1024 to 1024
+        candidate_c = [2 ** i for i in range(-6,1)]
 
         scores = {c: [] for c in candidate_c}
 
@@ -211,23 +182,21 @@ class LogStandardizerStreaming:
         return attrs_equal
 
 
-def create_scaler(years, model_type, clamp_high_pct=None):
+def create_scaler(years, model_type):
     print("[Scaler] Reading dataset (lazy xarray)")
     from src.data.read_data import read_raw_data
     data = read_raw_data(years=years, aggregate_daily=model_type=="daily")
 
     scaler = LogStandardizerStreaming(c=None, chunk_size=24)
     scaler.fit(data)
-    if clamp_high_pct is not None:
-        scaler.compute_clamp_from_data(data, q_high=clamp_high_pct)
     return scaler
 
 
-def load_scaler(reload, cache_path, years, time_slices, model_type, clamp_high_pct = None):
+def load_scaler(reload, cache_path, years, time_slices, model_type):
     cache_path = f"{cache_path}/scaler_{model_type}_{years[0]}_{years[-1]}{'' if time_slices is None else f'_{time_slices}'}.pkl"
 
     if reload or not os.path.exists(cache_path):
-        scaler = create_scaler(years, model_type=model_type, clamp_high_pct=clamp_high_pct)
+        scaler = create_scaler(years, model_type=model_type)
         os.makedirs(os.path.dirname(cache_path), exist_ok=True)
         joblib.dump(scaler, cache_path)
         print(f"[Scaler] Saved scaler to {cache_path}")

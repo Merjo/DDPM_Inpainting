@@ -11,7 +11,7 @@ class Config:
         self.log_every_epoch = True
         self.output_manager = None
         self.seed = 42
-        self.model_type = 'hourly'  # choices: ['hourly', 'daily']
+        self.model_type = 'daily'  # choices: ['hourly', 'daily']
         self.filippou_mode = False
         if self.filippou_mode:
             print('\n\Filippou MODE!!!\n\n')
@@ -28,11 +28,13 @@ class Config:
         # Data
 
         self.cache_path = "../../../../p/tmp/merlinho/cache"
+        self.output_cache_path = "../../../../p/tmp/merlinho/cache/output_cache"
         self.elevation_path = "../../../../p/tmp/merlinho/data/elevation"
         self.hyras_path = "../../../../p/tmp/merlinho/data/hyras"
         self.stations_daily_path = "../../../../p/tmp/merlinho/data/stations_daily"
         self.stations_hourly_path = "../../../../p/tmp/merlinho/data/stations_hourly"
         self.filippou_stations_path = "../../../../p/tmp/merlinho/data/filippou_stations"
+        self.filippou_path = "../../../../p/tmp/merlinho/data/filippou"
         self.data_ref = None
         self.scaler_ref = None
         self.do_reload_scaler = False
@@ -104,7 +106,7 @@ class Config:
         self.clamp_range_end_ref = None
         self.do_adapt_clamp_range = True
         self.clamp_high_pct = 0.995
-        self.n_skip_clamp = 3  # number of last timesteps to skip clamping
+        self.n_skip_clamp = 5  # number of last timesteps to skip clamping
 
         self.n_samples_regular = 16 if not (self.test_mode  or self.optuna_mode) else 8
         self.n_hist_samples_regular = 64 if not (self.test_mode  or self.optuna_mode) else 8
@@ -244,8 +246,7 @@ class Config:
                                           cache_path=self.cache_path,
                                           years=self.train_years,
                                           time_slices=self.time_slices,
-                                          model_type=self.model_type,
-                                          clamp_high_pct=self.clamp_high_pct)
+                                          model_type=self.model_type)
         return self.scaler_ref
     
     @property 
@@ -288,6 +289,7 @@ class Config:
         if self.vmax_ref is None:
             self.vmax_ref = max([d.data_raw[torch.isfinite(d.data_raw)].max() for d in self.train_data.datasets]).item()
         return self.vmax_ref
+        
 
     @property
     def years(self):
@@ -295,14 +297,6 @@ class Config:
     
     @property
     def clamp_range_end(self):
-        if self.clamp_range_end_ref is None:
-            from src.data.read_data import read_raw_data
-            data = read_raw_data(years=cfg.val_years, aggregate_daily=self.model_type=="daily")
-            self.clamp_range_end_ref = self.scaler.compute_clamp_from_data(data, q_high=self.clamp_high_pct)
-        print(f'Using end clamp range: {self.clamp_range_end_ref}, beginning clamp range {self.clamp_range}')
-        return self.clamp_range_end_ref
-    @property
-    def clamp_range_end_old(self):
         """
         Automatically determine clamp range based on real (scaled) data.
 
@@ -314,9 +308,22 @@ class Config:
         This ensures that ~99.5% of the data lies within the clamp range.
         """
         if self.clamp_range_end_ref is None:
+            scaled = self.train_data.datasets[-1].data_scaled  # only use subset with highest patches
+            low = scaled.min.item()
+            maxval = scaled.max.item()
+            idx = torch.randperm(scaled.shape[0])[:300]
+            ssub = scaled[idx]
+            q999 = torch.quantile(ssub, 0.999).item()
+            std = self.scaler.std
+            high = q999+0.5*std
 
-            # Ensure data and scaler are loaded
-            dataset = self.train_data
+            
+            self.clamp_range_end_ref = (low, high)
+
+            print(f"[AutoClamp] Set clamp range: ({low:.3f}, {high:.3f}) - subset 99.9th percentile: {q999}, std = {std}, max = {maxval}")
+            # TODO Old, Obsolete?
+            """# Ensure data and scaler are loaded
+            dataset = self.train_data.datasets[-1] 
             if dataset.data_scaled is None:
                 raise ValueError("Dataset must be scaled before computing clamp range.")
 
@@ -334,11 +341,10 @@ class Config:
             low = vals_flat.min().item()
             high = torch.quantile(vals_flat, torch.tensor(self.clamp_high_pct)).item()
 
-            print(f"[AutoClamp] Recommended clamp range: ({low:.3f}, {high:.3f})")
+            print(f"[AutoClamp] Set clamp range: ({low:.3f}, {high:.3f})")
             self.clamp_range_end_ref = (low, high)
-            return((low, high))
-        else:
-            return(self.clamp_range_end_ref)
+            return((low, high))"""
+        return(self.clamp_range_end_ref)
     
     def clamp_range_t(self, t, total_timesteps=None, factor=0.03):
         """

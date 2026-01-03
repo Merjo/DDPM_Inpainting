@@ -3,7 +3,7 @@ import xarray as xr
 from tqdm import tqdm
 
 
-def mean_rapsd(data: xr.DataArray, normalize: bool=False):
+def mean_rapsd(data: xr.DataArray, normalize: bool=True):
     """
     Averages the RAPSD in time over a DataArray.
 
@@ -29,7 +29,7 @@ def mean_rapsd(data: xr.DataArray, normalize: bool=False):
     return mean_psd, freq
 
 
-def mean_rapsd_numpy(data: np.ndarray, normalize: bool=False):
+def mean_rapsd_numpy(data: np.ndarray, normalize: bool=True):
     """
     Averages the RAPSD in time over a DataArray.
 
@@ -57,7 +57,7 @@ def rapsd(field: np.ndarray,
           fft_method=np.fft,
           return_freq: bool=False,
           d: float=1.0,
-          normalize: bool=False
+          normalize: bool=True
           ) -> np.ndarray:
 
     if len(field.shape) != 2:
