@@ -47,11 +47,10 @@ class OutputManager:
         return path
 
     def save_model(self, model, mse_val):
-        path = os.path.join(self.run_dir, f"model_{mse_val:.4g}.pkl")
+        path = os.path.join(self.run_dir, f"model_{mse_val:.6g}.pkl")
         import torch
         torch.save(model.state_dict(), path)
         return path
-    
 
     def get_run_dir(self):
         return self.run_dir
@@ -79,7 +78,7 @@ class OutputManager:
         else:
             print(f"SLURM error log not found: {slurm_err}")
 
-    def finalize(self, mse_val, model=None, params=None, epochs=None):
+    def finalize(self, mse_val, model=None, params=None, epochs=0):
         if model is not None:
             self.save_model(model, mse_val)
         if params is not None:

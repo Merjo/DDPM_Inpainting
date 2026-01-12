@@ -1,4 +1,4 @@
-from src.evaluate.evaluate_utils import load_output
+from src.utils.evaluate_utils import load_output
 from src.config import cfg
 import xarray as xr
 import numpy as np

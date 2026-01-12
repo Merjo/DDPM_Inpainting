@@ -2,12 +2,12 @@
 #SBATCH --job-name=station_inpainting_run
 #SBATCH --output=logs/run_station_inpainting_%j.out
 #SBATCH --error=logs/run_station_inpainting_%j.err
-#SBATCH --qos=gpushort
+#SBATCH --qos=gpumedium
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=64G
+#SBATCH --mem=1024G
 
 # Load modules
 module load anaconda/2025

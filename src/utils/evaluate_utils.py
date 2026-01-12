@@ -8,6 +8,7 @@ import xarray as xr
 from scipy.spatial import cKDTree
 
 import matplotlib.pyplot as plt
+import torch
 
 def plot_comparison(data1_on_hyras, data2_on_hyras, data2_original, n=12, transpose_data2 = True, data1_name = 'HYRAS', data2_name='Radar'):
     
@@ -51,7 +52,9 @@ def transfer_to_hyras(years,
                       do_mask=True,
                       data_lon=None,
                       data_lat=None,
-                      return_hyras=False):
+                      return_hyras=False,
+                      limit_to_values = True,
+                      return_xarray=True):
     if hyras is None:
         hyras = load_hyras(years=years)
 
@@ -87,30 +90,38 @@ def transfer_to_hyras(years,
     data_x_idx = indices % nx
 
     # Map all timesteps at once
-    data_values = data.values  # (time, y, x)
+    
+    data_values = data.values if limit_to_values else data # (time, y, x)
     data_flat = data_values[:, data_y_idx, data_x_idx]
 
     hyras_shape = (len(hyras0['y']), len(hyras0['x']))
     data_on_hyras_array = data_flat.reshape(
-        (len(data['time']), *hyras_shape)
+        (data.shape[0], *hyras_shape) # Old version: (len(data['time']), *hyras_shape)
     )
 
-    # Wrap in xarray
-    data_on_hyras = xr.DataArray(
-        data_on_hyras_array,
-        coords={
-            'time': data['time'],
-            'y': hyras0['y'],
-            'x': hyras0['x'],
-        },
-        dims=('time', 'y', 'x'),
-        name=data.name
-    )
+    if return_xarray:
+        # Wrap in xarray
+        data_on_hyras = xr.DataArray(
+            data_on_hyras_array,
+            coords={
+                'time': data['time'],
+                'y': hyras0['y'],
+                'x': hyras0['x'],
+            },
+            dims=('time', 'y', 'x'),
+            name=data.name
+        )
 
-    # Apply static Germany mask
-    if do_mask:
-        germany_mask = hyras0.notnull()
-        data_on_hyras = data_on_hyras.where(germany_mask)
+        # Apply static Germany mask
+        if do_mask:
+            germany_mask = hyras0.notnull()
+            data_on_hyras = data_on_hyras.where(germany_mask)
+    else:
+        data_on_hyras = data_on_hyras_array
+        if do_mask:
+            germany_mask = hyras0.notnull().values
+            mask_torch = torch.from_numpy(germany_mask)
+            data_on_hyras[:, ~mask_torch] = torch.nan
 
     print("Mapping to HYRAS complete!")
 

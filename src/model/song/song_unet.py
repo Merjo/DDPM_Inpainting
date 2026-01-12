@@ -6,7 +6,7 @@ class SongUNet(torch.nn.Module):
     """Reimplementation of the DDPM++ and NCSN++ architectures by Song et al. (2021).
     Equivalent to the original implementation at: https://github.com/yang-song/score_sde_pytorch.
 
-    Source: https://github.com/NVlabs/edm (the code below is copied verbatim, up to formatting).
+    Source: https://github.com/NVlabs/edm (the code below is copied, up to formatting).
     """
 
     def __init__(

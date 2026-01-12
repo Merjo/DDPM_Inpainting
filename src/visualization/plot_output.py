@@ -17,7 +17,7 @@ def load_timestamps(data_path):
     return timestamps
 
 def load_inpainted_data(data_path):
-    inpainted_files = glob.glob(f'{data_path}/inpainted_*.pt')
+    inpainted_files = glob.glob(f'{data_path}/*inpainted_*.pt')
     if not inpainted_files:
         raise FileNotFoundError("No inpainted .pt file found in data directory.")
     inpainted_path = inpainted_files[0]
@@ -26,12 +26,11 @@ def load_inpainted_data(data_path):
 
     return inpainted_data
 
-def plot_output(output_path):
-    data_path = f'{output_path}/data'
-    timestamps_inpainted = load_timestamps(data_path)
-    inpainted_data = load_inpainted_data(data_path)
+def plot_output(output_path, years=cfg.test_years, mode=cfg.model_type, filippou=False):
+    timestamps_inpainted = load_timestamps(output_path)
+    inpainted_data = load_inpainted_data(output_path)
 
-    data = cfg.station_val_data
+    data = cfg.station_data(years=years,mode=mode,filippou=filippou)
 
     station_data, original_data, timestamps = data[:inpainted_data.shape[0]]
 
@@ -46,6 +45,11 @@ def plot_output(output_path):
     return
 
 if __name__ == "__main__":
-    output_path = 'output_new/0.0201_evaluate_stations_daily_Jan01_2230_256_0.0'
+    output_path = 'output_new/0.0201_evaluate_stations_daily_Jan01_2230_256_0.0/data'
+    #output_path = '../../../../p/tmp/merlinho/cache/output_cache/Jan08_0116_hourly_2018'
 
-    plot_output(output_path)
+    years = cfg.val_inpainting_years
+    mode = 'hourly'
+    filippou= False
+
+    plot_output(output_path, years=years, mode=mode, filippou=filippou)

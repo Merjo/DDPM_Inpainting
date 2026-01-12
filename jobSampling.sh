@@ -4,10 +4,10 @@
 #SBATCH --error=logs/run_sampling_%j.err
 #SBATCH --qos=gpushort
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:4
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=64G
+#SBATCH --mem=896G
 
 # Load modules
 module load anaconda/2025

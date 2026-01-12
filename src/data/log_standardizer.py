@@ -66,6 +66,9 @@ class LogStandardizerStreaming:
         return score
 
     def select_c(self, data):
+        self.c = 0.0625
+        print(f"[Scaler] Selected c={self.c}")
+        return(self.c)
         print("[Scaler] Selecting best c (streaming on GPU)...")
         start_time = time.time()
         candidate_c = [2 ** i for i in range(-6,1)]

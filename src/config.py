@@ -11,8 +11,15 @@ class Config:
         self.log_every_epoch = True
         self.output_manager = None
         self.seed = 42
-        self.model_type = 'daily'  # choices: ['hourly', 'daily']
+
+        self.preserve_references = True
+        self.preserve_regular_references = True
+
+        self.model_type = 'hourly'  # choices: ['hourly', 'daily']
+
         self.filippou_mode = False
+        
+        self.daily = self.model_type == 'daily'
         if self.filippou_mode:
             print('\n\Filippou MODE!!!\n\n')
         self.test_mode = False
@@ -44,7 +51,7 @@ class Config:
 
         self.train_data_ref = None
         self.val_data_ref = None
-        self.station_val_data_ref = None
+        self.station_data_ref = None
         self.train_loaders_ref = None
         self.val_loaders_ref = None
         self.station_val_loaders_ref = None
@@ -54,7 +61,9 @@ class Config:
 
         self.patch_size = 256  # Patch size for dataset
         self.stride = 64
-        self.stride_fraction = 1/2  # Not used anymore
+        self.stride_fraction = 1/2  # TODO Obsolete
+
+        
         self.min_coverage_ref = 0.1  # Minimum coverage for patches (0.0 to 1.0)
 
         self.start_year = 2001
@@ -97,6 +106,7 @@ class Config:
         self.beta_end = 0.02
         self.xlr_scheduler_gamma = 0.99
         self.wcs_scheduler_steps = 3
+        
         self.min_patience_delta = 1e-4
 
         # Output / Sampling parameters
@@ -137,22 +147,22 @@ class Config:
         self.dps_lam = 0.02
         self.dps_hard_overwrite = 0.0  # TODO -> maybe just in the last step?
 
-        self.inpainting_chunk_size = 4
+        self.inpainting_chunk_size = 1 if self.daily else 2
 
         # Normal Parameters
 
         self.model_channels = 128
-        self.num_blocks = 2# 3 # 2
-        self.dropout = 0.1749451936163843 # 0.27035306635140666 # 0.1749451936163843
-        self.downsample_type = 'standard' # 'residual' #'standard'
-        self.channel_mult = '124' # '1124' # '124'
+        self.num_blocks = 3 #if self.daily else 2
+        self.dropout = 0.27035306635140666 #if self.daily else 0.1749451936163843
+        self.downsample_type = 'residual' #if self.daily else 'standard'
+        self.channel_mult = '1124' #if self.daily else '124'
         self.attn_config = 'none'
         self.timesteps = 1000
         self.beta_schedule = 'linear'
         self.loss = 'mse'
-        self.optimizer = 'Adam'# 'AdamW' #'Adam'
+        self.optimizer = 'AdamW' #if self.daily else 'Adam'
         self.scheduler = 'ExponentialLR'
-        self.lr = 0.00011316023206950849 # 0.00018713908590325842 #0.00011316023206950849
+        self.lr = 0.00018713908590325842 #if self.daily else 0.00011316023206950849
 
         #{'model_channels': 128, 'dropout': 0.22737977360150574, 'beta_schedule': 'linear', 'optimizer': 'Adam', 'scheduler': 'WarmupCosine', 'lr': 0.00017898129466371347}. Best is trial 2 with value: 0.049538634445891384.
 
@@ -204,30 +214,50 @@ class Config:
 
             print(f'\n\n[Config] Use of cfg.data is deprecated!')
 
-            self.data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
-        return self.data_ref
+            data = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.years)
+            if self.preserve_references:
+                self.data_ref = data
+            return data
+        else:
+            return self.data_ref
     
     @property
     def train_data(self):
         if self.train_data_ref is None:
             from src.data.read_data import read_data
-            self.train_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.train_years, return_importance_prob=False)
-        return self.train_data_ref
+            train_data = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.train_years, return_importance_prob=False)
+            if self.preserve_references:
+                self.train_data_ref = train_data
+            return train_data
+
+        else:
+            return self.train_data_ref
 
     @property
     def val_data(self):
         if self.val_data_ref is None:
             from src.data.read_data import read_data
-            self.val_data_ref = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.val_years, return_importance_prob=self.do_importance_sampling and True)
-        return self.val_data_ref
-    
-    @property
-    def station_val_data(self):  # TODO: Obsolete?
-        if self.station_val_data_ref is None:
+            val_data = read_data(reload=self.reload, scaler=self.scaler, patch_size=self.patch_size, min_coverage=self.min_coverage, years=self.val_years, return_importance_prob=self.do_importance_sampling and True)
+            if self.preserve_references:
+                self.val_data_ref = val_data
+            return val_data
+        else:
+            return self.val_data_ref
+
+    def station_data(self, years = None, mode=None, filippou=False):
+        if mode is None:
+            mode = cfg.model_type
+        if years is None:
+            years = self.val_inpainting_years  
+        if self.station_data_ref is None:
             from src.data.read_inpainting_data import get_inpainting_data
-            print('\n\n[Validation Station Data@Config]USING 2017 as TEST; CHANGE FOR FINAL\n\n')
-            self.station_val_data_ref = get_inpainting_data(years=self.val_inpainting_years, reload=self.reload)
-        return self.station_val_data_ref
+            print(f'\n[Config Station Data] Loading data for years {years}, mode {mode}, filippou_mask = {filippou}\n')
+            station_data = get_inpainting_data(years=years, reload=self.reload, model_type=mode, do_filippou_mask=filippou)
+            if self.preserve_references:
+                self.station_data_ref = station_data
+            return station_data
+        else:
+            return self.station_data_ref
     
     @property
     def test_data(self):
@@ -242,12 +272,16 @@ class Config:
     def scaler(self):
         if self.scaler_ref is None:
             from src.data.log_standardizer import load_scaler
-            self.scaler_ref = load_scaler(reload=self.do_reload_scaler,
+            scaler = load_scaler(reload=self.do_reload_scaler,
                                           cache_path=self.cache_path,
                                           years=self.train_years,
                                           time_slices=self.time_slices,
                                           model_type=self.model_type)
-        return self.scaler_ref
+            if self.preserve_references or self.preserve_regular_references:
+                self.scaler_ref = scaler
+            return scaler
+        else:
+            return self.scaler_ref
     
     @property 
     def min_coverage(self):
@@ -261,15 +295,23 @@ class Config:
     def train_loaders(self):
         if self.train_loaders_ref is None:
             from src.data.loader import get_loaders
-            self.train_loaders_ref = get_loaders(self.train_data)
-        return self.train_loaders_ref
+            train_loaders = get_loaders(self.train_data)
+            if self.preserve_references:
+                self.train_loaders_ref = train_loaders
+            return train_loaders
+        else:
+            return self.train_loaders_ref
 
     @property
     def val_loaders(self):
         if self.val_loaders_ref is None:
             from src.data.loader import get_loaders
-            self.val_loaders_ref = get_loaders(self.val_data)
-        return self.val_loaders_ref
+            val_loaders = get_loaders(self.val_data)
+            if self.preserve_references:
+                self.val_loaders_ref = val_loaders
+            return val_loaders
+        else:  
+            return self.val_loaders_ref
         
 
     @property
@@ -309,14 +351,22 @@ class Config:
         """
         if self.clamp_range_end_ref is None:
             scaled = self.train_data.datasets[-1].data_scaled  # only use subset with highest patches
-            low = scaled.min.item()
-            maxval = scaled.max.item()
-            idx = torch.randperm(scaled.shape[0])[:300]
+            low = scaled.min().item()
+            maxval = scaled.max().item()
+            g = torch.Generator()
+            g.manual_seed(cfg.seed)
+
+            idx = torch.randperm(scaled.shape[0], generator=g)[:200]
             ssub = scaled[idx]
             q999 = torch.quantile(ssub, 0.999).item()
             std = self.scaler.std
-            high = q999+0.5*std
+            quantile_high = q999+0.5*std
+            average_high = (maxval + quantile_high) / 2
+            high = max(average_high, quantile_high)
 
+            if self.daily:
+                high = 3.498451590538025
+                print(f"[AutoClamp] Computing clamp range for DAILY model, using high from last run: {high:.3f} (instead of {max(average_high, quantile_high)})")
             
             self.clamp_range_end_ref = (low, high)
 
@@ -383,3 +433,5 @@ class Config:
         self.output_manager = output_manager
 
 cfg = Config()
+
+a=0

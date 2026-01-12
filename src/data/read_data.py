@@ -23,14 +23,14 @@ def read_raw_data(years,
 
     data_array = data_array.transpose("time", "x", "y")
 
+    if time_slices is not None:
+        data_array = data_array.isel(time=slice(0, time_slices)) 
+
     if delete_coords:
         data_array = data_array.reset_coords(drop=True)
 
     if aggregate_daily:
         data_array = data_array.resample(time="1D").sum(skipna=False)
-
-    if time_slices is not None:
-        data_array = data_array.isel(time=slice(0, cfg.time_slices)) 
 
     if check_negative:
         # check for negative values
