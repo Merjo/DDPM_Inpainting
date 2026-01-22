@@ -10,7 +10,10 @@ import torch.nn.functional as F
 from src.utils.output_manager import OutputManager
 from datetime import datetime
 
-def station_inpainting(diffusion, data, mode, timesteps=None, subset=None, lam=cfg.dps_lam, timesteps_offset=10):
+
+def station_inpainting(diffusion, data, mode, timesteps=None, subset=None, lam=cfg.dps_lam, timesteps_offset=10, monte_carlo=False, daily_aggregate=False):
+    if monte_carlo and not daily_aggregate:
+        subset = np.arange(0, 360, 10)
     if timesteps is not None:
         idx = slice(timesteps_offset, timesteps_offset+timesteps)
         station_samples, radar_samples, timestamps = data[idx]
@@ -29,7 +32,17 @@ def station_inpainting(diffusion, data, mode, timesteps=None, subset=None, lam=c
     station_samples = torch.nan_to_num(station_samples, nan=0.0)  # replace NaN with 0
 
     if mode == 'daily' or True:  # Run normal for all
-        x_inpainted = diffusion.inpaint_dps(station_samples, mask, lam = lam, chunk_size=cfg.inpainting_chunk_size)
+        if monte_carlo:
+            x_samples = []
+            repeats = 10
+            if daily_aggregate:
+                repeats = 5  # Reduce for daily due to memory
+            for _ in range(repeats):
+                x = diffusion.inpaint_dps(station_samples, mask, lam=lam, chunk_size=cfg.inpainting_chunk_size)
+                x_samples.append(x)
+            x_inpainted = torch.stack(x_samples, dim=0).mean(dim=0)
+        else:
+            x_inpainted = diffusion.inpaint_dps(station_samples, mask, lam = lam, chunk_size=cfg.inpainting_chunk_size)
     elif mode=='hourly':
         x_inpainted = diffusion.inpaint_dps_cpu(station_samples, mask, lam = lam, chunk_size=cfg.inpainting_chunk_size)
     else:
@@ -108,6 +121,43 @@ def pick_hourly_subset_indices_monthly(seed=cfg.seed, leap_year=False):
         day_offset += days_in_month
     return np.array(indices)
 
+def pick_hourly_subset_indices_aggregate(seed=cfg.seed, leap_year=False):
+    rng = np.random.default_rng(seed)
+
+    # Month lengths for a non-leap year
+    month_lengths = [
+        31,  # Jan
+        28,  # Feb
+        31,  # Mar
+        30,  # Apr
+        31,  # May
+        30,  # Jun
+        31,  # Jul
+        31,  # Aug
+        30,  # Sep
+        31,  # Oct
+        30,  # Nov
+        31,  # Dec
+    ]
+
+    if leap_year:
+        month_lengths[1] = 29
+
+    indices = []
+    day_offset = 0
+
+    for days_in_month in month_lengths:
+        # Randomly pick one day in the month
+        day = rng.integers(0, days_in_month)
+
+        # Add all 24 hourly timesteps for that day
+        base_timestep = (day_offset + day) * 24
+        indices.extend(base_timestep + np.arange(24))
+
+        day_offset += days_in_month
+
+    return np.array(indices)
+
 
 
 def run_station_inpainting(mode,
@@ -117,7 +167,9 @@ def run_station_inpainting(mode,
                            years=cfg.val_inpainting_years,
                            timesteps=None,
                            filippou = False,
-                           reduce_hourly=True):
+                           reduce_hourly=True,
+                           daily_aggregate=False,
+                           monte_carlo=False):
 
     if data is None:
         data = cfg.station_data(years, mode, filippou=filippou)
@@ -131,12 +183,16 @@ def run_station_inpainting(mode,
         if len(years)>1:
             raise NotImplementedError('Not Implemented for multiple years')
         leap_year = years[0]%4==0
-        subset = pick_hourly_subset_indices_monthly(leap_year=leap_year)
+        if daily_aggregate:
+            subset = pick_hourly_subset_indices_aggregate(leap_year=leap_year)
+        else:
+            subset = pick_hourly_subset_indices_monthly(leap_year=leap_year)
+        
 
     diffusion, unet, params, optimizer, scheduler = load_model(param_file=param_file,
                                                                model_file=model_file)
 
-    mse_loss, radar_samples, station_samples, x_inpainted, timestamps = station_inpainting(diffusion, data, mode, timesteps=timesteps, subset=subset)
+    mse_loss, radar_samples, station_samples, x_inpainted, timestamps = station_inpainting(diffusion, data, mode, timesteps=timesteps, subset=subset, monte_carlo=monte_carlo, daily_aggregate=daily_aggregate)
 
     # Save Inpainted Data
 
@@ -168,8 +224,8 @@ if __name__=='__main__':
 
     output = OutputManager(run_type="station_inpainting")
 
-    param_file = 'output_new/normal_Jan03_2011_256_0.0/dailyOptuna_params_0.02358_256_0.0_8_250_normal.csv'
-    model_file = 'output_new/normal_Jan03_2011_256_0.0/model_0.02358.pkl'
+    #param_file = 'output_new/normal_Jan03_2011_256_0.0/dailyOptuna_params_0.02358_256_0.0_8_250_normal.csv'
+    #model_file = 'output_new/normal_Jan03_2011_256_0.0/model_0.02358.pkl'
     
     #data = read_station_data()
 
@@ -178,10 +234,16 @@ if __name__=='__main__':
     mode = cfg.model_type
     filippou = cfg.filippou_mode
     reduce_hourly = True
+    daily_aggregate = True
+    monte_carlo = True
 
     if mode=='daily':
         model_file = "output_new/0.02194_normal_Jan03_2011_256_0.0/model_0.02194.pkl"
         param_file = "output_new/0.02194_normal_Jan03_2011_256_0.0/best_params_0.02194_256_0.0_8_250_normal.csv"
+
+       # model_file = "output_new/0.02194_normal_Jan03_2011_256_0.0/model_0.02249.pkl"  # Run Epoch 220 2nd best
+
+        # model_file = "output_new/0.02194_normal_Jan03_2011_256_0.0/model_0.02326.pkl"  # Run Epoch 100 3? Best good His
     elif mode == 'hourly':
         model_file = "output_new/0.0358_normal_Jan08_0328_256_0.0/model_0.035797.pkl"
         param_file = "output_new/0.0358_normal_Jan08_0328_256_0.0/best_params_0.0358_256_0.0_8_250_normal.csv"
@@ -189,7 +251,7 @@ if __name__=='__main__':
         raise Exception(f'Mode should be daily or hourly.')
     
 
-    x_inpainted, mse_loss, params = run_station_inpainting(mode, param_file=param_file, model_file=model_file, years = years, timesteps=timesteps, filippou=filippou, reduce_hourly=reduce_hourly)
+    x_inpainted, mse_loss, params = run_station_inpainting(mode, param_file=param_file, model_file=model_file, years = years, timesteps=timesteps, filippou=filippou, reduce_hourly=reduce_hourly, daily_aggregate=daily_aggregate, monte_carlo=monte_carlo)
 
     output.finalize(mse_loss, params=params)
 

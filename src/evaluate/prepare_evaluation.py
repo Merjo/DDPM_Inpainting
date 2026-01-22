@@ -16,7 +16,7 @@ from src.data.read_data import read_raw_data
 from skimage.metrics import structural_similarity as ssim
 
 
-def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=10):  # Often, first few radar samples are nan for some reason, therefore introduced offset 
+def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=10, daily_aggregate_mode=False, multiple_mode=False):  # Often, first few radar samples are nan for some reason, therefore introduced offset 
     data = cfg.station_data(years, mode=mode)
     station_samples, radar_samples, timestamps = data[:] if timesteps is None else data[timesteps_offset:timesteps_offset+timesteps]
     inpainted_path_ending = f'{mode}_inpainted_stations_{years[0]}_{years[-1]}{"" if timesteps is None else "_ts"+str(timesteps)}{"_filippou" if filippou else ""}.pt'
@@ -26,12 +26,24 @@ def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=
         raise NotImplementedError('Not implemented yet :/')
     else: 
         latest_file = max(inpainted_files, key=lambda f: os.path.getmtime(os.path.join(data_path, f)))
+        if daily_aggregate_mode:
+            latest_file = 'Jan15_1111_1.06977_hourly_inpainted_stations_2018_2018.pt'  # 24 times hourly to day
+        if multiple_mode:
+            if mode=='daily':
+                latest_file = 'Jan15_1707_0.381863_daily_inpainted_stations_2018_2018.pt'  # Daily 10 times same timestamp
+            else:
+                if filippou:
+                    latest_file = 'Jan15_1656_0.97097_hourly_inpainted_stations_2018_2018_filippou.pt'  # With aggregated values
+                    #latest_file = 'Jan16_0837_1.01311_hourly_inpainted_stations_2018_2018.pt'  # Without aggregate
+
+        latest_file = 'Jan21_0507_1.28128_hourly_inpainted_stations_2018_2018_filippou.pt'
+
         inpainted_path = os.path.join(data_path, latest_file)
         inpainted = torch.load(inpainted_path)
+        ts_path = inpainted_path.replace(".pt", "_timestamps.csv")
+        timestamps = pd.read_csv(ts_path, header=None).iloc[:, 0]
+        timestamps = pd.to_datetime(timestamps)
         if mode=='hourly':
-            ts_path = inpainted_path.replace(".pt", "_timestamps.csv")
-            timestamps = pd.read_csv(ts_path, header=None).iloc[:, 0]
-            timestamps = pd.to_datetime(timestamps)
             raw_ref = read_raw_data(years=years)
             radar_times = pd.to_datetime(raw_ref["time"].values)
             hour_indices = pd.Index(radar_times).get_indexer(timestamps)
@@ -79,18 +91,62 @@ def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=
     station = np.array([scale_back_numpy(x, cfg.scaler) for x in station_np])
     inpainted = np.array([scale_back_numpy(x, cfg.scaler) for x in inpainted_np])
 
-
     hyras = None
-    if mode=='daily':
+    if daily_aggregate_mode or mode=='daily':
         hyras = load_hyras(years=years)
+
+        if daily_aggregate_mode:
+            timestamps_daily = timestamps.iloc[::24].dt.normalize() + pd.Timedelta(hours=6)
+            hyras_time = pd.to_datetime(hyras.time.values)#
+            hyras_day_indices = hyras_time.get_indexer(timestamps_daily)
+
+            if (hyras_day_indices < 0).any():
+                missing = timestamps_daily[hyras_day_indices < 0]
+                raise ValueError(
+                    f"{len(missing)} HYRAS days not found.\n"
+                    f"First missing:\n{missing[:5]}"
+                )
+
+            hyras_subset = hyras.isel(time=hyras_day_indices)
+
+            hyras = hyras_subset
+            print(f'Hyras new shape {hyras_subset.shape}')
+
         hyras = torch.from_numpy(hyras.values)
         hyras = hyras if timesteps is None else hyras[timesteps_offset:timesteps_offset+timesteps]
         hyras_np = [x.squeeze().cpu().numpy() for x in hyras]
         hyras = np.array(hyras_np)
+    
+    if daily_aggregate_mode:
+        T, Y, X = inpainted.shape
+        assert T % 24 == 0
+        n_days = T // 24
+        inpainted = inpainted.reshape(n_days, 24, Y, X).sum(axis=1)
+        station = station.reshape(n_days, 24, Y, X).sum(axis=1)
+        radar = radar.reshape(n_days, 24, Y, X).sum(axis=1)
+        print("First inpainted day:", timestamps_daily.iloc[0])
+        print("First HYRAS day:", hyras_subset.time.values[0])
+
+        assert len(inpainted) == hyras_subset.sizes["time"]
+
+        timestamps = timestamps.iloc[::24].reset_index(drop=True)
+
+        print(f'Final Timestamps= {timestamps}')
+
+    if multiple_mode and inpainted.shape!=radar.shape:
+        radar = radar[::10][:-1]
+        station = station [::10][:-1]
+        if hyras is not None:
+            hyras = hyras[::10][:-1]
+
 
     save_dir_name = f"final_{date_str}_{mode}_{years[0]}_{timesteps}_filippou{filippou}"
     save_dir = Path(cfg.output_cache_path) / save_dir_name
     save_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f'Radar shape = {radar.shape}')
+    print(f'Station shape = {station.shape}')
+    print(f'Inpainted shape = {inpainted.shape}')
 
     # Save arrays
     np.save(save_dir / "radar.npy", radar)
@@ -147,5 +203,7 @@ if __name__ == "__main__":
     timesteps = None
     mode = cfg.model_type
     filippou = cfg.filippou_mode
+    daily_aggregate = True
+    multiple_mode = False
     
-    prepare_evaluation(years=years, mode=mode, timesteps=timesteps, filippou = filippou)
+    prepare_evaluation(years=years, mode=mode, timesteps=timesteps, filippou = filippou, daily_aggregate_mode=daily_aggregate, multiple_mode=multiple_mode)

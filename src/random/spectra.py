@@ -2,6 +2,7 @@ import numpy as np
 import xarray as xr
 from tqdm import tqdm
 
+"""Implementation from https://github.com/p-hss/consistency-climate-downscaling/blob/e47a433ae5752d44973204881eac96d33237e7d5/src/utils/spectra.py#L32"""
 
 def mean_rapsd(data: xr.DataArray, normalize: bool=True):
     """
@@ -29,7 +30,7 @@ def mean_rapsd(data: xr.DataArray, normalize: bool=True):
     return mean_psd, freq
 
 
-def mean_rapsd_numpy(data: np.ndarray, normalize: bool=True):
+def mean_rapsd_numpy(data: np.ndarray, normalize: bool=False):
     """
     Averages the RAPSD in time over a DataArray.
 

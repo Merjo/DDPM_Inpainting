@@ -142,11 +142,16 @@ def plot_station_inpainting(radar, station, inpainted, hyras, timestamps, title=
 
 
 if __name__ == "__main__":
-    folder_name = 'final_Jan12_1259_hourly_2018_None_filippouFalse'
-    #folder_name = 'final_Jan12_1252_daily_2018_4_filippouFalse'
+    #folder_name = 'final_Jan12_1259_hourly_2018_None_filippouFalse' # Hourly Normal Final
+    #folder_name = 'final_Jan12_1252_daily_2018_4_filippouFalse'  # Daily 4 Timesteps
+    #folder_name = 'final_Jan13_1548_hourly_2018_None_filippouTrue' # Hourly Filippou Final
+    folder_name = 'final_Jan13_1546_daily_2018_None_filippouFalse'  # Daily Final
+
+    folder_name = 'final_Jan16_1843_daily_2018_None_filippouFalse'  # 10 time mean Daily
+
     n=6
     final_dir = f'{cfg.output_cache_path}/{folder_name}'
-    hyras = False
+    hyras = True  # TODO Implement Filippou Comparison?
     if hyras:
         radar, station, inpainted, timestamps, hyras = load_final(final_dir, hyras=True, listify=True)
     else:
@@ -161,7 +166,7 @@ if __name__ == "__main__":
     if n < total_samples:  # only subsample if n < total available
         rng = np.random.default_rng(seed=42)  # fixed seed for reproducibility
         selected_idx = rng.choice(total_samples, size=n, replace=False)
-
+        selected_idx = np.sort(selected_idx)
         # Subset arrays
         radar = [radar[i] for i in selected_idx] if isinstance(radar, list) else radar[selected_idx]
         station = [station[i] for i in selected_idx] if isinstance(station, list) else station[selected_idx]

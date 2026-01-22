@@ -4,7 +4,7 @@
 #SBATCH --error=logs/run_station_inpainting_%j.err
 #SBATCH --qos=gpumedium
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:3
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=1024G

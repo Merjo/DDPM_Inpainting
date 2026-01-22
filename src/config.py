@@ -15,7 +15,7 @@ class Config:
         self.preserve_references = True
         self.preserve_regular_references = True
 
-        self.model_type = 'hourly'  # choices: ['hourly', 'daily']
+        self.model_type = 'daily'  # choices: ['hourly', 'daily']
 
         self.filippou_mode = False
         
@@ -147,7 +147,7 @@ class Config:
         self.dps_lam = 0.02
         self.dps_hard_overwrite = 0.0  # TODO -> maybe just in the last step?
 
-        self.inpainting_chunk_size = 1 if self.daily else 2
+        self.inpainting_chunk_size = 2 if self.daily else 2
 
         # Normal Parameters
 

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from src.config import cfg
-from src.random.spectra import mean_rapsd_numpy  # or adjust the import to where your PSD code lives
+from src.random.spectra import mean_rapsd_numpy 
 
 import matplotlib.colors as mcolors
 import torch
@@ -12,9 +12,9 @@ from matplotlib.colors import LogNorm
 
 
 def scale_back_numpy(arr, scaler):
-    t = torch.as_tensor(arr)            # numpy → tensor
-    t_dec = scaler.decode(t)            # decode
-    t_dec = t_dec.clamp(min=0.0)          # clamp negatives to 0
+    t = torch.as_tensor(arr)
+    t_dec = scaler.decode(t)
+    t_dec = t_dec.clamp(min=0.0)
     return t_dec.detach().cpu().numpy() 
 
 def remove_nans(arr_list):
@@ -411,6 +411,13 @@ def plot_histogram_log(real, generated, title='Histogram', bins=100, out_dir=Non
     plt.close()
     print(f"[Plot] Saved histogram comparison to {filename}")
 
+def normalize_psd(psd):
+    psd_norm = psd.copy()
+    total = np.sum(psd)
+    if total > 0:
+        psd_norm /= total
+    return psd_norm
+
 def plot_rapsd_comparison(real, generated, title='RAPSD Comparison', out_dir=None):
     """
     Plot the radially averaged power spectral density (RAPSD) for real vs generated samples.
@@ -444,6 +451,13 @@ def plot_rapsd_comparison(real, generated, title='RAPSD Comparison', out_dir=Non
     # === Compute mean RAPSD ===
     real_psd, freq = mean_rapsd_numpy(real_arr)
     gen_psd, _ = mean_rapsd_numpy(gen_arr)
+
+    print(f'[RAPSD] first real: {real_psd[0]}, first gen: {gen_psd[0]}')
+
+    real_psd = normalize_psd(real_psd)
+    gen_psd = normalize_psd(gen_psd)
+
+    print(f'[RAPSD] Sum under real PSD: {np.sum(real_psd)}, sum under gen PSD: {np.sum(gen_psd)}')
 
     # === Plot ===
     if out_dir is None:

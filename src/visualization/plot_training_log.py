@@ -59,6 +59,18 @@ def plot_training_log(log_path, out_path=None, do_y_log=False, break_axis=True, 
     min_idx = val_loss.index(min_val)
     min_epoch = epochs[min_idx]
 
+    val_loss_copy = val_loss.copy()
+
+    # Remove the first minimum
+    val_loss_copy.remove(min(val_loss_copy))
+
+    # Find the second minimum
+    second_min_val = min(val_loss_copy)
+
+    # Find its index in the original list
+    second_min_idx = val_loss.index(second_min_val)
+    second_min_epoch = epochs[second_min_idx]
+
     # Broken axis plotting
     if break_axis and len(val_loss) > 2:
         # Main cluster (ignore first two epochs for focus)
@@ -129,15 +141,20 @@ def plot_training_log(log_path, out_path=None, do_y_log=False, break_axis=True, 
         ax_bottom.plot((-d, +d), (1 - d, 1 + d), **kwargs)
         ax_bottom.plot((1 - d, 1 + d), (1 - d, 1 + d), **kwargs)
 
-        # --- Mark minimum validation loss ---
-        """ax_bottom.scatter(
-            min_epoch, min_val,
-            color="red", zorder=5
-        )"""
-
+        # --- Mark minimum validation loss(es) ---
         ax_bottom.annotate(
             f"Epoch {min_epoch}\nLoss {min_val:.4g}",
             xy=(min_epoch, min_val),
+            xytext=(-30, 50),
+            textcoords="offset points",
+            arrowprops=dict(arrowstyle="->", lw=1),
+            fontsize=9,
+            ha="left"
+        )
+
+        ax_bottom.annotate(
+            f"Epoch {second_min_epoch}\nLoss {second_min_val:.4g}",
+            xy=(second_min_epoch, second_min_val),
             xytext=(-30, 50),
             textcoords="offset points",
             arrowprops=dict(arrowstyle="->", lw=1),
@@ -178,7 +195,7 @@ def plot_training_log(log_path, out_path=None, do_y_log=False, break_axis=True, 
 
 
 if __name__=='__main__':
-    mode = 'hourly'
+    mode = 'daily'
 
     if mode=='daily':
         path = "output_new/0.02194_normal_Jan03_2011_256_0.0/run_normal_6225127.out"
