@@ -13,7 +13,11 @@ from datetime import datetime
 
 def station_inpainting(diffusion, data, mode, timesteps=None, subset=None, lam=cfg.dps_lam, timesteps_offset=10, monte_carlo=False, daily_aggregate=False):
     if monte_carlo and not daily_aggregate:
-        subset = np.arange(0, 360, 10)
+        if mode=='daily':
+            subset = np.arange(0, 360, 10)
+        else:
+            indices = np.arange(0, 360, 10)
+            subset = subset[indices]
     if timesteps is not None:
         idx = slice(timesteps_offset, timesteps_offset+timesteps)
         station_samples, radar_samples, timestamps = data[idx]
@@ -234,7 +238,7 @@ if __name__=='__main__':
     mode = cfg.model_type
     filippou = cfg.filippou_mode
     reduce_hourly = True
-    daily_aggregate = True
+    daily_aggregate = False
     monte_carlo = True
 
     if mode=='daily':

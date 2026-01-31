@@ -143,15 +143,26 @@ def plot_station_inpainting(radar, station, inpainted, hyras, timestamps, title=
 
 if __name__ == "__main__":
     #folder_name = 'final_Jan12_1259_hourly_2018_None_filippouFalse' # Hourly Normal Final
-    #folder_name = 'final_Jan12_1252_daily_2018_4_filippouFalse'  # Daily 4 Timesteps
-    #folder_name = 'final_Jan13_1548_hourly_2018_None_filippouTrue' # Hourly Filippou Final
-    folder_name = 'final_Jan13_1546_daily_2018_None_filippouFalse'  # Daily Final
+    #folder_name = 'final_Jan26_1602_hourly_2018_None_filippouFalse'  # Hourly Monte Carlo and Hourly24
+    
+    #folder_name = 'final_Jan13_1546_daily_2018_None_filippouFalse' # Daily Final 181
 
-    folder_name = 'final_Jan16_1843_daily_2018_None_filippouFalse'  # 10 time mean Daily
+    #folder_name = 'final_Jan22_0827_daily_2018_None_filippouFalse' # Daily 220
+    #folder_name = 'final_Jan22_0833_daily_2018_None_filippouFalse' # Daily 100
+    #folder_name = 'final_Jan16_1814_hourly_2018_None_filippouFalse' # Daily Hourly24
+    #folder_name = 'final_Jan16_1843_daily_2018_None_filippouFalse' # Daily Monte Carlo
+
+
+    #folder_name = 'final_Jan26_1558_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo and Hourly24
+    #folder_name = 'final_Jan21_1406_hourly_2018_None_filippouTrue' # Filippou Hourly24 Aggregated
+    #folder_name = 'final_Jan16_1857_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo Old 
+    #folder_name = 'final_Jan27_1738_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo New
+    #folder_name = 'final_Jan13_1548_hourly_2018_None_filippouTrue' # Filippou Final
+    folder_name = 'final_Jan28_1034_hourly_2018_None_filippouTrue'  # Filippou Final New
 
     n=6
     final_dir = f'{cfg.output_cache_path}/{folder_name}'
-    hyras = True  # TODO Implement Filippou Comparison?
+    hyras = False  # TODO Implement Filippou Comparison?
     if hyras:
         radar, station, inpainted, timestamps, hyras = load_final(final_dir, hyras=True, listify=True)
     else:

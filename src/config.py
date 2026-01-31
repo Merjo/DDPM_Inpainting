@@ -15,9 +15,9 @@ class Config:
         self.preserve_references = True
         self.preserve_regular_references = True
 
-        self.model_type = 'daily'  # choices: ['hourly', 'daily']
+        self.model_type = 'hourly'  # choices: ['hourly', 'daily']
 
-        self.filippou_mode = False
+        self.filippou_mode = True
         
         self.daily = self.model_type == 'daily'
         if self.filippou_mode:

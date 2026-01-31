@@ -17,7 +17,7 @@ from skimage.metrics import structural_similarity as ssim
 
 
 def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=10, daily_aggregate_mode=False, multiple_mode=False):  # Often, first few radar samples are nan for some reason, therefore introduced offset 
-    data = cfg.station_data(years, mode=mode)
+    data = cfg.station_data(years, mode=mode, filippou=filippou)
     station_samples, radar_samples, timestamps = data[:] if timesteps is None else data[timesteps_offset:timesteps_offset+timesteps]
     inpainted_path_ending = f'{mode}_inpainted_stations_{years[0]}_{years[-1]}{"" if timesteps is None else "_ts"+str(timesteps)}{"_filippou" if filippou else ""}.pt'
     data_path = cfg.output_cache_path
@@ -36,7 +36,8 @@ def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=
                     latest_file = 'Jan15_1656_0.97097_hourly_inpainted_stations_2018_2018_filippou.pt'  # With aggregated values
                     #latest_file = 'Jan16_0837_1.01311_hourly_inpainted_stations_2018_2018.pt'  # Without aggregate
 
-        latest_file = 'Jan21_0507_1.28128_hourly_inpainted_stations_2018_2018_filippou.pt'
+        #latest_file = 'Jan27_1647_0.654592_hourly_inpainted_stations_2018_2018_filippou.pt'
+        latest_file = 'Jan12_0931_1.18552_hourly_inpainted_stations_2018_2018_filippou.pt'
 
         inpainted_path = os.path.join(data_path, latest_file)
         inpainted = torch.load(inpainted_path)
@@ -67,7 +68,7 @@ def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=
 
             radar_samples = radar_subset
             station_samples = station_subset
-        print(f"[Plot] Loaded inpainted data from {latest_file}")
+        print(f"[Prepare Evaluation] Loaded inpainted data from {latest_file}")
         loss = latest_file.split('_')[1]
         mse_loss = float(loss)
 
@@ -203,7 +204,7 @@ if __name__ == "__main__":
     timesteps = None
     mode = cfg.model_type
     filippou = cfg.filippou_mode
-    daily_aggregate = True
+    daily_aggregate = False
     multiple_mode = False
     
     prepare_evaluation(years=years, mode=mode, timesteps=timesteps, filippou = filippou, daily_aggregate_mode=daily_aggregate, multiple_mode=multiple_mode)

@@ -95,8 +95,8 @@ def plot_rapsd_radar_inpainted_hyras(
     print("Inp sum:", np.nansum(inpainted_psd))
     print("HYRAS sum:", np.nansum(hyras_psd))
 
-    print(f'\nArea difference (Radar vs Inpainted): {np.trapz(np.abs(radar_psd - inpainted_psd), freq)}')
-    print(f'Area difference (Radar vs HYRAS): {np.trapz(np.abs(radar_psd - hyras_psd), freq)}\n')
+    #print(f'\nArea difference (Radar vs Inpainted): {np.trapz(np.abs(radar_psd - inpainted_psd), freq)}')
+    #print(f'Area difference (Radar vs HYRAS): {np.trapz(np.abs(radar_psd - hyras_psd), freq)}\n')
     print(f'Sum difference (Radar vs Inpainted): {np.nansum(np.abs(radar_psd - inpainted_psd))}')
     print(f'Sum difference (Radar vs HYRAS): {np.nansum(np.abs(radar_psd - hyras_psd))}\n')
 
@@ -207,6 +207,7 @@ def evaluate_fields(gt, pred, data_range=None):
         gt_f,
         pred_f,
         data_range=data_range if data_range is not None else gt_v.max() - gt_v.min(),
+        #win_size=21
     )
 
     return {
@@ -289,7 +290,7 @@ def plot_metrics_by_time_and_month(evaluation, timestamps, radar, name):
         linewidth=2,
         label='Mean rain\nintensity'
     )
-    ax2.set_ylabel('mm/h (RMSE, rain intensity)')
+    ax2.set_ylabel('mm/h (rain intensity)')
 
     # Combined legend
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -332,7 +333,7 @@ def plot_metrics_by_time_and_month(evaluation, timestamps, radar, name):
         linewidth=2,
         label='Mean rain\nintensity'
     )
-    ax2.set_ylabel('mm/h (RMSE, rain intensity)')
+    ax2.set_ylabel('mm/h (rain intensity)')
 
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
@@ -409,7 +410,7 @@ def plot_monthly_comparison_normal_vs_hyras(
     ax1.plot(
         m.index, m["rmse_n"],
         color="tab:blue", marker="o",
-        label="RMSE (radar"
+        label="RMSE (DDPM)"
     )
     ax1.plot(
         m.index, m["rmse_h"],
@@ -421,7 +422,7 @@ def plot_monthly_comparison_normal_vs_hyras(
     ax1.plot(
         m.index, m["bias_n"],
         color="gold", marker="o",
-        label="Bias (radar)"
+        label="Bias (DDPM)"
     )
     ax1.plot(
         m.index, m["bias_h"],
@@ -430,24 +431,24 @@ def plot_monthly_comparison_normal_vs_hyras(
     )
 
     ax1.set_xlabel("Month")
-    ax1.set_ylabel("Metric value")
+    ax1.set_ylabel("mm/day")
     ax1.grid(True)
 
     # Secondary axis: rain intensity
-    ax2 = ax1.twinx()
-    ax2.plot(
+    #ax2 = ax1.twinx()
+    ax1.plot(
         m.index, m["rain"],
         color="darkgrey", linestyle="--", linewidth=2,
         label="Mean rain\nintensity"
     )
-    ax2.set_ylabel("mm")
+    #ax2.set_ylabel("mm (rain intensity)")
 
     # Legend
     lines1, labels1 = ax1.get_legend_handles_labels()
-    lines2, labels2 = ax2.get_legend_handles_labels()
+    #lines2, labels2 = ax2.get_legend_handles_labels()
     ax1.legend(
-        lines1 + lines2,
-        labels1 + labels2,
+        lines1, #+ lines2,
+        labels1, #+ labels2,
         loc="upper right"
     )
 
@@ -463,29 +464,31 @@ def plot_monthly_comparison_normal_vs_hyras(
     # ==========================================================
     fig, ax = plt.subplots(figsize=(10, 5))
 
-    # Correlation
-    ax.plot(
-        m.index, m["corr_n"],
-        color="tab:green", marker="o",
-        label="Correlation (radar)"
-    )
-    ax.plot(
-        m.index, m["corr_h"],
-        color="tab:green", linestyle="--", marker="o",
-        label="Correlation (HYRAS)"
-    )
-
     # SSIM
-    ax.plot(
-        m.index, m["ssim_n"],
-        color="tab:red", marker="o",
-        label="SSIM (radar)"
-    )
     ax.plot(
         m.index, m["ssim_h"],
         color="tab:red", linestyle="--", marker="o",
         label="SSIM (HYRAS)"
     )
+
+    ax.plot(
+        m.index, m["ssim_n"],
+        color="tab:red", marker="o",
+        label="SSIM (DDPM)"
+    )
+
+    # Correlation
+    ax.plot(
+        m.index, m["corr_h"],
+        color="tab:green", linestyle="--", marker="o",
+        label="Correlation (HYRAS)"
+    )
+    ax.plot(
+        m.index, m["corr_n"],
+        color="tab:green", marker="o",
+        label="Correlation (DDPM)"
+    )
+
 
     ax.set_xlabel("Month")
     ax.set_ylabel("Metric value")
@@ -514,15 +517,15 @@ def corr_3d(a, b):
         return np.nan
     return np.corrcoef(a[mask].ravel(), b[mask].ravel())[0, 1]
 
-
+def prdiff_3d(output, ground_truth):
+    return np.nansum(ground_truth) - np.nansum(output)
 
 if __name__ == "__main__":
-    #folder_name = 'final_Jan12_1252_daily_2018_4_filippouFalse' # Old Daily
 
     #folder_name = 'final_Jan12_1259_hourly_2018_None_filippouFalse' # Hourly Normal Final
-    #folder_name = 'final_Jan13_1548_hourly_2018_None_filippouTrue' # Hourly Filippou Final
+    #folder_name = 'final_Jan26_1602_hourly_2018_None_filippouFalse'  # Hourly Monte Carlo and Hourly24
     
-    folder_name = 'final_Jan13_1546_daily_2018_None_filippouFalse' # Daily Final 181
+    #folder_name = 'final_Jan13_1546_daily_2018_None_filippouFalse' # Daily Final 181
 
     #folder_name = 'final_Jan22_0827_daily_2018_None_filippouFalse' # Daily 220
     #folder_name = 'final_Jan22_0833_daily_2018_None_filippouFalse' # Daily 100
@@ -530,8 +533,15 @@ if __name__ == "__main__":
     #folder_name = 'final_Jan16_1843_daily_2018_None_filippouFalse' # Daily Monte Carlo
 
 
-    hyras_flag = True
-    name = 'daily_181'
+    #folder_name = 'final_Jan26_1558_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo and Hourly24
+    #folder_name = 'final_Jan21_1406_hourly_2018_None_filippouTrue' # Filippou Hourly24 Aggregated
+    #folder_name = 'final_Jan16_1857_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo Old 
+    #folder_name = 'final_Jan27_1738_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo New
+    #folder_name = 'final_Jan13_1548_hourly_2018_None_filippouTrue' # Filippou Final
+    folder_name = 'final_Jan28_1034_hourly_2018_None_filippouTrue'  # Filippou Final New
+
+    hyras_flag = False
+    name = 'filippou'
 
     final_dir = f'{cfg.output_cache_path}/{folder_name}'
 
@@ -544,18 +554,26 @@ if __name__ == "__main__":
         # === HYRAS vs RADAR (3D metrics) ===
         rmse_hyras = rmse_3d(hyras, radar)
         bias_hyras = bias_3d(hyras, radar)
+        prdiff_hyras = prdiff_3d(hyras, radar)
         corr_hyras = corr_3d(hyras, radar)
 
         # SSIM: 2D per-timestep → mean
         evaluation_hyras = evaluate_timeseries(radar, hyras)
         ssim_hyras = np.nanmean(evaluation_hyras["ssim"])
 
+
+
         print(
             "HYRAS Evaluation Results:\n"
             f"  RMSE (3D): {rmse_hyras:.4f}\n"
             f"  Corr (3D): {corr_hyras:.4f}\n"
             f"  Bias (3D): {bias_hyras:.4f}\n"
+            f"  PRDiff: {prdiff_hyras:.4f}\n"
             f"  SSIM (mean over time): {ssim_hyras:.4f}"
+
+            f"  \nHYRAS RMSE Hourly (3D): {(rmse_hyras)/24:.4f}\n"
+            f"  Bias Hourly (3D): {(bias_hyras/24):.4f}\n"
+            f"  PRDiff Hourly (3D): {(prdiff_hyras/24):.4f}\n"
         )
 
     else:
@@ -564,25 +582,75 @@ if __name__ == "__main__":
         )
         hyras = None
 
+
     # === INPAINTED vs RADAR (3D metrics) ===
     rmse_inp = rmse_3d(inpainted, radar)
     bias_inp = bias_3d(inpainted, radar)
+    prdiff_inp = prdiff_3d(inpainted, radar)
     corr_inp = corr_3d(inpainted, radar)
 
     # SSIM again from 2D evaluation
     evaluation = evaluate_timeseries(radar, inpainted)
     ssim_inp = np.nanmean(evaluation["ssim"])
 
+    rmse_t = np.array(evaluation["rmse"])
+    bias_t = np.array(evaluation["bias"])
+    corr_t = np.array(evaluation["corr"])
+    ssim_t = np.array(evaluation["ssim"])
+
+    rmse_mean = np.nanmean(rmse_t)
+    bias_mean = np.nanmean(bias_t)
+    corr_mean = np.nanmean(corr_t)
+    ssim_mean = np.nanmean(ssim_t)    
+
+    rmse_std = np.nanstd(rmse_t)
+    bias_std = np.nanstd(bias_t)
+    corr_std = np.nanstd(corr_t)
+    ssim_std = np.nanstd(ssim_t)
+
     print(
         "Inpainted Evaluation Results:\n"
         f"  RMSE (3D): {rmse_inp:.4f}\n"
         f"  Corr (3D): {corr_inp:.4f}\n"
         f"  Bias (3D): {bias_inp:.4f}\n"
+        f"  PRDiff: {prdiff_inp:.4f}\n"
         f"  SSIM (mean over time): {ssim_inp:.4f}"
+    )
+
+    print(
+        "Inpainted Evaluation Results (per-timestep std):\n"
+        f"  RMSE mean: {rmse_mean:.4f} std: {rmse_std:.4f}\n"
+        f"  Corr mean: {corr_mean:.4f} std: {corr_std:.4f}\n"
+        f"  Bias mean: {bias_mean:.4f} std: {bias_std:.4f}\n"
+        f"  SSIM mean: {ssim_mean:.4f} std: {ssim_std:.4f}\n"
     )
 
     # === Plotting (still uses per-time metrics) ===
     if hyras is not None:
+        print(
+            "Inpainted Hourly Evaluation Results:\n"
+            f"  RMSE Hourly (3D): {(rmse_inp)/24:.4f}\n"
+            f"  Bias Hourly (3D): {(bias_inp/24):.4f}\n"
+            f"  PRDiff Hourly: {(prdiff_inp/24):.4f}\n"
+        )
+
+        rmse_inp_hyras = rmse_3d(inpainted, hyras)
+        bias_inp_hyras = bias_3d(inpainted, hyras)
+        prdiff_inp_hyras = prdiff_3d(inpainted, hyras)
+        corr_inp_hyras = corr_3d(inpainted, hyras)
+
+        print(
+            "Inpainted vs HYRAS Evaluation Results:\n"
+            f"  RMSE (3D): {rmse_inp_hyras:.4f}\n"
+            f"  Corr (3D): {corr_inp_hyras:.4f}\n"
+            f"  Bias (3D): {bias_inp_hyras:.4f}\n"
+            f"  PRDiff: {prdiff_inp_hyras:.4f}\n"
+
+            f"  \nInpainted vs HYRAS \nRMSE Hourly (3D): {(rmse_inp_hyras)/24:.4f}\n"
+            f"  Bias Hourly (3D): {(bias_inp_hyras/24):.4f}\n"
+            f"  PRDiff Hourly (3D): {(prdiff_inp_hyras/24):.4f}\n"
+        )
+
         plot_rapsd_radar_inpainted_hyras(
             radar,
             inpainted,
