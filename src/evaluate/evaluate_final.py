@@ -536,9 +536,9 @@ if __name__ == "__main__":
     #folder_name = 'final_Jan26_1558_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo and Hourly24
     #folder_name = 'final_Jan21_1406_hourly_2018_None_filippouTrue' # Filippou Hourly24 Aggregated
     #folder_name = 'final_Jan16_1857_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo Old 
-    #folder_name = 'final_Jan27_1738_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo New
+    folder_name = 'final_Jan27_1738_hourly_2018_None_filippouTrue'  # Filippou Monte Carlo New
     #folder_name = 'final_Jan13_1548_hourly_2018_None_filippouTrue' # Filippou Final
-    folder_name = 'final_Jan28_1034_hourly_2018_None_filippouTrue'  # Filippou Final New
+    #folder_name = 'final_Jan28_1034_hourly_2018_None_filippouTrue'  # Filippou Final New
 
     hyras_flag = False
     name = 'filippou'
