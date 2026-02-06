@@ -12,9 +12,9 @@ This README provides an overview of the repository structure.
 
 - [`src/`](src): The main folder, containg the source code for data processing, model definition, training, and evaluation.
 - [`cache/`](cache): Contains cached data, such as preprocessed datasets or evaluation steps.
-- [`output/`](output): Contains all output of the model, including all the model run and evaluation outputs.
+- [`output/`](output): Contains all output of the model, including all the model run and evaluation outputs. In the web repository, it is empty as the .gitignore blocks uploads here to save resources.
 - [`jobs/`](jobs): Contains all the job scripts for training, data reading and evaluation used to run slurm jobs on the high performance cluster (HPC) of the Potsdam Institute for Climate Impact Research (PIK).
-- [`logs/`](logs): Contains all the logs of the model current or cancelled model runs (otherwise they are added to the respective run folder in [output/runs/](output/runs)).
+- [`logs/`](logs): Contains all the logs of the model current or cancelled model runs (otherwise they are added to the respective run folder in [output/runs/](output/runs)). In the web repository, it is empty as the .gitignore blocks uploads here to save resources.
 - [`docs/`](docs): Contains the Master's thesis and another thesis that is referenced in the work.
 
 The other files are self-explanatory apart from [`optuna_rain.db`](optuna_rain.db), which is the Optuna database containing the results of the hyperparameter optimization.
