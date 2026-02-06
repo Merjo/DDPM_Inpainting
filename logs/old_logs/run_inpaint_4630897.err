@@ -1,6 +1,0 @@
-#######################################################################################
-### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
-### Do not run 'conda init' if prompted.                                            ###
-### 'conda init' will modify your shell outside of the `module` environment         ###
-#######################################################################################
-slurmstepd-csl14c246: error: _handle_stat_jobacct: Took usec=36825790, which is more than MessageTimeout (10s). The result won't be delivered

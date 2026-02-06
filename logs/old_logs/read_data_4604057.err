@@ -1,7 +1,0 @@
-#######################################################################################
-### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
-### Do not run 'conda init' if prompted.                                            ###
-### 'conda init' will modify your shell outside of the `module` environment         ###
-#######################################################################################
-/var/spool/slurm/d/job4604057/slurm_script: line 23: 3553613 Killed                  python -u src/data/read_data.py
-slurmstepd-csl14c257: error: Detected 1 oom_kill event in StepId=4604057.batch. Some of the step tasks have been OOM Killed.

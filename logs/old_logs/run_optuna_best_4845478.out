@@ -1,7 +1,0 @@
-Torch version: 2.5.1
-CUDA available: True
-CUDA device count: 3
-CUDA device name: NVIDIA H100 80GB HBM3
-
-[Cache] Loaded dataset from cache/precip_dataset_2001-2002_256_8760_10%.pkl
-

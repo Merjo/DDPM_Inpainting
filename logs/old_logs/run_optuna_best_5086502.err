@@ -1,7 +1,0 @@
-#######################################################################################
-### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
-### Do not run 'conda init' if prompted.                                            ###
-### 'conda init' will modify your shell outside of the `module` environment         ###
-#######################################################################################
-[I 2025-11-05 01:09:57,079] A new study created in RDB with name: rain_diffusion_1762301396
-slurmstepd-csl14c246: error: *** JOB 5086502 ON csl14c246 CANCELLED AT 2025-11-05T01:10:54 ***

@@ -1,6 +1,0 @@
-#######################################################################################
-### conda added to PATH. Use 'source activate' rather than 'conda activate'.        ###
-### Do not run 'conda init' if prompted.                                            ###
-### 'conda init' will modify your shell outside of the `module` environment         ###
-#######################################################################################
-slurmstepd-csl14c247: error: *** JOB 5608954 ON csl14c247 CANCELLED AT 2025-11-25T15:53:06 DUE TO TIME LIMIT ***
