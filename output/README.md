@@ -6,3 +6,5 @@ The output folder contains the results of the training and evaluation of the mod
 - `rapsd/`: Contains the RAPSD scores calculated during evaluation.
 - `real_samples/`: Contains the real samples used for reference during evaluation.
 - `evaluation/`: Contains the plots produced during the evaluation, such as the plots of metrics over time.
+
+As figures and run_folders are prevented from being uploaded in the gitkeep as otherwise too much memory would be used, the folders in the repository are empty.
