@@ -108,7 +108,7 @@ class Diffusion:
         sample_info=None,
         min_patience_delta=cfg.min_patience_delta,
     ):
-        
+        # Prepare Training
         self.model.train()
         best_loss = float("inf")
         best_epoch = -1
@@ -128,13 +128,18 @@ class Diffusion:
             losses = []
 
             for train_loader in train_loaders:
+                # Iterating through the train data loaders for the different patch sizes
+
                 t0=time.time()
                 for imgs in train_loader:
+                    # Iterating through the training images in that folder
                     imgs = imgs.to(self.device)
-                    t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)
 
-                    loss = self.p_losses(imgs, t, log_time=False)
+                    t = torch.randint(0, self.T, (imgs.size(0),), device=self.device)  # choose random timestep
+
+                    loss = self.p_losses(imgs, t, log_time=False) # Compute loss
                     
+                    # Backpropagation
                     optimizer.zero_grad()
                     loss.backward()
                     optimizer.step()
@@ -142,6 +147,8 @@ class Diffusion:
                     losses.append(loss.item())
 
                 print(f"[Training] Patch {train_loader.height} took {time.time() - t0:.2f} sec")
+
+            # Loss calculation and early stopping
 
             losses = np.array(losses)
             total_loss = losses * train_loaders.loss_weights
@@ -172,6 +179,8 @@ class Diffusion:
 
             if scheduler is not None:
                 scheduler.step()
+
+            # Plotting
             
             if sample_every is not None and (epoch + 1) % sample_every == 0 and (epoch+1)!=epochs:
                 samples = self.sample(n_samples=cfg.n_hist_samples_regular)  # shape: (n, c, h, w)
