@@ -1,8 +1,7 @@
 from src.config import cfg
-from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
-from src.utils.output_manager import OutputManager
+from src.model.warmup_cosine import WarmupCosineScheduler
+from src.save.output_manager import OutputManager
 from src.model.song.song_unet import SongUNet
-from src.model.unet import UNet
 from src.model.diffusion import Diffusion
 import torch
 
@@ -38,7 +37,7 @@ def prepare_run(epochs=cfg.epochs,
     resolutions = [cfg.patch_size // (2**i) for i in range(len(channel_mult))]
     attn_resolutions = [resolutions[i] for i in attn_stages]
 
-    unet_class = UNet if cfg.do_checkpointing else SongUNet
+    unet_class = SongUNet
 
     # --- Rebuild UNet ---
     unet = unet_class(

@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from PIL import Image
 from matplotlib import pyplot as plt
-from src.utils.output_manager import OutputManager
+from src.save.output_manager import OutputManager
 from src.config import cfg
 
 

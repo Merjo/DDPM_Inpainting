@@ -8,10 +8,10 @@ import torch
 from src.config import cfg
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
-from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
+from src.model.warmup_cosine import WarmupCosineScheduler
 from src.save.save_model import save_model
 
-from src.utils.output_manager import OutputManager
+from src.save.output_manager import OutputManager
 
 def load_model(param_file, model_file, epochs=cfg.epochs, verbose=True):
     """Reload best UNet+Diffusion and continue training with new epochs."""

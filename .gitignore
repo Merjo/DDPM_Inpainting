@@ -5,7 +5,7 @@
 *.pkl
 data/
 cache/
-output/
+output/*/
 output_new/
 *.out
 *.err

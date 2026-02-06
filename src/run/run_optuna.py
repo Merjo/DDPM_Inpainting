@@ -8,12 +8,12 @@ import pandas as pd
 from collections import defaultdict
 import os
 
-from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
+from src.model.warmup_cosine import WarmupCosineScheduler
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.config import cfg
 
-from src.utils.output_manager import OutputManager
+from src.save.output_manager import OutputManager
 
 def get_unet_parameters(trial):
     # --- UNET hyperparameters ---

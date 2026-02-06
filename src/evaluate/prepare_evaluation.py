@@ -1,20 +1,23 @@
-from matplotlib import pyplot as plt
 import torch
 from src.save.save_plot import scale_back_numpy
 from src.config import cfg
 import os
 from datetime import datetime
-import matplotlib.colors as mcolors
 import numpy as np
 from pathlib import Path
 import pandas as pd
-from src.run.run_station_inpainting import station_inpainting
-from src.utils.evaluate_utils import transfer_to_hyras
+
 from src.data.read_data import read_raw_data
 from src.data.read_hyras_data import load_hyras
 from src.data.read_data import read_raw_data
-from skimage.metrics import structural_similarity as ssim
 
+import numpy as np
+from src.data.read_hyras_data import load_hyras
+from src.config import cfg
+
+import xarray as xr
+from scipy.spatial import cKDTree
+import torch
 
 def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=10, daily_aggregate_mode=False, multiple_mode=False):  # Often, first few radar samples are nan for some reason, therefore introduced offset 
     data = cfg.station_data(years, mode=mode, filippou=filippou)
@@ -174,6 +177,90 @@ def prepare_evaluation(years, mode, timesteps, filippou=False, timesteps_offset=
     print(f"[Save] Aligned data saved to {save_dir}")
     
     return
+
+def transfer_to_hyras(years,
+                      data,
+                      hyras=None,
+                      do_mask=True,
+                      data_lon=None,
+                      data_lat=None,
+                      return_hyras=False,
+                      limit_to_values = True,
+                      return_xarray=True):
+    if hyras is None:
+        hyras = load_hyras(years=years)
+
+    # Use first timestep only (static grid + mask)
+    hyras0 = hyras.isel(time=0)
+
+    # Source lon/lat
+    if data_lon is None:
+        data_lon = data['lon']
+    if data_lat is None:
+        data_lat = data['lat']
+
+    # Flatten source grid
+    data_coords = np.column_stack([
+        data_lon.values.ravel(),
+        data_lat.values.ravel()
+    ])
+
+    # KDTree on source grid
+    tree = cKDTree(data_coords)
+
+    # Flatten HYRAS grid (static)
+    hyras_coords = np.column_stack([
+        hyras0['lon'].values.ravel(),
+        hyras0['lat'].values.ravel()
+    ])
+
+    # Nearest-neighbour lookup
+    _, indices = tree.query(hyras_coords)
+
+    ny, nx = data_lon.shape
+    data_y_idx = indices // nx
+    data_x_idx = indices % nx
+
+    # Map all timesteps at once
+    
+    data_values = data.values if limit_to_values else data # (time, y, x)
+    data_flat = data_values[:, data_y_idx, data_x_idx]
+
+    hyras_shape = (len(hyras0['y']), len(hyras0['x']))
+    data_on_hyras_array = data_flat.reshape(
+        (data.shape[0], *hyras_shape) # Old version: (len(data['time']), *hyras_shape)
+    )
+
+    if return_xarray:
+        # Wrap in xarray
+        data_on_hyras = xr.DataArray(
+            data_on_hyras_array,
+            coords={
+                'time': data['time'],
+                'y': hyras0['y'],
+                'x': hyras0['x'],
+            },
+            dims=('time', 'y', 'x'),
+            name=data.name
+        )
+
+        # Apply static Germany mask
+        if do_mask:
+            germany_mask = hyras0.notnull()
+            data_on_hyras = data_on_hyras.where(germany_mask)
+    else:
+        data_on_hyras = data_on_hyras_array
+        if do_mask:
+            germany_mask = hyras0.notnull().values
+            mask_torch = torch.from_numpy(germany_mask)
+            data_on_hyras[:, ~mask_torch] = torch.nan
+
+    print("Mapping to HYRAS complete!")
+
+    if return_hyras:
+        return data_on_hyras, hyras0
+
+    return data_on_hyras
 
 def listify_numpy(data):
     data = [data[i] for i in range(data.shape[0])]

@@ -7,7 +7,7 @@ import pandas as pd
 from src.config import cfg
 from src.run.run_best import load_model, find_best_saved_model
 import torch.nn.functional as F
-from src.utils.output_manager import OutputManager
+from src.save.output_manager import OutputManager
 from datetime import datetime
 
 

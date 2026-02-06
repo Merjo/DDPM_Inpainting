@@ -31,10 +31,7 @@ class Diffusion:
             plot_dir = f'{cfg.current_output}/samples'
         if hist_dir is None:
             hist_dir = f'{cfg.current_output}/histograms'
-        """if cfg.cuda and torch.cuda.device_count()>1:
-            #model = torch.nn.DataParallel(model)
-            model = model # TODO Decide
-        self.model = model.to(device)"""
+
         if cfg.cuda and torch.cuda.device_count() > 1:
             #print(f"Using DataParallel on {torch.cuda.device_count()} GPUs")
             model = nn.DataParallel(model)
@@ -88,21 +85,6 @@ class Diffusion:
         sqrt_one_minus_alpha_hat = torch.sqrt(1 - self.alpha_hat[t])[:, None, None, None]
         return sqrt_alpha_hat * x0 + sqrt_one_minus_alpha_hat * noise
     
-    def p_losses_nans(self, x0, t, log_time=False):
-        noise = torch.randn_like(x0)
-        
-        xt = self.q_sample(x0, t, noise)
-
-        # Replace NaNs in xt *before* sending to UNet
-        xt_clean = torch.nan_to_num(xt, nan=0.0)
-
-        pred = self.model(xt_clean, t)
-
-        loss = self.masked_noise_loss(pred, noise, x0)
-
-        return loss
-
-    
     def p_losses(self, x0, t, log_time=None, loss_function=None):
         if loss_function is None:
             loss_function = self.criterion
@@ -126,21 +108,7 @@ class Diffusion:
         sample_info=None,
         min_patience_delta=cfg.min_patience_delta,
     ):
-        """
-        Train the model with optional logging per epoch.
-
-        Args:
-            dataloader: PyTorch DataLoader.
-            optimizer: Optimizer instance.
-            epochs: Number of epochs.
-            scheduler: Optional LR scheduler.
-            trial: Optional Optuna trial for pruning.
-            patience: Optional early stopping patience.
-            log_every_epoch: If True, prints average loss and RMSE each epoch.
-
-        Returns:
-            best_rmse: Lowest RMSE achieved.
-        """
+        
         self.model.train()
         best_loss = float("inf")
         best_epoch = -1
@@ -172,11 +140,6 @@ class Diffusion:
                     optimizer.step()
 
                     losses.append(loss.item())
-
-                    if False:  # TODO Decide
-                        del imgs, t, loss
-                        torch.cuda.empty_cache()
-                    
 
                 print(f"[Training] Patch {train_loader.height} took {time.time() - t0:.2f} sec")
 
@@ -218,10 +181,6 @@ class Diffusion:
                     self.plot_histogram(loader=real_loader, epoch=epoch + 1, sample_info=sample_info, samples=samples)
                 if do_save_model_regular:
                     cfg.output_manager.save_model(self.model, val_loss)
-            
-            if False:  # TODO Decide
-                del imgs, t, loss
-                torch.cuda.empty_cache()
 
         last_epoch+=1
         
@@ -239,13 +198,6 @@ class Diffusion:
         return best_loss
     
     def masked_noise_loss(self, pred, noise, x0):
-        """
-        pred  = model predicted noise
-        noise = actual noise used in q_sample
-        x0    = the clean input with possible NaNs
-
-        Computes MSE only where x0 is NOT NaN.
-        """
 
         # Create mask: 1 where valid, 0 where NaN
         mask = ~torch.isnan(x0)
@@ -328,10 +280,6 @@ class Diffusion:
 
     @torch.no_grad()
     def sample(self, n_samples=16, width=None, height=None, chunk_size=16, verbose=True):
-        """
-        Sample n_samples images in memory-safe chunks.
-        Returns tensor on CPU.
-        """
         width = width or self.img_size
         height = height or self.img_size
 
@@ -424,13 +372,6 @@ class Diffusion:
                 # Z5 Compute z
                 z = torch.randn_like(x)
 
-                """# Z6 Update x (& Calc Gradient for Z7)
-                term1 = ((sqrt_alpha[t]*(1 - alpha_hat[t-1])) / (1 - alpha_hat[t])) * x
-                term2 = ((sqrt_alpha_hat[t-1]*beta[t]) / (1-alpha_hat[t])) * x0_pred
-                term3 = sqrt_beta[t] * z
-
-                x_dash = term1 + term2 + term3"""
-
                 # Z6 Revision Update x
 
                 mu = (1 / torch.sqrt(alpha[t])) * (
@@ -463,124 +404,3 @@ class Diffusion:
 
         return result
     
-    def inpaint_dps_cpu(self, x_known, mask, n_steps=None, chunk_size=cfg.inpainting_chunk_size, lam=cfg.dps_lam, verbose=True):
-        print(f'Starting inpainting with DPS, lambda={lam}')
-        print(f'Torch cuda memory allocated: {torch.cuda.memory_allocated()}')
-        torch.cuda.empty_cache()
-        print(f'Torch cuda memory allocated after empty cache: {torch.cuda.memory_allocated()}')
-        self.model.eval()
-        T = n_steps or self.T
-        device = x_known.device
-
-        n_total = x_known.size(0)
-        all_outputs = []
-
-        for p in self.model.parameters():
-            p.requires_grad_(False)
-
-        for start in range(0, n_total, chunk_size):
-            def forward_block(x, t):
-                with autocast():
-                    pred_noise = self.model(x, t_batch)
-                return pred_noise
-
-
-            cur = min(chunk_size, n_total - start)
-            if verbose:
-                datestr = datetime.datetime.now().strftime("%b%d_%H%M")
-                print(f"[{datestr}] Inpainting {start+1}-{start+cur} / {n_total}")
-
-            end = min(start + chunk_size, n_total)
-            x_known_batch = x_known[start:end].to(cfg.device)
-            mask_batch = mask[start:end].to(cfg.device)
-
-            x = torch.randn_like(x_known_batch, requires_grad=True)  # start from noise
-            alpha = self.alpha
-            alpha_hat = self.alpha_hat
-            beta = self.beta
-            sqrt_alpha_hat = torch.sqrt(alpha_hat)
-            sqrt_one_minus_alpha_hat = torch.sqrt(1 - alpha_hat)
-            for t in reversed(range(T)):
-                if t % 50 == 0:
-                    print(f'Inpainting, {(T - t) / 10}%')
-
-                t_batch = torch.full((x.size(0),), t, device=device, dtype=torch.long)
-
-                # Z3 Predict Noise
-                #pred_noise = self.model(x, t_batch)
-
-
-                pred_noise = checkpoint(forward_block, x, t_batch)
-
-                # Z4 Compute x0_pred
-                # from paper: x0_pred = (1 / sqrt_alpha_hat[t]) * (x + (1 - alpha_hat[t]) * pred_noise)
-                #x0_pred = (x - sqrt_one_minus_alpha_hat[t] * pred_noise) / sqrt_alpha_hat[t]
-
-                # Z5 Compute z
-                z = torch.randn_like(x)
-
-                """# Z6 Update x (& Calc Gradient for Z7)
-                term1 = ((sqrt_alpha[t]*(1 - alpha_hat[t-1])) / (1 - alpha_hat[t])) * x
-                term2 = ((sqrt_alpha_hat[t-1]*beta[t]) / (1-alpha_hat[t])) * x0_pred
-                term3 = sqrt_beta[t] * z
-
-                x_dash = term1 + term2 + term3"""
-
-                # Z6 Revision Update x
-
-                mu = (1 / torch.sqrt(alpha[t])) * (
-                    x - ((1 - alpha[t]) / sqrt_one_minus_alpha_hat[t]) * pred_noise
-                )
-
-                if t > 0:
-                    x_dash = mu + torch.sqrt(beta[t]) * z
-                else:
-                    x_dash = mu
-
-                # Z7 DPS Guidance
-                #residual = mask_batch * (x_known_batch - x0_pred)
-                #loss = (residual ** 2).sum()
-                """valid = mask_batch.bool()
-                residual = x_known_batch[valid] - x0_pred[valid]
-                loss = (residual ** 2).sum()
-                grad = torch.autograd.grad(loss, x)[0]
-                guidance = lam * grad # * (1 - alpha_hat[t]) # Optional scaling TODO Decide
-                x = (x_dash - guidance).detach().requires_grad_(True)"""
-                # --- DPS Guidance on CPU ---
-                x_cpu = x.detach().cpu().requires_grad_(True)
-
-                # pred_noise must be detached but reused
-                pred_noise_cpu = pred_noise.detach().cpu()
-
-                sqrt_one_minus_alpha_hat_cpu = sqrt_one_minus_alpha_hat.cpu()
-                sqrt_alpha_hat_cpu = sqrt_alpha_hat.cpu()
-
-                x0_pred_cpu = (
-                    x_cpu - sqrt_one_minus_alpha_hat_cpu[t] * pred_noise_cpu
-                ) / sqrt_alpha_hat_cpu[t]
-
-                x_known_cpu = x_known_batch.cpu()
-                mask_cpu = mask_batch.cpu()
-
-                valid = mask_cpu.bool()
-                residual = x_known_cpu[valid] - x0_pred_cpu[valid]
-                loss = (residual ** 2).sum()
-
-                grad_cpu = torch.autograd.grad(loss, x_cpu)[0]
-                guidance = lam * grad_cpu.to(x.device)
-
-                x = (x_dash - guidance).detach().requires_grad_(True)
-
-                # Optional clamping
-                if t > cfg.n_skip_clamp:
-                    clamp_range = cfg.clamp_range_t(t, total_timesteps=self.T)
-                    x = x.clamp(clamp_range[0], clamp_range[1])
-
-            x = x.detach()
-            all_outputs.append(x.cpu())
-            del x, x_known_batch, mask_batch, pred_noise
-            torch.cuda.empty_cache()
-
-        result = torch.cat(all_outputs, dim=0)
-
-        return result

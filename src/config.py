@@ -15,6 +15,8 @@ class Config:
         self.preserve_references = True
         self.preserve_regular_references = True
 
+        #  Modes
+
         self.model_type = 'hourly'  # choices: ['hourly', 'daily']
 
         self.filippou_mode = True
@@ -28,11 +30,15 @@ class Config:
         self.optuna_mode = False
         if self.optuna_mode:
             print('\n\Optuna MODE!!!\n\n')
+
         # Efficiency
+
         self.do_mixed_precision = False  # TODO
         self.do_checkpointing = False  # TODO
 
         # Data
+
+        ## Data paths
 
         self.cache_path = "../../../../p/tmp/merlinho/cache"
         self.output_cache_path = "../../../../p/tmp/merlinho/cache/output_cache"
@@ -55,14 +61,11 @@ class Config:
         self.train_loaders_ref = None
         self.val_loaders_ref = None
         self.station_val_loaders_ref = None
-        self.val_fraction = 0.15  # TODO Obsolete
 
-        # Data parameters
+        ## Data parameters
 
         self.patch_size = 256  # Patch size for dataset
         self.stride = 64
-        self.stride_fraction = 1/2  # TODO Obsolete
-
         
         self.min_coverage_ref = 0.1  # Minimum coverage for patches (0.0 to 1.0)
 
@@ -149,7 +152,7 @@ class Config:
 
         self.inpainting_chunk_size = 2 if self.daily else 2
 
-        # Normal Parameters
+        # Model Normal Parameters
 
         self.model_channels = 128
         self.num_blocks = 3 #if self.daily else 2
@@ -185,18 +188,7 @@ class Config:
             "lr_wc": (1e-5, 5e-3)
         }
         
-    
-    def check_cuda(self):
-        if not self.cuda:
-            raise(Exception('Cuda not available.'))
-        print("Torch version:", torch.__version__)
-        print("CUDA available:", torch.cuda.is_available())
-        print("CUDA device count:", torch.cuda.device_count())
-        print("CUDA device name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU detected")
-
-    def update_output_path(self, run_dir_name):
-        self.output_path = os.path.join(self.output_base_dir, run_dir_name)
-        print(f"Output path set to: {self.output_path}")
+    # --------------------- PROPERTIES ---------------------
 
     @property
     def time_slices(self):
@@ -396,6 +388,24 @@ class Config:
             return((low, high))"""
         return(self.clamp_range_end_ref)
     
+
+    # --------------------- METHODS ---------------------
+
+    def check_cuda(self):
+        if not self.cuda:
+            raise(Exception('Cuda not available.'))
+        print("Torch version:", torch.__version__)
+        print("CUDA available:", torch.cuda.is_available())
+        print("CUDA device count:", torch.cuda.device_count())
+        print("CUDA device name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU detected")
+
+    def update_output_path(self, run_dir_name):
+        self.output_path = os.path.join(self.output_base_dir, run_dir_name)
+        print(f"Output path set to: {self.output_path}")
+
+    def set_output_manager(self, output_manager):
+        self.output_manager = output_manager
+
     def clamp_range_t(self, t, total_timesteps=None, factor=0.03):
         """
         Get the clamp range at timestep t during diffusion sampling/training.
@@ -428,9 +438,6 @@ class Config:
         clamp_high = high_start + alpha * (high_end - high_start)
 
         return (clamp_low, clamp_high)
-    
-    def set_output_manager(self, output_manager):
-        self.output_manager = output_manager
 
 cfg = Config()
 

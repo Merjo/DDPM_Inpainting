@@ -1,0 +1,139 @@
+import numpy as np
+import xarray as xr
+from tqdm import tqdm
+
+"""Implementation from https://github.com/p-hss/consistency-climate-downscaling/blob/e47a433ae5752d44973204881eac96d33237e7d5/src/utils/spectra.py#L32"""
+
+def mean_rapsd(data: xr.DataArray, normalize: bool=True):
+    """
+    Averages the RAPSD in time over a DataArray.
+
+    Args:
+        data: The dataset with shape [time, latitude, longitude]
+        normalize: Normalize the spectra
+    
+    Returns:
+        Average RAPSD, Fourier frequencies
+    """
+
+    assert(len(data.latitude) == len(data.longitude)), "Number of latitude coordinates must equal the number of longitudes."
+
+    mean_psd = np.zeros(len(data.latitude)//2)
+
+    for i in tqdm(range(len(data))):
+        data_slice = data[i].values
+        psd, freq = rapsd(data_slice, fft_method=np.fft, normalize=normalize, return_freq=True)
+        mean_psd += psd
+
+    mean_psd /= len(data.time)
+
+    return mean_psd, freq
+
+
+def mean_rapsd_numpy(data: np.ndarray, normalize: bool=False):
+    """
+    Averages the RAPSD in time over a DataArray.
+
+    Args:
+        data: The dataset with shape [time, latitude, longitude]
+        normalize: Normalize the spectra
+    
+    Returns:
+        Average RAPSD, Fourier frequencies
+    """
+
+    mean_psd = np.zeros(data.shape[-2]//2)
+
+    for t in tqdm(range(len(data))):
+        data_slice = data[t]
+        psd, freq = rapsd(data_slice, fft_method=np.fft, normalize=normalize, return_freq=True)
+        mean_psd += psd
+
+    mean_psd /= len(data)
+
+    return mean_psd, freq
+
+
+def rapsd(field: np.ndarray,
+          fft_method=np.fft,
+          return_freq: bool=False,
+          d: float=1.0,
+          normalize: bool=True
+          ) -> np.ndarray:
+
+    if len(field.shape) != 2:
+        raise ValueError(
+            f"{len(field.shape)} dimensions are found, but the number "
+            "of dimensions should be 2"
+        )
+
+    # NEW: Handle NaNs properly
+    if np.isnan(field).any():
+        mean_val = np.nanmean(field)
+        field = np.nan_to_num(field, nan=mean_val)
+
+    m, n = field.shape
+
+    yc, xc = compute_centred_coord_array(m, n)
+    r_grid = np.sqrt(xc * xc + yc * yc).round()
+    l = max(m, n)
+
+    r_range = np.arange(0, int(l/2) + (l % 2))
+
+    if fft_method is not None:
+        psd = fft_method.fftshift(fft_method.fft2(field))
+        psd = np.abs(psd) ** 2 / psd.size
+    else:
+        psd = field
+
+    result = []
+    for r in r_range:
+        mask = r_grid == r
+        psd_vals = psd[mask]
+
+        # NEW: Robust NaN handling per ring
+        if np.all(np.isnan(psd_vals)):
+            result.append(np.nan)
+        else:
+            result.append(np.nanmean(psd_vals))
+
+    result = np.array(result)
+
+    if normalize:
+        total_power = np.nansum(result)
+        if total_power > 0:
+            result /= total_power
+
+    if return_freq:
+        freq = np.fft.fftfreq(l, d=d)
+        return result, freq[r_range]
+
+    return result
+
+
+
+def compute_centred_coord_array(M: np.ndarray, N: np.ndarray) -> np.ndarray:
+    """
+    Compute a 2D coordinate array, where the origin is at the center.
+
+    Args: 
+        M: The height of the array.
+        N: The width of the array.
+
+    Returns:
+        The coordinate array.
+    """
+
+    if M % 2 == 1:
+        s1 = np.s_[-int(M / 2) : int(M / 2) + 1]
+    else:
+        s1 = np.s_[-int(M / 2) : int(M / 2)]
+
+    if N % 2 == 1:
+        s2 = np.s_[-int(N / 2) : int(N / 2) + 1]
+    else:
+        s2 = np.s_[-int(N / 2) : int(N / 2)]
+
+    YC, XC = np.ogrid[s1, s2]
+
+    return YC, XC

@@ -1,6 +1,6 @@
 from src.run.run_best import load_model
 from src.config import cfg
-from src.utils.output_manager import OutputManager
+from src.save.output_manager import OutputManager
 
 from src.run.run_sampling import run_sampling
 from src.config import cfg

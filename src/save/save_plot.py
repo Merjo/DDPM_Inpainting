@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from src.config import cfg
-from src.random.spectra import mean_rapsd_numpy 
+from src.save.spectra import mean_rapsd_numpy 
 
 import matplotlib.colors as mcolors
 import torch

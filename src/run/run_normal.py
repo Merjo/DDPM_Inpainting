@@ -4,8 +4,8 @@ import torch
 from src.model.song.song_unet import SongUNet
 from src.model.diffusion import Diffusion
 from src.config import cfg
-from src.model.schedulers.warmup_cosine import WarmupCosineScheduler
-from src.utils.output_manager import OutputManager
+from src.model.warmup_cosine import WarmupCosineScheduler
+from src.save.output_manager import OutputManager
 from src.run.prepare_run import prepare_run
 
 def run_model_normal(epochs, 
